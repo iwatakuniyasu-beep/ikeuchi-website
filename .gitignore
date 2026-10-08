@@ -1,0 +1,9 @@
+# 元動画（大きすぎてGitHubに置けない）
+movie/
+# 接続情報などの秘密ファイル
+*接続情報*
+*.env
+*secret*
+# ローカル設定・作業用
+.claude/
+/website2-top.jpg

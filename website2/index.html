@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IKEUCHI POP 3案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DotGothic16&family=Mochiy+Pop+One&family=Unbounded:wght@900&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
+<style>
+  :root{ --ink:#111; --paper:#F4F1EA; }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Zen Kaku Gothic New', sans-serif; line-height:1.7;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1200px; margin:0 auto; padding:56px 20px 70px;}
+  header h1{font-family:'Dela Gothic One'; font-weight:400; font-size:clamp(36px,6vw,68px); line-height:1.15; margin:8px 0 12px;}
+  header p{max-width:60ch; font-weight:700; margin:0;}
+  .tag{display:inline-block; font-weight:900; font-size:13px; background:var(--ink); color:#fff; padding:4px 12px; border-radius:999px;}
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:44px;}
+  .card{display:flex; flex-direction:column; min-height:440px; border-radius:24px; overflow:hidden; transition:transform .25s;}
+  .card:hover{transform:translateY(-8px) rotate(-.6deg);}
+  .card .top{flex:1; padding:30px 26px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden;}
+  .card .bottom{padding:18px 26px 22px;}
+  .card .n{font-weight:900; font-size:14px;}
+  .card h2{margin:0; font-weight:400; line-height:1.05;}
+  .card p{margin:6px 0 0; font-size:14.5px;}
+  .card .go{display:inline-block; margin-top:14px; font-weight:900;}
+
+  /* 01 zine */
+  .c1{background:#FFF8E7; border:3px solid #111; box-shadow:8px 8px 0 #111;}
+  .c1 .top{background:#FFE14D; border-bottom:3px solid #111;}
+  .c1 h2{font-family:'Dela Gothic One'; font-size:58px;}
+  .c1 h2 span{color:#FF5CA8; -webkit-text-stroke:2px #111;}
+  .c1 .st{position:absolute; right:18px; top:18px; background:#2BD17E; border:3px solid #111; border-radius:999px; padding:4px 12px; font-weight:900; font-size:13px; transform:rotate(8deg);}
+
+  /* 02 liquid */
+  .c2{background:#08070D; color:#F3F1FF; border:1px solid rgba(255,255,255,.15);}
+  .c2 .top{background:radial-gradient(circle at 30% 30%, #7A5CFF 0, transparent 55%), radial-gradient(circle at 80% 70%, #FF2E93 0, transparent 50%), #110F1A;}
+  .c2 h2{font-family:'Unbounded'; font-weight:900; font-size:52px; letter-spacing:-.03em;
+    background:linear-gradient(180deg,#fff,#8c8fa3 48%,#f6f7fb 54%,#6e7186); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .c2 .n,.c2 .px{font-family:'DotGothic16'; color:#C8FF00;}
+  .c2 .go{color:#C8FF00;}
+
+  /* 03 bento */
+  .c3{background:#FFF6EC; border-radius:32px;}
+  .c3 .top{background:#CDB9FF; margin:10px; border-radius:24px;}
+  .c3 h2{font-family:'Mochiy Pop One'; font-size:40px; line-height:1.25;}
+  .c3 h2 mark{background:#FFF07A; border-radius:10px; padding:0 6px;}
+  .c3 .dots{display:flex; gap:8px;}
+  .c3 .dots i{width:46px; height:46px; border-radius:14px; background:#A8EFCF;}
+  .c3 .dots i:nth-child(2){background:#FFC2A1;} .c3 .dots i:nth-child(3){background:#B5DBFF;}
+
+  .old{margin-top:44px; font-weight:700; font-size:14px;}
+  .old a{text-decoration:underline;}
+  @media (max-width:900px){ .grid{grid-template-columns:1fr;} .card{min-height:340px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="tag">IKEUCHI — 若者向け POP 3案</span>
+    <h1>ぜんぜん違う<br>3つのテイスト。</h1>
+    <p>同じ作品・同じ写真・同じ動画を、まったく違う3つの世界観でデザインしました。カードをクリックして見比べてください。</p>
+  </header>
+
+  <div class="grid">
+    <a class="card c1" href="01-zine/index.html">
+      <div class="top">
+        <span class="st">ステッカー感</span>
+        <span class="n">01</span>
+        <h2>鉄を、<br><span>まげて</span><br>あそぶ。</h2>
+      </div>
+      <div class="bottom">
+        <b>鉄ZINE — ネオ・ブルータリズム</b>
+        <p>太い黒フチ、ベタ塗りの原色、ナナメのカード、流れるテロップ。手づくりZINEのような勢い。</p>
+        <span class="go">見てみる →</span>
+      </div>
+    </a>
+
+    <a class="card c2" href="02-liquid/index.html">
+      <div class="top">
+        <span class="n">02 / DARK</span>
+        <h2>IRON<br>DREAMS</h2>
+        <span class="px">&gt; 鉄は、夢を見る。_</span>
+      </div>
+      <div class="bottom">
+        <b>LIQUID METAL — Y2K × クローム</b>
+        <p>黒にネオン、金属っぽいクローム文字、横スクロールの作品、CGと実物を比べるスライダー。クラブのフライヤーのような世界観。</p>
+        <span class="go">見てみる →</span>
+      </div>
+    </a>
+
+    <a class="card c3" href="03-bento/index.html">
+      <div class="top">
+        <span class="n">03</span>
+        <h2>鉄で、<br><mark>まいにち</mark>を<br>たのしく。</h2>
+        <div class="dots"><i></i><i></i><i></i></div>
+      </div>
+      <div class="bottom">
+        <b>てつのおべんとう — パステル × アプリ風</b>
+        <p>丸くてやさしいパステルのタイル、縦型ショート動画、ジャンルで絞り込める作品図鑑、Q&amp;A。</p>
+        <span class="go">見てみる →</span>
+      </div>
+    </a>
+  </div>
+
+  <p class="old">以前の5案（落ち着いた高級路線）は <a href="../website/index.html">website フォルダ</a> にそのまま残しています。</p>
+</div>
+</body>
+</html>
