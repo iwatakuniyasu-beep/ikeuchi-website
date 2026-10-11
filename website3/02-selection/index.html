@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IKEUCHI Selection</title>
+<meta name="description" content="ラウンジオーナーのための、鉄の彫刻 選定ガイド。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@500;700;900&display=swap">
+<style>
+  :root{
+    --paper:#F5F1EA;
+    --paper-2:#ECE6DB;
+    --card:#FBF9F5;
+    --ink:#1F1D1A;
+    --dim:#6B655B;
+    --line:#D9D1C2;
+    --green:#213A31;
+    --green-2:#2C4A3E;
+    --brass:#A8834A;
+    --brass-soft:#D8C29A;
+    --lbx-accent:var(--brass-soft);
+    --lbx-on-accent:var(--ink);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Noto Sans JP', sans-serif; font-weight:400; line-height:1.9; overflow-x:clip;}
+  img,video{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  .serif{font-family:'Zen Old Mincho', serif;}
+  .lat{font-family:'Italiana', serif; letter-spacing:.08em;}
+  .wrap{max-width:1200px; margin:0 auto; padding-inline:32px;}
+  section{padding-block:110px;}
+  @media (max-width:760px){ section{padding-block:72px;} .wrap{padding-inline:18px;} }
+
+  .kicker{font-family:'Italiana'; font-size:15px; letter-spacing:.24em; color:var(--brass); text-transform:uppercase; display:block; margin-bottom:14px;}
+  h2.h{font-family:'Zen Old Mincho'; font-weight:700; font-size:clamp(26px,3.4vw,40px); line-height:1.55; margin:0 0 18px; letter-spacing:.04em;}
+  .sub{color:var(--dim); font-size:15.5px; max-width:44em; margin:0;}
+  .head{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:end; margin-bottom:56px;}
+  @media (max-width:860px){ .head{grid-template-columns:1fr; gap:10px;} }
+
+  .btn{display:inline-flex; align-items:center; gap:12px; padding:15px 28px; border-radius:2px; font-size:14.5px; font-weight:500; letter-spacing:.08em; cursor:pointer; border:1px solid var(--green); transition:background .25s, color .25s;}
+  .btn.primary{background:var(--green); color:#F5F1EA;}
+  .btn.primary:hover{background:var(--green-2);}
+  .btn.ghost{background:transparent; color:var(--green);}
+  .btn.ghost:hover{background:var(--green); color:#F5F1EA;}
+  .btn.brass{background:var(--brass); border-color:var(--brass); color:#fff;}
+  .btn.brass:hover{background:#8f6e3b;}
+
+  /* header */
+  .bar{position:sticky; top:0; z-index:50; background:rgba(245,241,234,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  .bar-in{display:flex; align-items:center; gap:28px; padding:14px 32px; max-width:1280px; margin:0 auto;}
+  .bar .logo{font-family:'Italiana'; font-size:24px; letter-spacing:.3em;}
+  .bar .logo small{font-family:'Noto Sans JP'; font-size:11px; letter-spacing:.14em; color:var(--dim); margin-left:10px;}
+  .bar nav{display:flex; gap:26px; margin-left:auto; font-size:13.5px; color:var(--dim);}
+  .bar nav a:hover{color:var(--ink);}
+  .bar .btn{padding:10px 18px; font-size:13px;}
+  @media (max-width:900px){ .bar nav{display:none;} .bar-in{padding:12px 18px; justify-content:space-between;} .bar .logo small{display:none;} }
+
+  /* hero */
+  .hero{padding-block:70px 100px;}
+  .hero-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center;}
+  .hero h1{font-family:'Zen Old Mincho'; font-weight:700; font-size:clamp(34px,4.8vw,60px); line-height:1.5; letter-spacing:.04em; margin:0 0 24px;}
+  .hero h1 span{color:var(--brass);}
+  .hero p.lead{color:var(--dim); font-size:16px; max-width:30em; margin:0 0 34px;}
+  .hero .cta{display:flex; gap:12px; flex-wrap:wrap;}
+  .facts{display:grid; grid-template-columns:repeat(3,1fr); margin-top:48px; border-top:1px solid var(--line);}
+  .facts div{padding:18px 14px 0 0;}
+  .facts b{display:block; font-family:'Zen Old Mincho'; font-size:17px;}
+  .facts span{font-size:12.5px; color:var(--dim);}
+  .collage{position:relative; height:620px;}
+  .collage figure{margin:0; position:absolute; overflow:hidden; cursor:zoom-in; box-shadow:0 30px 60px rgba(31,29,26,.18);}
+  .collage img{width:100%; height:100%; object-fit:cover;}
+  .collage .c1{left:0; top:0; width:68%; height:84%;}
+  .collage .c2{right:0; bottom:0; width:46%; height:50%; border:8px solid var(--paper);}
+  .collage figcaption{position:absolute; left:0; bottom:0; right:0; padding:10px 14px; font-size:12px; color:#fff; background:linear-gradient(transparent, rgba(0,0,0,.6));}
+  .collage .stamp{position:absolute; left:58%; top:6%; width:120px; height:120px; border-radius:50%; background:var(--green); color:var(--brass-soft); display:grid; place-items:center; text-align:center; font-family:'Zen Old Mincho'; font-size:15px; line-height:1.5; transform:rotate(-8deg); z-index:2;}
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr; gap:46px;}
+    .collage{height:460px;}
+  }
+
+  /* values */
+  .values{background:var(--card); border-block:1px solid var(--line);}
+  .val-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .val{padding-top:22px; border-top:2px solid var(--green);}
+  .val .n{font-family:'Italiana'; font-size:44px; color:var(--brass); line-height:1;}
+  .val h3{font-family:'Zen Old Mincho'; font-weight:700; font-size:21px; margin:12px 0 8px;}
+  .val p{color:var(--dim); font-size:14.5px; margin:0;}
+  @media (max-width:860px){ .val-grid{grid-template-columns:1fr;} }
+
+  /* selector */
+  .selector{background:var(--green); color:#EFE9DD;}
+  .selector .kicker{color:var(--brass-soft);}
+  .selector .sub{color:#BFC9C2;}
+  .sel-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
+  .q{margin-bottom:30px;}
+  .q-label{display:flex; align-items:baseline; gap:12px; margin-bottom:12px;}
+  .q-label b{font-family:'Italiana'; font-size:22px; color:var(--brass-soft);}
+  .q-label span{font-family:'Zen Old Mincho'; font-size:18px; font-weight:700;}
+  .opts{display:flex; flex-wrap:wrap; gap:8px;}
+  .opts label{cursor:pointer;}
+  .opts input{position:absolute; opacity:0; pointer-events:none;}
+  .opts span{display:inline-block; padding:10px 18px; border:1px solid rgba(239,233,221,.35); font-size:14px; transition:all .2s;}
+  .opts label:hover span{border-color:var(--brass-soft);}
+  .opts input:checked + span{background:var(--brass-soft); color:var(--ink); border-color:var(--brass-soft);}
+  .opts input:focus-visible + span{outline:2px solid #fff; outline-offset:2px;}
+  .result{background:var(--paper); color:var(--ink); padding:30px; position:sticky; top:90px;}
+  .result h3{font-family:'Zen Old Mincho'; font-weight:700; font-size:20px; margin:0 0 4px;}
+  .result .note{font-size:12.5px; color:var(--dim); margin:0 0 18px;}
+  .rec{display:grid; grid-template-columns:96px 1fr; gap:16px; padding:14px 0; border-top:1px solid var(--line); align-items:center;}
+  .rec img{width:96px; height:96px; object-fit:cover; cursor:zoom-in;}
+  .rec .rank{font-family:'Italiana'; color:var(--brass); font-size:14px; letter-spacing:.14em;}
+  .rec h4{margin:0; font-family:'Zen Old Mincho'; font-size:18px; font-weight:700;}
+  .rec .meter{height:4px; background:var(--paper-2); margin:6px 0 6px; position:relative;}
+  .rec .meter i{position:absolute; inset:0 auto 0 0; background:var(--brass); transition:width .5s;}
+  .rec p{margin:0; font-size:13px; color:var(--dim); line-height:1.7;}
+  .result .empty{color:var(--dim); font-size:14px; padding:20px 0; border-top:1px solid var(--line);}
+  .result .btn{width:100%; justify-content:center; margin-top:18px;}
+  @media (max-width:900px){ .sel-grid{grid-template-columns:1fr; gap:30px;} .result{position:static;} }
+
+  /* catalogue */
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .card{background:var(--card); border:1px solid var(--line); display:flex; flex-direction:column;}
+  .card-media{position:relative; aspect-ratio:4/3; overflow:hidden; cursor:zoom-in; background:#000;}
+  .card-media img,.card-media video{width:100%; height:100%; object-fit:cover; transition:transform .8s;}
+  .card:hover .card-media img,.card:hover .card-media video{transform:scale(1.04);}
+  .card-media .badge{position:absolute; left:12px; top:12px; font-size:11.5px; letter-spacing:.1em; padding:4px 10px; background:var(--card); color:var(--ink);}
+  .card-media .badge.real{background:var(--green); color:var(--brass-soft);}
+  .card-body{padding:22px 22px 24px; flex:1; display:flex; flex-direction:column;}
+  .card-body h3{font-family:'Zen Old Mincho'; font-weight:700; font-size:22px; margin:0;}
+  .card-body .lat{color:var(--dim); font-size:14px;}
+  .card-body p{color:var(--dim); font-size:14px; margin:10px 0 16px; flex:1;}
+  .spec{margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 14px; font-size:13px; border-top:1px solid var(--line); padding-top:14px;}
+  .spec dt{color:var(--brass); font-weight:500;}
+  .spec dd{margin:0;}
+  .dots{letter-spacing:.2em; color:var(--brass);}
+  .dots i{font-style:normal; color:var(--line);}
+  .card-body .film{margin-top:16px; font-size:13px; color:var(--green); font-weight:500; border-bottom:1px solid var(--green); align-self:flex-start; cursor:pointer;}
+  @media (max-width:960px){ .cards{grid-template-columns:1fr 1fr;} }
+  @media (max-width:600px){ .cards{grid-template-columns:1fr;} }
+
+  .table-wrap{overflow-x:auto; margin-top:56px; border:1px solid var(--line); background:var(--card);}
+  table{border-collapse:collapse; width:100%; min-width:760px; font-size:14px;}
+  th,td{padding:14px 16px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top;}
+  thead th{font-family:'Zen Old Mincho'; font-weight:700; background:var(--paper-2); font-size:13.5px; white-space:nowrap;}
+  tbody th{font-family:'Zen Old Mincho'; font-weight:700; white-space:nowrap;}
+  tbody tr:last-child td,tbody tr:last-child th{border-bottom:0;}
+  .table-cap{font-size:12.5px; color:var(--dim); margin-top:10px;}
+
+  /* proof */
+  .proof{background:var(--card); border-block:1px solid var(--line);}
+  .pair{display:grid; grid-template-columns:1fr auto 1fr; gap:22px; align-items:center;}
+  .pair figure{margin:0; cursor:zoom-in;}
+  .pair img{aspect-ratio:16/10; object-fit:cover; width:100%;}
+  .pair figcaption{font-size:13px; color:var(--dim); margin-top:10px;}
+  .pair figcaption b{color:var(--ink); font-family:'Zen Old Mincho'; font-size:15px; margin-right:8px;}
+  .pair .arrow{font-family:'Italiana'; font-size:40px; color:var(--brass);}
+  @media (max-width:760px){ .pair{grid-template-columns:1fr;} .pair .arrow{transform:rotate(90deg); justify-self:center;} }
+
+  /* flow */
+  .flow{display:grid; grid-template-columns:repeat(5,1fr); gap:0; counter-reset:f; border-top:1px solid var(--line);}
+  .flow li{list-style:none; padding:24px 20px 0 0; position:relative; counter-increment:f;}
+  .flow li::before{content:"0" counter(f); font-family:'Italiana'; font-size:30px; color:var(--brass); display:block;}
+  .flow li::after{content:""; position:absolute; top:-5px; left:0; width:9px; height:9px; border-radius:50%; background:var(--green);}
+  .flow b{display:block; font-family:'Zen Old Mincho'; font-weight:700; font-size:17px; margin:4px 0 6px;}
+  .flow span{font-size:13.5px; color:var(--dim);}
+  .flow{padding:0; margin:0;}
+  @media (max-width:900px){ .flow{grid-template-columns:1fr 1fr; gap:10px 20px;} }
+  @media (max-width:520px){ .flow{grid-template-columns:1fr;} }
+  .prepare{margin-top:56px; display:grid; grid-template-columns:.8fr 1.2fr; gap:40px; background:var(--paper-2); padding:36px;}
+  .prepare h3{font-family:'Zen Old Mincho'; font-weight:700; font-size:20px; margin:0 0 8px;}
+  .prepare p{margin:0; color:var(--dim); font-size:14px;}
+  .prepare ul{margin:0; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:10px 24px;}
+  .prepare li{display:flex; gap:10px; font-size:14.5px; align-items:flex-start;}
+  .prepare li::before{content:"✓"; color:var(--brass); font-weight:700;}
+  @media (max-width:760px){ .prepare{grid-template-columns:1fr; padding:24px;} .prepare ul{grid-template-columns:1fr;} }
+
+  /* artist */
+  .artist{display:grid; grid-template-columns:1fr 1.3fr; gap:60px; align-items:center;}
+  .artist figure{margin:0; aspect-ratio:4/5; overflow:hidden; cursor:zoom-in;}
+  .artist figure img{width:100%; height:100%; object-fit:cover;}
+  .artist p{color:var(--dim); font-size:15px; margin:0 0 14px;}
+  .award-list{display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; margin-top:22px; padding:0; list-style:none; font-size:13.5px;}
+  .award-list li{border-top:1px solid var(--line); padding-top:8px;}
+  .award-list b{font-family:'Italiana'; color:var(--brass); font-size:16px; margin-right:10px;}
+  @media (max-width:860px){ .artist{grid-template-columns:1fr; gap:30px;} .artist figure{aspect-ratio:16/10;} .award-list{grid-template-columns:1fr;} }
+
+  /* faq */
+  .qa{display:grid; grid-template-columns:1fr 1fr; gap:0 48px;}
+  .qa div{padding:22px 0; border-top:1px solid var(--line);}
+  .qa h3{font-family:'Zen Old Mincho'; font-weight:700; font-size:17px; margin:0 0 6px; display:flex; gap:10px;}
+  .qa h3::before{content:"Q."; font-family:'Italiana'; color:var(--brass);}
+  .qa p{margin:0; color:var(--dim); font-size:14.5px; padding-left:28px;}
+  @media (max-width:860px){ .qa{grid-template-columns:1fr;} }
+
+  /* contact */
+  .contact{background:var(--ink); color:#EFE9DD;}
+  .contact-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center;}
+  .contact .kicker{color:var(--brass-soft);}
+  .contact h2{font-family:'Zen Old Mincho'; font-weight:700; font-size:clamp(28px,3.8vw,46px); line-height:1.55; margin:0 0 18px;}
+  .contact p{color:#B9B1A3; margin:0 0 28px;}
+  .contact .btn.ghost{color:#EFE9DD; border-color:#EFE9DD;}
+  .contact .btn.ghost:hover{background:#EFE9DD; color:var(--ink);}
+  .contact dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:12px 20px; font-size:14.5px; border-left:1px solid #3a3631; padding-left:32px;}
+  .contact dt{color:var(--brass-soft); font-family:'Italiana'; letter-spacing:.14em;}
+  .contact dd{margin:0; overflow-wrap:anywhere;}
+  @media (max-width:860px){ .contact-grid{grid-template-columns:1fr;} .contact dl{border-left:0; padding-left:0; border-top:1px solid #3a3631; padding-top:24px;} }
+
+  footer{background:var(--ink); color:#8d867a; border-top:1px solid #3a3631; padding:22px 32px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px;}
+  footer a{color:var(--brass-soft);}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="logo" href="#top">IKEUCHI<small>鉄の彫刻 ── ラウンジ向け選定ガイド</small></a>
+    <nav>
+      <a href="#values">導入の価値</a>
+      <a href="#select">作品を選ぶ</a>
+      <a href="#catalogue">作品一覧</a>
+      <a href="#flow">導入の流れ</a>
+      <a href="#faq">Q&amp;A</a>
+    </nav>
+    <a class="btn primary" href="#select">作品を選ぶ</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker">For Lounge Owners</span>
+        <h1>店の“顔”になる<br><span>一点もの</span>を、<br>選ぶ。</h1>
+        <p class="lead">高知の溶接職人・池内がつくる鉄の彫刻を、ラウンジのオブジェとしてご提案します。四つの質問に答えるだけで、貴店に合う作品がわかります。</p>
+        <div class="cta">
+          <a class="btn primary" href="#select">貴店に合う作品を探す　→</a>
+          <a class="btn ghost" href="#catalogue">作品一覧を見る</a>
+        </div>
+        <div class="facts">
+          <div><b>一点もの</b><span>同じ作品は二つとない</span></div>
+          <div><b>事前にCGで確認</b><span>貴店に置いた姿を映像で</span></div>
+          <div><b>高知の工房で手仕事</b><span>作家本人が溶接して制作</span></div>
+        </div>
+      </div>
+      <div class="collage">
+        <figure class="c1" data-lb="../assets/photo/rust-flower.jpg" data-lb-cap="花と石"><img src="../assets/photo/rust-flower.jpg" alt="花と石" style="object-position:50% 10%"><figcaption>花と石 ── ギャラリー展示</figcaption></figure>
+        <figure class="c2" data-lb="../assets/poster/white-egg.jpg" data-lb-cap="白卵（コンセプト映像より）"><img src="../assets/poster/white-egg.jpg" alt="白卵"><figcaption>白卵 ── 受注制作</figcaption></figure>
+        <div class="stamp">Lounge<br>Object<br>Selection</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="values" id="values">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker">Why Sculpture</span><h2 class="h">ラウンジに鉄の彫刻を置く、<br>三つの価値。</h2></div>
+        <p class="sub">内装やサービスの質が高い店ほど、差がつきにくくなります。お客様の記憶に残る“ひとつの理由”をつくるのが、オブジェの役割です。</p>
+      </div>
+      <div class="val-grid">
+        <div class="val"><span class="n">01</span><h3>店の記憶になる</h3><p>一点ものの作品は、ほかの店では出会えません。「あの彫刻のある店」として思い出していただくきっかけになります。</p></div>
+        <div class="val"><span class="n">02</span><h3>会話の起点になる</h3><p>作品の由来や作家の話は、スタッフとお客様の自然な会話の糸口に。初めてのお客様との距離も縮めます。</p></div>
+        <div class="val"><span class="n">03</span><h3>空間の格を上げる</h3><p>照明を受けた鉄の陰影は、夜の空間に奥行きを与えます。店全体の印象を、ひとつの作品が引き締めます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="selector" id="select">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker">Find Your Piece</span><h2 class="h">四つの質問で、<br>貴店に合う作品を。</h2></div>
+        <p class="sub">お店の条件を選ぶと、右側におすすめの作品が表示されます。その条件のまま、相談メールを作成することもできます。</p>
+      </div>
+      <div class="sel-grid">
+        <form id="sel" onsubmit="return false">
+          <div class="q">
+            <div class="q-label"><b>Q1</b><span>お店の雰囲気は？</span></div>
+            <div class="opts">
+              <label><input type="radio" name="style" value="wa"><span>和モダン</span></label>
+              <label><input type="radio" name="style" value="hotel" checked><span>ホテルライク</span></label>
+              <label><input type="radio" name="style" value="member"><span>会員制バー</span></label>
+              <label><input type="radio" name="style" value="cigar"><span>シガー・ウイスキー</span></label>
+            </div>
+          </div>
+          <div class="q">
+            <div class="q-label"><b>Q2</b><span>置きたい場所は？</span></div>
+            <div class="opts">
+              <label><input type="radio" name="place" value="entrance" checked><span>エントランス</span></label>
+              <label><input type="radio" name="place" value="counter"><span>バーカウンター</span></label>
+              <label><input type="radio" name="place" value="vip"><span>VIPルーム・個室</span></label>
+              <label><input type="radio" name="place" value="window"><span>窓際・ソファ席</span></label>
+            </div>
+          </div>
+          <div class="q">
+            <div class="q-label"><b>Q3</b><span>天井の高さは？</span></div>
+            <div class="opts">
+              <label><input type="radio" name="height" value="std" checked><span>一般的な高さ</span></label>
+              <label><input type="radio" name="height" value="high"><span>やや高い</span></label>
+              <label><input type="radio" name="height" value="void"><span>吹き抜けがある</span></label>
+            </div>
+          </div>
+          <div class="q">
+            <div class="q-label"><b>Q4</b><span>照明は？</span></div>
+            <div class="opts">
+              <label><input type="radio" name="light" value="down" checked><span>ダウンライト・スポット中心</span></label>
+              <label><input type="radio" name="light" value="indirect"><span>間接照明中心</span></label>
+              <label><input type="radio" name="light" value="natural"><span>窓からの自然光もある</span></label>
+            </div>
+          </div>
+        </form>
+        <div class="result" aria-live="polite">
+          <h3>おすすめの作品</h3>
+          <p class="note">選んだ条件との相性が高い順に表示しています。</p>
+          <div id="recs"></div>
+          <a class="btn brass" id="ask" href="#">この条件で相談メールを作成　→</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="catalogue">
+    <div class="head">
+      <div><span class="kicker">Catalogue</span><h2 class="h">作品一覧</h2></div>
+      <p class="sub">「実在作品」はすでに形になっている作品で、同型での制作をご相談いただけます。「受注制作」は映像で先にご覧いただき、貴店の空間に合わせて制作します。</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="card-media" data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの"><img src="../assets/photo/protect-clean.jpg" alt="守るべきもの" loading="lazy"><span class="badge real">実在作品</span></div>
+        <div class="card-body"><h3>守るべきもの</h3><span class="lat">Something to Protect</span>
+          <p>鉄で編んだ人の背丈ほどの卵と、見守る一羽の鳥。網目の影が床に広がり、入口に“迎える”力を与えます。</p>
+          <dl class="spec"><dt>おすすめ</dt><dd>エントランス</dd><dt>存在感</dt><dd class="dots">●●●●<i>●</i></dd><dt>照明</dt><dd>斜め上からのスポット</dd></dl>
+          <a class="film" data-lb="https://youtu.be/HgrsXjlDrNg" data-lb-type="youtube" data-lb-cap="守るべきもの">▶ 映像を見る</a></div>
+      </article>
+      <article class="card">
+        <div class="card-media" data-lb="../assets/photo/rust-flower.jpg" data-lb-cap="花と石" data-lb-group="fl"><img src="../assets/photo/rust-flower.jpg" alt="花と石" loading="lazy" style="object-position:50% 10%"><span class="badge real">実在作品</span></div>
+        <div class="card-body"><h3>花と石</h3><span class="lat">Flower &amp; Stone</span>
+          <p>錆びた鉄の花が石を抱き、ふちに透かしの蝶。近くで眺めるほど発見があり、カウンター越しの会話を生みます。</p>
+          <dl class="spec"><dt>おすすめ</dt><dd>バーカウンター・ニッチ</dd><dt>存在感</dt><dd class="dots">●●<i>●●●</i></dd><dt>照明</dt><dd>ピンスポット</dd></dl>
+          <a class="film" data-lb="../assets/photo/rust-flower-detail.jpg" data-lb-cap="花と石（ディテール）" data-lb-group="fl">▶ ディテールを見る</a></div>
+      </article>
+      <article class="card">
+        <div class="card-media" data-lb="../assets/photo/question-clean.jpg" data-lb-cap="問う"><img src="../assets/photo/question-clean.jpg" alt="問う" loading="lazy"><span class="badge real">実在作品</span></div>
+        <div class="card-body"><h3>問う</h3><span class="lat">Keep Asking</span>
+          <p>針金の手足に支えられた、風化した仮面。見る人に問いを投げかける作品で、落ち着いた大人の空間に深みを加えます。</p>
+          <dl class="spec"><dt>おすすめ</dt><dd>窓際・シガールーム</dd><dt>存在感</dt><dd class="dots">●●●<i>●●</i></dd><dt>照明</dt><dd>低い位置からの間接光</dd></dl>
+          <a class="film" data-lb="https://youtu.be/B5HfEqj1oHw" data-lb-type="youtube" data-lb-cap="問う">▶ 映像を見る</a></div>
+      </article>
+      <article class="card">
+        <div class="card-media" data-lb="../assets/poster/white-egg.jpg" data-lb-cap="白卵"><video muted loop playsinline preload="metadata" poster="../assets/poster/white-egg.jpg" onmouseenter="this.play()" onmouseleave="this.pause()"><source src="../assets/video/hero/white-egg.mp4" type="video/mp4"></video><span class="badge">受注制作</span></div>
+        <div class="card-body"><h3>白卵</h3><span class="lat">White Egg</span>
+          <p>ひびの入った白い鉄の卵。割れ目の奥にのぞく内側が、灯りを落とした個室に特別な時間をつくります。</p>
+          <dl class="spec"><dt>おすすめ</dt><dd>VIPルーム・個室</dd><dt>存在感</dt><dd class="dots">●●●<i>●●</i></dd><dt>照明</dt><dd>間接照明</dd></dl>
+          <a class="film" data-lb="https://youtu.be/_xGyzJyf7dc" data-lb-type="youtube" data-lb-cap="白卵（コンセプト映像）">▶ 映像を見る</a></div>
+      </article>
+      <article class="card">
+        <div class="card-media" data-lb="../assets/poster/fire.jpg" data-lb-cap="炎"><video muted loop playsinline preload="metadata" poster="../assets/poster/fire.jpg" onmouseenter="this.play()" onmouseleave="this.pause()"><source src="../assets/video/hero/fire.mp4" type="video/mp4"></video><span class="badge">受注制作</span></div>
+        <div class="card-body"><h3>炎</h3><span class="lat">Fire</span>
+          <p>叩いて折り上げた鉄の炎が、床から上へと立ちのぼる。吹き抜けや天井の高い空間のシンボルに。</p>
+          <dl class="spec"><dt>おすすめ</dt><dd>吹き抜け・エントランス</dd><dt>存在感</dt><dd class="dots">●●●●●</dd><dt>照明</dt><dd>足元からのアッパーライト</dd></dl>
+          <a class="film" data-lb="https://youtu.be/bUKPSJ6IpDo" data-lb-type="youtube" data-lb-cap="炎（コンセプト映像）">▶ 映像を見る</a></div>
+      </article>
+      <article class="card">
+        <div class="card-media" data-lb="../assets/poster/leaf-dream.jpg" data-lb-cap="無題"><video muted loop playsinline preload="metadata" poster="../assets/poster/leaf-dream.jpg" onmouseenter="this.play()" onmouseleave="this.pause()"><source src="../assets/video/hero/leaf-dream.mp4" type="video/mp4"></video><span class="badge">受注制作</span></div>
+        <div class="card-body"><h3>無題</h3><span class="lat">Leaf Vessel</span>
+          <p>細い脚の器が、叩き出した鉄の葉を抱える軽やかな作品。ソファ席の間や窓際の余白に、さりげなく。</p>
+          <dl class="spec"><dt>おすすめ</dt><dd>窓際・ソファ席</dd><dt>存在感</dt><dd class="dots">●●<i>●●●</i></dd><dt>照明</dt><dd>自然光・間接照明</dd></dl>
+          <a class="film" data-lb="../assets/video/films/leaf-dream-full.mp4" data-lb-type="video" data-lb-cap="無題（コンセプト映像）">▶ 映像を見る</a></div>
+      </article>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>作品</th><th>区分</th><th>おすすめの場所</th><th>合う雰囲気</th><th>存在感</th><th>映える照明</th></tr></thead>
+        <tbody>
+          <tr><th>守るべきもの</th><td>実在作品</td><td>エントランス</td><td>和モダン・ホテルライク・会員制</td><td class="dots">●●●●<i>●</i></td><td>スポット</td></tr>
+          <tr><th>花と石</th><td>実在作品</td><td>バーカウンター・ニッチ</td><td>和モダン・会員制・シガー</td><td class="dots">●●<i>●●●</i></td><td>ピンスポット</td></tr>
+          <tr><th>問う</th><td>実在作品</td><td>窓際・シガールーム</td><td>会員制・シガー</td><td class="dots">●●●<i>●●</i></td><td>間接光</td></tr>
+          <tr><th>白卵</th><td>受注制作</td><td>VIPルーム・個室</td><td>ホテルライク・会員制</td><td class="dots">●●●<i>●●</i></td><td>間接照明</td></tr>
+          <tr><th>炎</th><td>受注制作</td><td>吹き抜け・エントランス</td><td>ホテルライク・会員制・シガー</td><td class="dots">●●●●●</td><td>アッパーライト</td></tr>
+          <tr><th>無題</th><td>受注制作</td><td>窓際・ソファ席</td><td>和モダン・ホテルライク</td><td class="dots">●●<i>●●●</i></td><td>自然光・間接照明</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-cap">※ 表は選定の目安です。サイズ・色味・設置場所は、貴店の空間に合わせてご提案します。</p>
+  </section>
+
+  <section class="proof">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker">See Before You Buy</span><h2 class="h">「イメージと違った」を、<br>なくすために。</h2></div>
+        <p class="sub">制作の前に、CG映像で設置後の姿をお見せします。下の写真は、CGでご提案した姿と、実際に設置された作品です。</p>
+      </div>
+      <div class="pair">
+        <figure data-lb="../assets/poster/protect.jpg" data-lb-cap="守るべきもの：制作前のCG"><img src="../assets/poster/protect.jpg" alt="制作前のCG" loading="lazy"><figcaption><b>制作前</b>CG映像でご提案</figcaption></figure>
+        <span class="arrow">→</span>
+        <figure data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの：設置された実物"><img src="../assets/photo/protect-clean.jpg" alt="設置された実物" loading="lazy"><figcaption><b>設置後</b>高知の神社の参道に</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="flow">
+    <div class="head">
+      <div><span class="kicker">Process</span><h2 class="h">導入の流れ</h2></div>
+      <p class="sub">ご相談から設置まで、作家本人と直接やりとりしながら進めます。</p>
+    </div>
+    <ol class="flow">
+      <li><b>ご相談</b><span>店内写真と置きたい場所、イメージをお送りください。</span></li>
+      <li><b>作品のご提案</b><span>空間・照明・動線に合う作品とサイズをご提案。</span></li>
+      <li><b>CG映像で確認</b><span>貴店に置いた姿を映像でご確認いただきます。</span></li>
+      <li><b>制作</b><span>高知の工房で、一点ずつ手で溶接して仕上げます。</span></li>
+      <li><b>搬入・設置</b><span>日時は営業に合わせてご相談。照明との相性も確認します。</span></li>
+    </ol>
+    <div class="prepare">
+      <div><h3>ご相談時にあるとスムーズなもの</h3><p>すべて揃っていなくても大丈夫です。わかる範囲でお知らせください。</p></div>
+      <ul>
+        <li>入口・置きたい場所の写真</li>
+        <li>天井の高さ・通路の幅</li>
+        <li>照明の位置と種類</li>
+        <li>お店の雰囲気がわかる写真</li>
+        <li>オープン・改装のご予定</li>
+        <li>ご予算の目安</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap" id="artist" style="padding-top:0">
+    <div class="artist">
+      <figure data-lb="../assets/photo/museum-monument.jpg" data-lb-cap="中土佐町立美術館のモニュメント"><img src="../assets/photo/museum-monument.jpg" alt="中土佐町立美術館のモニュメント" loading="lazy" style="object-position:50% 30%"></figure>
+      <div>
+        <span class="kicker">The Artist</span>
+        <h2 class="h">鉄を知り尽くした職人が、<br>作家として生み出す一点もの。</h2>
+        <p>池内は1961年、高知県香南市生まれ。生家の鉄工所で溶接の技を磨き、高知県の溶接コンクールで二度入賞。有限会社アイエル物産を設立し、ロートアイアンの門扉やフェンス、国内外の植物園のガーデンアイテムを手がけてきました。</p>
+        <p>2009年より造形作家として公募展に出品。中土佐町立美術館の入口には、池内のモニュメントが立っています。</p>
+        <ul class="award-list">
+          <li><b>2011</b>高知県展 褒状「想芽」</li>
+          <li><b>2014</b>高知県展 特選「覚醒する自我」</li>
+          <li><b>2014</b>新象展 佳作賞・ホルベイン工業賞</li>
+          <li><b>2017</b>新象展 展賞</li>
+          <li><b>2018</b>新象展 大阪府知事賞</li>
+          <li><b>2023</b>APOC（アジア太平洋蘭会議）出展</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="values" id="faq">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker">Q&amp;A</span><h2 class="h">オーナー様からのご質問</h2></div>
+      </div>
+      <div class="qa">
+        <div><h3>店の雰囲気に合うか不安です。</h3><p>制作前にCG映像で設置後の姿をご確認いただけます。形・大きさ・色味はそのうえで調整します。</p></div>
+        <div><h3>サイズは選べますか？</h3><p>カウンターに置ける大きさから吹き抜けに立つ大きさまで、空間に合わせて設計します。</p></div>
+        <div><h3>安全面は大丈夫ですか？</h3><p>床や動線を確認し、固定方法や配置を含めてご提案します。ご要望は最初にお聞かせください。</p></div>
+        <div><h3>今の照明のままで映えますか？</h3><p>既存の照明の位置を伺い、作品の向きや角度で陰影が美しく出るよう調整します。</p></div>
+        <div><h3>実在作品と同じものは買えますか？</h3><p>一点ものの作品のため、同型での制作として、貴店に合わせたサイズや仕様をご相談いただけます。</p></div>
+        <div><h3>遠方の店舗でも依頼できますか？</h3><p>まずはご相談ください。これまで県外・海外の植物園のガーデンアイテムも製作しています。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="kicker">Contact</span>
+        <h2>まずは、店内の写真を<br>一枚お送りください。</h2>
+        <p>置いてみたい場所の写真があれば、そこから作品のご提案を始めます。</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap">
+          <a class="btn brass" href="#select">条件を選んで相談する</a>
+          <a class="btn ghost" href="mailto:ilbussan@coral.ocn.ne.jp?subject=%E3%83%A9%E3%82%A6%E3%83%B3%E3%82%B8%E5%90%91%E3%81%91%E4%BD%9C%E5%93%81%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで相談する</a>
+        </div>
+      </div>
+      <dl>
+        <dt>STUDIO</dt><dd>有限会社アイエル物産</dd>
+        <dt>ADDRESS</dt><dd>高知県香南市野市町土居1073-2</dd>
+        <dt>TEL</dt><dd><a href="tel:0887540711">0887-54-0711</a></dd>
+        <dt>FAX</dt><dd>0887-54-0712</dd>
+        <dt>MAIL</dt><dd><a href="mailto:ilbussan@coral.ocn.ne.jp">ilbussan@coral.ocn.ne.jp</a></dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>IKEUCHI — Iron Sculpture, Kochi</span>
+  <span>Lounge Concept B 「Selection」 ・ <a href="../index.html">もう一案を見る</a></span>
+</footer>
+
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){
+  var WORKS = [
+    {name:'守るべきもの', img:'../assets/photo/protect-clean.jpg', status:'実在作品',
+     style:['wa','hotel','member'], place:['entrance'], height:['std','high','void'], light:['down'],
+     why:{entrance:'入口で店を“守る”門番のような存在感。', down:'スポットで網目の影が床に広がります。'}},
+    {name:'花と石', img:'../assets/photo/rust-flower.jpg', status:'実在作品',
+     style:['wa','member','cigar'], place:['counter','vip'], height:['std'], light:['down'],
+     why:{counter:'カウンター越しに眺められる、会話のきっかけに。', vip:'近くで見るほど発見がある、落ち着いた一点。'}},
+    {name:'問う', img:'../assets/photo/question-clean.jpg', status:'実在作品',
+     style:['member','cigar'], place:['window','vip'], height:['std','high'], light:['indirect','natural'],
+     why:{window:'窓辺の余白に、静かな問いかけを。', cigar:'大人の空間に深みを加える仮面の作品。'}},
+    {name:'白卵', img:'../assets/poster/white-egg.jpg', status:'受注制作',
+     style:['hotel','member'], place:['vip','entrance'], height:['std','high'], light:['indirect'],
+     why:{vip:'灯りを落とした個室に、特別な時間を。', indirect:'間接光で割れ目の奥が浮かび上がります。'}},
+    {name:'炎', img:'../assets/poster/fire.jpg', status:'受注制作',
+     style:['hotel','member','cigar'], place:['entrance','window'], height:['void','high'], light:['down','indirect','natural'],
+     why:{void:'吹き抜けの高さを活かして立ちのぼる炎。', entrance:'店に入った瞬間のシンボルに。'}},
+    {name:'無題', img:'../assets/poster/leaf-dream.jpg', status:'受注制作',
+     style:['wa','hotel'], place:['window','counter'], height:['std','high'], light:['natural','indirect'],
+     why:{window:'ソファ席の間や窓際に、さりげなく置ける軽やかさ。', natural:'自然光の中で葉の曲面が表情を変えます。'}}
+  ];
+  var LABEL = {
+    style:{wa:'和モダン', hotel:'ホテルライク', member:'会員制バー', cigar:'シガー・ウイスキー'},
+    place:{entrance:'エントランス', counter:'バーカウンター', vip:'VIPルーム・個室', window:'窓際・ソファ席'},
+    height:{std:'一般的な高さ', high:'やや高い', void:'吹き抜けがある'},
+    light:{down:'ダウンライト・スポット中心', indirect:'間接照明中心', natural:'窓からの自然光もある'}
+  };
+  var WEIGHT = {place:4, height:2, style:2, light:1};
+  var MAX = 9;
+  var form = document.getElementById('sel'), recs = document.getElementById('recs'), ask = document.getElementById('ask');
+
+  function current(){
+    var c = {};
+    ['style','place','height','light'].forEach(function(k){ var i = form.querySelector('input[name="'+k+'"]:checked'); c[k] = i ? i.value : null; });
+    return c;
+  }
+  function render(){
+    var c = current();
+    var scored = WORKS.map(function(w){
+      var s = 0, reasons = [];
+      Object.keys(WEIGHT).forEach(function(k){ if (w[k].indexOf(c[k]) > -1) { s += WEIGHT[k]; if (w.why[c[k]]) reasons.push(w.why[c[k]]); } });
+      if (w.why[c.style] && reasons.indexOf(w.why[c.style]) < 0 && w.style.indexOf(c.style) > -1) reasons.push(w.why[c.style]);
+      return {w:w, s:s, reasons:reasons};
+    }).sort(function(a,b){ return b.s - a.s; }).slice(0,3).filter(function(r){ return r.s > 0; });
+
+    recs.innerHTML = '';
+    if (!scored.length) { recs.innerHTML = '<p class="empty">条件に近い作品が見つかりませんでした。受注制作で貴店に合わせた作品もご提案できます。</p>'; }
+    scored.forEach(function(r, i){
+      var pct = Math.round(r.s / MAX * 100);
+      var div = document.createElement('div');
+      div.className = 'rec';
+      div.innerHTML =
+        '<img alt="" loading="lazy">' +
+        '<div><span class="rank">No.' + (i+1) + ' ── ' + r.w.status + '</span><h4></h4>' +
+        '<div class="meter"><i style="width:0"></i></div><p></p></div>';
+      var img = div.querySelector('img');
+      img.src = r.w.img; img.alt = r.w.name;
+      img.setAttribute('data-lb', r.w.img); img.setAttribute('data-lb-cap', r.w.name);
+      var fit = pct >= 85 ? '◎ とても合う' : pct >= 60 ? '○ 合う' : '△ 調整してご提案';
+      div.querySelector('h4').textContent = r.w.name + '　' + fit;
+      div.querySelector('p').textContent = r.reasons.slice(0,2).join(' ') || '貴店の条件に合わせて調整してご提案します。';
+      recs.appendChild(div);
+      requestAnimationFrame(function(){ div.querySelector('.meter i').style.width = pct + '%'; });
+    });
+
+    var body = [
+      'ラウンジへの作品設置について相談したいです。',
+      '',
+      '【お店の条件】',
+      '・雰囲気：' + LABEL.style[c.style],
+      '・置きたい場所：' + LABEL.place[c.place],
+      '・天井の高さ：' + LABEL.height[c.height],
+      '・照明：' + LABEL.light[c.light],
+      '',
+      '【気になる作品】',
+      scored.map(function(r){ return '・' + r.w.name; }).join('\n') || '・（おまかせ）',
+      '',
+      '【店名・所在地】',
+      '',
+      '【ご連絡先】',
+      '',
+      '※ 店内の写真（入口・置きたい場所）があれば添付してください。'
+    ].join('\n');
+    ask.href = 'mailto:ilbussan@coral.ocn.ne.jp?subject=' + encodeURIComponent('ラウンジ向け作品のご相談') + '&body=' + encodeURIComponent(body);
+  }
+  form.addEventListener('change', render);
+  render();
+})();
+</script>
+</body>
+</html>

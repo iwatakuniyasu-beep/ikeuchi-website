@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IKEUCHI Nocturne</title>
+<meta name="description" content="照明を落とした瞬間、主役が変わる。高級ラウンジのための鉄の彫刻。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#0B0A09;
+    --surface:#14120F;
+    --surface-2:#1B1814;
+    --line:rgba(232,212,170,.14);
+    --text:#EDE6D8;
+    --dim:#9C9282;
+    --gold:#C9A465;
+    --amber:#E8B86B;
+    --lbx-accent:var(--gold);
+    --lbx-on-accent:#0B0A09;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{margin:0; background:var(--bg); color:var(--text); font-family:'Zen Kaku Gothic New', sans-serif; font-weight:400; line-height:1.95; letter-spacing:.03em; overflow-x:clip;}
+  img,video{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  .mincho{font-family:'Shippori Mincho B1', serif;}
+  .en{font-family:'Cormorant Garamond', serif; font-style:italic; letter-spacing:.06em;}
+  .wrap{max-width:1180px; margin:0 auto; padding-inline:32px;}
+  section{padding-block:140px; position:relative;}
+  @media (max-width:760px){ section{padding-block:88px;} .wrap{padding-inline:20px;} }
+
+  .eyebrow{display:flex; align-items:center; gap:14px; font-family:'Cormorant Garamond'; font-style:italic; font-size:17px; color:var(--gold); letter-spacing:.12em; margin-bottom:22px;}
+  .eyebrow::before{content:""; width:40px; height:1px; background:var(--gold);}
+  h2.title{font-family:'Shippori Mincho B1'; font-weight:600; font-size:clamp(28px,3.8vw,46px); line-height:1.6; margin:0 0 26px; letter-spacing:.06em;}
+  .lede{color:var(--dim); font-size:16px; max-width:40em; margin:0;}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:14px; padding:17px 34px; border:1px solid var(--gold); color:var(--text);
+    font-size:14px; letter-spacing:.18em; transition:background .3s, color .3s; cursor:pointer; background:transparent;
+  }
+  .btn:hover{background:var(--gold); color:var(--bg);}
+  .btn.solid{background:var(--gold); color:var(--bg);}
+  .btn.solid:hover{background:var(--amber);}
+
+  /* nav */
+  .nav{position:fixed; inset:0 0 auto 0; z-index:60; display:flex; align-items:center; justify-content:space-between; padding:22px 36px; transition:background .4s, padding .4s;}
+  .nav.scrolled{background:rgba(11,10,9,.88); backdrop-filter:blur(10px); padding-block:14px; border-bottom:1px solid var(--line);}
+  .logo{font-family:'Cormorant Garamond'; font-size:22px; letter-spacing:.32em;}
+  .nav-links{display:flex; gap:32px; font-size:13px; letter-spacing:.14em;}
+  .nav-links a{color:var(--dim); transition:color .2s;}
+  .nav-links a:hover{color:var(--gold);}
+  @media (max-width:860px){ .nav-links{display:none;} .nav{padding:16px 20px;} }
+
+  /* hero: the page is a dark room, the pointer is the spotlight */
+  .hero{position:relative; height:100svh; min-height:640px; overflow:hidden; display:flex; align-items:flex-end; padding:0;}
+  .hero video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.05);}
+  .hero .dark{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:radial-gradient(circle at var(--x,62%) var(--y,46%), rgba(11,10,9,0) 0, rgba(11,10,9,.08) 11vmin, rgba(11,10,9,.88) 30vmin, rgba(11,10,9,.97) 52vmin);
+    transition:background .08s linear;
+  }
+  .hero .fade{position:absolute; inset:auto 0 0 0; height:40%; z-index:1; background:linear-gradient(transparent, var(--bg)); pointer-events:none;}
+  .hero-copy{position:relative; z-index:2; padding:0 0 9vh 7vw; max-width:780px;}
+  .hero h1{font-family:'Shippori Mincho B1'; font-weight:600; font-size:clamp(32px,5vw,64px); line-height:1.55; letter-spacing:.08em; margin:0 0 26px;}
+  .hero h1 em{font-style:normal; color:var(--amber);}
+  .hero p{color:var(--dim); font-size:15.5px; max-width:32em; margin:0 0 36px;}
+  .hero .hint{position:absolute; right:36px; bottom:36px; z-index:2; font-size:12px; letter-spacing:.2em; color:var(--dim);}
+  @media (max-width:760px){ .hero-copy{padding:0 20px 12vh;} .hero .hint{display:none;} }
+
+  /* three seconds */
+  .three{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:64px;}
+  .three div{background:var(--bg); padding:44px 36px;}
+  .three .num{font-family:'Cormorant Garamond'; font-size:54px; color:var(--gold); line-height:1;}
+  .three h3{font-family:'Shippori Mincho B1'; font-weight:600; font-size:22px; margin:18px 0 10px; letter-spacing:.06em;}
+  .three p{margin:0; color:var(--dim); font-size:14.5px;}
+  @media (max-width:860px){ .three{grid-template-columns:1fr;} }
+
+  /* scenes */
+  .scenes{background:var(--surface);}
+  .scene-tabs{display:flex; gap:0; border-bottom:1px solid var(--line); margin:54px 0 0; overflow-x:auto; scrollbar-width:none;}
+  .scene-tabs::-webkit-scrollbar{display:none;}
+  .scene-tabs button{
+    background:none; border:0; border-bottom:1px solid transparent; margin-bottom:-1px; color:var(--dim);
+    padding:16px 26px; font-size:15px; letter-spacing:.12em; cursor:pointer; white-space:nowrap; font-family:'Shippori Mincho B1';
+  }
+  .scene-tabs button[aria-selected="true"]{color:var(--text); border-color:var(--gold);}
+  .scene{display:none; grid-template-columns:1.15fr .85fr; gap:60px; align-items:center; padding-top:54px;}
+  .scene.on{display:grid; animation:fadeIn .6s ease;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(10px);}}
+  .scene-media{position:relative; aspect-ratio:4/3; overflow:hidden; background:#000; cursor:zoom-in;}
+  .scene-media img,.scene-media video{width:100%; height:100%; object-fit:cover;}
+  .scene-media::after{content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(11,10,9,.75) 100%); pointer-events:none;}
+  .scene-media .tag{position:absolute; left:16px; bottom:14px; z-index:2; font-size:11.5px; letter-spacing:.14em; color:var(--text); background:rgba(11,10,9,.6); padding:5px 12px; border:1px solid var(--line);}
+  .scene h3{font-family:'Shippori Mincho B1'; font-weight:600; font-size:clamp(24px,2.6vw,32px); margin:0 0 6px; letter-spacing:.06em;}
+  .scene .work{color:var(--gold); font-family:'Shippori Mincho B1'; font-size:15px; margin-bottom:20px; display:block;}
+  .scene p{color:var(--dim); font-size:15px; margin:0 0 22px;}
+  .scene dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:10px 22px; font-size:14px; border-top:1px solid var(--line); padding-top:20px;}
+  .scene dt{color:var(--gold); letter-spacing:.1em;}
+  .scene dd{margin:0; color:var(--text);}
+  @media (max-width:860px){ .scene.on{grid-template-columns:1fr; gap:30px;} }
+
+  /* light test */
+  .light-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:56px; align-items:center; margin-top:56px;}
+  .stage{position:relative; aspect-ratio:4/5; overflow:hidden; background:#000; touch-action:none; cursor:crosshair; user-select:none;}
+  .stage img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .stage .tint{position:absolute; inset:0; mix-blend-mode:multiply; background:var(--tint,#ffd9a0); opacity:var(--tint-o,.35); transition:background .5s, opacity .5s;}
+  .stage .shade{
+    position:absolute; inset:0;
+    background:radial-gradient(circle at var(--sx,50%) var(--sy,40%), rgba(0,0,0,0) 0, rgba(0,0,0,0) var(--r,18%), rgba(0,0,0,var(--dark,.86)) calc(var(--r,18%) * 2.6));
+    transition:background .5s;
+  }
+  .stage .lamp{position:absolute; left:var(--sx,50%); top:var(--sy,40%); width:14px; height:14px; margin:-7px 0 0 -7px; border-radius:50%; border:1px solid var(--amber); box-shadow:0 0 18px var(--amber); pointer-events:none; opacity:.8;}
+  .stage .cap{position:absolute; left:16px; top:14px; font-size:11.5px; letter-spacing:.14em; color:var(--dim);}
+  .modes{display:grid; gap:10px; margin:30px 0;}
+  .modes button{
+    text-align:left; background:transparent; border:1px solid var(--line); color:var(--text); padding:16px 20px; cursor:pointer;
+    display:flex; justify-content:space-between; gap:12px; align-items:center; transition:border-color .2s, background .2s;
+  }
+  .modes button span{font-family:'Shippori Mincho B1'; font-size:17px; letter-spacing:.08em;}
+  .modes button small{color:var(--dim); font-size:12.5px; text-align:right;}
+  .modes button[aria-pressed="true"]{border-color:var(--gold); background:rgba(201,164,101,.08);}
+  .range{display:grid; gap:6px; margin-top:8px;}
+  .range label{font-size:13px; color:var(--dim); letter-spacing:.1em; display:flex; justify-content:space-between;}
+  .range input{width:100%; accent-color:var(--gold);}
+  .work-switch{display:flex; gap:8px; flex-wrap:wrap; margin-top:20px;}
+  .work-switch button{background:none; border:1px solid var(--line); color:var(--dim); padding:7px 14px; font-size:13px; cursor:pointer;}
+  .work-switch button[aria-pressed="true"]{color:var(--bg); background:var(--gold); border-color:var(--gold);}
+  @media (max-width:860px){ .light-grid{grid-template-columns:1fr;} .stage{aspect-ratio:1/1;} }
+
+  /* collection */
+  .coll{background:var(--surface);}
+  .piece{display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--line); min-height:520px;}
+  .piece:last-child{border-bottom:1px solid var(--line);}
+  .piece:nth-child(even) .piece-media{order:2;}
+  .piece-media{position:relative; overflow:hidden; background:#000; cursor:zoom-in;}
+  .piece-media img,.piece-media video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 1.4s ease, filter .6s;}
+  .piece-media::after{content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 45%, transparent 30%, rgba(11,10,9,.8) 100%); transition:opacity .6s; pointer-events:none;}
+  .piece:hover .piece-media img,.piece:hover .piece-media video{transform:scale(1.04);}
+  .piece:hover .piece-media::after{opacity:.55;}
+  .piece-body{padding:64px 56px; display:flex; flex-direction:column; justify-content:center;}
+  .piece-body .no{font-family:'Cormorant Garamond'; font-style:italic; color:var(--gold); font-size:18px; letter-spacing:.14em;}
+  .piece-body h3{font-family:'Shippori Mincho B1'; font-weight:600; font-size:clamp(28px,3vw,38px); margin:10px 0 2px; letter-spacing:.1em;}
+  .piece-body .en{color:var(--dim); font-size:16px;}
+  .piece-body p{color:var(--dim); font-size:15px; margin:22px 0;}
+  .piece-body .status{display:inline-block; font-size:11.5px; letter-spacing:.16em; border:1px solid var(--line); padding:4px 12px; margin-bottom:22px; align-self:flex-start;}
+  .piece-body .status.real{border-color:var(--gold); color:var(--gold);}
+  .talk{border-left:1px solid var(--gold); padding:4px 0 4px 20px; margin:6px 0 24px;}
+  .talk small{display:block; font-size:11.5px; letter-spacing:.16em; color:var(--gold); margin-bottom:4px;}
+  .talk span{font-family:'Shippori Mincho B1'; font-size:16px; line-height:1.8;}
+  .piece-body .meta{display:flex; gap:24px; flex-wrap:wrap; font-size:13px; color:var(--dim);}
+  .piece-body .meta b{color:var(--text); font-weight:500; margin-left:6px;}
+  .piece-body .film{margin-top:24px; align-self:flex-start; font-size:13px; letter-spacing:.14em; color:var(--gold); border-bottom:1px solid var(--gold); padding-bottom:2px; cursor:pointer;}
+  @media (max-width:860px){
+    .piece{grid-template-columns:1fr; min-height:0;}
+    .piece:nth-child(even) .piece-media{order:0;}
+    .piece-media{aspect-ratio:4/3;}
+    .piece-body{padding:36px 20px 48px;}
+  }
+
+  /* previsualize */
+  .pv-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-top:56px;}
+  .ba{position:relative; aspect-ratio:16/10; overflow:hidden; background:#000; user-select:none;}
+  .ba img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .ba .after{clip-path:inset(0 0 0 var(--pos,50%));}
+  .ba .bar{position:absolute; top:0; bottom:0; left:var(--pos,50%); width:1px; background:var(--gold); pointer-events:none;}
+  .ba .bar::after{content:"◂ ▸"; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--bg); border:1px solid var(--gold); color:var(--gold); font-size:12px; padding:8px 10px; white-space:nowrap;}
+  .ba .l,.ba .r{position:absolute; bottom:12px; font-size:11.5px; letter-spacing:.16em; padding:4px 10px; background:rgba(11,10,9,.65); border:1px solid var(--line);}
+  .ba .l{left:12px;} .ba .r{right:12px; color:var(--gold); border-color:var(--gold);}
+  .ba input{position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:ew-resize; margin:0;}
+  .steps{list-style:none; margin:30px 0 0; padding:0; counter-reset:s;}
+  .steps li{counter-increment:s; display:grid; grid-template-columns:56px 1fr; gap:10px; padding:18px 0; border-top:1px solid var(--line);}
+  .steps li::before{content:counter(s,decimal-leading-zero); font-family:'Cormorant Garamond'; font-style:italic; font-size:24px; color:var(--gold); line-height:1.4;}
+  .steps b{display:block; font-family:'Shippori Mincho B1'; font-weight:600; font-size:17px; letter-spacing:.06em;}
+  .steps span{color:var(--dim); font-size:14px;}
+  @media (max-width:860px){ .pv-grid{grid-template-columns:1fr;} }
+
+  /* artist */
+  .artist-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:start; margin-top:20px;}
+  .artist-img{position:relative; aspect-ratio:3/4; overflow:hidden; cursor:zoom-in;}
+  .artist-img img{width:100%; height:100%; object-fit:cover; filter:grayscale(.3) brightness(.85);}
+  .artist p{color:var(--dim); font-size:15.5px; margin:0 0 18px;}
+  .awards{list-style:none; margin:30px 0 0; padding:0; font-size:14px;}
+  .awards li{display:grid; grid-template-columns:70px 1fr; gap:14px; padding:12px 0; border-top:1px solid var(--line);}
+  .awards li span:first-child{font-family:'Cormorant Garamond'; color:var(--gold); font-size:17px;}
+  @media (max-width:860px){ .artist-grid{grid-template-columns:1fr; gap:36px;} .artist-img{aspect-ratio:4/3;} }
+
+  /* faq */
+  .faq{margin-top:48px; border-top:1px solid var(--line);}
+  .faq details{border-bottom:1px solid var(--line);}
+  .faq summary{list-style:none; cursor:pointer; padding:24px 40px 24px 0; position:relative; font-family:'Shippori Mincho B1'; font-size:17px; letter-spacing:.06em;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"+"; position:absolute; right:6px; top:50%; transform:translateY(-50%); color:var(--gold); font-size:22px; transition:transform .3s;}
+  .faq details[open] summary::after{transform:translateY(-50%) rotate(45deg);}
+  .faq p{margin:0 0 24px; color:var(--dim); font-size:15px; max-width:52em;}
+
+  /* contact */
+  .contact{text-align:center; overflow:hidden;}
+  .contact::before{content:""; position:absolute; left:50%; top:0; width:900px; height:900px; transform:translate(-50%,-35%); background:radial-gradient(circle, rgba(232,184,107,.16), transparent 60%); pointer-events:none;}
+  .contact h2{font-family:'Shippori Mincho B1'; font-weight:600; font-size:clamp(28px,4.2vw,52px); line-height:1.6; margin:0 0 24px; letter-spacing:.08em; position:relative;}
+  .contact .lede{margin:0 auto 40px; position:relative;}
+  .contact .row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative;}
+  .contact .info{margin-top:56px; display:flex; justify-content:center; gap:40px; flex-wrap:wrap; color:var(--dim); font-size:13.5px; position:relative;}
+  .contact .info b{display:block; color:var(--gold); font-weight:400; font-size:11.5px; letter-spacing:.18em; margin-bottom:4px;}
+
+  footer{border-top:1px solid var(--line); padding:30px 36px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:12px; color:var(--dim); letter-spacing:.1em;}
+  footer a{color:var(--gold);}
+
+  .reveal{opacity:0; translate:0 30px; transition:opacity 1s ease, translate 1s ease;}
+  .reveal.in{opacity:1; translate:0 0;}
+  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; translate:0 0;} *{animation:none!important; transition:none!important;} }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="logo" href="#top">IKEUCHI</a>
+  <div class="nav-links">
+    <a href="#scenes">置く場所</a>
+    <a href="#light">照明で見る</a>
+    <a href="#collection">作品</a>
+    <a href="#preview">導入前に</a>
+    <a href="#contact">ご相談</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <video autoplay muted loop playsinline poster="../assets/poster/fire.jpg"><source src="../assets/video/hero/fire.mp4" type="video/mp4"></video>
+  <div class="dark" id="spot"></div>
+  <div class="fade"></div>
+  <div class="hero-copy">
+    <p class="eyebrow">Iron Sculpture for Lounges</p>
+    <h1>照明を落とした瞬間、<br>店の<em>主役</em>が変わる。</h1>
+    <p>高知の鉄工所で三十余年、溶接と向き合ってきた作家・池内による一点ものの鉄の彫刻。夜の光の中でこそ表情を深める、ラウンジのためのオブジェです。</p>
+    <a class="btn" href="#scenes">置く場所から考える　→</a>
+  </div>
+  <span class="hint en">move to light it —</span>
+</header>
+
+<main>
+
+  <section class="wrap" id="why">
+    <p class="eyebrow reveal">The First Three Seconds</p>
+    <h2 class="title reveal">お客様が店に入って、<br>最初の三秒で目に入るもの。</h2>
+    <p class="lede reveal">内装も、グラスも、音楽も整っている。それでも「あの店」と呼ばれる理由は、ひとつの印象から生まれます。鉄の彫刻は、その一点になるためにつくられています。</p>
+    <div class="three reveal">
+      <div><span class="num">i.</span><h3>足が止まる</h3><p>暗がりに浮かぶ鉄の陰影は、通り過ぎるだけの空間を「立ち止まる場所」に変えます。</p></div>
+      <div><span class="num">ii.</span><h3>会話が始まる</h3><p>「これは何？」の一言から、お客様とスタッフ、お客様同士の会話が自然に生まれます。</p></div>
+      <div><span class="num">iii.</span><h3>記憶に残る</h3><p>一点ものだから、ほかの店では見られない。その店を思い出すときの“目印”になります。</p></div>
+    </div>
+  </section>
+
+  <section class="scenes" id="scenes">
+    <div class="wrap">
+      <p class="eyebrow reveal">Where It Lives</p>
+      <h2 class="title reveal">置く場所によって、<br>彫刻の役割は変わります。</h2>
+      <div class="scene-tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-scene="s1">エントランス</button>
+        <button role="tab" aria-selected="false" data-scene="s2">バーカウンター</button>
+        <button role="tab" aria-selected="false" data-scene="s3">VIPルーム・個室</button>
+        <button role="tab" aria-selected="false" data-scene="s4">吹き抜け・窓際</button>
+      </div>
+
+      <div class="scene on" id="s1">
+        <div class="scene-media" data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの（神社の石段に設置された実物）"><img src="../assets/photo/protect-clean.jpg" alt="守るべきもの" loading="lazy"><span class="tag">実在作品 ｜ 守るべきもの</span></div>
+        <div>
+          <h3>扉の先で、店の格を伝える。</h3>
+          <span class="work">おすすめ ── 「守るべきもの」</span>
+          <p>鉄で編んだ人の背丈ほどの卵と、それを見守る一羽の鳥。入口に据えると、店そのものを守る“門番”のように、訪れる人を迎えます。</p>
+          <dl><dt>役割</dt><dd>第一印象・店の象徴</dd><dt>照明</dt><dd>斜め上からのスポットで網目の影を床へ</dd><dt>実績</dt><dd>高知の神社の参道に設置</dd></dl>
+        </div>
+      </div>
+
+      <div class="scene" id="s2">
+        <div class="scene-media" data-lb="../assets/photo/rust-flower-detail.jpg" data-lb-cap="花と石（ディテール）"><img src="../assets/photo/rust-flower-detail.jpg" alt="花と石" loading="lazy"><span class="tag">実在作品 ｜ 花と石</span></div>
+        <div>
+          <h3>グラスの向こうに、話題をひとつ。</h3>
+          <span class="work">おすすめ ── 「花と石」</span>
+          <p>錆びた鉄の花が石をひとつ抱え、ふちには透かしの鉄の蝶。カウンター奥やバックバーのニッチに置くと、手元の会話のきっかけになります。</p>
+          <dl><dt>役割</dt><dd>会話のきっかけ・目線の止まり場</dd><dt>照明</dt><dd>ピンスポットで蝶の透かしを浮かび上がらせる</dd><dt>実績</dt><dd>ギャラリーで展示</dd></dl>
+        </div>
+      </div>
+
+      <div class="scene" id="s3">
+        <div class="scene-media" data-lb="../assets/poster/white-egg.jpg" data-lb-cap="白卵（コンセプト映像より）">
+          <video muted loop playsinline preload="metadata" poster="../assets/poster/white-egg.jpg"><source src="../assets/video/hero/white-egg.mp4" type="video/mp4"></video>
+          <span class="tag">受注制作 ｜ 白卵</span></div>
+        <div>
+          <h3>特別な部屋に、特別な理由を。</h3>
+          <span class="work">おすすめ ── 「白卵」</span>
+          <p>ひびの入った白い鉄の卵。割れ目の奥を照らす演出もご相談いただけます。灯りを落としたときにだけ内側が浮かぶ、VIPルームの“儀式”として。</p>
+          <dl><dt>役割</dt><dd>特別感の演出</dd><dt>照明</dt><dd>内側からの間接光＋弱いダウンライト</dd><dt>制作</dt><dd>部屋の広さに合わせてサイズを決定</dd></dl>
+        </div>
+      </div>
+
+      <div class="scene" id="s4">
+        <div class="scene-media" data-lb="../assets/poster/fire.jpg" data-lb-cap="炎（コンセプト映像より）">
+          <video muted loop playsinline preload="metadata" poster="../assets/poster/fire.jpg"><source src="../assets/video/hero/fire.mp4" type="video/mp4"></video>
+          <span class="tag">受注制作 ｜ 炎</span></div>
+        <div>
+          <h3>高さのある空間を、一本の炎で。</h3>
+          <span class="work">おすすめ ── 「炎」</span>
+          <p>叩いて折りたたんだ鉄の炎が、床から天井へと立ちのぼる。吹き抜けや大きな窓際など、余白の大きな空間の主役に。</p>
+          <dl><dt>役割</dt><dd>空間全体のシンボル</dd><dt>照明</dt><dd>足元からのアッパーライトで炎の折り目を強調</dd><dt>制作</dt><dd>天井高に合わせてスケールを設計</dd></dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="light">
+    <p class="eyebrow reveal">See It In Your Light</p>
+    <h2 class="title reveal">昼の写真では、<br>鉄の本当の顔はわかりません。</h2>
+    <p class="lede reveal">画面の上をなぞると、そこにスポットライトが当たります。営業中の照明に切り替えて、鉄の陰影がどう変わるかを確かめてください。</p>
+    <div class="light-grid">
+      <div class="stage" id="stage">
+        <img id="stage-img" src="../assets/photo/rust-flower.jpg" alt="照明シミュレーション">
+        <div class="tint"></div>
+        <div class="shade"></div>
+        <div class="lamp"></div>
+        <span class="cap">LIGHTING SIMULATION</span>
+      </div>
+      <div>
+        <div class="modes" id="modes">
+          <button aria-pressed="false" data-mode="day"><span>開店前</span><small>全灯・フラットな光</small></button>
+          <button aria-pressed="true" data-mode="open"><span>営業中</span><small>暖色のスポットライト</small></button>
+          <button aria-pressed="false" data-mode="late"><span>深夜</span><small>キャンドルのような低い光</small></button>
+        </div>
+        <div class="range">
+          <label for="beam">スポットの広さ <span id="beam-v">標準</span></label>
+          <input id="beam" type="range" min="8" max="34" value="18">
+        </div>
+        <div class="work-switch" id="work-switch">
+          <button aria-pressed="true" data-src="../assets/photo/rust-flower.jpg">花と石</button>
+          <button aria-pressed="false" data-src="../assets/photo/rebar-tree-sky.jpg">鉄筋の木</button>
+          <button aria-pressed="false" data-src="../assets/photo/question-clean.jpg">問う</button>
+          <button aria-pressed="false" data-src="../assets/photo/plant-clean.jpg">植物</button>
+        </div>
+        <p class="lede" style="font-size:13px; margin-top:22px">※ 写真に光の効果を重ねた簡易的なシミュレーションです。実際の店内での見え方は、ご相談時にCG映像でご確認いただけます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="coll" id="collection">
+    <div class="wrap" style="padding-bottom:56px">
+      <p class="eyebrow reveal">The Collection</p>
+      <h2 class="title reveal">ラウンジのための、五つの鉄。</h2>
+      <p class="lede reveal">すでに屋外や展示で実在する作品と、映像で先にお見せしてから貴店に合わせて制作する作品があります。いずれも同じものは二つとありません。</p>
+    </div>
+
+    <article class="piece">
+      <div class="piece-media" data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの"><img src="../assets/photo/protect-clean.jpg" alt="守るべきもの" loading="lazy"></div>
+      <div class="piece-body">
+        <span class="no">No. 01</span><h3>守るべきもの</h3><span class="en">Something to Protect</span>
+        <p>鉄で編んだ人の背丈ほどの卵と、見守る一羽の鳥。網目越しに向こう側が透け、光の当て方ひとつで床に複雑な影を落とします。</p>
+        <span class="status real">実在作品 ── 同型での制作をご相談いただけます</span>
+        <div class="talk"><small>スタッフの一言</small><span>「高知の神社に、同じ作者の卵が今も立っているんです。」</span></div>
+        <div class="meta"><span>推奨<b>エントランス</b></span><span>存在感<b>大</b></span></div>
+        <a class="film" data-lb="https://youtu.be/HgrsXjlDrNg" data-lb-type="youtube" data-lb-cap="守るべきもの">▶ 映像を見る</a>
+      </div>
+    </article>
+
+    <article class="piece">
+      <div class="piece-media" data-lb="../assets/photo/rust-flower.jpg" data-lb-cap="花と石" data-lb-group="flower"><img src="../assets/photo/rust-flower.jpg" alt="花と石" loading="lazy" style="object-position:50% 15%"></div>
+      <div class="piece-body">
+        <span class="no">No. 02</span><h3>花と石</h3><span class="en">Flower &amp; Stone</span>
+        <p>大きく開いた錆鉄の花が、ひとつの石を抱く。細くゆらぐ一本の茎と、透かし彫りの蝶。近くで見るほど発見のある作品です。</p>
+        <span class="status real">実在作品 ── ギャラリー展示</span>
+        <div class="talk"><small>スタッフの一言</small><span>「この蝶の羽、透かし彫りになっているんですよ。」</span></div>
+        <div class="meta"><span>推奨<b>カウンター・ニッチ</b></span><span>存在感<b>中</b></span></div>
+        <a class="film" data-lb="../assets/photo/rust-flower-detail.jpg" data-lb-cap="花と石（ディテール）" data-lb-group="flower">▶ ディテールを見る</a>
+      </div>
+    </article>
+
+    <article class="piece">
+      <div class="piece-media" data-lb="../assets/poster/white-egg.jpg" data-lb-cap="白卵"><video muted loop playsinline preload="metadata" poster="../assets/poster/white-egg.jpg" onmouseenter="this.play()" onmouseleave="this.pause()"><source src="../assets/video/hero/white-egg.mp4" type="video/mp4"></video></div>
+      <div class="piece-body">
+        <span class="no">No. 03</span><h3>白卵</h3><span class="en">White Egg</span>
+        <p>ひび割れた白い鉄の卵。割れ目の奥に、あたたかな内側がのぞく。灯りを落としたときにこそ深まる表情を、照明と合わせてご提案します。</p>
+        <span class="status">受注制作 ── 映像でご確認のうえ制作</span>
+        <div class="talk"><small>スタッフの一言</small><span>「もうすぐ“割れる”ところなんです。何が出てくると思います？」</span></div>
+        <div class="meta"><span>推奨<b>VIPルーム・個室</b></span><span>存在感<b>中〜大</b></span></div>
+        <a class="film" data-lb="https://youtu.be/_xGyzJyf7dc" data-lb-type="youtube" data-lb-cap="白卵（コンセプト映像）">▶ 映像を見る</a>
+      </div>
+    </article>
+
+    <article class="piece">
+      <div class="piece-media" data-lb="../assets/poster/fire.jpg" data-lb-cap="炎"><video muted loop playsinline preload="metadata" poster="../assets/poster/fire.jpg" onmouseenter="this.play()" onmouseleave="this.pause()"><source src="../assets/video/hero/fire.mp4" type="video/mp4"></video></div>
+      <div class="piece-body">
+        <span class="no">No. 04</span><h3>炎</h3><span class="en">Fire</span>
+        <p>叩いて折りたたんだ鉄が、一本の炎となって立ちのぼる。高さのある空間に、静かな熱を灯す作品です。</p>
+        <span class="status">受注制作 ── 天井高に合わせて設計</span>
+        <div class="talk"><small>スタッフの一言</small><span>「鉄を叩いて、炎のかたちに折り上げているんです。」</span></div>
+        <div class="meta"><span>推奨<b>吹き抜け・窓際</b></span><span>存在感<b>特大</b></span></div>
+        <a class="film" data-lb="https://youtu.be/bUKPSJ6IpDo" data-lb-type="youtube" data-lb-cap="炎（コンセプト映像）">▶ 映像を見る</a>
+      </div>
+    </article>
+
+    <article class="piece">
+      <div class="piece-media" data-lb="../assets/poster/leaf-dream.jpg" data-lb-cap="無題"><video muted loop playsinline preload="metadata" poster="../assets/poster/leaf-dream.jpg" onmouseenter="this.play()" onmouseleave="this.pause()"><source src="../assets/video/hero/leaf-dream.mp4" type="video/mp4"></video></div>
+      <div class="piece-body">
+        <span class="no">No. 05</span><h3>無題</h3><span class="en">Leaf Vessel</span>
+        <p>針金のように細い脚の器が、叩き出した鉄の葉を抱える。軽やかな線の作品で、ソファ席の間や窓際の余白にそっと置けます。</p>
+        <span class="status">受注制作 ── 映像でご確認のうえ制作</span>
+        <div class="talk"><small>スタッフの一言</small><span>「タイトルは“無題”。何に見えるか、皆さん違うんです。」</span></div>
+        <div class="meta"><span>推奨<b>ソファ席・窓際</b></span><span>存在感<b>小〜中</b></span></div>
+        <a class="film" data-lb="../assets/video/films/leaf-dream-full.mp4" data-lb-type="video" data-lb-cap="無題（コンセプト映像）">▶ 映像を見る</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="wrap" id="preview">
+    <p class="eyebrow reveal">Before You Decide</p>
+    <h2 class="title reveal">購入の前に、<br>貴店に置いた姿をご覧いただけます。</h2>
+    <div class="pv-grid">
+      <div>
+        <div class="ba" id="ba" style="--pos:50%">
+          <img src="../assets/poster/protect.jpg" alt="CG映像">
+          <img class="after" src="../assets/photo/protect-clean.jpg" alt="実物">
+          <div class="bar"></div><span class="l">CG</span><span class="r">REAL</span>
+          <input type="range" min="0" max="100" value="50" aria-label="CGと実物を比較">
+        </div>
+        <p class="lede" style="font-size:13px; margin-top:12px">左：制作前にお見せしたCG映像 ／ 右：実際に設置された「守るべきもの」</p>
+      </div>
+      <div>
+        <p class="lede">池内の作品は、制作に入る前にCG映像で設置後の姿をつくります。店内の写真をいただければ、照明・動線・お客様の目線の高さまで含めてご確認いただけます。</p>
+        <ol class="steps">
+          <li><div><b>店内写真のご送付</b><span>入口・置きたい場所・照明の位置がわかる写真を数枚。</span></div></li>
+          <li><div><b>CG映像でご提案</b><span>営業中の光の中で、作品がどう見えるかを映像に。</span></div></li>
+          <li><div><b>高知の工房で制作</b><span>池内本人が、一点ずつ手で溶接して仕上げます。</span></div></li>
+          <li><div><b>搬入・設置</b><span>日時は営業に合わせてご相談のうえ。設置時に照明との相性も確認します。</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="coll" id="artist">
+    <div class="wrap artist-grid">
+      <div class="artist-img reveal" data-lb="../assets/photo/rebar-tree-sky.jpg" data-lb-cap="鉄筋の木"><img src="../assets/photo/rebar-tree-sky.jpg" alt="鉄筋をねじった作品の枝" loading="lazy"></div>
+      <div class="artist reveal">
+        <p class="eyebrow">The Artist</p>
+        <h2 class="title">溶接職人として三十余年。<br>その手で、彫刻をつくる。</h2>
+        <p>1961年、高知県香南市生まれ。高知工業高校を卒業後、生家の鉄工所で溶接の技を磨き、高知県の溶接コンクールで二度の入賞。有限会社アイエル物産を立ち上げ、ロートアイアンの門扉や、国内外の植物園のガーデンアイテムを手がけてきました。</p>
+        <p>2009年から造形作家として公募展に出品。職人の確かな技術と、鉄にしか出せない陰影で、評価を重ねています。</p>
+        <ul class="awards">
+          <li><span>2014</span><span>高知県展 特選「覚醒する自我」</span></li>
+          <li><span>2014</span><span>新象展 佳作賞・ホルベイン工業賞</span></li>
+          <li><span>2017</span><span>新象展 展賞</span></li>
+          <li><span>2018</span><span>新象展 大阪府知事賞</span></li>
+          <li><span>2023</span><span>新象展 上野展「問う」／APOC（アジア太平洋蘭会議）</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="faq">
+    <p class="eyebrow reveal">For Owners</p>
+    <h2 class="title reveal">オーナー様からよくいただくご質問</h2>
+    <div class="faq">
+      <details><summary>店の雰囲気に合うか不安です。</summary><p>制作前に、店内の写真をもとにしたCG映像で設置後の姿をご確認いただけます。形・大きさ・色味は、そのうえで調整します。</p></details>
+      <details><summary>どのくらいの大きさで作れますか？</summary><p>カウンターに置ける大きさから、吹き抜けに立つ大きさまで、空間に合わせて設計します。天井高や通路幅を伺ったうえでご提案します。</p></details>
+      <details><summary>お客様がぶつかったり、倒れたりしませんか？</summary><p>設置場所の床や動線を確認し、固定方法や配置を含めてご提案します。安全面のご要望は最初のご相談時にお聞かせください。</p></details>
+      <details><summary>今の照明のままでも映えますか？</summary><p>既存のスポットライトやダウンライトの位置を伺い、作品の向きや角度で陰影が最も美しく出るよう調整します。</p></details>
+      <details><summary>営業しながら搬入できますか？</summary><p>搬入・設置の日時は、営業に支障のない時間帯でご相談のうえ決めさせていただきます。</p></details>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow reveal" style="justify-content:center">Private Consultation</p>
+      <h2 class="reveal">貴店の“三秒”を、<br>一緒につくりませんか。</h2>
+      <p class="lede reveal">まずは店内の写真を添えて、置いてみたい場所やイメージをお聞かせください。</p>
+      <div class="row reveal">
+        <a class="btn solid" href="mailto:ilbussan@coral.ocn.ne.jp?subject=%E3%83%A9%E3%82%A6%E3%83%B3%E3%82%B8%E3%81%B8%E3%81%AE%E8%A8%AD%E7%BD%AE%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールでご相談</a>
+        <a class="btn" href="tel:0887540711">お電話 0887-54-0711</a>
+      </div>
+      <div class="info">
+        <div><b>STUDIO</b>有限会社アイエル物産</div>
+        <div><b>ADDRESS</b>高知県香南市野市町土居1073-2</div>
+        <div><b>FAX</b>0887-54-0712</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>IKEUCHI — Iron Sculpture, Kochi</span>
+  <span>Lounge Concept A 「Nocturne」 ・ <a href="../index.html">もう一案を見る</a></span>
+</footer>
+
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // nav background after scrolling past the top
+  var nav = document.getElementById('nav');
+  addEventListener('scroll', function(){ nav.classList.toggle('scrolled', scrollY > 40); }, {passive:true});
+
+  // hero spotlight follows the pointer; drifts by itself on touch screens
+  var hero = document.querySelector('.hero'), spot = document.getElementById('spot');
+  function setSpot(x, y){ spot.style.setProperty('--x', x + '%'); spot.style.setProperty('--y', y + '%'); }
+  hero.addEventListener('pointermove', function(e){
+    var r = hero.getBoundingClientRect();
+    setSpot((e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100);
+  });
+  if (matchMedia('(hover: none)').matches && !reduce) {
+    var t = 0;
+    (function drift(){ t += 0.006; setSpot(55 + Math.sin(t) * 22, 42 + Math.cos(t * 1.3) * 14); requestAnimationFrame(drift); })();
+  }
+
+  // scene tabs
+  var tabs = document.querySelectorAll('.scene-tabs button');
+  tabs.forEach(function(b){
+    b.addEventListener('click', function(){
+      tabs.forEach(function(x){ x.setAttribute('aria-selected', x === b); });
+      document.querySelectorAll('.scene').forEach(function(s){
+        var on = s.id === b.dataset.scene;
+        s.classList.toggle('on', on);
+        var v = s.querySelector('video');
+        if (v) { if (on && !reduce) v.play().catch(function(){}); else v.pause(); }
+      });
+    });
+  });
+
+  // lighting simulation
+  var stage = document.getElementById('stage');
+  var MODES = {
+    day:  {dark:.0,  tint:'#ffffff', tintO:0,   label:'開店前'},
+    open: {dark:.86, tint:'#ffcf8a', tintO:.38, label:'営業中'},
+    late: {dark:.94, tint:'#ff9a4a', tintO:.55, label:'深夜'}
+  };
+  function setMode(m){
+    var c = MODES[m];
+    stage.style.setProperty('--dark', c.dark);
+    stage.style.setProperty('--tint', c.tint);
+    stage.style.setProperty('--tint-o', c.tintO);
+    document.querySelectorAll('#modes button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.mode === m); });
+  }
+  document.querySelectorAll('#modes button').forEach(function(b){ b.addEventListener('click', function(){ setMode(b.dataset.mode); }); });
+  setMode('open');
+  function moveLamp(e){
+    var r = stage.getBoundingClientRect();
+    stage.style.setProperty('--sx', Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100)) + '%');
+    stage.style.setProperty('--sy', Math.max(0, Math.min(100, (e.clientY - r.top) / r.height * 100)) + '%');
+  }
+  stage.addEventListener('pointermove', moveLamp);
+  stage.addEventListener('pointerdown', moveLamp);
+  var beam = document.getElementById('beam'), beamV = document.getElementById('beam-v');
+  beam.addEventListener('input', function(){
+    stage.style.setProperty('--r', beam.value + '%');
+    beamV.textContent = beam.value < 14 ? '絞る' : beam.value > 24 ? '広く' : '標準';
+  });
+  document.querySelectorAll('#work-switch button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.getElementById('stage-img').src = b.dataset.src;
+      document.querySelectorAll('#work-switch button').forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
+    });
+  });
+
+  // CG / real comparison
+  var ba = document.getElementById('ba'), range = ba.querySelector('input');
+  range.addEventListener('input', function(){ ba.style.setProperty('--pos', range.value + '%'); });
+
+  // reveal on scroll
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+
+  // play the scene video that is visible on load
+  var firstVid = document.querySelector('.scene.on video'); if (firstVid && !reduce) firstVid.play().catch(function(){});
+})();
+</script>
+</body>
+</html>
