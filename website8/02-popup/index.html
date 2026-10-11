@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IKEUCHI Pop-up Moodboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap">
+<style>
+  :root{ --bg:#FAFAF7; --ink:#141414; --dim:#6B6B66; --line:#E3E3DD; --c1:#141414; --c2:#D9D6CF; --c3:#F4F2EE; --acc:#FF4F00; --lbx-accent:#FF4F00; --lbx-on-accent:#fff; }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans JP', sans-serif; line-height:1.8; overflow-x:clip;}
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  .sy{font-family:'Syne', sans-serif;}
+  .wrap{max-width:1260px; margin:0 auto; padding-inline:30px;}
+  section{padding-block:96px;}
+  @media (max-width:760px){ section{padding-block:64px;} .wrap{padding-inline:16px;} }
+  .k{font-family:'Syne'; font-weight:800; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--acc); transition:color .4s;}
+  h2{font-weight:900; font-size:clamp(28px,4vw,50px); line-height:1.3; margin:10px 0 14px; letter-spacing:-.01em;}
+  .lead{color:var(--dim); font-size:15.5px; max-width:40em; margin:0;}
+  .btn{display:inline-flex; gap:10px; align-items:center; padding:15px 26px; background:var(--ink); color:#fff; font-weight:700; font-size:15px; border-radius:60px; transition:background .2s;}
+  .btn:hover{background:var(--acc);}
+  .btn.o{background:transparent; color:var(--ink); border:2px solid var(--ink);}
+  .btn.o:hover{background:var(--ink); color:#fff;}
+
+  .top{display:flex; align-items:center; justify-content:space-between; padding:18px 30px; border-bottom:1px solid var(--line);}
+  .top .logo{font-family:'Syne'; font-weight:800; font-size:20px;}
+  .top .logo i{font-style:normal; color:var(--acc); transition:color .4s;}
+  .top nav{display:flex; gap:22px; font-size:13.5px; font-weight:500;}
+  .top nav a:hover{color:var(--acc);}
+  @media (max-width:760px){ .top nav{display:none;} .top{padding:14px 16px;} }
+
+  .hero{padding-block:60px 70px;}
+  .hero .t{font-family:'Syne'; font-weight:800; font-size:clamp(38px,11vw,170px); overflow-wrap:anywhere; line-height:.86; letter-spacing:-.04em; margin:0;}
+  .hero .t span{color:var(--acc); transition:color .4s;}
+  .hero-row{display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:40px; align-items:end;}
+  .hero h1{font-weight:900; font-size:clamp(22px,2.8vw,34px); line-height:1.5; margin:0 0 14px;}
+  .hero p{color:var(--dim); margin:0 0 24px; max-width:30em;}
+  .hero .row{display:flex; gap:10px; flex-wrap:wrap;}
+  .hero .strip{display:grid; grid-template-columns:repeat(3,1fr); gap:8px;}
+  .hero .strip div{aspect-ratio:3/4; overflow:hidden; border-radius:12px; cursor:zoom-in;}
+  .hero .strip img{width:100%; height:100%; object-fit:cover;}
+  .hero .strip div:nth-child(2){transform:translateY(-24px);}
+  @media (max-width:860px){ .hero-row{grid-template-columns:1fr;} }
+
+  /* moodboard */
+  .mb-sec{background:var(--c3); transition:background .5s;}
+  .tones{display:flex; gap:8px; flex-wrap:wrap; margin:28px 0 30px;}
+  .tones button{border:2px solid var(--ink); background:transparent; border-radius:60px; padding:9px 18px; font-weight:700; cursor:pointer; font-size:14px; color:var(--ink);}
+  .tones button[aria-pressed="true"]{background:var(--ink); color:#fff;}
+  .board{display:grid; grid-template-columns:repeat(12,1fr); grid-auto-rows:70px; gap:12px;}
+  .card{border-radius:14px; overflow:hidden; position:relative; background:#fff; box-shadow:0 6px 20px rgba(0,0,0,.06); transition:background .4s, transform .3s;}
+  .card:hover{transform:rotate(-.6deg) scale(1.01);}
+  .card img{width:100%; height:100%; object-fit:cover;}
+  .card .lab{position:absolute; left:10px; bottom:10px; background:rgba(255,255,255,.92); border-radius:30px; padding:2px 10px; font-size:12px; font-weight:700;}
+  .m-main{grid-column:1 / span 5; grid-row:span 6; cursor:zoom-in;}
+  .m-title{grid-column:6 / span 4; grid-row:span 3; background:var(--c1); color:var(--c3); padding:22px; display:flex; flex-direction:column; justify-content:space-between;}
+  .m-title .sy{font-size:clamp(26px,3vw,42px); line-height:1; font-weight:800;}
+  .m-title small{font-size:13px; opacity:.85;}
+  .m-sw{grid-column:10 / span 3; grid-row:span 3; display:grid; grid-template-rows:1fr 1fr 1fr; padding:0;}
+  .m-sw span{display:flex; align-items:center; padding:0 14px; font-family:'Syne'; font-size:12px; font-weight:600; transition:background .4s, color .4s;}
+  .m-sub1{grid-column:6 / span 3; grid-row:span 3; cursor:zoom-in;}
+  .m-words{grid-column:9 / span 4; grid-row:span 3; padding:20px; display:flex; flex-wrap:wrap; align-content:center; gap:8px;}
+  .m-words span{border:2px solid var(--c1); border-radius:30px; padding:4px 12px; font-weight:700; font-size:14px; transition:border-color .4s;}
+  .m-note{grid-column:1 / span 7; grid-row:span 2; padding:20px 22px; display:flex; flex-direction:column; justify-content:center;}
+  .m-note b{font-size:17px;}
+  .m-note p{margin:4px 0 0; color:var(--dim); font-size:14px;}
+  .m-sub2{grid-column:8 / span 5; grid-row:span 2; cursor:zoom-in;}
+  @media (max-width:900px){
+    .board{grid-template-columns:repeat(6,1fr); grid-auto-rows:64px;}
+    .m-main{grid-column:1 / span 6; grid-row:span 5;}
+    .m-title{grid-column:1 / span 3; grid-row:span 3;}
+    .m-sw{grid-column:4 / span 3; grid-row:span 3;}
+    .m-sub1{grid-column:1 / span 3; grid-row:span 3;}
+    .m-words{grid-column:4 / span 3; grid-row:span 3;}
+    .m-note{grid-column:1 / span 6; grid-row:span 2;}
+    .m-sub2{grid-column:1 / span 6; grid-row:span 3;}
+  }
+  .mb-foot{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center; margin-top:24px;}
+  .mb-foot small{color:var(--dim); font-size:12.5px;}
+
+  /* formats */
+  .formats{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px;}
+  .fmt{border:2px solid var(--ink); border-radius:18px; padding:26px; background:#fff;}
+  .fmt .sy{font-size:30px; font-weight:800; color:var(--acc); transition:color .4s;}
+  .fmt h3{margin:6px 0 6px; font-size:19px; font-weight:900;}
+  .fmt p{margin:0; color:var(--dim); font-size:14px;}
+  @media (max-width:860px){ .formats{grid-template-columns:1fr;} }
+
+  /* timeline */
+  .tl{display:grid; grid-template-columns:repeat(5,1fr); gap:0; margin-top:40px; position:relative;}
+  .tl::before{content:""; position:absolute; left:0; right:0; top:18px; height:2px; background:var(--ink);}
+  .tl div{position:relative; padding-right:14px;}
+  .tl div::before{content:""; display:block; width:38px; height:38px; border-radius:50%; background:var(--acc); border:4px solid var(--bg); margin-bottom:10px; transition:background .4s;}
+  .tl b{font-family:'Syne'; font-weight:800; font-size:13px;}
+  .tl h3{margin:2px 0 4px; font-size:16px; font-weight:900;}
+  .tl p{margin:0; color:var(--dim); font-size:13px;}
+  @media (max-width:860px){ .tl{grid-template-columns:1fr 1fr; gap:20px;} .tl::before{display:none;} }
+
+  .qa{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:34px;}
+  .qa div{background:#fff; border-radius:16px; padding:20px; border:1px solid var(--line);}
+  .qa h3{margin:0 0 4px; font-size:15.5px; font-weight:900;}
+  .qa p{margin:0; color:var(--dim); font-size:14px;}
+  @media (max-width:760px){ .qa{grid-template-columns:1fr;} }
+
+  .contact{background:var(--ink); color:#fff; border-radius:28px; padding:clamp(28px,5vw,60px); display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:end;}
+  .contact .t{font-family:'Syne'; font-weight:800; font-size:clamp(44px,7vw,96px); line-height:.9; margin:0 0 18px; letter-spacing:-.03em;}
+  .contact .t span{color:var(--acc); transition:color .4s;}
+  .contact p{color:#bbb; margin:0 0 22px;}
+  .contact .btn{background:var(--acc);}
+  .contact .btn:hover{background:#fff; color:var(--ink);}
+  .contact dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 16px; font-size:14px; border-top:1px solid #333; padding-top:16px;}
+  .contact dt{font-family:'Syne'; font-weight:600; color:#999; font-size:12px; padding-top:3px;}
+  .contact dd{margin:0; overflow-wrap:anywhere;}
+  .contact > *{min-width:0;}
+  @media (max-width:860px){ .contact{grid-template-columns:minmax(0,1fr);} .contact .t{font-size:clamp(22px,6.2vw,96px); overflow-wrap:anywhere;} }
+  footer{text-align:center; padding:28px 16px 40px; color:var(--dim); font-size:12.5px;}
+  footer a{color:var(--ink); text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <span class="logo">IKEUCHI<i>×</i>POP-UP</span>
+  <nav><a href="#mood">ムードボード</a><a href="#formats">使い方</a><a href="#flow">流れ</a><a href="#contact">相談</a></nav>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <p class="t">YOUR BRAND<br><span>× IRON.</span></p>
+    <div class="hero-row">
+      <div>
+        <h1>ポップアップストアの世界観に、<br>手仕事の鉄を一点。</h1>
+        <p>商業施設のポップアップ、ブランドの期間限定ショップ、展示即売会に。高知の職人がつくる鉄の彫刻を、会期に合わせてレンタルします。ブランドのトーンに合う作品を一緒に選びます。</p>
+        <div class="row"><a class="btn" href="#mood">ムードボードで試す</a><a class="btn o" href="#contact">相談する</a></div>
+      </div>
+      <div class="strip">
+        <div data-lb="../assets/photo/rust-flower-detail.jpg" data-lb-cap="花と石"><img src="../assets/photo/rust-flower-detail.jpg" alt="花と石"></div>
+        <div data-lb="../assets/photo/rebar-tree-sky.jpg" data-lb-cap="鉄筋の木"><img src="../assets/photo/rebar-tree-sky.jpg" alt="鉄筋の木"></div>
+        <div data-lb="../assets/photo/question-clean.jpg" data-lb-cap="問う"><img src="../assets/photo/question-clean.jpg" alt="問う"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-sec" id="mood">
+    <div class="wrap">
+      <span class="k">Moodboard</span>
+      <h2>ブランドのトーンを選ぶと、<br>ボードが組み変わります。</h2>
+      <p class="lead">色・キーワード・作品の組み合わせで、ポップアップの空間イメージを考えるためのボードです。</p>
+      <div class="tones" role="group" aria-label="ブランドのトーン">
+        <button data-t="minimal" aria-pressed="true">ミニマル</button>
+        <button data-t="natural">ナチュラル</button>
+        <button data-t="luxury">ラグジュアリー</button>
+        <button data-t="street">ストリート</button>
+      </div>
+      <div class="board">
+        <div class="card m-main" id="m-main" data-lb="" data-lb-cap=""><img id="m-main-img" alt=""><span class="lab" id="m-main-lab"></span></div>
+        <div class="card m-title"><span class="sy" id="m-title"></span><small id="m-sub"></small></div>
+        <div class="card m-sw"><span id="sw1"></span><span id="sw2"></span><span id="sw3"></span></div>
+        <div class="card m-sub1" id="m-sub1" data-lb="" data-lb-cap=""><img id="m-sub1-img" alt=""><span class="lab" id="m-sub1-lab"></span></div>
+        <div class="card m-words" id="m-words"></div>
+        <div class="card m-note"><b id="m-note-t"></b><p id="m-note"></p></div>
+        <div class="card m-sub2" id="m-sub2" data-lb="" data-lb-cap=""><img id="m-sub2-img" alt=""><span class="lab" id="m-sub2-lab"></span></div>
+      </div>
+      <div class="mb-foot"><small>※ 組み合わせは一例です。掲載作品のレンタル可否・時期は作品の設置状況により異なります。</small><a class="btn" id="mb-ask" href="#">このボードで相談する</a></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="formats">
+    <span class="k">Formats</span>
+    <h2>こんな期間限定の場に。</h2>
+    <div class="formats">
+      <div class="fmt"><span class="sy">01</span><h3>ブランドのポップアップ</h3><p>商品棚の奥に、ブランドの世界観を語る一点を。写真を撮りたくなる場所にも。</p></div>
+      <div class="fmt"><span class="sy">02</span><h3>商業施設の催事・展示即売会</h3><p>催事場の入口に置けば、会場の目印に。通路からの視線を集めます。</p></div>
+      <div class="fmt"><span class="sy">03</span><h3>コラボレーション企画</h3><p>作家とブランドのコラボとして、作品の物語を企画に組み込むご相談も。</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="flow" style="padding-top:0">
+    <span class="k">Flow</span>
+    <h2>会期に合わせた流れ</h2>
+    <p class="lead">期間・料金は、作品・会場・搬入条件をうかがってお見積りします。</p>
+    <div class="tl">
+      <div><b>STEP 1</b><h3>相談</h3><p>ブランドのトーン、会場、会期を。</p></div>
+      <div><b>STEP 2</b><h3>作品選び</h3><p>ムードに合う作品と置き方を提案。</p></div>
+      <div><b>STEP 3</b><h3>搬入</h3><p>施設の搬入時間に合わせて設置。</p></div>
+      <div><b>STEP 4</b><h3>会期</h3><p>期間中の見え方も一緒に確認。</p></div>
+      <div><b>STEP 5</b><h3>撤去</h3><p>会期終了後に撤去・返却。</p></div>
+    </div>
+    <div class="qa">
+      <div><h3>数日だけのポップアップでも？</h3><p>会期の長さに合わせてご相談ください。</p></div>
+      <div><h3>商品と一緒に並べられますか？</h3><p>商品との距離や見せ方を含めてご提案します。</p></div>
+      <div><h3>ブランドの撮影に使えますか？</h3><p>使い方をうかがったうえでご相談ください。</p></div>
+      <div><h3>作品を販売することは？</h3><p>作品によってはご相談いただけます。</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact" style="padding-top:0">
+    <div class="contact">
+      <div>
+        <p class="t">MAKE IT<br><span>MEMORABLE.</span></p>
+        <p>ブランドの資料や会場の図面があれば、添えてご相談ください。</p>
+        <a class="btn" href="mailto:ilbussan@coral.ocn.ne.jp?subject=%E3%83%9D%E3%83%83%E3%83%97%E3%82%A2%E3%83%83%E3%83%97%E5%90%91%E3%81%91%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで相談する</a>
+      </div>
+      <dl><dt>STUDIO</dt><dd>有限会社アイエル物産</dd><dt>ADDRESS</dt><dd>高知県香南市野市町土居1073-2</dd><dt>TEL/FAX</dt><dd>0887-54-0711 / 0887-54-0712</dd><dt>MAIL</dt><dd>ilbussan@coral.ocn.ne.jp</dd></dl>
+    </div>
+  </section>
+</main>
+
+<footer>IKEUCHI — 鉄の彫刻 ポップアップ向けレンタル ・ 案B「Pop-up」 ・ <a href="../index.html">もう一案を見る</a></footer>
+
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){
+  var P = '../assets/photo/';
+  var T = {
+    minimal:{c:['#141414','#D9D6CF','#F4F2EE'], acc:'#FF4F00', title:'QUIET<br>IRON', sub:'余白で見せる、ひとつの線。',
+      main:['rebar-tree-sky.jpg','鉄筋の木'], s1:['rust-flower-detail.jpg','花と石'], s2:['question-clean.jpg','問う'],
+      words:['余白','モノトーン','線','静けさ'], noteT:'白い空間に、黒い鉄の線を一本。', note:'商品数を絞ったミニマルな店内に、彫刻を“もうひとつの商品”のように置きます。'},
+    natural:{c:['#3E4A2F','#C9B99A','#EFEBE0'], acc:'#6E8B3D', title:'GROWN<br>IRON', sub:'植物と並べて、育つように。',
+      main:['plant-clean.jpg','植物'], s1:['leaf-bench.jpg','葉っぱベンチ（設置イメージ）'], s2:['garden-shed.jpg','ガーデン収納（設置イメージ）'],
+      words:['植物','木と鉄','手ざわり','やわらかい光'], noteT:'グリーンと木の什器に、鉄の植物を。', note:'ナチュラル系ブランドのポップアップに。座れるベンチは来場者の休憩場所にも。'},
+    luxury:{c:['#1B1A17','#B08D57','#F1E8D8'], acc:'#B08D57', title:'RARE<br>IRON', sub:'一点ものが、空間の格を決める。',
+      main:['protect-clean.jpg','守るべきもの'], s1:['rust-flower.jpg','花と石'], s2:['question-night.jpg','問う（映像より）'],
+      words:['一点もの','真鍮色','陰影','職人'], noteT:'スポットライトの下に、一点だけ。', note:'ジュエリーや時計など、高価格帯のブランドの世界観に。照明で陰影を際立たせます。'},
+    street:{c:['#111111','#FF3D2E','#EDEDED'], acc:'#FF3D2E', title:'RAW<br>IRON', sub:'ねじれた鉄筋の、むき出しの力。',
+      main:['rebar-tree.jpg','鉄筋の木'], s1:['rebar-tree-2.jpg','鉄筋の木'], s2:['rebar-tree-sky.jpg','鉄筋の木'],
+      words:['RAW','インダストリアル','グラフィティ','ねじれ'], noteT:'コンクリートの床に、鉄筋のかたまり。', note:'ストリート系ブランドや音楽イベント連動のポップアップに。荒々しい素材感がそのまま絵になります。'}
+  };
+  var root = document.documentElement;
+  function img(id, pair){
+    var el = document.getElementById(id);
+    el.setAttribute('data-lb', P + pair[0]); el.setAttribute('data-lb-cap', pair[1]);
+    document.getElementById(id + '-img').src = P + pair[0];
+    document.getElementById(id + '-img').alt = pair[1];
+    document.getElementById(id + '-lab').textContent = pair[1];
+  }
+  function set(k){
+    var t = T[k];
+    root.style.setProperty('--c1', t.c[0]); root.style.setProperty('--c2', t.c[1]); root.style.setProperty('--c3', t.c[2]); root.style.setProperty('--acc', t.acc);
+    document.getElementById('m-title').innerHTML = t.title;
+    document.getElementById('m-sub').textContent = t.sub;
+    ['sw1','sw2','sw3'].forEach(function(id, i){ var s = document.getElementById(id); s.style.background = t.c[i]; s.style.color = i === 0 ? t.c[2] : t.c[0]; s.textContent = t.c[i].toUpperCase(); });
+    img('m-main', t.main); img('m-sub1', t.s1); img('m-sub2', t.s2);
+    document.getElementById('m-words').innerHTML = t.words.map(function(w){ return '<span>' + w + '</span>'; }).join('');
+    document.getElementById('m-note-t').textContent = t.noteT;
+    document.getElementById('m-note').textContent = t.note;
+    var label = document.querySelector('.tones button[data-t="' + k + '"]').textContent;
+    var body = 'ポップアップでの作品レンタルについて相談したいです。\n\n【ブランドのトーン】' + label + '\n【気になる作品】' + [t.main[1], t.s1[1], t.s2[1]].filter(function(v, i, a){ return a.indexOf(v) === i; }).join('、') + '\n【会場・会期】\n【ブランド名・ご連絡先】\n';
+    document.getElementById('mb-ask').href = 'mailto:ilbussan@coral.ocn.ne.jp?subject=' + encodeURIComponent('ポップアップ向けレンタルのご相談') + '&body=' + encodeURIComponent(body);
+    document.querySelectorAll('.tones button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.t === k); });
+  }
+  document.querySelectorAll('.tones button').forEach(function(b){ b.addEventListener('click', function(){ set(b.dataset.t); }); });
+  set('minimal');
+})();
+</script>
+</body>
+</html>

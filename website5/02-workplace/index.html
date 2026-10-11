@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IKEUCHI Workplace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
+<style>
+  :root{ --bg:#F1F4EE; --card:#FFFFFF; --ink:#1D2B24; --dim:#5F6E66; --green:#1F4D3A; --mint:#CFE6D6; --yellow:#F2C14E; --coral:#F07C64; --line:#DCE3DA; --lbx-accent:#F2C14E; --lbx-on-accent:#1D2B24; }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Zen Maru Gothic', sans-serif; font-weight:500; line-height:1.85; overflow-x:clip;}
+  img,video{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  .dm{font-family:'DM Sans', sans-serif;}
+  .wrap{max-width:1160px; margin:0 auto; padding-inline:28px;}
+  section{padding-block:96px;}
+  @media (max-width:760px){ section{padding-block:64px;} .wrap{padding-inline:16px;} }
+  .pill{display:inline-block; background:var(--card); border-radius:999px; padding:6px 14px; font-size:13px; font-weight:700; color:var(--green);}
+  h2{font-weight:900; font-size:clamp(28px,3.8vw,44px); line-height:1.4; margin:14px 0 14px;}
+  .lead{color:var(--dim); font-size:15.5px; max-width:40em; margin:0;}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:15px 26px; border-radius:999px; background:var(--green); color:#fff; font-weight:700; font-size:15px; border:0; cursor:pointer; transition:transform .2s;}
+  .btn:hover{transform:scale(1.04);}
+  .btn.y{background:var(--yellow); color:var(--ink);}
+  .btn.w{background:var(--card); color:var(--green);}
+
+  .nav{display:flex; align-items:center; gap:16px; padding:16px 28px; max-width:1220px; margin:0 auto;}
+  .nav .logo{font-weight:900; font-size:18px;}
+  .nav .logo span{background:var(--yellow); border-radius:6px; padding:0 6px; margin-left:4px;}
+  .nav nav{display:flex; gap:6px; margin-left:auto;}
+  .nav nav a{padding:8px 14px; border-radius:999px; font-size:14px; font-weight:700;}
+  .nav nav a:hover{background:var(--mint);}
+  @media (max-width:760px){ .nav nav{display:none;} }
+
+  .hero{padding-block:30px 80px;}
+  .hero-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;}
+  .hero h1{font-weight:900; font-size:clamp(38px,5.6vw,68px); line-height:1.3; margin:16px 0 20px;}
+  .hero h1 .u{background:linear-gradient(transparent 62%, var(--yellow) 62%);}
+  .hero p{color:var(--dim); font-size:16.5px; max-width:28em; margin:0 0 28px;}
+  .hero .row{display:flex; gap:10px; flex-wrap:wrap;}
+  .hero-art{position:relative; aspect-ratio:1/1;}
+  .hero-art .blob{position:absolute; inset:6%; background:var(--mint); border-radius:46% 54% 42% 58% / 52% 44% 56% 48%;}
+  .hero-art .ph{position:absolute; overflow:hidden; border-radius:24px; box-shadow:0 18px 40px rgba(29,43,36,.18); cursor:zoom-in;}
+  .hero-art .ph img{width:100%; height:100%; object-fit:cover;}
+  .hero-art .p1{left:4%; top:8%; width:58%; height:62%; transform:rotate(-4deg);}
+  .hero-art .p2{right:2%; bottom:6%; width:50%; height:52%; transform:rotate(5deg);}
+  .bubble{position:absolute; background:var(--card); border-radius:18px; padding:10px 14px; font-size:13.5px; font-weight:700; box-shadow:0 8px 20px rgba(29,43,36,.12);}
+  .bubble::after{content:""; position:absolute; bottom:-8px; left:22px; border:8px solid transparent; border-top-color:var(--card); border-bottom:0;}
+  .b1{right:6%; top:6%;} .b2{left:6%; bottom:10%;}
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} .hero-art{max-width:460px; width:100%; margin:0 auto;} }
+
+  .effects{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px;}
+  .eff{background:var(--card); border-radius:24px; padding:28px;}
+  .eff .ic{width:54px; height:54px; border-radius:16px; display:grid; place-items:center; font-size:24px; font-weight:900; margin-bottom:14px;}
+  .eff:nth-child(1) .ic{background:var(--mint);} .eff:nth-child(2) .ic{background:#FCE7B6;} .eff:nth-child(3) .ic{background:#FBD6CD;}
+  .eff h3{margin:0 0 6px; font-size:19px; font-weight:900;}
+  .eff p{margin:0; color:var(--dim); font-size:14.5px;}
+  @media (max-width:860px){ .effects{grid-template-columns:1fr;} }
+
+  /* vote demo */
+  .vote{background:var(--green); color:#fff; border-radius:36px; padding:clamp(24px,5vw,56px);}
+  .vote .pill{background:var(--yellow); color:var(--ink);}
+  .vote .lead{color:#CFE6D6;}
+  .vote-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:34px;}
+  .cand{background:#fff; color:var(--ink); border-radius:22px; overflow:hidden; display:flex; flex-direction:column;}
+  .cand figure{margin:0; aspect-ratio:1/1; overflow:hidden; cursor:zoom-in;}
+  .cand img{width:100%; height:100%; object-fit:cover;}
+  .cand div{padding:12px 14px 14px; display:flex; flex-direction:column; gap:8px; flex:1;}
+  .cand b{font-size:16px;}
+  .cand .bar{height:10px; background:var(--bg); border-radius:99px; overflow:hidden;}
+  .cand .bar i{display:block; height:100%; background:var(--coral); border-radius:99px; transition:width .5s;}
+  .cand .meta{display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:var(--dim);}
+  .cand button{border:0; border-radius:999px; background:var(--yellow); padding:8px 14px; font-weight:900; cursor:pointer; font-size:13px;}
+  .cand button:disabled{background:var(--mint); cursor:default;}
+  .cand.win{outline:4px solid var(--yellow);}
+  .vote-foot{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-top:20px; font-size:13px; color:#CFE6D6;}
+  .vote-foot button{border:1px solid #CFE6D6; background:transparent; color:#fff; border-radius:999px; padding:6px 14px; cursor:pointer;}
+  @media (max-width:860px){ .vote-grid{grid-template-columns:1fr 1fr;} }
+
+  /* ideas */
+  .ideas{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:36px;}
+  .idea{display:grid; grid-template-columns:80px 1fr; gap:16px; background:var(--card); border-radius:24px; padding:22px; align-items:center;}
+  .idea .n{font-family:'DM Sans'; font-weight:700; font-size:34px; color:var(--coral); text-align:center;}
+  .idea h3{margin:0 0 4px; font-size:17px; font-weight:900;}
+  .idea p{margin:0; font-size:14px; color:var(--dim);}
+  @media (max-width:760px){ .ideas{grid-template-columns:1fr;} .idea{grid-template-columns:56px 1fr;} }
+
+  /* places */
+  .places{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px;}
+  .place{background:var(--card); border-radius:24px; overflow:hidden; cursor:zoom-in;}
+  .place figure{margin:0; aspect-ratio:4/3; overflow:hidden;}
+  .place img{width:100%; height:100%; object-fit:cover; transition:transform .5s;}
+  .place:hover img{transform:scale(1.05);}
+  .place div{padding:16px 20px 20px;}
+  .place .where{font-size:12.5px; font-weight:900; color:var(--coral);}
+  .place h3{margin:2px 0 4px; font-size:18px; font-weight:900;}
+  .place p{margin:0; font-size:14px; color:var(--dim);}
+  .note{font-size:12.5px; color:var(--dim); margin-top:14px;}
+  @media (max-width:860px){ .places{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .places{grid-template-columns:1fr;} }
+
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:34px;}
+  .st{background:var(--card); border-radius:22px; padding:22px; position:relative;}
+  .st b{font-family:'DM Sans'; display:inline-grid; place-items:center; width:38px; height:38px; border-radius:50%; background:var(--yellow); font-size:16px;}
+  .st h3{margin:10px 0 4px; font-size:17px; font-weight:900;}
+  .st p{margin:0; font-size:13.5px; color:var(--dim);}
+  @media (max-width:860px){ .steps{grid-template-columns:1fr 1fr;} }
+  .qa{display:grid; gap:10px; margin-top:30px;}
+  .qa details{background:var(--card); border-radius:20px; padding:4px 20px;}
+  .qa summary{cursor:pointer; list-style:none; padding:14px 0; font-weight:900; display:flex; justify-content:space-between; gap:12px;}
+  .qa summary::-webkit-details-marker{display:none;}
+  .qa summary::after{content:"＋"; color:var(--coral);}
+  .qa details[open] summary::after{content:"－";}
+  .qa p{margin:0 0 14px; color:var(--dim); font-size:14.5px;}
+
+  .contact{background:var(--yellow); border-radius:36px; padding:clamp(28px,5vw,60px); display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:center;}
+  .contact h2{margin-top:0;}
+  .contact p{margin:0 0 22px; font-size:16px;}
+  .contact .info{background:var(--card); border-radius:24px; padding:22px; font-size:14px; display:grid; gap:8px;}
+  .contact .info small{display:block; font-size:11.5px; color:var(--dim); font-weight:700;}
+  .contact .info div{overflow-wrap:anywhere;}
+  @media (max-width:860px){ .contact{grid-template-columns:1fr;} }
+  footer{text-align:center; padding:30px 16px 40px; color:var(--dim); font-size:12.5px;}
+  footer a{color:var(--green); text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <span class="logo">IKEUCHI<span>鉄</span></span>
+  <nav><a href="#effect">オフィスの変化</a><a href="#vote">社内投票</a><a href="#place">置く場所</a><a href="#faq">Q&amp;A</a></nav>
+  <a class="btn" href="#contact" style="padding:10px 18px; font-size:14px">相談する</a>
+</div>
+
+<main>
+  <section class="wrap hero">
+    <div class="hero-grid">
+      <div>
+        <span class="pill">オフィスに鉄のアートを、レンタルで</span>
+        <h1>社員が<br><span class="u">話したくなる</span><br>オフィスへ。</h1>
+        <p>「あれ、何だろう？」から始まる会話がある職場。高知の職人が手で仕上げた鉄の彫刻を、月替わり・季節替えでオフィスに。</p>
+        <div class="row"><a class="btn" href="#vote">社内投票を体験する</a><a class="btn w" href="#contact">レンタルの相談</a></div>
+      </div>
+      <div class="hero-art">
+        <div class="blob"></div>
+        <div class="ph p1" data-lb="../assets/photo/tree-hanger-office.jpg" data-lb-cap="ツリーハンガー（設置イメージ）"><img src="../assets/photo/tree-hanger-office.jpg" alt="ツリーハンガー" style="object-position:50% 30%"></div>
+        <div class="ph p2" data-lb="../assets/photo/plant-clean.jpg" data-lb-cap="植物"><img src="../assets/photo/plant-clean.jpg" alt="植物"></div>
+        <span class="bubble b1">これ、コートかけ？</span>
+        <span class="bubble b2">今月の作品、いいね</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="effect" style="padding-top:20px">
+    <span class="pill">オフィスの変化</span>
+    <h2>一点の作品が、<br>働く場所に起こすこと。</h2>
+    <div class="effects">
+      <div class="eff"><div class="ic">話</div><h3>部署をこえた雑談</h3><p>作品の前で足を止めた人同士に、自然な会話が生まれます。</p></div>
+      <div class="eff"><div class="ic">誇</div><h3>来客に見せたい職場</h3><p>「うちのオフィス、ちょっといいでしょ」と言える空間に。</p></div>
+      <div class="eff"><div class="ic">新</div><h3>いつも少し新しい</h3><p>月替わり・季節替えで、毎日の景色に変化を。</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="vote">
+    <div class="vote">
+      <span class="pill">デモ ── 社内投票</span>
+      <h2>来月の作品、<br>みんなで決めませんか。</h2>
+      <p class="lead">レンタルなら、次に置く作品を社員の投票で選ぶこともできます。下で試してみてください（このページ上だけのデモです）。</p>
+      <div class="vote-grid" id="vote-grid"></div>
+      <div class="vote-foot"><span id="vote-sum">投票してみてください</span><button id="reset">リセット</button></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <span class="pill">社内で楽しむアイデア</span>
+    <h2>置くだけで終わらせない。</h2>
+    <div class="ideas">
+      <div class="idea"><span class="n">01</span><div><h3>社内報で作家を紹介</h3><p>溶接職人から作家になった池内の物語は、社内報のネタにもぴったり。</p></div></div>
+      <div class="idea"><span class="n">02</span><div><h3>作品の“あだ名”を募集</h3><p>「無題」の作品に、社内で名前をつけてみる。愛着がわきます。</p></div></div>
+      <div class="idea"><span class="n">03</span><div><h3>季節替えをイベントに</h3><p>入れ替えの日を、ちょっとしたお披露目の時間に。</p></div></div>
+      <div class="idea"><span class="n">04</span><div><h3>採用ページの背景に</h3><p>働く場所の雰囲気を伝える写真の、印象的な背景になります。</p></div></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="place">
+    <span class="pill">置く場所</span>
+    <h2>オフィスのここに、こんな作品。</h2>
+    <div class="places">
+      <div class="place" data-lb="../assets/photo/tree-hanger-office.jpg" data-lb-cap="ツリーハンガー（設置イメージ）"><figure><img src="../assets/photo/tree-hanger-office.jpg" alt="" loading="lazy" style="object-position:50% 30%"></figure><div><span class="where">受付・エントランス</span><h3>ツリーハンガー</h3><p>来客のコートを掛けられる、使えるアート。（設置イメージ）</p></div></div>
+      <div class="place" data-lb="../assets/photo/plant-clean.jpg" data-lb-cap="植物"><figure><img src="../assets/photo/plant-clean.jpg" alt="" loading="lazy"></figure><div><span class="where">執務エリアの窓際</span><h3>植物</h3><p>鉄の葉と茎。グリーンと並べても。</p></div></div>
+      <div class="place" data-lb="../assets/photo/leaf-bench-2.jpg" data-lb-cap="葉っぱベンチ（設置イメージ）"><figure><img src="../assets/photo/leaf-bench-2.jpg" alt="" loading="lazy"></figure><div><span class="where">屋上・テラス</span><h3>葉っぱベンチ</h3><p>昼休みに座れる、生きもののようなベンチ。（設置イメージ）</p></div></div>
+      <div class="place" data-lb="../assets/photo/rust-flower-detail.jpg" data-lb-cap="花と石"><figure><img src="../assets/photo/rust-flower-detail.jpg" alt="" loading="lazy"></figure><div><span class="where">会議室・応接</span><h3>花と石</h3><p>近くで見るほど発見のある、透かしの蝶。</p></div></div>
+      <div class="place" data-lb="../assets/photo/question-clean.jpg" data-lb-cap="問う"><figure><img src="../assets/photo/question-clean.jpg" alt="" loading="lazy"></figure><div><span class="where">ラウンジ・社員食堂</span><h3>問う</h3><p>仮面と針金の手足。見る人に問いかける作品。</p></div></div>
+      <div class="place" data-lb="../assets/photo/rebar-tree-sky.jpg" data-lb-cap="鉄筋の木"><figure><img src="../assets/photo/rebar-tree-sky.jpg" alt="" loading="lazy"></figure><div><span class="where">吹き抜け・中庭</span><h3>鉄筋の木</h3><p>ねじった鉄筋の幹から、空へ広がる枝。</p></div></div>
+    </div>
+    <p class="note">※ 掲載作品のレンタル可否・時期は作品の設置状況により異なります。「設置イメージ」は雰囲気を伝えるための画像です。</p>
+  </section>
+
+  <section class="wrap" id="faq" style="padding-top:20px">
+    <span class="pill">はじめ方</span>
+    <h2>レンタルの流れ</h2>
+    <p class="lead">期間・料金は、作品・設置場所・搬入条件をうかがってお見積りします。</p>
+    <div class="steps">
+      <div class="st"><b>1</b><h3>相談</h3><p>オフィスの写真と、置きたい場所を送る。</p></div>
+      <div class="st"><b>2</b><h3>提案</h3><p>空間に合う作品と置き方をご提案。</p></div>
+      <div class="st"><b>3</b><h3>設置</h3><p>業務に支障のない日時で搬入・設置。</p></div>
+      <div class="st"><b>4</b><h3>入れ替え</h3><p>期間ごとに交換、または返却。</p></div>
+    </div>
+    <div class="qa">
+      <details><summary>小さなオフィスでも置けますか？</summary><p>受付まわりやカウンターに置ける作品からご提案します。まずは写真をお送りください。</p></details>
+      <details><summary>社員が触れても大丈夫ですか？</summary><p>置き場所や動線を確認し、配置や固定方法を含めてご提案します。</p></details>
+      <details><summary>入れ替えの頻度は選べますか？</summary><p>月替わり・季節替えなど、ご希望をうかがって決めます。</p></details>
+      <details><summary>気に入った作品は買い取れますか？</summary><p>作品によってはご相談いただけます。</p></details>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact" style="padding-top:20px">
+    <div class="contact">
+      <div>
+        <h2>まずは、受付の写真を<br>一枚送ってください。</h2>
+        <p>「うちのオフィスにも置ける？」から相談できます。</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn" href="mailto:ilbussan@coral.ocn.ne.jp?subject=%E3%82%AA%E3%83%95%E3%82%A3%E3%82%B9%E5%90%91%E3%81%91%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで相談</a>
+          <a class="btn w" href="tel:0887540711">電話する</a>
+        </div>
+      </div>
+      <div class="info">
+        <div><small>会社</small>有限会社アイエル物産</div>
+        <div><small>住所</small>高知県香南市野市町土居1073-2</div>
+        <div><small>電話 / FAX</small>0887-54-0711 / 0887-54-0712</div>
+        <div><small>メール</small>ilbussan@coral.ocn.ne.jp</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>IKEUCHI — 鉄の彫刻 オフィス向けレンタル ・ 案B「Workplace」 ・ <a href="../index.html">もう一案を見る</a></footer>
+
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){
+  var C = [
+    {n:'守るべきもの', img:'../assets/photo/protect-clean.jpg', v:7},
+    {n:'花と石', img:'../assets/photo/rust-flower.jpg', v:5},
+    {n:'問う', img:'../assets/photo/question-clean.jpg', v:4},
+    {n:'鉄筋の木', img:'../assets/photo/rebar-tree-2.jpg', v:3}
+  ];
+  var start = C.map(function(c){ return c.v; });
+  var voted = false;
+  var grid = document.getElementById('vote-grid'), sum = document.getElementById('vote-sum');
+  function draw(){
+    var total = C.reduce(function(a,c){ return a + c.v; }, 0);
+    var max = Math.max.apply(null, C.map(function(c){ return c.v; }));
+    grid.innerHTML = '';
+    C.forEach(function(c, i){
+      var el = document.createElement('div');
+      el.className = 'cand' + (voted && c.v === max ? ' win' : '');
+      el.innerHTML = '<figure data-lb="' + c.img + '" data-lb-cap="' + c.n + '"><img src="' + c.img + '" alt="' + c.n + '"></figure>' +
+        '<div><b>' + c.n + '</b><span class="bar"><i style="width:' + (c.v / total * 100) + '%"></i></span>' +
+        '<span class="meta"><span>' + c.v + '票</span><button ' + (voted ? 'disabled' : '') + '>' + (voted ? '投票済み' : 'これに1票') + '</button></span></div>';
+      el.querySelector('button').addEventListener('click', function(){ c.v++; voted = true; draw(); });
+      grid.appendChild(el);
+    });
+    var top = C.filter(function(c){ return c.v === max; })[0];
+    sum.textContent = voted ? '来月の作品は「' + top.n + '」に決まりそうです（合計 ' + total + ' 票）' : '投票してみてください（例として票が入っています）';
+  }
+  document.getElementById('reset').addEventListener('click', function(){ C.forEach(function(c, i){ c.v = start[i]; }); voted = false; draw(); });
+  draw();
+})();
+</script>
+</body>
+</html>

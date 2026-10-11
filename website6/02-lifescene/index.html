@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IKEUCHI Life Scene</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:ital@1&display=swap">
+<style>
+  :root{ --cream:#FAF6EF; --sand:#EFE6D8; --ink:#3A2E26; --dim:#7A6B5E; --terra:#C8643B; --olive:#6B7A4B; --line:#E2D6C4; --tint:#FFF3DF; --lbx-accent:#C8643B; --lbx-on-accent:#fff; }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{margin:0; background:var(--cream); color:var(--ink); font-family:'Noto Sans JP', sans-serif; line-height:1.9; overflow-x:clip;}
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  .klee{font-family:'Klee One', cursive;}
+  .it{font-family:'Playfair Display', serif; font-style:italic;}
+  .wrap{max-width:1180px; margin:0 auto; padding-inline:30px;}
+  section{padding-block:100px;}
+  @media (max-width:760px){ section{padding-block:66px;} .wrap{padding-inline:16px;} }
+  .kick{font-family:'Playfair Display'; font-style:italic; color:var(--terra); font-size:18px;}
+  h2{font-family:'Klee One'; font-weight:600; font-size:clamp(28px,3.8vw,44px); line-height:1.55; margin:8px 0 16px;}
+  .lead{color:var(--dim); font-size:15.5px; max-width:40em; margin:0;}
+  .btn{display:inline-flex; gap:10px; align-items:center; padding:14px 26px; border-radius:40px; background:var(--terra); color:#fff; font-weight:500; font-size:15px; transition:background .2s;}
+  .btn:hover{background:#a94f2b;}
+  .btn.o{background:transparent; color:var(--ink); border:1px solid var(--ink);}
+  .btn.o:hover{background:var(--ink); color:var(--cream);}
+
+  .masthead{text-align:center; padding:22px 20px 8px; border-bottom:1px solid var(--line);}
+  .masthead .t{font-family:'Playfair Display'; font-style:italic; font-size:30px; letter-spacing:.02em;}
+  .masthead .s{font-size:12px; letter-spacing:.3em; color:var(--dim);}
+  .masthead nav{display:flex; justify-content:center; gap:26px; font-size:13.5px; padding:12px 0 6px; flex-wrap:wrap;}
+  .masthead nav a:hover{color:var(--terra);}
+
+  /* cover */
+  .cover{display:grid; grid-template-columns:.9fr 1.1fr; gap:46px; align-items:center; padding-block:60px 90px;}
+  .cover h1{font-family:'Klee One'; font-weight:600; font-size:clamp(36px,5vw,62px); line-height:1.5; margin:10px 0 20px;}
+  .cover h1 span{color:var(--terra);}
+  .cover p{color:var(--dim); font-size:16px; margin:0 0 28px; max-width:28em;}
+  .cover .row{display:flex; gap:10px; flex-wrap:wrap;}
+  .cover-img{position:relative;}
+  .cover-img .main{aspect-ratio:5/4; overflow:hidden; border-radius:200px 200px 16px 16px; cursor:zoom-in;}
+  .cover-img .main img{width:100%; height:100%; object-fit:cover;}
+  .cover-img .sticker{position:absolute; left:-20px; bottom:30px; background:var(--olive); color:#fff; border-radius:50%; width:126px; height:126px; display:grid; place-items:center; text-align:center; font-family:'Klee One'; font-size:15px; line-height:1.5; transform:rotate(-8deg);}
+  @media (max-width:860px){ .cover{grid-template-columns:1fr;} .cover-img .sticker{left:8px; width:100px; height:100px; font-size:13px;} }
+
+  /* a day */
+  .day{background:var(--tint); transition:background .6s; border-block:1px solid var(--line);}
+  .times{display:flex; gap:8px; flex-wrap:wrap; margin:30px 0 30px;}
+  .times button{border:1px solid var(--ink); background:transparent; border-radius:40px; padding:10px 20px; cursor:pointer; font-size:14.5px; color:var(--ink);}
+  .times button span{font-family:'Playfair Display'; font-style:italic; margin-right:8px;}
+  .times button[aria-pressed="true"]{background:var(--ink); color:var(--cream);}
+  .scene{display:grid; grid-template-columns:1.2fr .8fr; gap:44px; align-items:center;}
+  .scene-img{aspect-ratio:4/3; overflow:hidden; border-radius:16px; cursor:zoom-in; position:relative;}
+  .scene-img img{width:100%; height:100%; object-fit:cover; transition:filter .6s;}
+  .scene-img .clock{position:absolute; top:14px; left:14px; background:rgba(250,246,239,.92); border-radius:30px; padding:4px 14px; font-family:'Playfair Display'; font-style:italic;}
+  .scene h3{font-family:'Klee One'; font-weight:600; font-size:clamp(22px,2.4vw,30px); margin:0 0 10px; line-height:1.6;}
+  .scene p{color:var(--dim); margin:0 0 16px;}
+  .scene .use{display:flex; gap:8px; flex-wrap:wrap;}
+  .scene .use span{background:var(--cream); border:1px solid var(--line); border-radius:30px; padding:4px 12px; font-size:13px;}
+  @media (max-width:860px){ .scene{grid-template-columns:1fr; gap:24px;} }
+
+  /* sets */
+  .sets{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:44px;}
+  .set{background:#fff; border-radius:16px; overflow:hidden; border:1px solid var(--line); display:flex; flex-direction:column;}
+  .set .imgs{display:grid; grid-template-columns:1.4fr 1fr; gap:4px; aspect-ratio:16/10;}
+  .set .imgs div{overflow:hidden; cursor:zoom-in;}
+  .set .imgs img{width:100%; height:100%; object-fit:cover;}
+  .set .body{padding:20px 22px 24px; flex:1; display:flex; flex-direction:column;}
+  .set .body .it{color:var(--terra);}
+  .set h3{font-family:'Klee One'; font-weight:600; font-size:22px; margin:2px 0 8px;}
+  .set p{color:var(--dim); font-size:14px; margin:0 0 14px; flex:1;}
+  .set ul{margin:0; padding:0; list-style:none; font-size:13.5px; border-top:1px dashed var(--line); padding-top:10px;}
+  .set li::before{content:"✿ "; color:var(--olive);}
+  @media (max-width:900px){ .sets{grid-template-columns:1fr;} }
+  .note{font-size:12.5px; color:var(--dim); margin-top:16px;}
+
+  /* voice */
+  .voices{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:40px;}
+  .voice{background:var(--sand); border-radius:16px; padding:26px; position:relative;}
+  .voice::before{content:"“"; font-family:'Playfair Display'; font-size:70px; line-height:1; color:var(--terra); position:absolute; top:6px; left:16px; opacity:.5;}
+  .voice p{font-family:'Klee One'; font-size:17px; margin:24px 0 10px; line-height:1.8;}
+  .voice small{color:var(--dim); font-size:12.5px;}
+  @media (max-width:860px){ .voices{grid-template-columns:1fr;} }
+
+  .flow{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:34px; border-top:2px solid var(--ink);}
+  .flow div{padding:20px 18px 0 0;}
+  .flow b{font-family:'Playfair Display'; font-style:italic; font-size:26px; color:var(--terra);}
+  .flow h3{font-family:'Klee One'; font-size:18px; margin:4px 0 4px;}
+  .flow p{margin:0; color:var(--dim); font-size:13.5px;}
+  @media (max-width:760px){ .flow{grid-template-columns:1fr 1fr; gap:10px;} }
+
+  .faq{margin-top:30px; display:grid; gap:0;}
+  .faq details{border-bottom:1px solid var(--line);}
+  .faq summary{cursor:pointer; list-style:none; padding:16px 0; font-family:'Klee One'; font-size:17px; display:flex; justify-content:space-between; gap:12px;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"＋"; color:var(--terra);}
+  .faq details[open] summary::after{content:"－";}
+  .faq p{margin:0 0 16px; color:var(--dim); font-size:14.5px;}
+
+  .contact{background:var(--olive); color:#fff; border-radius:24px; padding:clamp(28px,5vw,60px); display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:center;}
+  .contact .kick{color:#F3E2C4;}
+  .contact p{margin:0 0 24px; color:#E8EBDD;}
+  .contact .btn{background:var(--cream); color:var(--ink);}
+  .contact .btn:hover{background:#fff;}
+  .contact .info{font-size:14px; line-height:2; border-left:1px solid rgba(255,255,255,.4); padding-left:24px; overflow-wrap:anywhere;}
+  @media (max-width:860px){ .contact{grid-template-columns:1fr;} .contact .info{border-left:0; padding-left:0;} }
+  footer{text-align:center; padding:30px 16px 40px; font-size:12.5px; color:var(--dim);}
+  footer a{color:var(--terra); text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="t">Life Scene</div>
+  <div class="s">IKEUCHI ─ 鉄の作品で、暮らしを見せる</div>
+  <nav><a href="#day">一日の暮らし</a><a href="#sets">ステージングセット</a><a href="#flow">レンタルの流れ</a><a href="#contact">ご相談</a></nav>
+</header>
+
+<main>
+  <section class="wrap cover">
+    <div>
+      <span class="kick">for Model Houses</span>
+      <h1>「ここに住んだら」を、<br><span>一点の作品</span>が<br>語りはじめる。</h1>
+      <p>住宅展示場やモデルハウスの庭・玄関・リビングに、高知の職人がつくる鉄の作品と、座れる・掛けられる・しまえる“暮らしの鉄”を。公開期間に合わせてレンタルします。</p>
+      <div class="row"><a class="btn" href="#day">一日の暮らしで見る</a><a class="btn o" href="#sets">セットを見る</a></div>
+    </div>
+    <div class="cover-img">
+      <div class="main" data-lb="../assets/photo/leaf-bench-2.jpg" data-lb-cap="葉っぱベンチ（設置イメージ）"><img src="../assets/photo/leaf-bench-2.jpg" alt="庭の葉っぱベンチ"></div>
+      <div class="sticker">公開期間<br>だけの<br>レンタル</div>
+    </div>
+  </section>
+
+  <section class="day" id="day">
+    <div class="wrap">
+      <span class="kick">A Day in This House</span>
+      <h2>見学者に、この家の“一日”を<br>想像してもらう。</h2>
+      <p class="lead">時間帯を選ぶと、その時間の暮らしの場面と、そこにある作品が変わります。</p>
+      <div class="times" role="group" aria-label="時間帯を選ぶ">
+        <button data-t="morning" aria-pressed="true"><span>7:00</span>朝</button>
+        <button data-t="noon" aria-pressed="false"><span>13:00</span>昼</button>
+        <button data-t="evening" aria-pressed="false"><span>17:30</span>夕方</button>
+        <button data-t="night" aria-pressed="false"><span>21:00</span>夜</button>
+      </div>
+      <div class="scene">
+        <div class="scene-img" id="sc-box" data-lb="../assets/photo/tree-hanger-nursery.jpg" data-lb-cap="ツリーハンガー（設置イメージ）"><img id="sc-img" src="../assets/photo/tree-hanger-nursery.jpg" alt=""><span class="clock" id="sc-clock">7:00</span></div>
+        <div>
+          <h3 id="sc-title">「いってきます」の前に、<br>鉄の葉っぱから帽子をとる。</h3>
+          <p id="sc-text">玄関のツリーハンガーは、子どもの帽子や上着の定位置。朝の慌ただしさの中にも、家族の決まりごとが見えてきます。（写真は設置イメージ）</p>
+          <div class="use" id="sc-use"><span>玄関</span><span>ツリーハンガー</span><span>子育て世帯向け</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="sets">
+    <span class="kick">Staging Sets</span>
+    <h2>テーマで選べる、<br>ステージングの組み合わせ。</h2>
+    <p class="lead">モデルハウスのコンセプトに合わせて、作品と“暮らしの鉄”を組み合わせてご提案します。組み合わせは一例です。</p>
+    <div class="sets">
+      <div class="set">
+        <div class="imgs"><div data-lb="../assets/photo/leaf-bench.jpg" data-lb-cap="葉っぱベンチ（設置イメージ）"><img src="../assets/photo/leaf-bench.jpg" alt="" loading="lazy"></div><div data-lb="../assets/photo/plant-clean.jpg" data-lb-cap="植物"><img src="../assets/photo/plant-clean.jpg" alt="" loading="lazy"></div></div>
+        <div class="body"><span class="it">Garden</span><h3>庭で過ごす休日</h3><p>庭の広さと、そこで過ごす時間を伝えるセット。ガーデニング好きの見学者に。</p><ul><li>葉っぱベンチ</li><li>植物</li><li>ガーデン収納（ご希望で）</li></ul></div>
+      </div>
+      <div class="set">
+        <div class="imgs"><div data-lb="../assets/photo/tree-hanger-nursery.jpg" data-lb-cap="ツリーハンガー（設置イメージ）"><img src="../assets/photo/tree-hanger-nursery.jpg" alt="" loading="lazy" style="object-position:50% 30%"></div><div data-lb="../assets/photo/garden-shed.jpg" data-lb-cap="ガーデン収納（設置イメージ）"><img src="../assets/photo/garden-shed.jpg" alt="" loading="lazy"></div></div>
+        <div class="body"><span class="it">Family</span><h3>子どもと暮らす家</h3><p>片づけやすさと、遊び心のある家を伝えるセット。子育て世帯向けのモデルハウスに。</p><ul><li>ツリーハンガー</li><li>ガーデン収納</li><li>葉っぱベンチ（庭に）</li></ul></div>
+      </div>
+      <div class="set">
+        <div class="imgs"><div data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの"><img src="../assets/photo/protect-clean.jpg" alt="" loading="lazy"></div><div data-lb="../assets/photo/rust-flower.jpg" data-lb-cap="花と石"><img src="../assets/photo/rust-flower.jpg" alt="" loading="lazy" style="object-position:50% 10%"></div></div>
+        <div class="body"><span class="it">Premium</span><h3>本物に囲まれる家</h3><p>上質な素材と一点ものの作品で、家の格を伝えるセット。ハイグレードの住戸やモデルルームに。</p><ul><li>守るべきもの（前庭・玄関）</li><li>花と石（リビング・書斎）</li></ul></div>
+      </div>
+    </div>
+    <p class="note">※ 掲載作品のレンタル可否・時期は作品の設置状況により異なります。ベンチ・収納・ハンガーの写真は設置イメージです。</p>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <span class="kick">Imagine the Visitors</span>
+    <h2>見学のとき、こんな会話が<br>生まれることを目指しています。</h2>
+    <div class="voices">
+      <div class="voice"><p>このベンチ、庭に置いたら気持ちよさそうだね。</p><small>── 庭のある家を見学するご夫婦（想定）</small></div>
+      <div class="voice"><p>帽子、ここに掛けるのかな？ 葉っぱのフックだ！</p><small>── 子どもと見学する家族（想定）</small></div>
+      <div class="voice"><p>あの彫刻のあった家、もう一度見に行ってみよう。</p><small>── 何軒も見学したあとで（想定）</small></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="flow" style="padding-top:0">
+    <span class="kick">How to Rent</span>
+    <h2>レンタルの流れ</h2>
+    <p class="lead">期間・料金は、作品・点数・設置場所・搬入条件をうかがってお見積りします。</p>
+    <div class="flow">
+      <div><b>01</b><h3>ご相談</h3><p>モデルハウスの写真や図面と、公開期間を。</p></div>
+      <div><b>02</b><h3>ご提案</h3><p>コンセプトに合う作品とセットをご提案。</p></div>
+      <div><b>03</b><h3>搬入・設置</h3><p>公開前の日程に合わせて設置。</p></div>
+      <div><b>04</b><h3>撤去・返却</h3><p>公開終了に合わせて撤去します。</p></div>
+    </div>
+    <div class="faq">
+      <details><summary>庭に置いたままでも大丈夫ですか？</summary><p>屋外に設置されてきた作品もあります。設置場所の環境をうかがってご提案します。</p></details>
+      <details><summary>見学者が座ったり触ったりしても？</summary><p>ベンチなど使うことを前提にしたものと、眺める作品があります。動線に合わせて配置をご提案します。</p></details>
+      <details><summary>購入を希望するお客様がいたら？</summary><p>作品によってはご相談いただけます。まずはお知らせください。</p></details>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact" style="padding-top:0">
+    <div class="contact">
+      <div>
+        <span class="kick">Contact</span>
+        <h2>次のモデルハウスの<br>“暮らし”を一緒につくりませんか。</h2>
+        <p>写真や図面を添えて、お気軽にご相談ください。</p>
+        <a class="btn" href="mailto:ilbussan@coral.ocn.ne.jp?subject=%E3%83%A2%E3%83%87%E3%83%AB%E3%83%8F%E3%82%A6%E3%82%B9%E5%90%91%E3%81%91%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで相談する</a>
+      </div>
+      <div class="info">有限会社アイエル物産<br>高知県香南市野市町土居1073-2<br>TEL 0887-54-0711 ／ FAX 0887-54-0712<br>ilbussan@coral.ocn.ne.jp</div>
+    </div>
+  </section>
+</main>
+
+<footer>IKEUCHI — 鉄の作品 モデルハウス向けレンタル ・ 案B「Life Scene」 ・ <a href="../index.html">もう一案を見る</a></footer>
+
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){
+  var T = {
+    morning:{tint:'#FFF3DF', clock:'7:00', img:'../assets/photo/tree-hanger-nursery.jpg', cap:'ツリーハンガー（設置イメージ）', filter:'none',
+      title:'「いってきます」の前に、<br>鉄の葉っぱから帽子をとる。',
+      text:'玄関のツリーハンガーは、子どもの帽子や上着の定位置。朝の慌ただしさの中にも、家族の決まりごとが見えてきます。（写真は設置イメージ）',
+      use:['玄関','ツリーハンガー','子育て世帯向け']},
+    noon:{tint:'#EEF2E2', clock:'13:00', img:'../assets/photo/leaf-bench.jpg', cap:'葉っぱベンチ（設置イメージ）', filter:'none',
+      title:'休日の昼下がり、<br>庭のベンチでひと休み。',
+      text:'木漏れ日の下、生きもののような鉄脚のベンチに腰かける。庭で過ごす時間の心地よさが、そのまま伝わります。（写真は設置イメージ）',
+      use:['庭','葉っぱベンチ','ガーデン好きの方へ']},
+    evening:{tint:'#F8E2D2', clock:'17:30', img:'../assets/photo/plant-clean.jpg', cap:'植物', filter:'sepia(.25) saturate(1.1)',
+      title:'夕方の光が、<br>鉄の葉の影を長くする。',
+      text:'リビングの窓辺や吹き抜けに、背の高い鉄の植物を。傾いた日差しが、部屋の中に葉の影を描きます。',
+      use:['リビング・吹き抜け','植物','開放的な間取りに']},
+    night:{tint:'#E4E4EC', clock:'21:00', img:'../assets/photo/rust-flower-detail.jpg', cap:'花と石', filter:'brightness(.85) contrast(1.1)',
+      title:'子どもが眠ったあと、<br>灯りの下で眺める一点。',
+      text:'書斎やダイニングのペンダントライトの下に、錆鉄の花と石。夜の静けさの中で、大人の時間が流れます。',
+      use:['書斎・ダイニング','花と石','大人の暮らしを伝える']}
+  };
+  function set(k){
+    var t = T[k];
+    document.querySelector('.day').style.background = t.tint;
+    var img = document.getElementById('sc-img'); img.src = t.img; img.style.filter = t.filter;
+    var box = document.getElementById('sc-box'); box.setAttribute('data-lb', t.img); box.setAttribute('data-lb-cap', t.cap);
+    document.getElementById('sc-clock').textContent = t.clock;
+    document.getElementById('sc-title').innerHTML = t.title;
+    document.getElementById('sc-text').textContent = t.text;
+    document.getElementById('sc-use').innerHTML = t.use.map(function(u){ return '<span>' + u + '</span>'; }).join('');
+    document.querySelectorAll('.times button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.t === k); });
+  }
+  document.querySelectorAll('.times button').forEach(function(b){ b.addEventListener('click', function(){ set(b.dataset.t); }); });
+})();
+</script>
+</body>
+</html>

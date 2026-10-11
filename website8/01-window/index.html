@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IKEUCHI Window Display</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Poiret+One&family=Noto+Sans+JP:wght@400;500&display=swap">
+<style>
+  :root{ --green:#0F3D35; --green-2:#14514A; --brass:#C2A06A; --cream:#F6F0E4; --ink:#1B1B19; --dim:#6E6A60; --line:#DDD3C0; --bd:#BFA270; --lbx-accent:#C2A06A; --lbx-on-accent:#0F3D35; }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{margin:0; background:var(--cream); color:var(--ink); font-family:'Noto Sans JP', sans-serif; line-height:1.9; overflow-x:clip;}
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  .deco{font-family:'Poiret One', sans-serif; letter-spacing:.14em;}
+  .serif{font-family:'Noto Serif JP', serif;}
+  .wrap{max-width:1180px; margin:0 auto; padding-inline:30px;}
+  section{padding-block:100px;}
+  @media (max-width:760px){ section{padding-block:66px;} .wrap{padding-inline:16px;} }
+  .kick{font-family:'Poiret One'; font-size:18px; letter-spacing:.3em; color:var(--brass); display:flex; align-items:center; gap:14px; justify-content:center;}
+  .kick::before,.kick::after{content:"◆"; font-size:9px;}
+  h2{font-family:'Noto Serif JP'; font-weight:600; font-size:clamp(26px,3.4vw,40px); line-height:1.6; margin:12px 0 16px; text-align:center; letter-spacing:.06em;}
+  .lead{color:var(--dim); font-size:15.5px; max-width:38em; margin:0 auto; text-align:center;}
+  .btn{display:inline-flex; gap:10px; align-items:center; padding:15px 30px; background:var(--green); color:var(--cream); font-size:14px; letter-spacing:.14em; border:1px solid var(--green); transition:all .25s;}
+  .btn:hover{background:var(--brass); border-color:var(--brass); color:var(--green);}
+  .btn.o{background:transparent; color:var(--green);}
+
+  /* awning header */
+  .awning{background:var(--green); color:var(--cream); text-align:center; padding:18px 20px 30px; position:relative;}
+  .awning::after{content:""; position:absolute; left:0; right:0; bottom:-14px; height:14px; background:radial-gradient(circle at 14px 0, var(--green) 13px, transparent 14px) 0 0/28px 14px repeat-x;}
+  .awning .name{font-family:'Poiret One'; font-size:clamp(30px,5vw,48px); letter-spacing:.4em; margin:0;}
+  .awning .sub{font-size:12px; letter-spacing:.4em; color:var(--brass);}
+  .awning nav{display:flex; justify-content:center; gap:26px; font-size:13px; margin-top:10px; flex-wrap:wrap;}
+  .awning nav a:hover{color:var(--brass);}
+
+  /* hero window */
+  .hero{padding-block:70px 90px; text-align:center;}
+  .hero h1{font-family:'Noto Serif JP'; font-weight:700; font-size:clamp(30px,4.6vw,56px); line-height:1.55; margin:14px 0 18px; letter-spacing:.08em;}
+  .hero p{color:var(--dim); max-width:34em; margin:0 auto 30px;}
+  .frame{position:relative; border:14px solid var(--green); outline:2px solid var(--brass); outline-offset:-22px; background:var(--bg,#E9DCC6); max-width:1000px; margin:0 auto; aspect-ratio:16/8; overflow:hidden; transition:background .6s;}
+  .frame::before{content:""; position:absolute; inset:0; background:linear-gradient(115deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,0) 32%, rgba(255,255,255,0) 60%, rgba(255,255,255,.14) 72%, rgba(255,255,255,0) 80%); z-index:3; pointer-events:none;}
+  .frame .stage{position:absolute; left:50%; bottom:12%; width:38%; aspect-ratio:3/4; transform:translateX(-50%); z-index:2; cursor:zoom-in;}
+  .frame .stage img{width:100%; height:100%; object-fit:cover; box-shadow:0 30px 50px rgba(0,0,0,.35); transition:opacity .5s;}
+  .frame .plinth{position:absolute; left:50%; bottom:6%; width:46%; height:8%; transform:translateX(-50%); background:var(--plinth,#fff); z-index:1; box-shadow:0 10px 20px rgba(0,0,0,.18); transition:background .6s;}
+  .frame .floor{position:absolute; left:0; right:0; bottom:0; height:12%; background:rgba(0,0,0,.12);}
+  .frame .light{position:absolute; top:-10%; left:50%; width:70%; height:120%; transform:translateX(-50%); background:radial-gradient(ellipse at 50% 0, rgba(255,250,235,.55), transparent 60%); z-index:1;}
+  .frame .copy{position:absolute; left:6%; top:12%; z-index:2; text-align:left; color:var(--copy,#0F3D35); transition:color .6s; max-width:28%;}
+  .frame .copy .deco{font-size:clamp(14px,2vw,22px);}
+  .frame .copy b{display:block; font-family:'Noto Serif JP'; font-size:clamp(16px,2.4vw,30px); line-height:1.4; margin-top:6px;}
+  .frame .tag{position:absolute; right:7%; top:22%; z-index:2; background:#fff; color:var(--green); border:1px solid var(--brass); padding:10px 14px; font-size:12px; line-height:1.5; text-align:left; transform:rotate(4deg); box-shadow:0 8px 16px rgba(0,0,0,.15);}
+  .frame .tag::before{content:""; position:absolute; top:-30px; left:50%; height:30px; border-left:1px solid var(--brass);}
+  .frame .tag b{display:block; font-family:'Noto Serif JP'; font-size:14px;}
+  .frame .deco-shape{position:absolute; z-index:1; border-radius:50%; background:var(--accent,#C2A06A); opacity:.5; transition:background .6s;}
+  .d1{width:22%; aspect-ratio:1; right:8%; bottom:16%;} .d2{width:12%; aspect-ratio:1; left:10%; bottom:18%;}
+  .themes{display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:26px;}
+  .themes button{border:1px solid var(--green); background:transparent; padding:9px 18px; cursor:pointer; font-size:14px; color:var(--green); letter-spacing:.06em;}
+  .themes button[aria-pressed="true"]{background:var(--green); color:var(--cream);}
+  .frame-note{font-size:12.5px; color:var(--dim); margin-top:14px;}
+  @media (max-width:760px){
+    .frame{aspect-ratio:4/5; border-width:10px;}
+    .frame .stage{width:58%; bottom:14%;}
+    .frame .plinth{width:70%;}
+    .frame .copy{max-width:60%; top:6%;}
+    .frame .tag{top:auto; bottom:42%; right:4%;}
+  }
+
+  /* reasons */
+  .reasons{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:50px; border-top:1px solid var(--bd); border-bottom:1px solid var(--bd);}
+  .reasons div{padding:34px 28px; text-align:center;}
+  .reasons div + div{border-left:1px solid var(--bd);}
+  .reasons .deco{font-size:40px; color:var(--brass);}
+  .reasons h3{font-family:'Noto Serif JP'; font-weight:600; font-size:19px; margin:8px 0 6px;}
+  .reasons p{color:var(--dim); font-size:14px; margin:0;}
+  @media (max-width:860px){ .reasons{grid-template-columns:1fr;} .reasons div + div{border-left:0; border-top:1px solid var(--bd);} }
+
+  /* calendar row */
+  .year{background:var(--green); color:var(--cream);}
+  .year h2{color:var(--cream);}
+  .year .lead{color:#B9CBC6;}
+  .months{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:44px;}
+  .mo{border:1px solid var(--brass); padding:20px; text-align:center; cursor:zoom-in;}
+  .mo .deco{color:var(--brass); font-size:15px;}
+  .mo figure{margin:12px 0; aspect-ratio:1/1; overflow:hidden;}
+  .mo img{width:100%; height:100%; object-fit:cover;}
+  .mo b{font-family:'Noto Serif JP'; font-size:17px;}
+  .mo p{margin:4px 0 0; color:#B9CBC6; font-size:13px;}
+  .year .note{font-size:12.5px; color:#9FB4AE; text-align:center; margin-top:22px;}
+  @media (max-width:860px){ .months{grid-template-columns:1fr 1fr;} }
+
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:44px; counter-reset:s;}
+  .steps div{text-align:center; counter-increment:s;}
+  .steps div::before{content:counter(s, upper-roman); display:block; font-family:'Poiret One'; font-size:30px; color:var(--brass);}
+  .steps h3{font-family:'Noto Serif JP'; font-size:17px; margin:6px 0 4px;}
+  .steps p{margin:0; color:var(--dim); font-size:13.5px;}
+  @media (max-width:760px){ .steps{grid-template-columns:1fr 1fr;} }
+  .faq{max-width:780px; margin:44px auto 0;}
+  .faq details{border-bottom:1px solid var(--bd);}
+  .faq summary{cursor:pointer; list-style:none; padding:16px 0; font-family:'Noto Serif JP'; font-weight:600; display:flex; justify-content:space-between;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"◆"; color:var(--brass); font-size:10px; transition:transform .3s;}
+  .faq details[open] summary::after{transform:rotate(45deg);}
+  .faq p{margin:0 0 16px; color:var(--dim); font-size:14px;}
+
+  .contact{text-align:center; background:var(--green); color:var(--cream);}
+  .contact h2{color:var(--cream);}
+  .contact p{color:#B9CBC6; margin:0 0 28px;}
+  .contact .btn{background:var(--brass); border-color:var(--brass); color:var(--green);}
+  .contact .btn:hover{background:var(--cream); border-color:var(--cream);}
+  .contact .btn.o{background:transparent; color:var(--cream); border-color:var(--cream);}
+  .contact .info{margin-top:40px; font-size:12.5px; color:#9FB4AE;}
+  footer{background:var(--green); color:#7F9A93; border-top:1px solid var(--green-2); padding:18px 30px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px;}
+  footer a{color:var(--brass);}
+</style>
+</head>
+<body>
+
+<header class="awning">
+  <p class="name">IKEUCHI</p>
+  <div class="sub">IRON ── WINDOW DISPLAY RENTAL</div>
+  <nav><a href="#window">ウィンドウを見る</a><a href="#why">鉄を置く理由</a><a href="#year">年間の入れ替え</a><a href="#contact">ご相談</a></nav>
+</header>
+
+<main>
+  <section class="wrap hero" id="window">
+    <span class="kick">Window Display</span>
+    <h1>通りを歩く人が、<br>思わず振り返るウィンドウを。</h1>
+    <p>百貨店・路面店・商業施設のウィンドウやエントランスに、高知の職人が手で仕上げた鉄の彫刻を。季節やキャンペーンに合わせてレンタルします。</p>
+    <div class="frame" id="frame">
+      <div class="light"></div>
+      <span class="deco-shape d1"></span><span class="deco-shape d2"></span>
+      <div class="copy"><span class="deco" id="w-en">NEW SEASON</span><b id="w-jp">新しい季節の、はじまり。</b></div>
+      <div class="stage" id="w-stage" data-lb="../assets/photo/plant-clean.jpg" data-lb-cap="植物"><img id="w-img" src="../assets/photo/plant-clean.jpg" alt="植物"></div>
+      <div class="plinth"></div>
+      <div class="floor"></div>
+      <div class="tag"><b id="w-name">植物</b>池内 ／ 鉄<br>RENTAL</div>
+    </div>
+    <div class="themes" role="group" aria-label="ウィンドウのテーマ">
+      <button data-t="new" aria-pressed="true">新作発表</button>
+      <button data-t="gift">ギフト</button>
+      <button data-t="summer">サマー</button>
+      <button data-t="holiday">ホリデー</button>
+    </div>
+    <p class="frame-note">※ ウィンドウの演出は説明用のイメージです。実際の展示は、ウィンドウの寸法・照明・商品に合わせてご提案します。</p>
+  </section>
+
+  <section class="wrap" id="why" style="padding-top:0">
+    <span class="kick">Why Iron</span>
+    <h2>商品の隣に、<br>“本物の手仕事”を置く理由。</h2>
+    <div class="reasons">
+      <div><span class="deco">I</span><h3>足を止める</h3><p>ガラス越しでも伝わる鉄の陰影と質感が、通りを歩く人の目を引きます。</p></div>
+      <div><span class="deco">II</span><h3>商品の格を上げる</h3><p>一点ものの手仕事が背景にあることで、並ぶ商品の印象まで引き締まります。</p></div>
+      <div><span class="deco">III</span><h3>期間だけ借りる</h3><p>キャンペーン期間に合わせたレンタル。保管場所の心配もいりません。</p></div>
+    </div>
+  </section>
+
+  <section class="year" id="year">
+    <div class="wrap">
+      <span class="kick">A Year of Windows</span>
+      <h2>一年のウィンドウを、<br>鉄の作品でつなぐ。</h2>
+      <p class="lead">キャンペーンごとに作品を入れ替えると、同じ店のウィンドウでも毎回ちがう物語が生まれます。組み合わせは一例です。</p>
+      <div class="months">
+        <div class="mo" data-lb="../assets/photo/plant-clean.jpg" data-lb-cap="植物"><span class="deco">SPRING</span><figure><img src="../assets/photo/plant-clean.jpg" alt="" loading="lazy"></figure><b>植物</b><p>新作・新生活のウィンドウに</p></div>
+        <div class="mo" data-lb="../assets/photo/question-clean.jpg" data-lb-cap="問う"><span class="deco">SUMMER</span><figure><img src="../assets/photo/question-clean.jpg" alt="" loading="lazy"></figure><b>問う</b><p>海と夏のキャンペーンに</p></div>
+        <div class="mo" data-lb="../assets/photo/rust-flower.jpg" data-lb-cap="花と石"><span class="deco">AUTUMN</span><figure><img src="../assets/photo/rust-flower.jpg" alt="" loading="lazy" style="object-position:50% 10%"></figure><b>花と石</b><p>秋の新作・ギフトに</p></div>
+        <div class="mo" data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの"><span class="deco">HOLIDAY</span><figure><img src="../assets/photo/protect-clean.jpg" alt="" loading="lazy"></figure><b>守るべきもの</b><p>年末のホリデーに</p></div>
+      </div>
+      <p class="note">※ 掲載作品のレンタル可否・時期は作品の設置状況により異なります。</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <span class="kick">How It Works</span>
+    <h2>ご利用の流れ</h2>
+    <p class="lead">期間・料金は、作品・ウィンドウの寸法・搬入条件をうかがってお見積りします。</p>
+    <div class="steps">
+      <div><h3>ご相談</h3><p>ウィンドウの寸法・写真と、キャンペーンの時期を。</p></div>
+      <div><h3>ご提案</h3><p>商品とテーマに合う作品・見せ方をご提案。</p></div>
+      <div><h3>搬入・設置</h3><p>施設の搬入時間に合わせて設置。</p></div>
+      <div><h3>入れ替え・返却</h3><p>次のキャンペーンの作品へ、または返却。</p></div>
+    </div>
+    <div class="faq">
+      <details><summary>ウィンドウの奥行きが浅くても置けますか？</summary><p>寸法をうかがい、置ける作品と見せ方をご提案します。</p></details>
+      <details><summary>商品と一緒にディスプレイできますか？</summary><p>作品と商品の距離や配置も含めてご相談ください。</p></details>
+      <details><summary>店内のエントランスにも置けますか？</summary><p>人の動線を確認し、配置や固定方法を含めてご提案します。</p></details>
+      <details><summary>広告・SNSの撮影に使えますか？</summary><p>使い方をうかがったうえでご相談ください。</p></details>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <span class="kick">Contact</span>
+      <h2>次のウィンドウの主役を、<br>ご相談ください。</h2>
+      <p>ウィンドウの写真と寸法を添えて、お気軽にお問い合わせください。</p>
+      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+        <a class="btn" href="mailto:ilbussan@coral.ocn.ne.jp?subject=%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4%E5%90%91%E3%81%91%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで相談する</a>
+        <a class="btn o" href="tel:0887540711">0887-54-0711</a>
+      </div>
+      <p class="info">有限会社アイエル物産 ／ 高知県香南市野市町土居1073-2 ／ FAX 0887-54-0712</p>
+    </div>
+  </section>
+</main>
+
+<footer><span>IKEUCHI — Iron Sculpture for Window Display</span><span>案A「Window」 ・ <a href="../index.html">もう一案を見る</a></span></footer>
+
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){
+  var T = {
+    new:{bg:'#E9DCC6', plinth:'#FFFFFF', accent:'#C2A06A', copy:'#0F3D35', en:'NEW SEASON', jp:'新しい季節の、はじまり。', img:'../assets/photo/plant-clean.jpg', name:'植物'},
+    gift:{bg:'#EBCFCB', plinth:'#FFF7F4', accent:'#B5525A', copy:'#5A1E25', en:'FOR SOMEONE', jp:'大切な人へ、贈る季節。', img:'../assets/photo/rust-flower.jpg', name:'花と石'},
+    summer:{bg:'#CFE3E6', plinth:'#F6FBFB', accent:'#2E7C8A', copy:'#123F47', en:'SUMMER BREEZE', jp:'海からの風を、店先に。', img:'../assets/photo/question-clean.jpg', name:'問う'},
+    holiday:{bg:'#1F2E2A', plinth:'#C2A06A', accent:'#B33A2C', copy:'#F6F0E4', en:'HAPPY HOLIDAYS', jp:'今年いちばんの、ウィンドウを。', img:'../assets/photo/protect-clean.jpg', name:'守るべきもの'}
+  };
+  var f = document.getElementById('frame');
+  function set(k){
+    var t = T[k];
+    f.style.setProperty('--bg', t.bg); f.style.setProperty('--plinth', t.plinth); f.style.setProperty('--accent', t.accent); f.style.setProperty('--copy', t.copy);
+    document.getElementById('w-en').textContent = t.en;
+    document.getElementById('w-jp').textContent = t.jp;
+    document.getElementById('w-img').src = t.img;
+    document.getElementById('w-img').alt = t.name;
+    document.getElementById('w-name').textContent = t.name;
+    var st = document.getElementById('w-stage'); st.setAttribute('data-lb', t.img); st.setAttribute('data-lb-cap', t.name);
+    document.querySelectorAll('.themes button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.t === k); });
+  }
+  document.querySelectorAll('.themes button').forEach(function(b){ b.addEventListener('click', function(){ set(b.dataset.t); }); });
+  set('new');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IKEUCHI Event Rental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;700;900&display=swap">
+<style>
+  :root{ --red:#E2231A; --k:#111; --w:#FFF; --off:#F4F1EC; --dim:#666; --line:#D9D4CC; --lbx-accent:#E2231A; --lbx-on-accent:#fff; }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{margin:0; background:var(--off); color:var(--k); font-family:'Noto Sans JP', sans-serif; line-height:1.8; overflow-x:clip;}
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  .an{font-family:'Anton', sans-serif; font-weight:400; letter-spacing:.01em;}
+  .wrap{max-width:1240px; margin:0 auto; padding-inline:32px;}
+  section{padding-block:100px;}
+  @media (max-width:760px){ section{padding-block:64px;} .wrap{padding-inline:16px;} }
+  .lbl{display:inline-block; background:var(--k); color:var(--w); font-family:'Anton'; font-size:15px; letter-spacing:.06em; padding:4px 12px;}
+  h2{font-weight:900; font-size:clamp(30px,4.4vw,56px); line-height:1.25; margin:16px 0 16px; letter-spacing:-.01em;}
+  .lead{color:var(--dim); font-size:15.5px; max-width:40em; margin:0;}
+  .btn{display:inline-flex; gap:10px; align-items:center; padding:16px 28px; background:var(--red); color:var(--w); font-weight:900; font-size:15px; transition:background .2s;}
+  .btn:hover{background:var(--k);}
+  .btn.k{background:var(--k);}
+  .btn.k:hover{background:var(--red);}
+
+  .bar{display:flex; align-items:center; justify-content:space-between; background:var(--k); color:var(--w); padding:12px 32px; position:sticky; top:0; z-index:40;}
+  .bar .logo{font-family:'Anton'; font-size:22px; letter-spacing:.04em;}
+  .bar .logo span{color:var(--red);}
+  .bar nav{display:flex; gap:22px; font-size:13.5px; font-weight:700;}
+  .bar nav a:hover{color:var(--red);}
+  @media (max-width:760px){ .bar nav{display:none;} .bar{padding:12px 16px;} }
+
+  .hero{background:var(--red); color:var(--w); position:relative; overflow:hidden;}
+  .hero .wrap{display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:end; padding-block:60px 0;}
+  .hero .big{font-family:'Anton'; font-size:clamp(84px,17vw,250px); line-height:.82; margin:0; letter-spacing:-.01em;}
+  .hero .big span{color:var(--k);}
+  .hero h1{font-weight:900; font-size:clamp(24px,3vw,38px); line-height:1.45; margin:24px 0 14px;}
+  .hero p{max-width:30em; margin:0 0 28px; font-weight:700;}
+  .hero .cta{display:flex; gap:10px; flex-wrap:wrap; padding-bottom:60px;}
+  .hero .btn{background:var(--k);}
+  .hero .btn:hover{background:var(--w); color:var(--k);}
+  .hero-img{position:relative; aspect-ratio:3/4; overflow:hidden; cursor:zoom-in; border:6px solid var(--k); border-bottom:0;}
+  .hero-img img{width:100%; height:100%; object-fit:cover;}
+  .hero-img .st{position:absolute; top:14px; right:-6px; background:var(--k); color:var(--w); font-family:'Anton'; font-size:16px; padding:4px 12px;}
+  .ticker{background:var(--k); color:var(--w); overflow:hidden; white-space:nowrap; font-family:'Anton'; font-size:22px; padding:10px 0;}
+  .ticker div{display:inline-block; animation:t 22s linear infinite;}
+  .ticker span{color:var(--red); margin:0 18px;}
+  @keyframes t{to{transform:translateX(-50%);}}
+  @media (max-width:860px){ .hero .wrap{grid-template-columns:1fr;} .hero-img{max-width:360px;} }
+  @media (prefers-reduced-motion:reduce){ .ticker div{animation:none;} }
+
+  /* uses */
+  .uses{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:44px; border:3px solid var(--k);}
+  .use{padding:26px; border-right:3px solid var(--k); background:var(--w);}
+  .use:last-child{border-right:0;}
+  .use .an{font-size:44px; color:var(--red); line-height:1;}
+  .use h3{font-weight:900; font-size:19px; margin:10px 0 6px;}
+  .use p{margin:0; color:var(--dim); font-size:14px;}
+  @media (max-width:900px){ .uses{grid-template-columns:1fr 1fr;} .use:nth-child(2){border-right:0;} .use:nth-child(-n+2){border-bottom:3px solid var(--k);} }
+  @media (max-width:520px){ .uses{grid-template-columns:1fr;} .use{border-right:0; border-bottom:3px solid var(--k);} .use:last-child{border-bottom:0;} }
+
+  /* proof */
+  .proof{background:var(--k); color:var(--w);}
+  .proof .lead{color:#bbb;}
+  .proof-grid{display:grid; grid-template-columns:1.3fr .7fr .7fr; gap:10px; margin-top:40px;}
+  .proof-grid div{overflow:hidden; cursor:zoom-in; position:relative;}
+  .proof-grid img{width:100%; height:100%; object-fit:cover; aspect-ratio:3/4; transition:transform .6s;}
+  .proof-grid div:hover img{transform:scale(1.04);}
+  .proof-grid span{position:absolute; left:10px; bottom:10px; background:var(--red); color:var(--w); font-size:12px; font-weight:700; padding:3px 10px;}
+  @media (max-width:760px){ .proof-grid{grid-template-columns:1fr 1fr;} .proof-grid div:first-child{grid-column:span 2;} }
+
+  /* planner */
+  .planner{display:grid; grid-template-columns:.9fr 1.1fr; gap:30px; margin-top:44px; align-items:start;}
+  .ctrl{background:var(--w); border:3px solid var(--k); padding:26px;}
+  .ctrl h3{font-weight:900; font-size:16px; margin:0 0 10px;}
+  .ctrl .opts{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:22px;}
+  .ctrl .opts:last-child{margin-bottom:0;}
+  .ctrl button{border:2px solid var(--k); background:var(--w); padding:8px 14px; font-weight:700; font-size:14px; cursor:pointer;}
+  .ctrl button[aria-pressed="true"]{background:var(--k); color:var(--w);}
+  .out{background:var(--w); border:3px solid var(--k); padding:26px;}
+  .out h3{font-weight:900; font-size:16px; margin:0 0 12px;}
+  .tl{display:grid; gap:6px; margin-bottom:24px;}
+  .tl .row{display:grid; grid-template-columns:90px 1fr; align-items:center; gap:10px; font-size:13px; font-weight:700;}
+  .tl .track{height:26px; background:var(--off); position:relative;}
+  .tl .seg{position:absolute; top:0; bottom:0; display:flex; align-items:center; padding:0 8px; font-size:11.5px; color:var(--w); white-space:nowrap; overflow:hidden; transition:left .4s, width .4s;}
+  .seg.in{background:#555;} .seg.show{background:var(--red);} .seg.out{background:#555;}
+  .recs{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:22px;}
+  .recs div{cursor:zoom-in;}
+  .recs img{aspect-ratio:1/1; object-fit:cover; width:100%;}
+  .recs b{display:block; font-size:13px; margin-top:4px;}
+  .check{list-style:none; margin:0; padding:0; font-size:14px; border-top:2px solid var(--k); padding-top:12px;}
+  .check li{padding:4px 0 4px 26px; position:relative;}
+  .check li::before{content:"□"; position:absolute; left:0; color:var(--red); font-weight:900;}
+  .out .note{font-size:12px; color:var(--dim); margin-top:14px;}
+  @media (max-width:900px){ .planner{grid-template-columns:1fr;} }
+
+  .faq{display:grid; grid-template-columns:1fr 1fr; gap:0 40px; margin-top:34px;}
+  .faq div{border-top:3px solid var(--k); padding:16px 0 20px;}
+  .faq h3{font-weight:900; font-size:16px; margin:0 0 6px;}
+  .faq p{margin:0; color:var(--dim); font-size:14px;}
+  @media (max-width:760px){ .faq{grid-template-columns:1fr;} }
+
+  .contact{background:var(--red); color:var(--w);}
+  .contact .wrap{display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:center;}
+  .contact .big{font-family:'Anton'; font-size:clamp(60px,10vw,140px); line-height:.9; margin:0;}
+  .contact p{font-weight:700; margin:14px 0 24px;}
+  .contact .btn{background:var(--k);}
+  .contact .btn:hover{background:var(--w); color:var(--k);}
+  .contact dl{margin:0; background:var(--k); padding:22px; display:grid; grid-template-columns:auto 1fr; gap:6px 16px; font-size:14px;}
+  .contact dt{font-family:'Anton'; color:var(--red); letter-spacing:.06em;}
+  .contact dd{margin:0; overflow-wrap:anywhere;}
+  @media (max-width:860px){ .contact .wrap{grid-template-columns:1fr;} }
+  footer{background:var(--k); color:#888; padding:18px 32px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px;}
+  footer a{color:var(--w);}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span class="logo">IKEUCHI<span>/</span>EVENT</span>
+  <nav><a href="#uses">使い方</a><a href="#proof">屋外での展示</a><a href="#planner">日程を組む</a><a href="#contact">相談</a></nav>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="big">IRON<br><span>ON</span><br>STAGE</p>
+      <h1>イベント会場に、<br>足を止める“鉄の主役”を。</h1>
+      <p>展示会・発表会・野外イベント・商業施設の催事に。高知の職人が手で仕上げた鉄の彫刻を、会期に合わせてレンタルします。</p>
+      <div class="cta"><a class="btn" href="#planner">日程を組んでみる　→</a><a class="btn" href="#contact" style="background:transparent; border:2px solid var(--w)">相談する</a></div>
+    </div>
+    <div class="hero-img" data-lb="../assets/photo/rebar-tree.jpg" data-lb-cap="鉄筋の木（屋外の展示会）"><img src="../assets/photo/rebar-tree.jpg" alt="鉄筋の木"><span class="st">OUTDOOR</span></div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div>EXHIBITION<span>●</span>LAUNCH EVENT<span>●</span>FESTIVAL<span>●</span>POP-UP<span>●</span>PHOTO SPOT<span>●</span>EXHIBITION<span>●</span>LAUNCH EVENT<span>●</span>FESTIVAL<span>●</span>POP-UP<span>●</span>PHOTO SPOT<span>●</span></div></div>
+</header>
+
+<main>
+  <section class="wrap" id="uses">
+    <span class="lbl">USE CASES</span>
+    <h2>人が集まる場所の、<br>「目印」になる。</h2>
+    <p class="lead">会場の中で待ち合わせ場所になり、写真を撮る場所になり、話題になる。電源のいらない鉄の作品は、屋内・屋外を問わず置き場所の自由度が高いのが特長です。</p>
+    <div class="uses">
+      <div class="use"><span class="an">01</span><h3>展示会のブース</h3><p>通路を歩く人の足を止める、ブースのアイキャッチに。</p></div>
+      <div class="use"><span class="an">02</span><h3>新商品の発表会</h3><p>会場の世界観をつくり、記録写真に残る背景に。</p></div>
+      <div class="use"><span class="an">03</span><h3>野外フェス・地域イベント</h3><p>広場の真ん中に立つ、待ち合わせの目印に。</p></div>
+      <div class="use"><span class="an">04</span><h3>商業施設の催事</h3><p>期間限定の企画に、写真を撮りたくなるスポットを。</p></div>
+    </div>
+  </section>
+
+  <section class="proof" id="proof">
+    <div class="wrap">
+      <span class="lbl" style="background:var(--red)">OUTDOOR SHOW</span>
+      <h2>屋外の展示会で、<br>実際に展示されています。</h2>
+      <p class="lead">何百本もの鉄筋をねじり上げた「鉄筋の木」。広場に置かれ、遠くからでも目に入る存在感を見せました。</p>
+      <div class="proof-grid">
+        <div data-lb="../assets/photo/rebar-tree-2.jpg" data-lb-cap="鉄筋の木 ── ななめから" data-lb-group="rb"><img src="../assets/photo/rebar-tree-2.jpg" alt="" loading="lazy"><span>広場に設置</span></div>
+        <div data-lb="../assets/photo/rebar-tree.jpg" data-lb-cap="鉄筋の木 ── 正面" data-lb-group="rb"><img src="../assets/photo/rebar-tree.jpg" alt="" loading="lazy"><span>正面</span></div>
+        <div data-lb="../assets/photo/rebar-tree-sky.jpg" data-lb-cap="鉄筋の木 ── 見上げ" data-lb-group="rb"><img src="../assets/photo/rebar-tree-sky.jpg" alt="" loading="lazy"><span>見上げ</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="planner">
+    <span class="lbl">PLANNER</span>
+    <h2>会期と会場を選ぶと、<br>段取りが見えます。</h2>
+    <p class="lead">搬入から撤去までの流れと、おすすめの作品、事前に確認したいことをまとめます。日程はあくまで目安です。</p>
+    <div class="planner">
+      <div class="ctrl">
+        <h3>会期の長さ</h3>
+        <div class="opts" id="o-len"><button data-v="1" aria-pressed="true">1日</button><button data-v="3">週末（2〜3日）</button><button data-v="7">1週間</button><button data-v="30">1か月以上</button></div>
+        <h3>会場</h3>
+        <div class="opts" id="o-venue"><button data-v="hall" aria-pressed="true">屋内ホール・展示場</button><button data-v="outdoor">屋外の広場</button><button data-v="mall">商業施設の催事場</button></div>
+      </div>
+      <div class="out" aria-live="polite">
+        <h3 id="o-title">屋内ホール ／ 1日</h3>
+        <div class="tl">
+          <div class="row"><span>搬入・設置</span><div class="track"><span class="seg in" id="s-in">前日まで</span></div></div>
+          <div class="row"><span>会期</span><div class="track"><span class="seg show" id="s-show">会期</span></div></div>
+          <div class="row"><span>撤去</span><div class="track"><span class="seg out" id="s-out">終了後</span></div></div>
+        </div>
+        <h3>おすすめの作品</h3>
+        <div class="recs" id="o-recs"></div>
+        <h3>事前に確認したいこと</h3>
+        <ul class="check" id="o-check"></ul>
+        <p class="note">※ 搬入・撤去の日時、期間・料金は、会場の条件をうかがってご相談のうえ決めます。掲載作品のレンタル可否は設置状況により異なります。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <span class="lbl">FAQ</span>
+    <div class="faq">
+      <div><h3>電源や水は必要ですか？</h3><p>鉄の彫刻なので電源は不要です。照明で見せる場合は会場の照明をご相談ください。</p></div>
+      <div><h3>雨の日の屋外でも大丈夫？</h3><p>屋外に設置されてきた作品があります。会場や会期の条件をうかがってご提案します。</p></div>
+      <div><h3>来場者が触れても大丈夫？</h3><p>人の流れを考え、配置・囲い・固定方法を含めてご提案します。</p></div>
+      <div><h3>告知やSNSに写真を使えますか？</h3><p>使い方をうかがったうえでご相談ください。</p></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div>
+        <p class="big">LET'S<br>SET IT UP.</p>
+        <p>会期・会場・人の流れがわかる資料があれば、それを添えてご相談ください。</p>
+        <a class="btn" href="mailto:ilbussan@coral.ocn.ne.jp?subject=%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E5%90%91%E3%81%91%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで相談する</a>
+      </div>
+      <dl><dt>STUDIO</dt><dd>有限会社アイエル物産</dd><dt>ADDRESS</dt><dd>高知県香南市野市町土居1073-2</dd><dt>TEL</dt><dd>0887-54-0711</dd><dt>FAX</dt><dd>0887-54-0712</dd><dt>MAIL</dt><dd>ilbussan@coral.ocn.ne.jp</dd></dl>
+    </div>
+  </section>
+</main>
+
+<footer><span>IKEUCHI — Iron Sculpture Rental for Events</span><span>案B「Event」 ・ <a href="../index.html">もう一案を見る</a></span></footer>
+
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){
+  var W = {
+    rebar:{n:'鉄筋の木', img:'../assets/photo/rebar-tree-2.jpg'},
+    protect:{n:'守るべきもの', img:'../assets/photo/protect-clean.jpg'},
+    plant:{n:'植物', img:'../assets/photo/plant-clean.jpg'},
+    question:{n:'問う', img:'../assets/photo/question-clean.jpg'},
+    flower:{n:'花と石', img:'../assets/photo/rust-flower.jpg'},
+    bench:{n:'葉っぱベンチ', img:'../assets/photo/leaf-bench.jpg'}
+  };
+  var V = {
+    hall:{name:'屋内ホール・展示場', recs:['protect','flower','plant'],
+      check:['搬入口・通路・エレベーターの大きさ','床の耐荷重と養生の方法','ブースの照明の位置']},
+    outdoor:{name:'屋外の広場', recs:['rebar','question','bench'],
+      check:['設置場所の地面（舗装・芝など）','雨・風への備えと固定方法','夜間の照明と警備']},
+    mall:{name:'商業施設の催事場', recs:['protect','plant','bench'],
+      check:['施設の搬入時間（営業時間外か）','通路幅と来場者の動線','施設の装飾ルール']}
+  };
+  var LEN = {1:'1日', 3:'週末（2〜3日）', 7:'1週間', 30:'1か月以上'};
+  var st = {len:1, venue:'hall'};
+  function pick(id, key){
+    document.querySelectorAll('#' + id + ' button').forEach(function(b){
+      b.addEventListener('click', function(){
+        st[key] = key === 'len' ? +b.dataset.v : b.dataset.v;
+        document.querySelectorAll('#' + id + ' button').forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
+        draw();
+      });
+    });
+  }
+  function seg(id, left, width, text){ var s = document.getElementById(id); s.style.left = left + '%'; s.style.width = width + '%'; s.textContent = text; }
+  function draw(){
+    var v = V[st.venue];
+    document.getElementById('o-title').textContent = v.name + ' ／ ' + LEN[st.len];
+    // proportions are illustrative: longer shows take more of the bar
+    var show = {1:30, 3:42, 7:56, 30:70}[st.len];
+    var setup = st.venue === 'outdoor' ? 22 : 16;
+    seg('s-in', 0, setup, st.venue === 'mall' ? '前日の営業後など' : '会期前');
+    seg('s-show', setup, show, '会期 ' + LEN[st.len]);
+    seg('s-out', setup + show, 100 - setup - show > 12 ? 14 : 100 - setup - show, '終了後');
+    document.getElementById('o-recs').innerHTML = v.recs.map(function(k){
+      var w = W[k];
+      return '<div data-lb="' + w.img + '" data-lb-cap="' + w.n + '"><img src="' + w.img + '" alt="' + w.n + '"><b>' + w.n + '</b></div>';
+    }).join('');
+    var extra = st.len >= 7 ? ['会期中の点検のタイミング'] : [];
+    document.getElementById('o-check').innerHTML = v.check.concat(extra).map(function(c){ return '<li>' + c + '</li>'; }).join('');
+  }
+  pick('o-len', 'len'); pick('o-venue', 'venue'); draw();
+})();
+</script>
+</body>
+</html>

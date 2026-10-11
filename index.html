@@ -6,26 +6,43 @@
 <meta name="robots" content="noindex, nofollow">
 <title>IKEUCHI デザイン案</title>
 <style>
-  :root{ --bg:#F4F1EA; --ink:#111; --dim:#5d5850; --line:#d9d3c7; }
-  @media (prefers-color-scheme: dark){ :root{ --bg:#121110; --ink:#f2ede4; --dim:#a39c90; --line:#2e2b27; } }
+  :root{ --bg:#F4F1EA; --ink:#111; --dim:#5d5850; --line:#d9d3c7; --card:#fff; --acc:#8a6a37; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#121110; --ink:#f2ede4; --dim:#a39c90; --line:#2e2b27; --card:#1b1917; --acc:#d2b07a; } }
   *{box-sizing:border-box;}
   body{margin:0; background:var(--bg); color:var(--ink); font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic UI",sans-serif; line-height:1.7;}
-  .wrap{max-width:820px; margin:0 auto; padding:64px 20px;}
-  h1{font-size:clamp(28px,5vw,40px); margin:0 0 8px;}
-  p{color:var(--dim); margin:0 0 32px;}
-  a.card{display:block; border:1px solid var(--line); border-radius:16px; padding:24px; margin-bottom:16px; text-decoration:none; color:inherit; transition:transform .2s, border-color .2s;}
-  a.card:hover{transform:translateY(-3px); border-color:var(--ink);}
-  a.card b{display:block; font-size:20px;}
-  a.card span{color:var(--dim); font-size:14.5px;}
+  .wrap{max-width:860px; margin:0 auto; padding:48px 16px 64px;}
+  h1{font-size:clamp(24px,5vw,36px); margin:0 0 6px;}
+  p.lead{color:var(--dim); margin:0 0 28px;}
+  h2{font-size:14px; letter-spacing:.14em; color:var(--acc); margin:34px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--line);}
+  .list{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  a.card{display:block; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; text-decoration:none; color:inherit; transition:transform .2s, border-color .2s;}
+  a.card:hover{transform:translateY(-2px); border-color:var(--ink);}
+  a.card b{display:block; font-size:17px;}
+  a.card span{color:var(--dim); font-size:13.5px;}
+  a.card .new{display:inline-block; font-size:11px; font-weight:700; background:var(--acc); color:var(--card); border-radius:4px; padding:0 6px; margin-left:6px; vertical-align:2px;}
+  @media (max-width:600px){ .list{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>IKEUCHI ホームページ デザイン案</h1>
-  <p>確認用のページです（関係者のみ）。見たい案を選んでください。</p>
-  <a class="card" href="website3/index.html"><b>高級ラウンジ向け 2案 →</b><span>Nocturne ／ Selection（オーナー向け）</span></a>
-  <a class="card" href="website2/index.html"><b>若者向け POP 3案 →</b><span>鉄ZINE ／ LIQUID METAL ／ てつのおべんとう</span></a>
-  <a class="card" href="website/index.html"><b>高級路線 5案 →</b><span>Obsidian ／ Ember ／ Washi ／ Atelier ／ Noir Royale</span></a>
+  <h1>IKEUCHI デザイン案</h1>
+  <p class="lead">確認用のページです（関係者のみ）。見たい案を選んでください。スマホでもそのまま見られます。</p>
+
+  <h2>レンタルのご提案（業種別・各2案）</h2>
+  <div class="list">
+    <a class="card" href="website4/index.html"><b>ホテル・旅館<span class="new">NEW</span></b><span>四季 ／ Lobby Gallery</span></a>
+    <a class="card" href="website5/index.html"><b>オフィス・企業<span class="new">NEW</span></b><span>Entrance ／ Workplace</span></a>
+    <a class="card" href="website6/index.html"><b>モデルルーム・住宅展示場<span class="new">NEW</span></b><span>Blueprint ／ Life Scene</span></a>
+    <a class="card" href="website7/index.html"><b>ブライダル・イベント<span class="new">NEW</span></b><span>Photo Spot ／ Event</span></a>
+    <a class="card" href="website8/index.html"><b>商業施設・ショップ<span class="new">NEW</span></b><span>Window ／ Pop-up</span></a>
+  </div>
+
+  <h2>販売のご提案</h2>
+  <div class="list">
+    <a class="card" href="website3/index.html"><b>高級ラウンジ向け 2案</b><span>Nocturne ／ Selection（オーナー向け）</span></a>
+    <a class="card" href="website2/index.html"><b>若者向け POP 3案</b><span>鉄ZINE ／ LIQUID METAL ／ てつのおべんとう</span></a>
+    <a class="card" href="website/index.html"><b>高級路線 5案</b><span>Obsidian ／ Ember ／ Washi ／ Atelier ／ Noir Royale</span></a>
+  </div>
 </div>
 </body>
 </html>

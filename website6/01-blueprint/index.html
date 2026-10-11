@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IKEUCHI Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap">
+<style>
+  :root{ --bp:#123A6B; --bp-2:#0E2F58; --ln:rgba(255,255,255,.18); --ln-2:rgba(255,255,255,.08); --wh:#F2F6FB; --dim:#A9BCD6; --cy:#7FD3FF; --yl:#FFD66B; --lbx-accent:#FFD66B; --lbx-on-accent:#123A6B; }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{
+    margin:0; color:var(--wh); font-family:'Noto Sans JP', sans-serif; font-weight:400; line-height:1.85; overflow-x:clip;
+    background-color:var(--bp);
+    background-image:linear-gradient(var(--ln-2) 1px, transparent 1px), linear-gradient(90deg, var(--ln-2) 1px, transparent 1px), linear-gradient(var(--ln-2) 1px, transparent 1px), linear-gradient(90deg, var(--ln-2) 1px, transparent 1px);
+    background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  }
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:1200px; margin:0 auto; padding-inline:32px;}
+  section{padding-block:100px;}
+  @media (max-width:760px){ section{padding-block:66px;} .wrap{padding-inline:16px;} }
+  .tag{font-family:'IBM Plex Mono'; font-size:12.5px; letter-spacing:.12em; color:var(--cy); display:block; margin-bottom:14px;}
+  .tag::before{content:"// ";}
+  h2{font-weight:500; font-size:clamp(26px,3.4vw,40px); line-height:1.5; margin:0 0 16px;}
+  .lead{color:var(--dim); font-size:15.5px; max-width:42em; margin:0;}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 24px; border:1px solid var(--wh); font-size:14px; letter-spacing:.06em; transition:background .2s, color .2s;}
+  .btn:hover{background:var(--wh); color:var(--bp);}
+  .btn.y{background:var(--yl); border-color:var(--yl); color:var(--bp); font-weight:700;}
+  .btn.y:hover{background:#fff; border-color:#fff;}
+  .box{border:1px solid var(--ln); background:rgba(14,47,88,.55);}
+
+  .title-block{display:flex; justify-content:space-between; align-items:center; padding:14px 32px; border-bottom:1px solid var(--ln); font-family:'IBM Plex Mono'; font-size:12.5px; color:var(--dim); position:sticky; top:0; background:rgba(18,58,107,.94); backdrop-filter:blur(6px); z-index:30;}
+  .title-block b{color:var(--wh); letter-spacing:.14em;}
+  .title-block nav{display:flex; gap:22px;}
+  .title-block nav a:hover{color:var(--yl);}
+  @media (max-width:760px){ .title-block nav{display:none;} .title-block{padding:12px 16px;} }
+
+  .hero{padding-block:80px 90px; position:relative;}
+  .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:50px; align-items:center;}
+  .hero h1{font-weight:300; font-size:clamp(28px,4.2vw,58px); line-height:1.4; margin:10px 0 22px;}
+  .hero h1 b{font-weight:700; color:var(--yl);}
+  .hero p{color:var(--dim); font-size:16px; max-width:30em; margin:0 0 30px;}
+  .hero .row{display:flex; gap:12px; flex-wrap:wrap;}
+  .drawing{position:relative; padding:18px;}
+  .drawing img{width:100%; aspect-ratio:4/3; object-fit:cover; filter:grayscale(.2) contrast(1.05); cursor:zoom-in;}
+  .dim-h{position:absolute; left:18px; right:18px; top:-4px; height:14px; border-left:1px solid var(--cy); border-right:1px solid var(--cy); font-family:'IBM Plex Mono'; font-size:11px; color:var(--cy); text-align:center;}
+  .dim-h::before{content:""; position:absolute; left:0; right:0; top:7px; border-top:1px solid var(--cy);}
+  .dim-h span{position:relative; background:var(--bp); padding:0 8px;}
+  .callout{position:absolute; font-family:'IBM Plex Mono'; font-size:11.5px; color:var(--yl); display:flex; align-items:center; gap:8px; white-space:nowrap;}
+  .callout::before{content:""; width:10px; height:10px; border:2px solid var(--yl); border-radius:50%;}
+  .c1{left:46%; top:38%;} .c2{left:20%; top:78%;}
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
+
+  /* floor plan */
+  .plan-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:34px; margin-top:44px; align-items:start;}
+  .plan{padding:20px;}
+  .plan svg{width:100%; height:auto; display:block;}
+  .room{fill:rgba(127,211,255,.04); stroke:var(--wh); stroke-width:2; cursor:pointer; transition:fill .2s;}
+  .room:hover{fill:rgba(127,211,255,.14);}
+  .room.on{fill:rgba(255,214,107,.22); stroke:var(--yl);}
+  .rlabel{font-family:'IBM Plex Mono'; font-size:13px; fill:var(--wh); pointer-events:none;}
+  .rsub{font-family:'IBM Plex Mono'; font-size:10px; fill:var(--dim); pointer-events:none;}
+  .pin{fill:var(--yl); pointer-events:none;}
+  .wall{stroke:var(--wh); stroke-width:6;}
+  .door{stroke:var(--cy); stroke-width:1.5; fill:none; stroke-dasharray:3 3;}
+  .plan-legend{display:flex; gap:18px; flex-wrap:wrap; font-family:'IBM Plex Mono'; font-size:11.5px; color:var(--dim); margin-top:12px;}
+  .detail{padding:24px; position:sticky; top:80px;}
+  .detail .room-name{font-family:'IBM Plex Mono'; font-size:12px; color:var(--cy); letter-spacing:.12em;}
+  .detail h3{font-size:24px; font-weight:700; margin:4px 0 12px;}
+  .detail figure{margin:0 0 14px; aspect-ratio:16/10; overflow:hidden; cursor:zoom-in; border:1px solid var(--ln);}
+  .detail figure img{width:100%; height:100%; object-fit:cover;}
+  .detail p{color:var(--dim); font-size:14.5px; margin:0 0 14px;}
+  .spec{display:grid; grid-template-columns:auto 1fr; gap:6px 16px; font-size:13.5px; border-top:1px dashed var(--ln); padding-top:12px; margin:0;}
+  .spec dt{font-family:'IBM Plex Mono'; color:var(--yl); font-size:12px; padding-top:2px;}
+  .spec dd{margin:0;}
+  @media (max-width:900px){ .plan-grid{grid-template-columns:1fr;} .detail{position:static;} }
+
+  /* why */
+  .why{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:44px;}
+  .why div{padding:26px; border:1px solid var(--ln); margin:-1px 0 0 -1px;}
+  .why .n{font-family:'IBM Plex Mono'; color:var(--yl); font-size:13px;}
+  .why h3{font-size:18px; font-weight:700; margin:8px 0 6px;}
+  .why p{margin:0; color:var(--dim); font-size:14px;}
+  @media (max-width:860px){ .why{grid-template-columns:1fr;} }
+
+  /* schedule */
+  .sched{margin-top:40px; padding:26px; overflow-x:auto;}
+  .sched-in{min-width:640px;}
+  .sched .axis{display:grid; grid-template-columns:repeat(6,1fr); font-family:'IBM Plex Mono'; font-size:11px; color:var(--dim); border-bottom:1px solid var(--ln); padding-bottom:6px; margin-left:150px;}
+  .sched .r{display:grid; grid-template-columns:150px 1fr; align-items:center; min-height:46px; border-bottom:1px dashed var(--ln-2);}
+  .sched .r span{font-size:13px;}
+  .sched .track{position:relative; height:22px;}
+  .sched .bar{position:absolute; top:0; height:22px; font-family:'IBM Plex Mono'; font-size:11px; display:flex; align-items:center; padding:0 8px; white-space:nowrap; overflow:hidden;}
+  .bar.a{background:rgba(127,211,255,.25); border:1px solid var(--cy);}
+  .bar.b{background:rgba(255,214,107,.3); border:1px solid var(--yl); color:var(--yl);}
+  .bar.c{background:rgba(255,255,255,.12); border:1px solid var(--wh);}
+  .sched-note{font-size:12.5px; color:var(--dim); margin-top:10px;}
+
+  .works{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:40px;}
+  .wk{padding:10px; cursor:zoom-in;}
+  .wk figure{margin:0; aspect-ratio:1/1; overflow:hidden;}
+  .wk img{width:100%; height:100%; object-fit:cover;}
+  .wk .code{font-family:'IBM Plex Mono'; font-size:11px; color:var(--cy); margin-top:8px; display:block;}
+  .wk b{font-size:15px;}
+  .wk small{display:block; color:var(--dim); font-size:12.5px;}
+  .note{font-size:12.5px; color:var(--dim); margin-top:14px;}
+  @media (max-width:860px){ .works{grid-template-columns:1fr 1fr;} }
+
+  .faq{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:36px;}
+  .faq div{padding:20px;}
+  .faq h3{font-size:16px; margin:0 0 6px; font-weight:700;}
+  .faq h3::before{content:"Q. "; font-family:'IBM Plex Mono'; color:var(--yl);}
+  .faq p{margin:0; color:var(--dim); font-size:14px;}
+  @media (max-width:760px){ .faq{grid-template-columns:1fr;} }
+
+  .contact{padding:40px; display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:center;}
+  .contact h2{margin-top:6px;}
+  .contact dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 16px; font-size:14px;}
+  .contact dt{font-family:'IBM Plex Mono'; color:var(--cy); font-size:11.5px; padding-top:3px;}
+  .contact dd{margin:0; overflow-wrap:anywhere;}
+  @media (max-width:860px){ .contact{grid-template-columns:1fr; padding:24px;} }
+  footer{border-top:1px solid var(--ln); padding:18px 32px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-family:'IBM Plex Mono'; font-size:11.5px; color:var(--dim);}
+  footer a{color:var(--yl);}
+</style>
+</head>
+<body>
+
+<div class="title-block">
+  <b>IKEUCHI / MODEL HOUSE STAGING</b>
+  <nav><a href="#plan">間取りで選ぶ</a><a href="#schedule">期間</a><a href="#works">作品</a><a href="#contact">相談</a></nav>
+  <span>SHEET 01/01</span>
+</div>
+
+<main>
+  <section class="wrap hero">
+    <div class="hero-grid">
+      <div>
+        <span class="tag">For Model Rooms &amp; Housing Exhibitions</span>
+        <h1>見学者の記憶に残る<br>モデルハウスには、<br><b>一点の作品</b>がある。</h1>
+        <p>住宅展示場・モデルルーム・分譲地のステージングに、高知の職人が手で仕上げた鉄の彫刻を。販売期間に合わせたレンタルでご提供します。</p>
+        <div class="row"><a class="btn y" href="#plan">間取りで作品を選ぶ　→</a><a class="btn" href="#contact">レンタルの相談</a></div>
+      </div>
+      <div class="drawing box">
+        <div class="dim-h"><span>W ─ 空間に合わせて設計</span></div>
+        <img src="../assets/photo/plant-clean.jpg" alt="植物" data-lb="../assets/photo/plant-clean.jpg" data-lb-cap="植物">
+        <span class="callout c1">A-01 植物</span>
+        <span class="callout c2">庭・テラス</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <span class="tag">Why Staging with Sculpture</span>
+    <h2>家具だけでは伝わらない、<br>「この家での暮らし」の格。</h2>
+    <p class="lead">ホームステージングは、見学者がその家で暮らす自分を思い描けるように空間を整えることです。家具や小物に加えて一点の作品を置くことで、空間の印象をはっきりさせ、他の住戸・他社のモデルハウスとの違いをつくります。</p>
+    <div class="why">
+      <div><span class="n">01 / MEMORY</span><h3>見学後に思い出される</h3><p>何軒も見学したあとでも「あの彫刻があった家」として記憶に残ります。</p></div>
+      <div><span class="n">02 / SCALE</span><h3>吹き抜けや庭の広さを伝える</h3><p>高さのある作品は、天井高や庭の奥行きを実感させる“ものさし”になります。</p></div>
+      <div><span class="n">03 / PERIOD</span><h3>販売期間だけ借りる</h3><p>公開から販売終了まで、必要な期間だけのレンタル。撤去後は返却です。</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="plan">
+    <span class="tag">Select by Floor Plan</span>
+    <h2>間取りの部屋をクリックすると、<br>おすすめの作品が表示されます。</h2>
+    <div class="plan-grid">
+      <div class="plan box">
+        <svg viewBox="0 0 600 440" role="img" aria-label="モデルハウスの間取り図（例）">
+          <rect class="room" data-r="entry"  x="20"  y="300" width="140" height="120"/>
+          <rect class="room" data-r="living" x="160" y="140" width="280" height="280"/>
+          <rect class="room" data-r="dining" x="160" y="20"  width="280" height="120"/>
+          <rect class="room" data-r="study"  x="20"  y="20"  width="140" height="280"/>
+          <rect class="room" data-r="garden" x="440" y="20"  width="140" height="400"/>
+          <line class="wall" x1="20" y1="20" x2="440" y2="20"/><line class="wall" x1="20" y1="20" x2="20" y2="420"/><line class="wall" x1="20" y1="420" x2="440" y2="420"/>
+          <path class="door" d="M90 420 A40 40 0 0 1 130 380"/>
+          <path class="door" d="M440 240 A40 40 0 0 0 400 280"/>
+          <text class="rlabel" x="40" y="350">玄関ホール</text><text class="rsub" x="40" y="368">ENTRY</text>
+          <text class="rlabel" x="180" y="300">リビング（吹き抜け）</text><text class="rsub" x="180" y="318">LIVING / VOID</text>
+          <text class="rlabel" x="180" y="70">ダイニング</text><text class="rsub" x="180" y="88">DINING</text>
+          <text class="rlabel" x="40" y="150">書斎</text><text class="rsub" x="40" y="168">STUDY</text>
+          <text class="rlabel" x="458" y="200">庭・テラス</text><text class="rsub" x="458" y="218">GARDEN</text>
+          <circle class="pin" cx="120" cy="330" r="6"/><circle class="pin" cx="300" cy="230" r="6"/><circle class="pin" cx="400" cy="100" r="6"/><circle class="pin" cx="90" cy="60" r="6"/><circle class="pin" cx="510" cy="120" r="6"/>
+        </svg>
+        <div class="plan-legend"><span>● 作品の設置位置（例）</span><span>--- 開口部</span><span>※ 間取りは説明用の例です</span></div>
+      </div>
+      <div class="detail box" aria-live="polite">
+        <span class="room-name" id="d-room">ENTRY / 玄関ホール</span>
+        <h3 id="d-work">守るべきもの</h3>
+        <figure id="d-fig" data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの"><img id="d-img" src="../assets/photo/protect-clean.jpg" alt=""></figure>
+        <p id="d-text">玄関扉を開けた正面に。鉄で編んだ卵と見守る鳥が、“家族を守る家”というメッセージを静かに伝えます。</p>
+        <dl class="spec"><dt>役割</dt><dd id="d-role">第一印象・家のテーマを伝える</dd><dt>見せ方</dt><dd id="d-how">正面の壁から少し離し、ダウンライトで影を床へ</dd></dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="schedule">
+    <span class="tag">Rental Period</span>
+    <h2>モデルハウスの公開期間に合わせて。</h2>
+    <p class="lead">期間・料金は、作品・設置場所・搬入条件をうかがってお見積りします。下は期間の考え方の例です。</p>
+    <div class="sched box"><div class="sched-in">
+      <div class="axis"><span>準備</span><span>公開</span><span></span><span>販売</span><span></span><span>終了</span></div>
+      <div class="r"><span>ご相談・作品の提案</span><div class="track"><div class="bar a" style="left:0; width:16%">PLAN</div></div></div>
+      <div class="r"><span>搬入・設置</span><div class="track"><div class="bar c" style="left:14%; width:6%">SET</div></div></div>
+      <div class="r"><span>レンタル期間</span><div class="track"><div class="bar b" style="left:18%; width:66%">RENTAL ─ 公開・販売期間中</div></div></div>
+      <div class="r"><span>撤去・返却</span><div class="track"><div class="bar c" style="left:84%; width:8%">OUT</div></div></div>
+    </div></div>
+    <p class="sched-note">※ 分譲地の共用部・街区のエントランスなど、販売期間中の屋外設置もご相談ください。</p>
+  </section>
+
+  <section class="wrap" id="works">
+    <span class="tag">Works Available</span>
+    <h2>ステージングに使える作品 ── 例</h2>
+    <div class="works">
+      <div class="wk box" data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの"><figure><img src="../assets/photo/protect-clean.jpg" alt="" loading="lazy"></figure><span class="code">A-01</span><b>守るべきもの</b><small>玄関・前庭</small></div>
+      <div class="wk box" data-lb="../assets/photo/plant-clean.jpg" data-lb-cap="植物"><figure><img src="../assets/photo/plant-clean.jpg" alt="" loading="lazy"></figure><span class="code">A-02</span><b>植物</b><small>庭・吹き抜け</small></div>
+      <div class="wk box" data-lb="../assets/photo/rust-flower.jpg" data-lb-cap="花と石"><figure><img src="../assets/photo/rust-flower.jpg" alt="" loading="lazy" style="object-position:50% 10%"></figure><span class="code">A-03</span><b>花と石</b><small>書斎・ダイニング</small></div>
+      <div class="wk box" data-lb="../assets/photo/leaf-bench.jpg" data-lb-cap="葉っぱベンチ（設置イメージ）"><figure><img src="../assets/photo/leaf-bench.jpg" alt="" loading="lazy"></figure><span class="code">B-01</span><b>葉っぱベンチ</b><small>庭（設置イメージ）</small></div>
+      <div class="wk box" data-lb="../assets/photo/garden-shed.jpg" data-lb-cap="ガーデン収納（設置イメージ）"><figure><img src="../assets/photo/garden-shed.jpg" alt="" loading="lazy"></figure><span class="code">B-02</span><b>ガーデン収納</b><small>庭（設置イメージ）</small></div>
+      <div class="wk box" data-lb="../assets/photo/tree-hanger-nursery.jpg" data-lb-cap="ツリーハンガー（設置イメージ）"><figure><img src="../assets/photo/tree-hanger-nursery.jpg" alt="" loading="lazy" style="object-position:50% 30%"></figure><span class="code">B-03</span><b>ツリーハンガー</b><small>玄関・子ども部屋（設置イメージ）</small></div>
+      <div class="wk box" data-lb="../assets/photo/rebar-tree-2.jpg" data-lb-cap="鉄筋の木"><figure><img src="../assets/photo/rebar-tree-2.jpg" alt="" loading="lazy"></figure><span class="code">A-04</span><b>鉄筋の木</b><small>分譲地の共用部</small></div>
+      <div class="wk box" data-lb="../assets/photo/question-clean.jpg" data-lb-cap="問う"><figure><img src="../assets/photo/question-clean.jpg" alt="" loading="lazy"></figure><span class="code">A-05</span><b>問う</b><small>テラス・海の近い分譲地</small></div>
+    </div>
+    <p class="note">※ 掲載作品のレンタル可否・時期は作品の設置状況により異なります。「設置イメージ」は雰囲気を伝えるための画像です。</p>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <span class="tag">FAQ</span>
+    <h2>よくあるご質問</h2>
+    <div class="faq">
+      <div class="box"><h3>複数のモデルハウスに置けますか？</h3><p>展示場内の複数棟への設置もご相談ください。棟ごとのテーマに合わせて作品を選びます。</p></div>
+      <div class="box"><h3>屋外（庭・前庭）でも大丈夫ですか？</h3><p>神社の参道や海岸など、屋外に設置されてきた作品があります。環境をうかがってご提案します。</p></div>
+      <div class="box"><h3>見学者が触れても大丈夫ですか？</h3><p>動線や子どもの見学も考え、配置や固定方法を含めてご提案します。</p></div>
+      <div class="box"><h3>パンフレットの撮影に使えますか？</h3><p>撮影での使い方をうかがったうえでご相談ください。</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact" style="padding-top:20px">
+    <div class="contact box">
+      <div>
+        <span class="tag">Contact</span>
+        <h2>図面か写真を一枚、<br>お送りください。</h2>
+        <p class="lead" style="margin-bottom:22px">間取り図やモデルハウスの写真から、作品と置き方をご提案します。</p>
+        <a class="btn y" href="mailto:ilbussan@coral.ocn.ne.jp?subject=%E3%83%A2%E3%83%87%E3%83%AB%E3%83%8F%E3%82%A6%E3%82%B9%E5%90%91%E3%81%91%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで相談する</a>
+      </div>
+      <dl><dt>STUDIO</dt><dd>有限会社アイエル物産</dd><dt>ADDRESS</dt><dd>高知県香南市野市町土居1073-2</dd><dt>TEL/FAX</dt><dd>0887-54-0711 / 0887-54-0712</dd><dt>MAIL</dt><dd>ilbussan@coral.ocn.ne.jp</dd></dl>
+    </div>
+  </section>
+</main>
+
+<footer><span>IKEUCHI — IRON SCULPTURE RENTAL FOR MODEL HOUSES</span><span>案A「Blueprint」 ・ <a href="../index.html">もう一案を見る</a></span></footer>
+
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){
+  var R = {
+    entry: {room:'ENTRY / 玄関ホール', work:'守るべきもの', img:'../assets/photo/protect-clean.jpg',
+      text:'玄関扉を開けた正面に。鉄で編んだ卵と見守る鳥が、“家族を守る家”というメッセージを静かに伝えます。',
+      role:'第一印象・家のテーマを伝える', how:'正面の壁から少し離し、ダウンライトで影を床へ'},
+    living:{room:'LIVING / リビング（吹き抜け）', work:'植物', img:'../assets/photo/plant-clean.jpg',
+      text:'吹き抜けの下に、背の高い鉄の植物を。見上げる視線が生まれ、天井の高さが実感として伝わります。',
+      role:'空間の高さ・広さを伝える', how:'窓際の自然光と、夜は足元からの間接照明で'},
+    dining:{room:'DINING / ダイニング', work:'花と石', img:'../assets/photo/rust-flower-detail.jpg',
+      text:'カウンターやサイドボードの上に。食卓を囲む家族の会話が目に浮かぶ、近くで眺める作品です。',
+      role:'暮らしの質感・会話のきっかけ', how:'ペンダントライトの光が届く位置に'},
+    study:{room:'STUDY / 書斎', work:'問う', img:'../assets/photo/question-clean.jpg',
+      text:'書斎の一角に、問いかける仮面の作品を。趣味や仕事に向き合う、大人の部屋の空気をつくります。',
+      role:'書斎のキャラクターづくり', how:'デスクから見える位置に、低い間接光で'},
+    garden:{room:'GARDEN / 庭・テラス', work:'葉っぱベンチ', img:'../assets/photo/leaf-bench.jpg',
+      text:'庭に座れる作品を。“この庭で過ごす休日”を見学者に具体的に想像してもらえます。（写真は設置イメージ）',
+      role:'庭での暮らしを想像させる', how:'リビングの窓から見える位置に'}
+  };
+  var rooms = document.querySelectorAll('.room');
+  function show(k){
+    var r = R[k];
+    rooms.forEach(function(el){ el.classList.toggle('on', el.dataset.r === k); });
+    document.getElementById('d-room').textContent = r.room;
+    document.getElementById('d-work').textContent = r.work;
+    document.getElementById('d-img').src = r.img;
+    var fig = document.getElementById('d-fig');
+    fig.setAttribute('data-lb', r.img); fig.setAttribute('data-lb-cap', r.work);
+    document.getElementById('d-text').textContent = r.text;
+    document.getElementById('d-role').textContent = r.role;
+    document.getElementById('d-how').textContent = r.how;
+  }
+  rooms.forEach(function(el){
+    el.setAttribute('tabindex', '0');
+    el.addEventListener('click', function(){ show(el.dataset.r); });
+    el.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(el.dataset.r); } });
+  });
+  show('entry');
+})();
+</script>
+</body>
+</html>

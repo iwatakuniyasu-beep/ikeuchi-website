@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IKEUCHI 四季のロビー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<style>
+  :root{
+    --ai:#1E2A44;          /* 藍 */
+    --ai-2:#2A3A5C;
+    --kinari:#F4EFE4;      /* 生成り */
+    --sumi:#24221F;
+    --dim:#6E6A62;
+    --line:#D8D0BF;
+    --season:#C9587A;      /* changes with the season picker */
+    --season-soft:#F6E3E8;
+    --lbx-accent:var(--kinari);
+    --lbx-on-accent:var(--ai);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{margin:0; background:var(--kinari); color:var(--sumi); font-family:'Zen Kaku Gothic New', sans-serif; line-height:1.95; overflow-x:clip; transition:background .6s;}
+  img,video{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  .serif{font-family:'Noto Serif JP', serif;}
+  .wrap{max-width:1160px; margin:0 auto; padding-inline:32px;}
+  section{padding-block:120px;}
+  @media (max-width:760px){ section{padding-block:76px;} .wrap{padding-inline:18px;} }
+  .tag{display:inline-block; font-size:12px; letter-spacing:.3em; color:var(--season); border-bottom:1px solid var(--season); padding-bottom:4px; margin-bottom:22px; transition:color .6s, border-color .6s;}
+  h2{font-family:'Noto Serif JP'; font-weight:600; font-size:clamp(26px,3.4vw,40px); line-height:1.65; letter-spacing:.08em; margin:0 0 20px;}
+  .lead{color:var(--dim); font-size:15.5px; max-width:42em; margin:0;}
+  .btn{display:inline-flex; align-items:center; gap:12px; padding:15px 30px; background:var(--ai); color:var(--kinari); font-size:14px; letter-spacing:.14em; transition:background .3s;}
+  .btn:hover{background:var(--season);}
+  .btn.line{background:transparent; color:var(--ai); border:1px solid var(--ai);}
+  .btn.line:hover{background:var(--ai); color:var(--kinari);}
+
+  header.top{position:absolute; inset:0 0 auto 0; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:24px 36px; color:var(--kinari);}
+  header.top .logo{font-family:'Noto Serif JP'; letter-spacing:.4em; font-size:16px;}
+  header.top nav{display:flex; gap:28px; font-size:13px; letter-spacing:.12em;}
+  header.top nav a{opacity:.85;} header.top nav a:hover{opacity:1;}
+  @media (max-width:760px){ header.top nav{display:none;} header.top{padding:18px;} }
+
+  /* hero with vertical title */
+  .hero{position:relative; min-height:100svh; background:var(--ai); color:var(--kinari); display:grid; grid-template-columns:1fr 1fr; overflow:hidden;}
+  .hero-media{position:relative; overflow:hidden;}
+  .hero-media img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 1s;}
+  .hero-media::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, transparent 60%, var(--ai));}
+  .hero-text{display:flex; flex-direction:row-reverse; align-items:center; justify-content:center; gap:44px; padding:120px 40px 80px;}
+  .hero h1{writing-mode:vertical-rl; font-family:'Noto Serif JP'; font-weight:600; font-size:clamp(36px,4.6vw,60px); letter-spacing:.24em; line-height:1.7; margin:0;}
+  .hero h1 span{color:var(--season); transition:color .6s;}
+  .hero .sub{writing-mode:vertical-rl; font-size:15px; letter-spacing:.2em; line-height:2.3; color:#C7CBD6; max-height:24em; margin:0;}
+  .hero .scroll{position:absolute; left:50%; bottom:26px; transform:translateX(-50%); font-size:11px; letter-spacing:.4em; color:#C7CBD6;}
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr; grid-template-rows:46svh auto;}
+    .hero-media::after{background:linear-gradient(180deg, transparent 50%, var(--ai));}
+    .hero-text{padding:30px 20px 80px; gap:26px;}
+    .hero .sub{max-height:20em;}
+  }
+
+  /* reasons */
+  .reasons{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:60px; border-top:1px solid var(--line);}
+  .reasons div{padding:34px 30px 0 0;}
+  .reasons div + div{padding-left:30px; border-left:1px solid var(--line);}
+  .reasons b{display:block; font-family:'Noto Serif JP'; font-size:46px; color:var(--season); line-height:1; font-weight:400; transition:color .6s;}
+  .reasons h3{font-family:'Noto Serif JP'; font-weight:600; font-size:20px; margin:18px 0 8px; letter-spacing:.06em;}
+  .reasons p{color:var(--dim); font-size:14.5px; margin:0;}
+  @media (max-width:860px){ .reasons{grid-template-columns:1fr;} .reasons div + div{padding-left:0; border-left:0; border-top:1px solid var(--line);} .reasons div{padding:28px 0;} }
+
+  /* season picker */
+  .season-sec{background:var(--season-soft); transition:background .6s;}
+  .picker{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:46px 0 40px;}
+  .picker button{
+    border:1px solid var(--line); background:var(--kinari); cursor:pointer; padding:18px 10px; text-align:center;
+    font-family:'Noto Serif JP'; font-size:28px; color:var(--sumi); transition:all .3s;
+  }
+  .picker button small{display:block; font-family:'Zen Kaku Gothic New'; font-size:11.5px; letter-spacing:.2em; color:var(--dim);}
+  .picker button[aria-pressed="true"]{background:var(--ai); color:var(--kinari); border-color:var(--ai);}
+  .picker button[aria-pressed="true"] small{color:#C7CBD6;}
+  .season-view{display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center;}
+  .season-img{position:relative; aspect-ratio:4/3; overflow:hidden; cursor:zoom-in; background:#000;}
+  .season-img img{width:100%; height:100%; object-fit:cover; animation:fade .8s ease;}
+  @keyframes fade{from{opacity:0;}}
+  .season-img .label{position:absolute; left:0; top:0; background:var(--ai); color:var(--kinari); writing-mode:vertical-rl; padding:16px 10px; font-family:'Noto Serif JP'; letter-spacing:.3em; font-size:15px;}
+  .season-view h3{font-family:'Noto Serif JP'; font-weight:600; font-size:clamp(24px,2.6vw,32px); margin:0 0 6px; letter-spacing:.1em;}
+  .season-view .work{color:var(--season); font-family:'Noto Serif JP'; font-size:15px; margin-bottom:18px; display:block; transition:color .6s;}
+  .season-view p{color:var(--dim); font-size:15px; margin:0 0 18px;}
+  .season-view dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:8px 18px; font-size:14px; border-top:1px solid var(--line); padding-top:16px;}
+  .season-view dt{color:var(--season); transition:color .6s;}
+  .season-view dd{margin:0;}
+  @media (max-width:860px){ .season-view{grid-template-columns:1fr; gap:28px;} .picker button{font-size:22px; padding:14px 6px;} }
+
+  /* calendar */
+  .cal{display:grid; grid-template-columns:repeat(12,1fr); margin-top:50px; border:1px solid var(--line); background:#fff;}
+  .cal .m{padding:12px 4px; text-align:center; font-size:12.5px; color:var(--dim); border-right:1px solid var(--line);}
+  .cal .m:last-child{border-right:0;}
+  .cal .band{grid-column:span 3; padding:14px 12px; font-family:'Noto Serif JP'; font-size:14px; border-top:1px solid var(--line); border-right:1px solid var(--line);}
+  .cal .band:last-child{border-right:0;}
+  .cal .b1{background:#F6E3E8;} .cal .b2{background:#DDEEF0;} .cal .b3{background:#F3E2CF;} .cal .b4{background:#E3E7EF;}
+  .cal .band small{display:block; font-family:'Zen Kaku Gothic New'; font-size:12px; color:var(--dim);}
+  .cal-note{font-size:12.5px; color:var(--dim); margin-top:10px;}
+  @media (max-width:760px){ .cal{grid-template-columns:repeat(6,1fr);} .cal .m:nth-child(n+7){display:none;} .cal .band{grid-column:span 3;} .cal .band:nth-of-type(odd){border-right:1px solid var(--line);} }
+
+  /* plans */
+  .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:54px;}
+  .plan{background:#fff; border:1px solid var(--line); padding:34px 28px; position:relative;}
+  .plan.feature{border:2px solid var(--ai);}
+  .plan .ribbon{position:absolute; top:-12px; left:24px; background:var(--ai); color:var(--kinari); font-size:11.5px; letter-spacing:.14em; padding:3px 12px;}
+  .plan h3{font-family:'Noto Serif JP'; font-weight:600; font-size:22px; margin:0 0 4px; letter-spacing:.08em;}
+  .plan .for{font-size:12.5px; color:var(--season); letter-spacing:.1em; transition:color .6s;}
+  .plan p{color:var(--dim); font-size:14px; margin:14px 0 18px;}
+  .plan ul{margin:0; padding:0; list-style:none; font-size:14px; border-top:1px solid var(--line); padding-top:14px;}
+  .plan li{padding:4px 0 4px 18px; position:relative;}
+  .plan li::before{content:"・"; position:absolute; left:0; color:var(--season);}
+  .plan .price{margin-top:18px; font-size:13px; color:var(--dim);}
+  @media (max-width:860px){ .plans{grid-template-columns:1fr;} }
+
+  /* works */
+  .works{background:var(--ai); color:var(--kinari);}
+  .works .lead{color:#C7CBD6;}
+  .wgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:50px;}
+  .w{cursor:zoom-in;}
+  .w figure{margin:0; aspect-ratio:3/4; overflow:hidden; background:#000;}
+  .w img{width:100%; height:100%; object-fit:cover; transition:transform .8s;}
+  .w:hover img{transform:scale(1.05);}
+  .w h3{font-family:'Noto Serif JP'; font-weight:600; font-size:18px; margin:12px 0 0; letter-spacing:.08em;}
+  .w span{font-size:12.5px; color:#C7CBD6;}
+  .works .note{font-size:12.5px; color:#A9AEBD; margin-top:24px;}
+  @media (max-width:860px){ .wgrid{grid-template-columns:1fr 1fr;} }
+
+  /* flow + faq */
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:64px;}
+  .flow{list-style:none; margin:30px 0 0; padding:0; counter-reset:f;}
+  .flow li{counter-increment:f; display:grid; grid-template-columns:48px 1fr; padding:16px 0; border-top:1px solid var(--line);}
+  .flow li::before{content:counter(f, cjk-ideographic); font-family:'Noto Serif JP'; font-size:20px; color:var(--season); transition:color .6s;}
+  .flow b{display:block; font-family:'Noto Serif JP'; font-weight:600;}
+  .flow span{font-size:14px; color:var(--dim);}
+  .faq details{border-top:1px solid var(--line);}
+  .faq summary{cursor:pointer; list-style:none; padding:16px 30px 16px 0; position:relative; font-family:'Noto Serif JP'; font-weight:600; font-size:15.5px;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"＋"; position:absolute; right:0; color:var(--season);}
+  .faq details[open] summary::after{content:"－";}
+  .faq p{margin:0 0 16px; color:var(--dim); font-size:14px;}
+  @media (max-width:860px){ .two{grid-template-columns:1fr; gap:40px;} }
+
+  .contact{background:var(--ai); color:var(--kinari); text-align:center;}
+  .contact h2{margin-bottom:14px;}
+  .contact p{color:#C7CBD6; margin:0 0 34px;}
+  .contact .row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .contact .btn{background:var(--kinari); color:var(--ai);}
+  .contact .btn:hover{background:var(--season); color:#fff;}
+  .contact .btn.line{background:transparent; color:var(--kinari); border-color:var(--kinari);}
+  .contact .info{margin-top:44px; font-size:13px; color:#A9AEBD; letter-spacing:.06em;}
+  footer{background:var(--ai); color:#8D93A5; border-top:1px solid var(--ai-2); padding:22px 32px; font-size:12px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+  footer a{color:var(--kinari);}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <span class="logo">池内 ── 鉄</span>
+  <nav><a href="#season">四季の入れ替え</a><a href="#plan">レンタルプラン</a><a href="#works">作品</a><a href="#contact">ご相談</a></nav>
+</header>
+
+<section class="hero" style="padding:0">
+  <div class="hero-media"><img id="hero-img" src="../assets/photo/protect-clean.jpg" alt="守るべきもの"></div>
+  <div class="hero-text">
+    <h1>季節が、<br><span>ロビー</span>に来る。</h1>
+    <p class="sub">高知の鉄の作家・池内の彫刻を、<br>季節ごとに入れ替えるレンタルで。<br>何度訪れても、新しい出会いのある宿へ。</p>
+  </div>
+  <span class="scroll">SCROLL</span>
+</section>
+
+<main>
+  <section class="wrap">
+    <span class="tag">ホテル・旅館の皆さまへ</span>
+    <h2>リピーターのお客様に、<br>「前と違う」を用意する。</h2>
+    <p class="lead">ロビーは、宿の第一印象を決める場所です。作品を購入して置き続けるのではなく、季節ごとに入れ替える。それだけで、何度目のお客様にも新鮮な驚きが生まれます。</p>
+    <div class="reasons">
+      <div><b>一</b><h3>再訪の楽しみに</h3><p>「今回はどんな作品だろう」。季節替えの作品が、また来る理由のひとつになります。</p></div>
+      <div><b>二</b><h3>写真に残る背景に</h3><p>チェックインの前後に、つい撮りたくなる一角を。お客様の写真が宿の記憶を運びます。</p></div>
+      <div><b>三</b><h3>作り手の物語を</h3><p>溶接職人として三十余年の作家が手で仕上げた一点もの。スタッフが語れる物語のある作品です。</p></div>
+    </div>
+  </section>
+
+  <section class="season-sec" id="season">
+    <div class="wrap">
+      <span class="tag">四季の入れ替え ── 例</span>
+      <h2>季節を選んでください。<br>ロビーの景色が変わります。</h2>
+      <div class="picker" role="group" aria-label="季節を選ぶ">
+        <button data-s="spring" aria-pressed="false">春<small>SPRING</small></button>
+        <button data-s="summer" aria-pressed="false">夏<small>SUMMER</small></button>
+        <button data-s="autumn" aria-pressed="false">秋<small>AUTUMN</small></button>
+        <button data-s="winter" aria-pressed="true">冬<small>WINTER</small></button>
+      </div>
+      <div class="season-view">
+        <div class="season-img" id="s-imgbox" data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの"><img id="s-img" src="../assets/photo/protect-clean.jpg" alt=""><span class="label" id="s-label">冬</span></div>
+        <div>
+          <h3 id="s-title">雪と月に、見守る卵。</h3>
+          <span class="work" id="s-work">作品 ──「守るべきもの」</span>
+          <p id="s-text">鉄で編んだ人の背丈ほどの卵と、それを見守る一羽の鳥。冬の澄んだ空気の中、静かにお客様を迎えます。</p>
+          <dl><dt>置き場所</dt><dd id="s-place">ロビー中央・エントランス</dd><dt>演出</dt><dd id="s-light">低めの暖色照明で網目の影を床へ</dd></dl>
+        </div>
+      </div>
+      <div class="cal" aria-label="入れ替えカレンダーの例">
+        <div class="m">3月</div><div class="m">4月</div><div class="m">5月</div><div class="m">6月</div><div class="m">7月</div><div class="m">8月</div><div class="m">9月</div><div class="m">10月</div><div class="m">11月</div><div class="m">12月</div><div class="m">1月</div><div class="m">2月</div>
+        <div class="band b1">春<small>植物</small></div><div class="band b2">夏<small>問う</small></div><div class="band b3">秋<small>花と石</small></div><div class="band b4">冬<small>守るべきもの</small></div>
+      </div>
+      <p class="cal-note">※ 入れ替えの時期・作品の組み合わせは一例です。宿の行事や繁忙期に合わせてご相談ください。</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="plan">
+    <span class="tag">レンタルプラン</span>
+    <h2>宿の規模や目的に合わせて、<br>三つの置き方。</h2>
+    <p class="lead">いずれも期間・料金は、作品・設置場所・搬入条件をうかがったうえでお見積りします。</p>
+    <div class="plans">
+      <div class="plan"><h3>一点スポット</h3><span class="for">まず試してみたい宿に</span><p>ロビーやラウンジに一点を一定期間。お客様の反応を見てから、続けるかを決められます。</p>
+        <ul><li>作品一点</li><li>設置場所のご提案</li><li>期間終了後に返却</li></ul><p class="price">期間・料金：ご相談</p></div>
+      <div class="plan feature"><span class="ribbon">おすすめ</span><h3>四季の入れ替え</h3><span class="for">リピーターの多い宿に</span><p>季節ごとに作品を入れ替え。春夏秋冬で、ロビーの表情が変わります。</p>
+        <ul><li>季節ごとに作品を交換</li><li>季節に合わせた置き方のご提案</li><li>作品紹介の文章をご用意</li></ul><p class="price">期間・料金：ご相談</p></div>
+      <div class="plan"><h3>館内ギャラリー</h3><span class="for">アートを打ち出したい宿に</span><p>ロビー・廊下・ラウンジなど複数の場所に作品を置き、館内を巡る楽しみを。</p>
+        <ul><li>複数点の組み合わせ</li><li>館内の動線に合わせた配置</li><li>展示替えのご相談</li></ul><p class="price">期間・料金：ご相談</p></div>
+    </div>
+  </section>
+
+  <section class="works" id="works">
+    <div class="wrap">
+      <span class="tag" style="color:var(--kinari); border-color:var(--kinari)">レンタル対象の作品 ── 例</span>
+      <h2>宿に迎えたい、鉄の作品。</h2>
+      <p class="lead">屋外にも設置されてきた作品なので、ガーデンや中庭にも置けます。</p>
+      <div class="wgrid">
+        <div class="w" data-lb="../assets/photo/plant-clean.jpg" data-lb-cap="植物"><figure><img src="../assets/photo/plant-clean.jpg" alt="植物" loading="lazy"></figure><h3>植物</h3><span>中庭・ガーデン</span></div>
+        <div class="w" data-lb="../assets/photo/question-clean.jpg" data-lb-cap="問う"><figure><img src="../assets/photo/question-clean.jpg" alt="問う" loading="lazy"></figure><h3>問う</h3><span>海の見える宿・テラス</span></div>
+        <div class="w" data-lb="../assets/photo/rust-flower.jpg" data-lb-cap="花と石"><figure><img src="../assets/photo/rust-flower.jpg" alt="花と石" loading="lazy" style="object-position:50% 10%"></figure><h3>花と石</h3><span>ロビー・ラウンジ</span></div>
+        <div class="w" data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの"><figure><img src="../assets/photo/protect-clean.jpg" alt="守るべきもの" loading="lazy"></figure><h3>守るべきもの</h3><span>エントランス・前庭</span></div>
+      </div>
+      <p class="note">※ 掲載作品のレンタル可否・時期は、作品の設置状況により異なります。宿に合わせた新作のご相談も承ります。</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="two">
+      <div>
+        <span class="tag">ご利用の流れ</span>
+        <h2>ご相談から入れ替えまで</h2>
+        <ol class="flow">
+          <li><div><b>ご相談</b><span>ロビーの写真と、置きたい場所・期間のご希望をお送りください。</span></div></li>
+          <li><div><b>作品と置き方のご提案</b><span>必要に応じてCG映像で設置後の姿をご確認いただけます。</span></div></li>
+          <li><div><b>搬入・設置</b><span>営業に支障のない日時をご相談のうえ設置します。</span></div></li>
+          <li><div><b>季節の入れ替え</b><span>次の季節の作品と交換。期間終了後は返却です。</span></div></li>
+        </ol>
+      </div>
+      <div class="faq">
+        <span class="tag">よくあるご質問</span>
+        <h2>ご質問</h2>
+        <details><summary>レンタル期間はどのくらいですか？</summary><p>季節ごとの入れ替えを基本に、宿のご希望に合わせて決めます。まずはご希望の期間をお知らせください。</p></details>
+        <details><summary>屋外に置いても大丈夫ですか？</summary><p>神社の参道や海岸など、屋外に設置されてきた作品があります。設置場所の環境をうかがってご提案します。</p></details>
+        <details><summary>気に入ったら購入できますか？</summary><p>作品によってはご相談いただけます。レンタル中にお申し出ください。</p></details>
+        <details><summary>お客様が触れても大丈夫ですか？</summary><p>置き場所や動線を確認し、配置や囲い方を含めてご提案します。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <span class="tag" style="color:var(--kinari); border-color:var(--kinari)">ご相談</span>
+      <h2>次の季節のロビーを、<br>一緒に考えませんか。</h2>
+      <p>ロビーの写真を一枚添えて、お気軽にお問い合わせください。</p>
+      <div class="row">
+        <a class="btn" href="mailto:ilbussan@coral.ocn.ne.jp?subject=%E3%83%9B%E3%83%86%E3%83%AB%E3%83%BB%E6%97%85%E9%A4%A8%E5%90%91%E3%81%91%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで相談する</a>
+        <a class="btn line" href="tel:0887540711">電話 0887-54-0711</a>
+      </div>
+      <p class="info">有限会社アイエル物産 ／ 高知県香南市野市町土居1073-2 ／ FAX 0887-54-0712</p>
+    </div>
+  </section>
+</main>
+
+<footer><span>IKEUCHI — 鉄の彫刻 レンタル（ホテル・旅館向け）</span><span>案A「四季」 ・ <a href="../index.html">もう一案を見る</a></span></footer>
+
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){
+  var S = {
+    spring:{c:'#C9587A', soft:'#F6E3E8', label:'春', img:'../assets/photo/plant-clean.jpg', work:'植物',
+      title:'芽吹きのころ、鉄の葉がひらく。', text:'鉄の茎と葉が、竹林に生えるように立つ作品。春のロビーや中庭に、芽吹きの気配を運びます。',
+      place:'中庭・ロビーの窓際', light:'自然光＋足元の間接照明'},
+    summer:{c:'#2B8A9A', soft:'#DDEEF0', label:'夏', img:'../assets/photo/question-clean.jpg', work:'問う',
+      title:'波の音を思わせる、海辺の仮面。', text:'波打ちぎわに設置されてきた、針金の手足と仮面の作品。海の見える宿や、夏のテラスに。',
+      place:'テラス・海側のロビー', light:'自然光・夕方の低い光'},
+    autumn:{c:'#B4692E', soft:'#F3E2CF', label:'秋', img:'../assets/photo/rust-flower.jpg', work:'花と石',
+      title:'実りの色をした、錆鉄の花。', text:'錆びた鉄の大きな花が石をひとつ抱き、ふちに透かしの蝶。秋の夜長、ラウンジでゆっくり眺めていただく一点に。',
+      place:'ラウンジ・フロント脇', light:'ピンスポットで蝶の透かしを'},
+    winter:{c:'#4D6A9E', soft:'#E3E7EF', label:'冬', img:'../assets/photo/protect-clean.jpg', work:'守るべきもの',
+      title:'雪と月に、見守る卵。', text:'鉄で編んだ人の背丈ほどの卵と、それを見守る一羽の鳥。冬の澄んだ空気の中、静かにお客様を迎えます。',
+      place:'ロビー中央・エントランス', light:'低めの暖色照明で網目の影を床へ'}
+  };
+  var root = document.documentElement;
+  function set(k){
+    var s = S[k];
+    root.style.setProperty('--season', s.c);
+    root.style.setProperty('--season-soft', s.soft);
+    var img = document.getElementById('s-img');
+    img.src = s.img; img.alt = s.work;
+    img.style.animation = 'none'; img.offsetWidth; img.style.animation = '';
+    document.getElementById('s-imgbox').setAttribute('data-lb', s.img);
+    document.getElementById('s-imgbox').setAttribute('data-lb-cap', s.work);
+    document.getElementById('s-label').textContent = s.label;
+    document.getElementById('s-title').textContent = s.title;
+    document.getElementById('s-work').textContent = '作品 ──「' + s.work + '」';
+    document.getElementById('s-text').textContent = s.text;
+    document.getElementById('s-place').textContent = s.place;
+    document.getElementById('s-light').textContent = s.light;
+    document.getElementById('hero-img').src = s.img;
+    document.querySelectorAll('.picker button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.s === k); });
+  }
+  document.querySelectorAll('.picker button').forEach(function(b){ b.addEventListener('click', function(){ set(b.dataset.s); }); });
+  // start on the current season
+  var m = new Date().getMonth() + 1;
+  set(m >= 3 && m <= 5 ? 'spring' : m >= 6 && m <= 8 ? 'summer' : m >= 9 && m <= 11 ? 'autumn' : 'winter');
+})();
+</script>
+</body>
+</html>

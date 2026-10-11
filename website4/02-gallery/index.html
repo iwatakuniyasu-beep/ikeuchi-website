@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IKEUCHI Lobby Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap">
+<style>
+  :root{ --w:#FFFFFF; --g:#F3F3F1; --k:#111111; --dim:#7A7A76; --line:#E2E2DE; --red:#D2381E; --lbx-accent:#fff; --lbx-on-accent:#111; }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{margin:0; background:var(--w); color:var(--k); font-family:'Noto Sans JP', sans-serif; font-weight:400; line-height:1.85; overflow-x:clip;}
+  img,video{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  .en{font-family:'Inter', sans-serif;}
+  .wrap{max-width:1240px; margin:0 auto; padding-inline:40px;}
+  section{padding-block:120px;}
+  @media (max-width:760px){ section{padding-block:72px;} .wrap{padding-inline:18px;} }
+  .lbl{font-family:'Inter'; font-size:12px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; display:flex; gap:12px; align-items:center; margin-bottom:24px;}
+  .lbl i{width:10px; height:10px; background:var(--red); display:inline-block;}
+  h2{font-weight:700; font-size:clamp(28px,3.6vw,46px); line-height:1.4; margin:0 0 20px; letter-spacing:.01em;}
+  .lead{color:var(--dim); font-size:15.5px; max-width:40em; margin:0;}
+  .btn{display:inline-flex; gap:12px; align-items:center; padding:16px 26px; background:var(--k); color:#fff; font-size:14px; font-weight:500; transition:background .2s;}
+  .btn:hover{background:var(--red);}
+  .btn.out{background:transparent; color:var(--k); border:1px solid var(--k);}
+  .btn.out:hover{background:var(--k); color:#fff;}
+
+  .bar{display:flex; justify-content:space-between; align-items:center; padding:20px 40px; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); z-index:40;}
+  .bar .logo{font-family:'Inter'; font-weight:800; letter-spacing:.06em;}
+  .bar .logo span{color:var(--red);}
+  .bar nav{display:flex; gap:26px; font-size:13px;}
+  .bar nav a:hover{color:var(--red);}
+  @media (max-width:760px){ .bar nav{display:none;} .bar{padding:16px 18px;} }
+
+  /* hero: exhibition poster */
+  .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:0; border-bottom:1px solid var(--line); min-height:calc(100svh - 64px);}
+  .poster{padding:70px 40px 50px; display:flex; flex-direction:column; justify-content:space-between; border-right:1px solid var(--line);}
+  .poster .ex{font-family:'Inter'; font-weight:600; font-size:13px; letter-spacing:.24em; color:var(--red);}
+  .poster h1{font-family:'Inter'; font-weight:800; font-size:clamp(56px,9vw,140px); line-height:.9; letter-spacing:-.04em; margin:20px 0;}
+  .poster .jp{font-weight:700; font-size:clamp(22px,2.6vw,32px); line-height:1.6; margin:0 0 16px;}
+  .poster p{color:var(--dim); max-width:32em; margin:0 0 30px;}
+  .poster .meta{display:grid; grid-template-columns:repeat(3,auto); justify-content:start; gap:6px 40px; font-size:13px; border-top:1px solid var(--k); padding-top:16px;}
+  .poster .meta b{display:block; font-family:'Inter'; font-size:11px; letter-spacing:.16em; color:var(--dim); font-weight:600;}
+  .hero-img{position:relative; background:var(--g); overflow:hidden; cursor:zoom-in;}
+  .hero-img img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .caption-plate{position:absolute; right:24px; bottom:24px; background:#fff; padding:14px 18px; font-size:12px; line-height:1.6; box-shadow:0 10px 30px rgba(0,0,0,.12); min-width:220px;}
+  .caption-plate b{display:block; font-size:15px;}
+  .caption-plate span{color:var(--dim);}
+  @media (max-width:900px){ .hero{grid-template-columns:1fr;} .poster{border-right:0; padding:44px 18px;} .hero-img{min-height:420px;} .poster .meta{grid-template-columns:1fr 1fr;} }
+
+  /* concept */
+  .concept{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:56px;}
+  .concept div{background:#fff; padding:36px 30px;}
+  .concept .n{font-family:'Inter'; font-weight:800; font-size:14px; color:var(--red);}
+  .concept h3{font-size:20px; margin:14px 0 8px;}
+  .concept p{color:var(--dim); font-size:14.5px; margin:0;}
+  @media (max-width:860px){ .concept{grid-template-columns:1fr;} }
+
+  /* program builder */
+  .builder{background:var(--g);}
+  .controls{display:grid; grid-template-columns:1fr 1fr; gap:30px; margin:46px 0 34px;}
+  .ctrl b{display:block; font-size:14px; margin-bottom:10px;}
+  .seg{display:inline-flex; border:1px solid var(--k); max-width:100%; flex-wrap:wrap;}
+  .ctrl{min-width:0;}
+  .seg button{border:0; background:#fff; padding:10px 20px; cursor:pointer; font-size:14px; border-right:1px solid var(--k);}
+  .seg button:last-child{border-right:0;}
+  .seg button[aria-pressed="true"]{background:var(--k); color:#fff;}
+  .timeline{background:#fff; border:1px solid var(--line); padding:26px; overflow-x:auto;}
+  .tl{min-width:640px;}
+  .tl-head{display:grid; gap:0; font-family:'Inter'; font-size:11px; color:var(--dim); letter-spacing:.1em; margin-left:120px; border-bottom:1px solid var(--line); padding-bottom:8px;}
+  .tl-row{display:grid; grid-template-columns:120px 1fr; align-items:center; border-bottom:1px solid var(--line); min-height:64px;}
+  .tl-row:last-child{border-bottom:0;}
+  .tl-row .spot{font-size:13px; font-weight:500;}
+  .tl-cells{display:grid; gap:4px; padding:8px 0;}
+  .ex-card{display:flex; align-items:center; gap:10px; background:var(--g); padding:6px; font-size:12.5px; line-height:1.4; overflow:hidden; cursor:zoom-in; min-width:0;}
+  .ex-card img{width:40px; height:40px; object-fit:cover; flex:none;}
+  .ex-card b{display:block; font-size:12.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .ex-card span{color:var(--dim); font-size:11px; font-family:'Inter';}
+  .tl-sum{display:flex; gap:30px; flex-wrap:wrap; margin-top:20px; font-size:14px;}
+  .tl-sum b{font-family:'Inter'; font-size:28px; font-weight:800; margin-right:6px;}
+  .tl-note{font-size:12.5px; color:var(--dim); margin-top:12px;}
+  @media (max-width:760px){ .controls{grid-template-columns:minmax(0,1fr);} .seg button{padding:10px 14px;} }
+
+  /* catalogue */
+  .cat{display:grid; grid-template-columns:repeat(3,1fr); gap:40px 28px; margin-top:56px;}
+  .item{cursor:zoom-in;}
+  .item figure{margin:0; aspect-ratio:4/5; overflow:hidden; background:var(--g);}
+  .item img{width:100%; height:100%; object-fit:cover; transition:transform .6s;}
+  .item:hover img{transform:scale(1.03);}
+  .item .plate{display:grid; grid-template-columns:1fr auto; gap:2px 14px; border-top:1px solid var(--k); margin-top:14px; padding-top:10px; font-size:13px;}
+  .item .plate b{font-size:17px;}
+  .item .plate .en{color:var(--dim); font-size:12px;}
+  .item .plate .no{font-family:'Inter'; font-weight:800; font-size:12px; color:var(--red); grid-row:span 2; align-self:start;}
+  .item p{color:var(--dim); font-size:13.5px; margin:8px 0 0;}
+  @media (max-width:900px){ .cat{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .cat{grid-template-columns:1fr;} }
+
+  /* include */
+  .include{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+  .include ul{list-style:none; margin:0; padding:0; border-top:1px solid var(--k);}
+  .include li{display:grid; grid-template-columns:40px 1fr; padding:18px 0; border-bottom:1px solid var(--line);}
+  .include li span{font-family:'Inter'; font-weight:800; color:var(--red); font-size:13px;}
+  .include li b{display:block;}
+  .include li small{color:var(--dim); font-size:13.5px;}
+  @media (max-width:860px){ .include{grid-template-columns:1fr; gap:30px;} }
+
+  .faq{display:grid; grid-template-columns:1fr 1fr; gap:0 56px; margin-top:40px;}
+  .faq div{border-top:1px solid var(--k); padding:18px 0 22px;}
+  .faq h3{font-size:16px; margin:0 0 6px;}
+  .faq p{margin:0; color:var(--dim); font-size:14px;}
+  @media (max-width:860px){ .faq{grid-template-columns:1fr;} }
+
+  .contact{background:var(--k); color:#fff;}
+  .contact .grid{display:grid; grid-template-columns:1.2fr .8fr; gap:50px; align-items:end;}
+  .contact h2{font-size:clamp(30px,4.4vw,56px);}
+  .contact p{color:#aaa; margin:0 0 30px;}
+  .contact .btn{background:#fff; color:var(--k);}
+  .contact .btn:hover{background:var(--red); color:#fff;}
+  .contact .btn.out{background:transparent; color:#fff; border-color:#fff;}
+  .contact dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:10px 20px; font-size:14px; border-top:1px solid #333; padding-top:18px;}
+  .contact dt{font-family:'Inter'; font-size:11px; letter-spacing:.16em; color:#888; padding-top:3px;}
+  .contact dd{margin:0;}
+  @media (max-width:860px){ .contact .grid{grid-template-columns:1fr;} }
+  footer{background:var(--k); color:#777; border-top:1px solid #222; padding:20px 40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px;}
+  footer a{color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span class="logo">IKEUCHI <span>/</span> LOBBY GALLERY</span>
+  <nav><a href="#concept">コンセプト</a><a href="#program">展示プランを作る</a><a href="#catalogue">作品</a><a href="#contact">お問い合わせ</a></nav>
+</div>
+
+<header class="hero">
+  <div class="poster">
+    <div>
+      <span class="ex">EXHIBITION — FOR HOTELS</span>
+      <h1>IRON<br>IN THE<br>LOBBY</h1>
+      <p class="jp">ロビーを、小さな美術館に。</p>
+      <p>高知の鉄の作家・池内の彫刻を、会期ごとに入れ替える「ロビーギャラリー」としてレンタルでご提供します。</p>
+      <a class="btn" href="#program">展示プランを作ってみる　→</a>
+    </div>
+    <div class="meta" style="margin-top:40px">
+      <div><b>ARTIST</b>池内（高知県香南市）</div>
+      <div><b>MEDIUM</b>鉄・溶接</div>
+      <div><b>FORMAT</b>レンタル／会期制</div>
+    </div>
+  </div>
+  <div class="hero-img" data-lb="../assets/photo/rust-flower.jpg" data-lb-cap="花と石">
+    <img src="../assets/photo/rust-flower.jpg" alt="花と石" style="object-position:50% 15%">
+    <div class="caption-plate"><b>花と石</b><span>鉄・石 ／ 池内<br>キャプションの例</span></div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap" id="concept">
+    <div class="lbl"><i></i>Concept</div>
+    <h2>泊まるたびに、<br>違う作品に出会えるホテルへ。</h2>
+    <p class="lead">ロビーに常設の作品を置くのではなく、会期を決めて作品を入れ替える。ホテルの中に“展覧会”があることが、滞在の楽しみと、また来る理由になります。</p>
+    <div class="concept">
+      <div><span class="n">01</span><h3>会期のある展示</h3><p>「◯月まで展示中」という区切りが、今行く理由・また行く理由をつくります。</p></div>
+      <div><span class="n">02</span><h3>話題をつくる</h3><p>展示替えのたびに、館内やSNSで伝えられるニュースが生まれます。</p></div>
+      <div><span class="n">03</span><h3>買わずに始められる</h3><p>購入ではなくレンタルなので、まずは一会期から試せます。</p></div>
+    </div>
+  </section>
+
+  <section class="builder" id="program">
+    <div class="wrap">
+      <div class="lbl"><i></i>Program Builder</div>
+      <h2>展示プランを作ってみる</h2>
+      <p class="lead">期間と、作品を置く場所の数を選ぶと、会期ごとの展示計画の例ができます。</p>
+      <div class="controls">
+        <div class="ctrl"><b>期間</b><div class="seg" id="seg-period"><button data-v="2">半年</button><button data-v="4" aria-pressed="true">1年</button><button data-v="8">2年</button></div></div>
+        <div class="ctrl"><b>作品を置く場所</b><div class="seg" id="seg-spots"><button data-v="1" aria-pressed="true">ロビーのみ</button><button data-v="2">ロビー＋ラウンジ</button><button data-v="3">＋中庭・廊下</button></div></div>
+      </div>
+      <div class="timeline"><div class="tl" id="tl"></div></div>
+      <div class="tl-sum" id="tl-sum"></div>
+      <p class="tl-note">※ 会期の長さ・作品の組み合わせは一例です。作品のレンタル可否や時期により変わります。</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="catalogue">
+    <div class="lbl"><i></i>Catalogue</div>
+    <h2>展示できる作品 ── 例</h2>
+    <p class="lead">展覧会のように作品名と素材を添えてご紹介できます。掲載作品のレンタル可否は作品の設置状況により異なります。</p>
+    <div class="cat">
+      <div class="item" data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの"><figure><img src="../assets/photo/protect-clean.jpg" alt="守るべきもの" loading="lazy"></figure>
+        <div class="plate"><span class="no">01</span><b>守るべきもの</b><span class="en">Something to Protect ／ 鉄</span></div><p>鉄で編んだ人の背丈ほどの卵と、見守る一羽の鳥。</p></div>
+      <div class="item" data-lb="../assets/photo/question-clean.jpg" data-lb-cap="問う"><figure><img src="../assets/photo/question-clean.jpg" alt="問う" loading="lazy"></figure>
+        <div class="plate"><span class="no">02</span><b>問う</b><span class="en">Keep Asking ／ 鉄・針金</span></div><p>針金の手足に支えられた、風化した仮面。</p></div>
+      <div class="item" data-lb="../assets/photo/plant-clean.jpg" data-lb-cap="植物"><figure><img src="../assets/photo/plant-clean.jpg" alt="植物" loading="lazy"></figure>
+        <div class="plate"><span class="no">03</span><b>植物</b><span class="en">Plant ／ 鉄</span></div><p>鉄の茎と葉、種の形。中庭や窓際に。</p></div>
+      <div class="item" data-lb="../assets/photo/rust-flower.jpg" data-lb-cap="花と石"><figure><img src="../assets/photo/rust-flower.jpg" alt="花と石" loading="lazy" style="object-position:50% 10%"></figure>
+        <div class="plate"><span class="no">04</span><b>花と石</b><span class="en">Flower &amp; Stone ／ 鉄・石</span></div><p>錆鉄の花が石を抱き、ふちに透かしの蝶。</p></div>
+      <div class="item" data-lb="../assets/photo/rebar-tree-2.jpg" data-lb-cap="鉄筋の木"><figure><img src="../assets/photo/rebar-tree-2.jpg" alt="鉄筋の木" loading="lazy"></figure>
+        <div class="plate"><span class="no">05</span><b>鉄筋の木</b><span class="en">Rebar Tree ／ 鉄筋・鋼板</span></div><p>ねじった鉄筋の幹から、枝と根が広がる。</p></div>
+      <div class="item" data-lb="../assets/photo/tree-hanger-office.jpg" data-lb-cap="ツリーハンガー（設置イメージ）"><figure><img src="../assets/photo/tree-hanger-office.jpg" alt="ツリーハンガー" loading="lazy"></figure>
+        <div class="plate"><span class="no">06</span><b>ツリーハンガー</b><span class="en">Tree Hanger ／ 丸太・鉄</span></div><p>鉄の葉がフックになるコートかけ。クロークに。（写真は設置イメージ）</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <div class="include">
+      <div>
+        <div class="lbl"><i></i>How It Works</div>
+        <h2>ロビーギャラリーの<br>はじめ方</h2>
+        <p class="lead">期間・料金は、作品・点数・設置場所・搬入条件をうかがってお見積りします。</p>
+      </div>
+      <ul>
+        <li><span>01</span><div><b>ご相談</b><small>ロビーの写真と、置きたい場所・期間をお知らせください。</small></div></li>
+        <li><span>02</span><div><b>展示プランのご提案</b><small>会期と作品の組み合わせを、ホテルの年間行事に合わせて考えます。</small></div></li>
+        <li><span>03</span><div><b>搬入・設置</b><small>営業に支障のない日時をご相談のうえ設置します。</small></div></li>
+        <li><span>04</span><div><b>展示替え</b><small>会期ごとに作品を入れ替え。終了後は返却です。</small></div></li>
+      </ul>
+    </div>
+    <div class="faq">
+      <div><h3>一会期だけでも頼めますか？</h3><p>はい。まずは一会期から試し、続けるかをご検討いただけます。</p></div>
+      <div><h3>展示の告知に作品写真を使えますか？</h3><p>使い方をうかがったうえでご相談ください。</p></div>
+      <div><h3>屋外の中庭にも置けますか？</h3><p>屋外に設置されてきた作品もあります。環境をうかがってご提案します。</p></div>
+      <div><h3>気に入った作品は購入できますか？</h3><p>作品によってはご相談いただけます。</p></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap grid">
+      <div>
+        <div class="lbl" style="color:#fff"><i></i>Contact</div>
+        <h2>次の展覧会は、<br>貴ホテルのロビーで。</h2>
+        <p>ロビーの写真を添えて、お気軽にご相談ください。</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap">
+          <a class="btn" href="mailto:ilbussan@coral.ocn.ne.jp?subject=%E3%83%AD%E3%83%93%E3%83%BC%E3%82%AE%E3%83%A3%E3%83%A9%E3%83%AA%E3%83%BC%EF%BC%88%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%EF%BC%89%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで相談する</a>
+          <a class="btn out" href="tel:0887540711">0887-54-0711</a>
+        </div>
+      </div>
+      <dl><dt>STUDIO</dt><dd>有限会社アイエル物産</dd><dt>ADDRESS</dt><dd>高知県香南市野市町土居1073-2</dd><dt>FAX</dt><dd>0887-54-0712</dd><dt>MAIL</dt><dd>ilbussan@coral.ocn.ne.jp</dd></dl>
+    </div>
+  </section>
+</main>
+
+<footer><span>IKEUCHI — Iron Sculpture Rental for Hotels</span><span>案B「Lobby Gallery」 ・ <a href="../index.html">もう一案を見る</a></span></footer>
+
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){
+  var POOL = [
+    {n:'守るべきもの', img:'../assets/photo/protect-clean.jpg'},
+    {n:'花と石', img:'../assets/photo/rust-flower.jpg'},
+    {n:'植物', img:'../assets/photo/plant-clean.jpg'},
+    {n:'問う', img:'../assets/photo/question-clean.jpg'},
+    {n:'鉄筋の木', img:'../assets/photo/rebar-tree-2.jpg'},
+    {n:'ツリーハンガー', img:'../assets/photo/tree-hanger-office.jpg'}
+  ];
+  var SPOTS = ['ロビー','ラウンジ','中庭・廊下'];
+  var state = {terms:4, spots:1};
+  function seg(id, key){
+    document.querySelectorAll('#' + id + ' button').forEach(function(b){
+      b.addEventListener('click', function(){
+        state[key] = +b.dataset.v;
+        document.querySelectorAll('#' + id + ' button').forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
+        draw();
+      });
+    });
+  }
+  function draw(){
+    var tl = document.getElementById('tl');
+    var cols = 'repeat(' + state.terms + ', minmax(0,1fr))';
+    var html = '<div class="tl-head" style="grid-template-columns:' + cols + '">';
+    for (var i = 0; i < state.terms; i++) html += '<span>会期 ' + (i + 1) + '</span>';
+    html += '</div>';
+    var used = {};
+    for (var s = 0; s < state.spots; s++) {
+      html += '<div class="tl-row"><span class="spot">' + SPOTS[s] + '</span><div class="tl-cells" style="grid-template-columns:' + cols + '">';
+      for (var t = 0; t < state.terms; t++) {
+        var w = POOL[(t * state.spots + s) % POOL.length];
+        used[w.n] = 1;
+        html += '<div class="ex-card" data-lb="' + w.img + '" data-lb-cap="' + w.n + '"><img src="' + w.img + '" alt=""><div><b>' + w.n + '</b><span>TERM ' + (t + 1) + '</span></div></div>';
+      }
+      html += '</div></div>';
+    }
+    tl.innerHTML = html;
+    document.getElementById('tl-sum').innerHTML =
+      '<div><b>' + state.terms + '</b>回の展示替え</div>' +
+      '<div><b>' + state.spots + '</b>か所に展示</div>' +
+      '<div><b>' + Object.keys(used).length + '</b>作品と出会える</div>';
+  }
+  seg('seg-period', 'terms');
+  seg('seg-spots', 'spots');
+  draw();
+})();
+</script>
+</body>
+</html>

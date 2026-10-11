@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>IKEUCHI for Offices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap">
+<style>
+  :root{ --navy:#0F1B33; --navy-2:#18284A; --paper:#F7F7F5; --ink:#0F1B33; --dim:#5E6677; --line:#DADDE3; --or:#FF5A1F; --lbx-accent:#FF5A1F; --lbx-on-accent:#fff; }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:clip;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Noto Sans JP', sans-serif; line-height:1.8; overflow-x:clip;}
+  img,video{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  .ar{font-family:'Archivo', sans-serif;}
+  .wrap{max-width:1240px; margin:0 auto; padding-inline:36px;}
+  section{padding-block:110px;}
+  @media (max-width:760px){ section{padding-block:70px;} .wrap{padding-inline:18px;} }
+  .eyebrow{font-family:'Archivo'; font-weight:700; font-size:13px; letter-spacing:.14em; color:var(--or); text-transform:uppercase;}
+  h2{font-weight:900; font-size:clamp(30px,4vw,52px); line-height:1.3; letter-spacing:-.01em; margin:12px 0 18px;}
+  .lead{color:var(--dim); font-size:16px; max-width:40em; margin:0;}
+  .btn{display:inline-flex; align-items:center; gap:12px; padding:16px 26px; background:var(--or); color:#fff; font-weight:700; font-size:15px; border-radius:4px; transition:transform .2s;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn.w{background:#fff; color:var(--navy);}
+
+  .bar{position:sticky; top:0; z-index:40; background:var(--navy); color:#fff; display:flex; align-items:center; gap:24px; padding:14px 36px;}
+  .bar .logo{font-family:'Archivo'; font-weight:900; font-size:18px; letter-spacing:.04em;}
+  .bar .logo span{color:var(--or);}
+  .bar nav{display:flex; gap:24px; margin-left:auto; font-size:13.5px; color:#B9C1D3;}
+  .bar nav a:hover{color:#fff;}
+  .bar .btn{padding:10px 18px; font-size:13.5px;}
+  @media (max-width:860px){ .bar nav{display:none;} .bar{padding:12px 18px; justify-content:space-between;} }
+
+  .hero{background:var(--navy); color:#fff; padding:80px 0 0; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:50px; align-items:end;}
+  .hero h1{font-weight:900; font-size:clamp(44px,7vw,96px); line-height:1.12; letter-spacing:-.02em; margin:16px 0 24px;}
+  .hero h1 em{font-style:normal; color:var(--or);}
+  .hero p{color:#B9C1D3; font-size:17px; max-width:30em; margin:0 0 34px;}
+  .hero .cta{display:flex; gap:12px; flex-wrap:wrap; padding-bottom:70px;}
+  .hero-img{position:relative; aspect-ratio:4/5; overflow:hidden; cursor:zoom-in; border-radius:6px 6px 0 0;}
+  .hero-img img{width:100%; height:100%; object-fit:cover;}
+  .hero-img .chip{position:absolute; left:16px; bottom:16px; background:#fff; color:var(--navy); font-size:12px; font-weight:700; padding:6px 12px; border-radius:3px;}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--navy-2); margin-top:0;}
+  .stats div{padding:26px 0; }
+  .stats b{display:block; font-family:'Archivo'; font-weight:900; font-size:28px; color:var(--or);}
+  .stats span{font-size:13.5px; color:#B9C1D3;}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} .hero .cta{padding-bottom:30px;} .stats{grid-template-columns:1fr;} .stats div{padding:14px 0;} }
+
+  /* journey */
+  .journey-nav{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:50px; position:relative;}
+  .journey-nav::before{content:""; position:absolute; left:0; right:0; top:22px; height:3px; background:var(--line);}
+  .journey-nav .fill{position:absolute; left:0; top:22px; height:3px; background:var(--or); transition:width .4s;}
+  .journey-nav button{position:relative; background:none; border:0; cursor:pointer; text-align:left; padding:0 10px 0 0; color:var(--dim);}
+  .journey-nav button i{display:grid; place-items:center; width:46px; height:46px; border-radius:50%; background:#fff; border:3px solid var(--line); font-style:normal; font-family:'Archivo'; font-weight:900; font-size:16px; position:relative; z-index:1; transition:all .3s;}
+  .journey-nav button b{display:block; margin-top:12px; font-size:16px; color:var(--ink);}
+  .journey-nav button small{font-size:12.5px;}
+  .journey-nav button[aria-current="step"] i,.journey-nav button.done i{background:var(--or); border-color:var(--or); color:#fff;}
+  .stop{display:none; grid-template-columns:1.1fr .9fr; gap:50px; align-items:center; margin-top:44px; background:#fff; border:1px solid var(--line); border-radius:6px; overflow:hidden;}
+  .stop.on{display:grid; animation:in .5s ease;}
+  .stop > *{min-width:0;}
+  @keyframes in{from{opacity:0; transform:translateX(20px);}}
+  .stop-img{aspect-ratio:4/3; overflow:hidden; cursor:zoom-in; background:#000;}
+  .stop-img img{width:100%; height:100%; object-fit:cover;}
+  .stop-body{padding:34px 36px 34px 0;}
+  .stop-body .q{font-size:13px; color:var(--or); font-weight:700;}
+  .stop-body h3{font-weight:900; font-size:clamp(22px,2.4vw,30px); margin:6px 0 12px; line-height:1.4;}
+  .stop-body p{color:var(--dim); margin:0 0 18px;}
+  .stop-body .rec{display:flex; gap:10px; flex-wrap:wrap;}
+  .stop-body .rec span{font-size:13px; background:var(--paper); padding:6px 12px; border-radius:3px;}
+  .stop-body .rec span b{color:var(--or);}
+  .jctrl{display:flex; gap:10px; justify-content:flex-end; margin-top:16px;}
+  .jctrl button{border:1px solid var(--line); background:#fff; border-radius:4px; padding:10px 16px; cursor:pointer; font-weight:700;}
+  @media (max-width:860px){ .stop.on{grid-template-columns:minmax(0,1fr); gap:0;} .stop-body{padding:24px;} .journey-nav button b{font-size:13px;} .journey-nav button small{display:none;} }
+
+  /* why rental */
+  .why{background:#fff; border-block:1px solid var(--line);}
+  .cmp{width:100%; border-collapse:collapse; margin-top:44px; font-size:15px;}
+  .cmp th,.cmp td{padding:18px 16px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+  .cmp thead th{font-size:14px; color:var(--dim); font-weight:700;}
+  .cmp thead th.hl{color:var(--or);}
+  .cmp tbody th{font-weight:700; width:24%;}
+  .cmp td.hl{background:#FFF3EE; font-weight:500;}
+  .cmp-wrap{overflow-x:auto;}
+  .cmp{min-width:620px;}
+  .uses{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:44px;}
+  .use{background:var(--navy); color:#fff; border-radius:6px; padding:28px;}
+  .use b{font-family:'Archivo'; color:var(--or); font-size:14px; letter-spacing:.1em;}
+  .use h3{font-size:20px; margin:8px 0 6px;}
+  .use p{margin:0; color:#B9C1D3; font-size:14px;}
+  @media (max-width:860px){ .uses{grid-template-columns:1fr;} }
+
+  /* works */
+  .wgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:44px;}
+  .wk{background:#fff; border:1px solid var(--line); border-radius:6px; overflow:hidden; cursor:zoom-in;}
+  .wk figure{margin:0; aspect-ratio:16/11; overflow:hidden;}
+  .wk img{width:100%; height:100%; object-fit:cover; transition:transform .6s;}
+  .wk:hover img{transform:scale(1.04);}
+  .wk div{padding:16px 18px 20px;}
+  .wk h3{margin:0; font-size:18px; font-weight:900;}
+  .wk p{margin:4px 0 0; color:var(--dim); font-size:13.5px;}
+  .wk .tag{display:inline-block; margin-top:10px; font-size:12px; font-weight:700; color:var(--or);}
+  .note{font-size:12.5px; color:var(--dim); margin-top:16px;}
+  @media (max-width:900px){ .wgrid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .wgrid{grid-template-columns:1fr;} }
+
+  .flow{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:40px;}
+  .flow div{background:#fff; border:1px solid var(--line); border-top:4px solid var(--or); border-radius:4px; padding:20px;}
+  .flow b{font-family:'Archivo'; font-weight:900; color:var(--or);}
+  .flow h3{margin:6px 0 4px; font-size:16px;}
+  .flow p{margin:0; color:var(--dim); font-size:13px;}
+  @media (max-width:900px){ .flow{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .flow{grid-template-columns:1fr;} }
+
+  .contact{background:var(--or); color:#fff;}
+  .contact .grid{display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center;}
+  .contact h2{color:#fff;}
+  .contact p{margin:0 0 26px; font-size:16px;}
+  .contact .btn{background:var(--navy);}
+  .contact .btn.w{background:#fff; color:var(--navy);}
+  .contact dl{margin:0; background:#fff; color:var(--ink); border-radius:6px; padding:24px; display:grid; grid-template-columns:auto 1fr; gap:8px 18px; font-size:14px;}
+  .contact dt{font-family:'Archivo'; font-weight:700; color:var(--or); font-size:12px; letter-spacing:.1em; padding-top:3px;}
+  .contact dd{margin:0; overflow-wrap:anywhere;}
+  @media (max-width:860px){ .contact .grid{grid-template-columns:1fr;} }
+  footer{background:var(--navy); color:#8792A8; padding:20px 36px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px;}
+  footer a{color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span class="logo">IKEUCHI<span>.</span> for OFFICE</span>
+  <nav><a href="#journey">来訪者の動線</a><a href="#why">レンタルの理由</a><a href="#works">作品</a><a href="#flow">導入の流れ</a></nav>
+  <a class="btn" href="#contact">相談する</a>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Iron Sculpture Rental for Offices</span>
+      <h1>受付は、<br>会社の<em>名刺</em>だ。</h1>
+      <p>来訪者が最初に目にする受付やエントランスに、鉄の彫刻を。購入ではなくレンタルで、オフィスの第一印象を変えませんか。</p>
+      <div class="cta"><a class="btn" href="#journey">来訪者の目線で見る　→</a><a class="btn w" href="#contact">レンタルの相談</a></div>
+    </div>
+    <div class="hero-img" data-lb="../assets/photo/tree-hanger-office.jpg" data-lb-cap="ツリーハンガー（オフィス受付の設置イメージ）">
+      <img src="../assets/photo/tree-hanger-office.jpg" alt="オフィス受付のツリーハンガー">
+      <span class="chip">設置イメージ ── ツリーハンガー</span>
+    </div>
+  </div>
+  <div class="wrap stats">
+    <div><b>ONE-OFF</b><span>職人が手で仕上げた一点もの</span></div>
+    <div><b>RENTAL</b><span>買わずに、期間を決めて導入</span></div>
+    <div><b>PREVIEW</b><span>CG映像で設置後の姿を事前に確認</span></div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap" id="journey">
+    <span class="eyebrow">Visitor Journey</span>
+    <h2>来訪者は、どこで<br>会社を感じているか。</h2>
+    <p class="lead">エレベーターを降りてから会議室に着くまで。来訪者の動線に沿って、作品の置き方を考えました。</p>
+    <div class="journey-nav" role="tablist">
+      <span class="fill" id="fill"></span>
+      <button role="tab" data-i="0" aria-current="step"><i>1</i><b>エレベーターホール</b><small>扉が開いた瞬間</small></button>
+      <button role="tab" data-i="1"><i>2</i><b>受付</b><small>名乗るまでの数十秒</small></button>
+      <button role="tab" data-i="2"><i>3</i><b>応接・待合</b><small>担当者を待つ時間</small></button>
+      <button role="tab" data-i="3"><i>4</i><b>会議室・ラウンジ</b><small>話が始まる場所</small></button>
+    </div>
+
+    <div class="stop on">
+      <div class="stop-img" data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの"><img src="../assets/photo/protect-clean.jpg" alt="守るべきもの" loading="lazy"></div>
+      <div class="stop-body"><span class="q">扉が開いた瞬間</span><h3>「この会社は、何かが違う」と<br>思わせる一点を。</h3>
+        <p>エレベーターホールは、会社の世界観が最初に伝わる場所。大きな作品ひとつで、空間の印象が決まります。</p>
+        <div class="rec"><span>おすすめ <b>守るべきもの</b></span><span>効果 <b>第一印象</b></span></div></div>
+    </div>
+    <div class="stop">
+      <div class="stop-img" data-lb="../assets/photo/tree-hanger-office.jpg" data-lb-cap="ツリーハンガー（設置イメージ）"><img src="../assets/photo/tree-hanger-office.jpg" alt="ツリーハンガー" loading="lazy"></div>
+      <div class="stop-body"><span class="q">名乗るまでの数十秒</span><h3>使えるアートで、<br>コートを預かる。</h3>
+        <p>受付横のツリーハンガーは、来訪者のコートや傘を掛けられる“使える彫刻”。おもてなしと話題を同時に。</p>
+        <div class="rec"><span>おすすめ <b>ツリーハンガー</b></span><span>効果 <b>おもてなし</b></span></div></div>
+    </div>
+    <div class="stop">
+      <div class="stop-img" data-lb="../assets/photo/rust-flower-detail.jpg" data-lb-cap="花と石（ディテール）"><img src="../assets/photo/rust-flower-detail.jpg" alt="花と石" loading="lazy"></div>
+      <div class="stop-body"><span class="q">担当者を待つ時間</span><h3>待ち時間を、<br>眺める時間に変える。</h3>
+        <p>近くで見るほど発見のある作品は、待ち時間の手持ち無沙汰をやわらげ、最初の雑談のきっかけになります。</p>
+        <div class="rec"><span>おすすめ <b>花と石</b></span><span>効果 <b>会話のきっかけ</b></span></div></div>
+    </div>
+    <div class="stop">
+      <div class="stop-img" data-lb="../assets/photo/plant-clean.jpg" data-lb-cap="植物"><img src="../assets/photo/plant-clean.jpg" alt="植物" loading="lazy"></div>
+      <div class="stop-body"><span class="q">話が始まる場所</span><h3>会議室の窓際に、<br>考えるための余白を。</h3>
+        <p>ラウンジや会議室の窓際に、鉄の植物を。緊張をほぐし、話しやすい空気をつくります。</p>
+        <div class="rec"><span>おすすめ <b>植物</b></span><span>効果 <b>リラックス</b></span></div></div>
+    </div>
+    <div class="jctrl"><button id="prev">← 前へ</button><button id="next">次へ →</button></div>
+  </section>
+
+  <section class="why" id="why">
+    <div class="wrap">
+      <span class="eyebrow">Why Rental</span>
+      <h2>買うより、借りる。<br>オフィスのアートの新しい選び方。</h2>
+      <p class="lead">オフィスへのアートレンタルは、国内でも複数のサービスが登場している導入方法です。鉄の彫刻も、レンタルなら気軽に始められます。</p>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead><tr><th></th><th class="hl">レンタル</th><th>購入</th></tr></thead>
+          <tbody>
+            <tr><th>はじめやすさ</th><td class="hl">期間を決めて、まず試せる</td><td>購入の判断が必要</td></tr>
+            <tr><th>入れ替え</th><td class="hl">季節・周年・イベントに合わせて交換できる</td><td>基本は同じ作品を置き続ける</td></tr>
+            <tr><th>移転・レイアウト変更</th><td class="hl">新しい空間に合わせて作品を見直せる</td><td>新しい空間に合うか検討が必要</td></tr>
+            <tr><th>気に入ったら</th><td class="hl">作品によっては購入のご相談も</td><td>──</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="uses">
+        <div class="use"><b>USE 01</b><h3>本社エントランス</h3><p>ブランドを体現する一点を、来訪者の動線上に。</p></div>
+        <div class="use"><b>USE 02</b><h3>周年・式典・採用イベント</h3><p>期間限定で、特別な日の空間演出に。</p></div>
+        <div class="use"><b>USE 03</b><h3>ショールーム</h3><p>自社製品とあわせて、世界観をつくる背景に。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="works">
+    <span class="eyebrow">Works</span>
+    <h2>オフィスに置ける作品 ── 例</h2>
+    <div class="wgrid">
+      <div class="wk" data-lb="../assets/photo/protect-clean.jpg" data-lb-cap="守るべきもの"><figure><img src="../assets/photo/protect-clean.jpg" alt="守るべきもの" loading="lazy"></figure><div><h3>守るべきもの</h3><p>鉄で編んだ卵と、見守る鳥。</p><span class="tag">エントランス</span></div></div>
+      <div class="wk" data-lb="../assets/photo/tree-hanger-office.jpg" data-lb-cap="ツリーハンガー（設置イメージ）"><figure><img src="../assets/photo/tree-hanger-office.jpg" alt="ツリーハンガー" loading="lazy" style="object-position:50% 35%"></figure><div><h3>ツリーハンガー</h3><p>鉄の葉がフックになるコートかけ。（設置イメージ）</p><span class="tag">受付・クローク</span></div></div>
+      <div class="wk" data-lb="../assets/photo/rust-flower.jpg" data-lb-cap="花と石"><figure><img src="../assets/photo/rust-flower.jpg" alt="花と石" loading="lazy" style="object-position:50% 10%"></figure><div><h3>花と石</h3><p>錆鉄の花と石、透かしの蝶。</p><span class="tag">応接・待合</span></div></div>
+      <div class="wk" data-lb="../assets/photo/plant-clean.jpg" data-lb-cap="植物"><figure><img src="../assets/photo/plant-clean.jpg" alt="植物" loading="lazy"></figure><div><h3>植物</h3><p>鉄の茎と葉、種のかたち。</p><span class="tag">ラウンジ・窓際</span></div></div>
+      <div class="wk" data-lb="../assets/photo/rebar-tree-2.jpg" data-lb-cap="鉄筋の木"><figure><img src="../assets/photo/rebar-tree-2.jpg" alt="鉄筋の木" loading="lazy"></figure><div><h3>鉄筋の木</h3><p>ねじった鉄筋の幹と、広がる枝と根。</p><span class="tag">吹き抜け・屋外</span></div></div>
+      <div class="wk" data-lb="../assets/photo/leaf-bench.jpg" data-lb-cap="葉っぱベンチ（設置イメージ）"><figure><img src="../assets/photo/leaf-bench.jpg" alt="葉っぱベンチ" loading="lazy"></figure><div><h3>葉っぱベンチ</h3><p>杉の座面と鉄の脚。（設置イメージ）</p><span class="tag">屋上・テラス</span></div></div>
+    </div>
+    <p class="note">※ 掲載作品のレンタル可否・時期は作品の設置状況により異なります。「設置イメージ」は雰囲気を伝えるための画像です。</p>
+  </section>
+
+  <section class="wrap" id="flow" style="padding-top:0">
+    <span class="eyebrow">How It Works</span>
+    <h2>導入の流れ</h2>
+    <p class="lead">期間・料金は、作品・設置場所・搬入条件をうかがってお見積りします。</p>
+    <div class="flow">
+      <div><b>01</b><h3>ご相談</h3><p>オフィスの写真と置きたい場所、期間のご希望を。</p></div>
+      <div><b>02</b><h3>ご提案</h3><p>動線と空間に合う作品・置き方をご提案。</p></div>
+      <div><b>03</b><h3>CGで確認</h3><p>必要に応じて設置後の姿を映像で確認。</p></div>
+      <div><b>04</b><h3>搬入・設置</h3><p>業務に支障のない日時をご相談のうえ。</p></div>
+      <div><b>05</b><h3>入れ替え・返却</h3><p>期間終了後は返却、または次の作品へ。</p></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap grid">
+      <div>
+        <h2>御社の受付に、<br>まず一点。</h2>
+        <p>受付やエントランスの写真を添えて、お気軽にご相談ください。</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap">
+          <a class="btn" href="mailto:ilbussan@coral.ocn.ne.jp?subject=%E3%82%AA%E3%83%95%E3%82%A3%E3%82%B9%E5%90%91%E3%81%91%E3%83%AC%E3%83%B3%E3%82%BF%E3%83%AB%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで相談する</a>
+          <a class="btn w" href="tel:0887540711">0887-54-0711</a>
+        </div>
+      </div>
+      <dl><dt>STUDIO</dt><dd>有限会社アイエル物産</dd><dt>ADDRESS</dt><dd>高知県香南市野市町土居1073-2</dd><dt>FAX</dt><dd>0887-54-0712</dd><dt>MAIL</dt><dd>ilbussan@coral.ocn.ne.jp</dd></dl>
+    </div>
+  </section>
+</main>
+
+<footer><span>IKEUCHI — Iron Sculpture Rental for Offices</span><span>案A「Entrance」 ・ <a href="../index.html">もう一案を見る</a></span></footer>
+
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){
+  var btns = document.querySelectorAll('.journey-nav button'), stops = document.querySelectorAll('.stop'), fill = document.getElementById('fill'), cur = 0;
+  function go(i){
+    cur = (i + stops.length) % stops.length;
+    btns.forEach(function(b, k){ b.toggleAttribute('aria-current', k === cur); if (k === cur) b.setAttribute('aria-current','step'); b.classList.toggle('done', k < cur); });
+    stops.forEach(function(s, k){ s.classList.toggle('on', k === cur); });
+    // each step is a 1/4 column; the circle centre sits 23px into it
+    fill.style.width = 'calc(' + (cur / stops.length * 100) + '% + 23px)';
+  }
+  btns.forEach(function(b){ b.addEventListener('click', function(){ go(+b.dataset.i); }); });
+  document.getElementById('prev').addEventListener('click', function(){ go(cur - 1); });
+  document.getElementById('next').addEventListener('click', function(){ go(cur + 1); });
+  go(0);
+})();
+</script>
+</body>
+</html>
