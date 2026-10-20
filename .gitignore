@@ -7,3 +7,6 @@ movie/
 # ローカル設定・作業用
 .claude/
 /website2-top.jpg
+
+# 撮影データの元ファイル（大きいのでGitHubには置かない）
+/20261020/
