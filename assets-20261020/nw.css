@@ -52,3 +52,4 @@
   .nw-films::-webkit-scrollbar{display:none;}
   .nw-film{scroll-snap-align:start;}
 }
+.nw-body p a{color:var(--nw-acc,#b0482b); text-decoration:underline;}
