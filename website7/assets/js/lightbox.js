@@ -2,6 +2,7 @@
 // Any element with data-lb="<src>" opens it. Optional:
 //   data-lb-type="video"   play a video instead of showing an image
 //   data-lb-type="youtube" data-lb is a YouTube URL (watch?v=, youtu.be/, shorts/) or bare video id
+//   data-lb-aspect="9/16"  show the YouTube player in portrait (Shorts)
 //   data-lb-cap="..."      caption
 //   data-lb-group="name"   arrow keys / buttons step through the group
 // Look is controlled by the page with .lbx / .lbx-* selectors; sensible defaults below.
@@ -44,7 +45,11 @@
       media.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
       media.allowFullscreen = true;
       media.title = cap;
-      media.style.cssText = 'width:min(94vw,1200px);aspect-ratio:16/9;max-height:76vh;border:0;background:#000';
+      // data-lb-aspect="9/16" for vertical videos such as YouTube Shorts
+      var portrait = el.getAttribute('data-lb-aspect') === '9/16';
+      media.style.cssText = portrait
+        ? 'height:min(76vh,calc(94vw * 16 / 9));aspect-ratio:9/16;border:0;background:#000'
+        : 'width:min(94vw,1200px);aspect-ratio:16/9;max-height:76vh;border:0;background:#000';
     } else if (type === 'video') {
       media = document.createElement('video');
       media.src = src; media.controls = true; media.autoplay = true; media.playsInline = true;
