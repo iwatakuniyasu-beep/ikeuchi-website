@@ -29,3 +29,14 @@ a{color:inherit;}
 .wk-pager a{text-decoration:none; font-weight:700; font-size:14px; background:#fff; border:1px solid #EEE3D8; padding:10px 16px; border-radius:30px;}
 .wk-foot{text-align:center; font-size:12px; color:#8a7d70; padding:0 16px 40px;}
 @media (max-width:860px){ .wk-main{grid-template-columns:minmax(0,1fr); padding:24px 16px 40px; gap:24px;} .wk-bar{padding:12px 16px;} .wk-logo{font-size:14px;} }
+.wk-sticky{display:none;}
+@media (max-width:760px){
+  .wk-sticky{display:flex; gap:8px; position:fixed; left:10px; right:10px; bottom:calc(10px + env(safe-area-inset-bottom)); z-index:90; background:#1E2230; padding:8px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,.25);}
+  .wk-sticky a{text-decoration:none; font-weight:900; border-radius:14px; padding:12px; text-align:center;}
+  .wk-sticky-main{flex:1; background:#FF5A1F; color:#fff;}
+  .wk-sticky-tel{background:#fff; color:#1E2230; min-width:72px;}
+  body{padding-bottom:90px;}
+  .wk-back{font-size:12px; padding:6px 12px;}
+  .wk-thumbs button{width:80px; height:80px;}
+  .wk-pager a{font-size:13px;}
+}
