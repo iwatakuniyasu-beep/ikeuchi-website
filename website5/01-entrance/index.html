@@ -202,12 +202,13 @@
   }
   @media (prefers-reduced-motion:reduce){ .ai-track{animation:none;} .ai-row{overflow-x:auto;} }
 
-  /* space ②: artist first, then works as a 2-column card grid */
+  /* space ②: artist first, then works as a 3-column card grid (2 on tablets, 1 on phones) */
   .ai-space2{display:block !important;}
   .ai-profile{display:grid; grid-template-columns:.9fr 1.1fr; gap:36px; align-items:start; margin-bottom:46px;}
-  .ai-wgrid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px;}
-  .ai-wcard{display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center; background:var(--ai-card); border:1px solid var(--ai-line); border-radius:var(--ai-radius,16px); padding:12px;}
-  .ai-wthumb{display:block; width:120px; height:120px; border-radius:calc(var(--ai-radius,16px) - 4px); overflow:hidden; background:var(--ai-line);}
+  .ai-wgrid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px;}
+  @media (max-width:1060px){ .ai-wgrid{grid-template-columns:repeat(2,minmax(0,1fr));} }
+  .ai-wcard{display:grid; grid-template-columns:104px 1fr; gap:14px; align-items:center; background:var(--ai-card); border:1px solid var(--ai-line); border-radius:var(--ai-radius,16px); padding:12px;}
+  .ai-wthumb{display:block; width:104px; height:104px; border-radius:calc(var(--ai-radius,16px) - 4px); overflow:hidden; background:var(--ai-line);}
   .ai-wthumb img{width:100%; height:100%; object-fit:cover; transition:transform .5s;}
   .ai-wcard:hover .ai-wthumb img{transform:scale(1.06);}
   .ai-wthumb.ai-noimg{display:grid; place-items:center; color:var(--ai-dim); font-size:18px;}
@@ -281,7 +282,8 @@
   .ai-seasons button{border-radius:20px;}
   h1,h2,h3{font-family:'Kiwi Maru', serif !important; font-weight:500 !important;}
   .bar .logo, .bar nav a{white-space:nowrap;}
-  @media (max-width:1180px){ .bar nav{display:none;} .bar{justify-content:space-between;} }
+  @media (max-width:1440px){ .bar nav{display:none;} .bar{justify-content:space-between;} }
+  .bar .btn{white-space:nowrap; flex:none;}
   @media (max-width:360px){ .bar .logo{font-size:12px !important;} .bar .btn{display:none;} }
   @media (max-width:560px){ .bar{padding:10px 14px; gap:10px;} .bar .logo{font-size:14px !important;} .bar .btn{padding:8px 12px; font-size:12px; white-space:nowrap; flex:none;} }
   .ai-top{--ai-radius:22px; --ai-acc2:#FFB27A;}
