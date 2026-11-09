@@ -147,7 +147,8 @@
   .ai-ttl{display:block; width:100vw; margin-left:calc(50% - 50vw);}
   .ai-ttl svg.ttl{display:block; width:100%; height:max(150px, 12.5vw); overflow:hidden;}
   .ai-vh{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
-  .ai-sub{margin:12px 0 0; color:var(--ai-dim); font-size:15.5px; max-width:44em;}
+  .ai-sub{margin:12px 0 0; color:var(--ai-dim); font-size:15.5px;}
+  @media (min-width:1180px){ .ai-sub{white-space:nowrap;} }  /* one line on wide screens */
   .ai-space1{overflow:hidden; padding:10px 0;}
   .ai-row{overflow:hidden;}
   .ai-track{display:flex; gap:var(--ai-gap,18px); width:max-content; animation:ai-scroll var(--ai-speed,46s) linear infinite;}
