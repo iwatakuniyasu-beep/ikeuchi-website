@@ -1,0 +1,12 @@
+# 2026-11 フォルダ名を整理したときの旧URL → 新URL（以前お送りしたURLもそのまま開けるように）
+/website2/*  /sales_pop-3designs/:splat  301
+/website3/*  /sales_lounge-2designs/:splat  301
+/website4/*  /rental_hotel-2designs/:splat  301
+/website5/*  /rental_office-aile/:splat  301
+/website6/*  /rental_modelroom-2designs/:splat  301
+/website7/*  /rental_bridal-event-2designs/:splat  301
+/website8/*  /rental_shop-2designs/:splat  301
+/website/*   /sales_luxury-5designs/:splat  301
+/assets-works/photo/*   /shared-media/wix-photos/:splat  301
+/assets-20261020/photo/*  /shared-media/2026-10_photos/:splat  301
+/assets-20261020/video/*  /shared-media/2026-10_videos/:splat  301

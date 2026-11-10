@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>アイエル タイトル案 v2（鉄の質感）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Kiwi+Maru:wght@500&family=Zen+Kaku+Gothic+New:wght@500;700&family=Archivo+Black&display=swap">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0; background:#d6d6d6; font-family:'Zen Kaku Gothic New', sans-serif;}
+  .label{max-width:1200px; margin:0 auto; padding:26px 20px 8px; font-weight:700; font-size:15px; color:#333;}
+  .label small{font-weight:500; color:#666; margin-left:8px;}
+  .t{position:relative; max-width:1200px; margin:0 auto; overflow:hidden; padding:44px 52px 40px;}
+  .t .en{font-family:'Archivo Black', sans-serif; letter-spacing:.32em; font-size:13px; margin:0 0 6px;}
+  .t svg.ttl{display:block; width:100%; height:auto; overflow:visible;}
+  .t .sub{margin:8px 0 0; font-size:15px;}
+  .rivet{position:absolute; width:18px; height:18px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #f4f5f6 0, #b9bdc2 20%, #5d6167 62%, #1f2124 100%); box-shadow:0 2px 3px rgba(0,0,0,.6);}
+  .r1{top:16px; left:16px;} .r2{top:16px; right:16px;} .r3{bottom:16px; left:16px;} .r4{bottom:16px; right:16px;}
+
+  .a{background:radial-gradient(ellipse at 30% 40%, #2b1f18, #110c09 72%); color:#e8d6c3;}
+  .a .en{color:#c87a44;} .a .sub{color:#bba08a;}
+  .b{background:url(textures/tex2-millscale.jpg) center/cover; color:#d9dde2; border:6px solid #1e2023; box-shadow:inset 0 0 60px rgba(0,0,0,.6);}
+  .b .en{color:#aeb4bb;} .b .sub{color:#c9ced4;}
+  .c{background:radial-gradient(ellipse at 70% 60%, #22252e, #0b0c10 72%); color:#cfd3dc;}
+  .c .en{color:#9aa3b5;} .c .sub{color:#9aa3b5;}
+  .c .bead{display:block; height:14px; width:min(640px,62%); margin:2px 0 0; border-radius:7px;
+    background:repeating-radial-gradient(circle at 7px 7px, #f3ede2 0 2px, #b6b0a8 3px, #6a655f 6px, transparent 7px) 0 0/12px 14px, linear-gradient(90deg, #ffcf7a, #ff7a2a 30%, #9b9590 60%, #6d6862);
+    box-shadow:0 0 18px rgba(255,140,60,.55);}
+  .spark{position:absolute; width:3px; height:3px; border-radius:50%; background:#ffd27a; box-shadow:0 0 8px 2px #ff9a3a; animation:fly 1.6s ease-out infinite; opacity:0;}
+  @keyframes fly{0%{opacity:1; transform:translate(0,0);} 100%{opacity:0; transform:translate(var(--dx),var(--dy));}}
+  .d{padding:0; background:#16181b;}
+  .d .cap{position:absolute; left:52px; bottom:26px; margin:0; color:#d9dde2; font-size:15px;}
+  .d .en{position:absolute; left:52px; top:30px; color:#ffd166; margin:0;}
+  .e{background:radial-gradient(ellipse at 20% 30%, #f6f3ee, #e6e1d8); color:#2b2622;}
+  .e .en{color:#8a5a3b;} .e .sub{color:#5a524b;}
+
+  @media (max-width:700px){ .t{padding:30px 20px 26px;} .d{padding:0;} .d .cap{left:20px; bottom:14px; font-size:12px;} .d .en{left:20px; top:16px; font-size:10px;} }
+  @media (prefers-reduced-motion:reduce){ .spark{display:none;} }
+</style>
+</head>
+<body>
+
+<!-- shared lighting filters -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="pRust" patternUnits="userSpaceOnUse" width="1400" height="560"><image href="textures/tex2-rust.jpg" width="1400" height="560"/></pattern>
+    <pattern id="pMill" patternUnits="userSpaceOnUse" width="1400" height="560"><image href="textures/tex2-millscale.jpg" width="1400" height="560"/></pattern>
+    <pattern id="pBrushed" patternUnits="userSpaceOnUse" width="1400" height="560"><image href="textures/tex2-brushed.jpg" width="1400" height="560"/></pattern>
+    <pattern id="pHeat" patternUnits="userSpaceOnUse" width="1200" height="330"><image href="textures/tex2-heat.jpg" width="1200" height="330" preserveAspectRatio="none"/></pattern>
+    <pattern id="pForged" patternUnits="userSpaceOnUse" width="1400" height="560"><image href="textures/tex2-forged.jpg" width="1400" height="560"/></pattern>
+
+    <!-- corroded, raised iron: rough edges + relief lighting + cast shadow -->
+    <filter id="fRust" x="-4%" y="-12%" width="108%" height="135%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="3" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feGaussianBlur in="rough" stdDeviation="2.2" result="b"/>
+      <feDiffuseLighting in="b" surfaceScale="5" diffuseConstant="1.15" lighting-color="#fff" result="dif"><feDistantLight azimuth="225" elevation="48"/></feDiffuseLighting>
+      <feSpecularLighting in="b" surfaceScale="5" specularConstant=".55" specularExponent="14" lighting-color="#ffe0c0" result="spe"><feDistantLight azimuth="225" elevation="40"/></feSpecularLighting>
+      <feComposite in="rough" in2="dif" operator="arithmetic" k1="1.15" k2="0" k3="0" k4="0" result="lit"/>
+      <feComposite in="spe" in2="rough" operator="in" result="speIn"/>
+      <feComposite in="lit" in2="speIn" operator="arithmetic" k1="0" k2="1" k3=".5" k4="0" result="shiny"/>
+      <feComposite in="shiny" in2="rough" operator="in" result="face"/>
+      <feGaussianBlur in="rough" stdDeviation="5" result="sh"/><feOffset dx="4" dy="7" result="sho"/>
+      <feFlood flood-color="#000" flood-opacity=".7"/><feComposite in2="sho" operator="in" result="shadow"/>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="face"/></feMerge>
+    </filter>
+
+    <filter id="fRustS" x="-4%" y="-20%" width="108%" height="150%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.5" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feGaussianBlur in="rough" stdDeviation="1.2" result="b"/>
+      <feDiffuseLighting in="b" surfaceScale="3" diffuseConstant="1.15" lighting-color="#fff" result="dif"><feDistantLight azimuth="225" elevation="48"/></feDiffuseLighting>
+      <feSpecularLighting in="b" surfaceScale="3" specularConstant=".5" specularExponent="14" lighting-color="#ffe0c0" result="spe"><feDistantLight azimuth="225" elevation="40"/></feSpecularLighting>
+      <feComposite in="rough" in2="dif" operator="arithmetic" k1="1.2" k2="0" k3="0" k4="0" result="lit"/>
+      <feComposite in="spe" in2="rough" operator="in" result="speIn"/>
+      <feComposite in="lit" in2="speIn" operator="arithmetic" k1="0" k2="1" k3=".5" k4="0" result="shiny"/>
+      <feComposite in="shiny" in2="rough" operator="in" result="face"/>
+      <feGaussianBlur in="rough" stdDeviation="3" result="sh"/><feOffset dx="2" dy="4" result="sho"/>
+      <feFlood flood-color="#000" flood-opacity=".7"/><feComposite in2="sho" operator="in" result="shadow"/>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="face"/></feMerge>
+    </filter>
+
+    <!-- polished / brushed steel: crisp bevel with strong highlights -->
+    <filter id="fSteel" x="-4%" y="-12%" width="108%" height="135%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.4" result="b"/>
+      <feDiffuseLighting in="b" surfaceScale="7" diffuseConstant="1.05" lighting-color="#fff" result="dif"><feDistantLight azimuth="225" elevation="45"/></feDiffuseLighting>
+      <feSpecularLighting in="b" surfaceScale="7" specularConstant="1.2" specularExponent="30" lighting-color="#fff" result="spe"><feDistantLight azimuth="225" elevation="35"/></feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="dif" operator="arithmetic" k1="1.1" k2="0" k3="0" k4="0" result="lit"/>
+      <feComposite in="spe" in2="SourceAlpha" operator="in" result="speIn"/>
+      <feComposite in="lit" in2="speIn" operator="arithmetic" k1="0" k2="1" k3=".8" k4="0" result="shiny"/>
+      <feComposite in="shiny" in2="SourceAlpha" operator="in" result="face"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="sh"/><feOffset dx="3" dy="6" result="sho"/>
+      <feFlood flood-color="#000" flood-opacity=".75"/><feComposite in2="sho" operator="in" result="shadow"/>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="face"/></feMerge>
+    </filter>
+
+    <!-- thick plate edge: used on the cut-out plate so the holes show their thickness -->
+    <filter id="fPlate" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="b"/>
+      <feDiffuseLighting in="b" surfaceScale="9" diffuseConstant="1.1" lighting-color="#fff" result="dif"><feDistantLight azimuth="225" elevation="42"/></feDiffuseLighting>
+      <feSpecularLighting in="b" surfaceScale="9" specularConstant=".9" specularExponent="18" lighting-color="#fff" result="spe"><feDistantLight azimuth="225" elevation="36"/></feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="dif" operator="arithmetic" k1="1.15" k2="0" k3="0" k4="0" result="lit"/>
+      <feComposite in="spe" in2="SourceAlpha" operator="in" result="speIn"/>
+      <feComposite in="lit" in2="speIn" operator="arithmetic" k1="0" k2="1" k3=".6" k4="0" result="shiny"/>
+      <feComposite in="shiny" in2="SourceAlpha" operator="in"/>
+    </filter>
+
+    <!-- forged round bar: wide soft bevel so strokes read as rods -->
+    <filter id="fBar" x="-4%" y="-12%" width="108%" height="135%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3.2" result="b"/>
+      <feDiffuseLighting in="b" surfaceScale="6" diffuseConstant="1.2" lighting-color="#fff" result="dif"><feDistantLight azimuth="225" elevation="50"/></feDiffuseLighting>
+      <feSpecularLighting in="b" surfaceScale="6" specularConstant="1.1" specularExponent="16" lighting-color="#fff4e6" result="spe"><feDistantLight azimuth="225" elevation="38"/></feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="dif" operator="arithmetic" k1="1.2" k2="0" k3="0" k4="0" result="lit"/>
+      <feComposite in="spe" in2="SourceAlpha" operator="in" result="speIn"/>
+      <feComposite in="lit" in2="speIn" operator="arithmetic" k1="0" k2="1" k3=".7" k4="0" result="shiny"/>
+      <feComposite in="shiny" in2="SourceAlpha" operator="in" result="face"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="sh"/><feOffset dx="5" dy="8" result="sho"/>
+      <feFlood flood-color="#5a4a3a" flood-opacity=".35"/><feComposite in2="sho" operator="in" result="shadow"/>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="face"/></feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<p class="label">案1　錆の鉄<small>コールテン鋼のような錆。縁は腐食で少し欠け、浮き出た鉄の塊として光が当たる</small></p>
+<header class="t a" id="a">
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <svg class="ttl" viewBox="0 0 1200 320" role="img" aria-label="パブリックアートレンタル アイエル">
+    <g fill="url(#pRust)" font-family="'Dela Gothic One', sans-serif">
+      <text x="4" y="78" font-size="68" letter-spacing="2" filter="url(#fRustS)">パブリックアートレンタル</text>
+      <text x="0" y="290" font-size="196" letter-spacing="8" filter="url(#fRust)">アイエル</text>
+    </g>
+  </svg>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<p class="label">案2　黒皮鉄板に磨き鉄の文字<small>黒皮（くろかわ）の鉄板にリベット。文字はヘアラインの鉄を厚く立ち上げた銘板風</small></p>
+<header class="t b" id="b">
+  <span class="rivet r1"></span><span class="rivet r2"></span><span class="rivet r3"></span><span class="rivet r4"></span>
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <svg class="ttl" viewBox="0 0 1200 320" role="img" aria-label="パブリックアートレンタル アイエル">
+    <g fill="url(#pBrushed)" filter="url(#fSteel)" font-family="'Dela Gothic One', sans-serif">
+      <text x="4" y="78" font-size="68" letter-spacing="2">パブリックアートレンタル</text>
+      <text x="0" y="290" font-size="196" letter-spacing="8">アイエル</text>
+    </g>
+  </svg>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<p class="label">案3　焼け色の鉄と溶接<small>熱で青・紫・茶・金に変わった鋼を、厚みのある文字に。下に溶接ビードと火花</small></p>
+<header class="t c" id="c">
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <svg class="ttl" viewBox="0 0 1200 320" role="img" aria-label="パブリックアートレンタル アイエル">
+    <g fill="url(#pHeat)" filter="url(#fSteel)" font-family="'Dela Gothic One', sans-serif">
+      <text x="4" y="78" font-size="68" letter-spacing="2">パブリックアートレンタル</text>
+      <text x="0" y="290" font-size="196" letter-spacing="8">アイエル</text>
+    </g>
+  </svg>
+  <span class="bead" aria-hidden="true"></span>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<p class="label">案4　黒皮鉄板の切り抜き<small>厚い黒皮鉄板を「アイエル」の形に切り抜き、裏から灯りが漏れる看板風。切り口の厚みも見える</small></p>
+<header class="t d" id="d">
+  <svg class="ttl" viewBox="0 0 1200 420" role="img" aria-label="パブリックアートレンタル アイエル">
+    <defs>
+      <mask id="cut" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="420">
+        <rect width="1200" height="420" fill="#fff"/>
+        <text x="48" y="345" font-size="190" letter-spacing="8" font-family="'Dela Gothic One', sans-serif" fill="#000">アイエル</text>
+      </mask>
+      <radialGradient id="glow" cx="34%" cy="66%" r="60%">
+        <stop offset="0" stop-color="#fff2c8"/><stop offset=".35" stop-color="#ffb347"/><stop offset=".7" stop-color="#d9631e"/><stop offset="1" stop-color="#5a1f08"/>
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="420" fill="url(#glow)"/>
+    <rect width="1200" height="420" fill="url(#pMill)" mask="url(#cut)" filter="url(#fPlate)"/>
+    <text x="52" y="150" font-size="66" letter-spacing="2" font-family="'Dela Gothic One', sans-serif" fill="url(#pBrushed)" filter="url(#fSteel)">パブリックアートレンタル</text>
+  </svg>
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <p class="cap">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+  <span class="rivet r2"></span><span class="rivet r4"></span>
+</header>
+
+<p class="label">案5　鍛えた鉄の棒<small>文字を鍛鉄の丸棒で描き、針金が芽吹く。明るく親しみやすい</small></p>
+<header class="t e" id="e">
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <svg class="ttl" viewBox="0 0 1200 320" role="img" aria-label="パブリックアートレンタル アイエル">
+    <g fill="none" stroke="url(#pForged)" stroke-linejoin="round" stroke-linecap="round" filter="url(#fBar)" font-family="'Kiwi Maru', serif">
+      <text x="4" y="76" font-size="66" stroke-width="4" letter-spacing="3">パブリックアートレンタル</text>
+      <text x="0" y="285" font-size="190" stroke-width="11" letter-spacing="14">アイエル</text>
+      <path d="M840 300 C 900 280, 920 230, 960 238 S 1020 290, 1045 225 S 1070 120, 1105 145 S 1120 210, 1088 195 S 1075 140, 1120 95 S 1180 70, 1188 52" stroke-width="10"/>
+    </g>
+    <g filter="url(#fBar)">
+      <path d="M1120 95 C 1092 58, 1056 66, 1064 94 C 1072 116, 1108 114, 1120 95 Z" fill="url(#pRust)"/>
+      <path d="M1045 225 C 1028 190, 994 194, 998 216 C 1002 236, 1032 240, 1045 225 Z" fill="#6f8b4e"/>
+      <circle cx="1188" cy="52" r="9" fill="url(#pForged)"/>
+    </g>
+  </svg>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<script>
+  var c = document.getElementById('c');
+  for (var i = 0; i < 26; i++) {
+    var s = document.createElement('span');
+    s.className = 'spark';
+    s.style.left = (50 + Math.random() * 6) + '%';
+    s.style.top = (72 + Math.random() * 6) + '%';
+    s.style.setProperty('--dx', (Math.random() * 220 - 60) + 'px');
+    s.style.setProperty('--dy', (-Math.random() * 160 + 40) + 'px');
+    s.style.animationDelay = (Math.random() * 1.6) + 's';
+    c.appendChild(s);
+  }
+</script>
+</body>
+</html>

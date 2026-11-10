@@ -1,0 +1,5 @@
+# tools/ のプログラムに必要な Python のライブラリ
+#   pip install -r tools/requirements.txt
+numpy
+onnxruntime      # 背景除去AI（tools/office-images/1_cutout.py）
+imageio-ffmpeg   # 画像・動画の読み書き（ffmpeg が同梱されている）

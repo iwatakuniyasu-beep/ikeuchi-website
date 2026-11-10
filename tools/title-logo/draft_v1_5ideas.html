@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>アイエル タイトル案（鉄の質感）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Kiwi+Maru:wght@500&family=Zen+Maru+Gothic:wght@700;900&family=Zen+Kaku+Gothic+New:wght@500;700&family=Archivo+Black&display=swap">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0; background:#ddd; font-family:'Zen Kaku Gothic New', sans-serif;}
+  .label{max-width:1200px; margin:0 auto; padding:26px 20px 8px; font-weight:700; font-size:15px; color:#333;}
+  .label small{font-weight:500; color:#666; margin-left:8px;}
+  .t{position:relative; max-width:1200px; margin:0 auto; min-height:400px; overflow:hidden; display:flex; flex-direction:column; justify-content:center; padding:48px 56px;}
+  .t .en{font-family:'Archivo Black', sans-serif; letter-spacing:.32em; font-size:13px; margin:0 0 14px;}
+  .t h1{margin:0; line-height:1.15; font-weight:400;}
+  .t h1 .l1{display:block; font-size:clamp(30px,5vw,62px);}
+  .t h1 .l2{display:block; font-size:clamp(64px,11vw,150px); letter-spacing:.04em;}
+  .t .sub{margin:16px 0 0; font-size:15px;}
+  .grain::after{content:""; position:absolute; inset:0; pointer-events:none; opacity:.18; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+  .rivet{position:absolute; width:16px; height:16px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #fff 0, #c9cdd2 18%, #6c7177 60%, #2b2e32 100%); box-shadow:0 2px 3px rgba(0,0,0,.5);}
+  .r1{top:18px; left:18px;} .r2{top:18px; right:18px;} .r3{bottom:18px; left:18px;} .r4{bottom:18px; right:18px;}
+
+  /* 1 ─ 錆（コールテン鋼） */
+  .a{background:radial-gradient(ellipse at 30% 40%, #2a1d16, #120c09 70%); color:#e9d8c6;}
+  .a .en{color:#c8743a;}
+  .a h1 span{background:url(textures/tex-rust.jpg) center/cover; -webkit-background-clip:text; background-clip:text; color:transparent;
+    font-family:'Dela Gothic One', sans-serif; filter:drop-shadow(0 2px 0 rgba(0,0,0,.6)) drop-shadow(0 0 18px rgba(200,110,50,.25));}
+  .a h1 .l2{background-size:70% auto; background-position:40% 45%;}
+  .a .sub{color:#bfa58f;}
+
+  /* 2 ─ ヘアライン鉄板に刻印 */
+  .b{background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, rgba(0,0,0,.05) 1px 3px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 7px, rgba(0,0,0,.03) 7px 13px),
+      linear-gradient(180deg, #b9bec4 0%, #8e949b 45%, #a7adb3 55%, #7d838a 100%);
+     color:#2d3136; border:6px solid #5e636a; box-shadow:inset 0 2px 0 rgba(255,255,255,.5), inset 0 -3px 0 rgba(0,0,0,.25);}
+  .b .en{color:#3b4046;}
+  .b h1{font-family:'Zen Maru Gothic', sans-serif; font-weight:900;}
+  .b h1 span{color:#3a3f45; text-shadow:0 1px 0 rgba(255,255,255,.55), 0 -1px 0 rgba(0,0,0,.45);}
+  .b h1 .l2{background:url(textures/tex-rust.jpg) 45% 40%/60% auto; -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:none;
+    filter:drop-shadow(0 1px 0 rgba(255,255,255,.6)) drop-shadow(0 -2px 0 rgba(0,0,0,.45));}
+  .b .sub{color:#2f3338; font-weight:700;}
+
+  /* 3 ─ 焼け色（テンパーカラー）と溶接の火花 */
+  .c{background:radial-gradient(ellipse at 70% 60%, #232733, #0c0d11 70%); color:#cfd3dc;}
+  .c .en{color:#9aa3b5;}
+  .c h1 span{font-family:'Dela Gothic One', sans-serif;
+    background:linear-gradient(100deg, #d9c27a 0%, #c98a3b 18%, #8a3f7d 38%, #3d5fb8 55%, #5fa0c9 70%, #c9d3df 86%, #e0c983 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 0 10px rgba(90,120,220,.25));}
+  .c .bead{display:block; height:14px; width:min(640px,80%); margin-top:10px; border-radius:7px;
+    background:repeating-radial-gradient(circle at 7px 7px, #f6f0e6 0 2px, #b9b3ab 3px, #6d6862 6px, transparent 7px) 0 0/12px 14px, linear-gradient(90deg, #ffcf7a, #ff7a2a 30%, #9b9590 60%, #6d6862);
+    box-shadow:0 0 18px rgba(255,140,60,.55);}
+  .spark{position:absolute; width:3px; height:3px; border-radius:50%; background:#ffd27a; box-shadow:0 0 8px 2px #ff9a3a; animation:fly 1.6s ease-out infinite; opacity:0;}
+  @keyframes fly{0%{opacity:1; transform:translate(0,0);} 100%{opacity:0; transform:translate(var(--dx),var(--dy));}}
+  .c .sub{color:#9aa3b5;}
+
+  /* 4 ─ 鉄板の切り抜き（向こうに作品が見える） */
+  .d{background:url(textures/tex-steel.jpg) center/cover; color:#fff;}
+  .d::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,24,30,.55), rgba(20,24,30,.75));}
+  .d > *{position:relative;}
+  .d .en{color:#ffd166;}
+  .d h1 span{font-family:'Dela Gothic One', sans-serif;}
+  .d h1 .l1{color:#f2f4f7; text-shadow:0 2px 0 #0b0d10;}
+  .d h1 .l2{background:url(../../shared-media/2026-10_photos/color-1.jpg) 50% 55%/140% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 4px 0 #0b0d10) drop-shadow(0 0 1px rgba(255,255,255,.9));}
+  .d .sub{color:#e6e9ee;}
+
+  /* 5 ─ 針金の線（鍛鉄のライン） */
+  .e{background:#efece6; color:#2b2622;}
+  .e .en{color:#8a5a3b;}
+  .e h1{font-family:'Kiwi Maru', serif; font-weight:500;}
+  .e h1 .l1{color:#2b2622;}
+  .e h1 .l2{font-family:'Kiwi Maru', serif; font-weight:500; color:transparent; -webkit-text-stroke:3px #3a2a20; letter-spacing:.1em;
+    filter:drop-shadow(2px 3px 0 rgba(200,116,58,.45));}
+  .e svg.wire{position:absolute; right:30px; top:30px; width:min(42%,460px); height:auto; pointer-events:none;}
+  .e .sub{color:#5a524b;}
+
+  @media (max-width:700px){ .t{padding:36px 22px; min-height:300px;} .e svg.wire{opacity:.35; width:70%;} }
+  @media (prefers-reduced-motion:reduce){ .spark{display:none;} }
+</style>
+</head>
+<body>
+
+<p class="label">案1　錆の鉄<small>作品「無題2」の本物の錆を文字に使用。重厚・アート寄り</small></p>
+<header class="t a grain" id="a">
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <h1><span class="l1">パブリックアートレンタル</span><span class="l2">アイエル</span></h1>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<p class="label">案2　鉄板に刻印<small>ヘアライン仕上げの鉄板にリベット。文字は刻み込んだ表現、丸ゴシックで親しみも</small></p>
+<header class="t b grain" id="b">
+  <span class="rivet r1"></span><span class="rivet r2"></span><span class="rivet r3"></span><span class="rivet r4"></span>
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <h1><span class="l1">パブリックアートレンタル</span><span class="l2">アイエル</span></h1>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<p class="label">案3　焼け色と溶接<small>熱した鉄に出る青・紫・金の「焼け色」と、溶接ビード・火花（火花は動きます）</small></p>
+<header class="t c grain" id="c">
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <h1><span class="l1">パブリックアートレンタル</span><span class="l2">アイエル</span></h1>
+  <span class="bead" aria-hidden="true"></span>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<p class="label">案4　鉄板の切り抜き<small>「卵」の編んだ鉄を背景に、「アイエル」の形に切り抜いた向こうに「彩りの鉄」の色が見える</small></p>
+<header class="t d" id="d">
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <h1><span class="l1">パブリックアートレンタル</span><span class="l2">アイエル</span></h1>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<p class="label">案5　針金の線<small>針金や鉄筋の作品のように、線で描く文字と芽吹く針金。明るく親しみやすい</small></p>
+<header class="t e grain" id="e">
+  <svg class="wire" viewBox="0 0 460 300" aria-hidden="true">
+    <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#2b2622"/><stop offset=".5" stop-color="#6b4a33"/><stop offset="1" stop-color="#2b2622"/></linearGradient></defs>
+    <path d="M10 280 C 90 250, 120 200, 160 210 S 230 270, 260 200 S 300 80, 340 110 S 360 190, 320 170 S 300 110, 360 60 S 440 40, 450 20" fill="none" stroke="url(#g)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M360 60 C 330 20, 290 30, 300 60 C 310 85, 350 80, 360 60 Z" fill="#c8743a" stroke="#2b2622" stroke-width="3"/>
+    <path d="M260 200 C 240 160, 200 165, 205 190 C 210 210, 245 215, 260 200 Z" fill="#7a9b57" stroke="#2b2622" stroke-width="3"/>
+    <circle cx="450" cy="20" r="7" fill="#2b2622"/>
+  </svg>
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <h1><span class="l1">パブリックアートレンタル</span><span class="l2">アイエル</span></h1>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<script>
+  // welding sparks for design 3
+  var c = document.getElementById('c');
+  for (var i = 0; i < 26; i++) {
+    var s = document.createElement('span');
+    s.className = 'spark';
+    s.style.left = (52 + Math.random() * 8) + '%';
+    s.style.top = (68 + Math.random() * 6) + '%';
+    s.style.setProperty('--dx', (Math.random() * 220 - 60) + 'px');
+    s.style.setProperty('--dy', (-Math.random() * 160 + 40) + 'px');
+    s.style.animationDelay = (Math.random() * 1.6) + 's';
+    c.appendChild(s);
+  }
+</script>
+</body>
+</html>

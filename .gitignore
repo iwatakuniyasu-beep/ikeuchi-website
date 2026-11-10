@@ -1,12 +1,22 @@
-# 元動画（大きすぎてGitHubに置けない）
-movie/
-# 接続情報などの秘密ファイル
+# ===== GitHub に入れないもの =====
+# 秘密の情報（絶対に入れない）
 *接続情報*
 *.env
 *secret*
-# ローカル設定・作業用
-.claude/
-/website2-top.jpg
 
-# 撮影データの元ファイル（大きいのでGitHubには置かない）
+# 大きすぎる元データ（このパソコンにだけ置く）
+#   movie/    … 元の動画（作品映像）
+#   20261020/ … 撮影データの元ファイル（HEIC・MOV）
+#   models/   … 背景除去AI（u2net.onnx 約170MB。models/README.txt の手順で入手）
+/movie/
 /20261020/
+tools/office-images/models/*.onnx
+
+# 別の仕組み（AI動画の自動生成。このサイトとは別に管理）
+/studio/
+
+# 作業用
+.claude/
+__pycache__/
+*.pyc
+/website2-top.jpg

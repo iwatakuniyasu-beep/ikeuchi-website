@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>アイエル タイトル案5 アレンジ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&family=Zen+Kaku+Gothic+New:wght@500;700&family=Archivo+Black&display=swap">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0; background:#d6d6d6; font-family:'Zen Kaku Gothic New', sans-serif;}
+  .label{max-width:1200px; margin:0 auto; padding:26px 20px 8px; font-weight:700; font-size:15px; color:#333;}
+  .label small{font-weight:500; color:#666; margin-left:8px;}
+  .t{position:relative; max-width:1200px; margin:0 auto; overflow:hidden; padding:44px 52px 40px;}
+  .t .en{font-family:'Archivo Black', sans-serif; letter-spacing:.32em; font-size:13px; margin:0 0 6px;}
+  .t svg.ttl{display:block; width:100%; height:auto; overflow:visible;}
+  .t .sub{margin:8px 0 0; font-size:15px;}
+  .ref{background:radial-gradient(ellipse at 20% 30%, #f6f3ee, #e6e1d8); color:#2b2622;} .ref .en{color:#8a5a3b;} .ref .sub{color:#5a524b;}
+  .v1{background:radial-gradient(ellipse at 25% 30%, #fbf6ee, #ece2d2); color:#3a2a20;} .v1 .en{color:#b0592a;} .v1 .sub{color:#6b5545;}
+  .v2{background:url(textures/tex2-millscale.jpg) center/cover; color:#dfe3e8; box-shadow:inset 0 0 80px rgba(0,0,0,.65);} .v2 .en{color:#f0a868;} .v2 .sub{color:#c9ced4;}
+  .v3{background:linear-gradient(180deg, #f7f4ee, #ebe6dc); color:#2b2622;} .v3 .en{color:#8a5a3b;} .v3 .sub{color:#5a524b;}
+  .v4{background:radial-gradient(ellipse at 30% 30%, #e7f2ea, #cfe3d6); color:#1d2b24;} .v4 .en{color:#2f6b4f;} .v4 .sub{color:#3d5247;}
+  @media (max-width:700px){ .t{padding:30px 20px 26px;} }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="pRust" patternUnits="userSpaceOnUse" width="1400" height="560"><image href="textures/tex2-rust.jpg" width="1400" height="560"/></pattern>
+    <pattern id="pBrushed" patternUnits="userSpaceOnUse" width="1400" height="560"><image href="textures/tex2-brushed.jpg" width="1400" height="560"/></pattern>
+    <pattern id="pForged" patternUnits="userSpaceOnUse" width="1400" height="560"><image href="textures/tex2-forged.jpg" width="1400" height="560"/></pattern>
+    <!-- forged round bar: soft wide bevel so strokes read as rods -->
+    <filter id="fBar" x="-4%" y="-12%" width="108%" height="135%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3.2" result="b"/>
+      <feDiffuseLighting in="b" surfaceScale="6" diffuseConstant="1.2" lighting-color="#fff" result="dif"><feDistantLight azimuth="225" elevation="50"/></feDiffuseLighting>
+      <feSpecularLighting in="b" surfaceScale="6" specularConstant="1.1" specularExponent="16" lighting-color="#fff4e6" result="spe"><feDistantLight azimuth="225" elevation="38"/></feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="dif" operator="arithmetic" k1="1.2" k2="0" k3="0" k4="0" result="lit"/>
+      <feComposite in="spe" in2="SourceAlpha" operator="in" result="speIn"/>
+      <feComposite in="lit" in2="speIn" operator="arithmetic" k1="0" k2="1" k3=".7" k4="0" result="shiny"/>
+      <feComposite in="shiny" in2="SourceAlpha" operator="in" result="face"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="sh"/><feOffset dx="5" dy="8" result="sho"/>
+      <feFlood flood-color="#4a3a2a" flood-opacity=".35"/><feComposite in2="sho" operator="in" result="shadow"/>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="face"/></feMerge>
+    </filter>
+    <!-- same bar, darker shadow for the dark plate -->
+    <filter id="fBarDark" x="-4%" y="-12%" width="108%" height="135%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3.2" result="b"/>
+      <feDiffuseLighting in="b" surfaceScale="6" diffuseConstant="1.15" lighting-color="#fff" result="dif"><feDistantLight azimuth="225" elevation="48"/></feDiffuseLighting>
+      <feSpecularLighting in="b" surfaceScale="6" specularConstant="1.4" specularExponent="24" lighting-color="#fff" result="spe"><feDistantLight azimuth="225" elevation="36"/></feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="dif" operator="arithmetic" k1="1.15" k2="0" k3="0" k4="0" result="lit"/>
+      <feComposite in="spe" in2="SourceAlpha" operator="in" result="speIn"/>
+      <feComposite in="lit" in2="speIn" operator="arithmetic" k1="0" k2="1" k3=".9" k4="0" result="shiny"/>
+      <feComposite in="shiny" in2="SourceAlpha" operator="in" result="face"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="sh"/><feOffset dx="4" dy="8" result="sho"/>
+      <feFlood flood-color="#000" flood-opacity=".8"/><feComposite in2="sho" operator="in" result="shadow"/>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="face"/></feMerge>
+    </filter>
+    <!-- reusable leaf (points right, base at 0,0) -->
+    <path id="leaf" d="M0 0 C 10 -26, 44 -30, 60 -8 C 40 8, 14 10, 0 0 Z"/>
+  </defs>
+</svg>
+
+<p class="label">元の案5　鍛えた鉄の棒<small>（比較用）</small></p>
+<header class="t ref">
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <svg class="ttl" viewBox="0 0 1200 320" role="img" aria-label="パブリックアートレンタル アイエル">
+    <g fill="none" stroke="url(#pForged)" stroke-linejoin="round" stroke-linecap="round" filter="url(#fBar)" font-family="'Kiwi Maru', serif">
+      <text x="4" y="76" font-size="66" stroke-width="4" letter-spacing="3">パブリックアートレンタル</text>
+      <text x="0" y="285" font-size="190" stroke-width="11" letter-spacing="14">アイエル</text>
+      <path d="M840 300 C 900 280, 920 230, 960 238 S 1020 290, 1045 225 S 1070 120, 1105 145 S 1120 210, 1088 195 S 1075 140, 1120 95 S 1180 70, 1188 52" stroke-width="10"/>
+    </g>
+    <g filter="url(#fBar)">
+      <path d="M1120 95 C 1092 58, 1056 66, 1064 94 C 1072 116, 1108 114, 1120 95 Z" fill="url(#pRust)"/>
+      <path d="M1045 225 C 1028 190, 994 194, 998 216 C 1002 236, 1032 240, 1045 225 Z" fill="#6f8b4e"/>
+      <circle cx="1188" cy="52" r="9" fill="url(#pForged)"/>
+    </g>
+  </svg>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<p class="label">5-1　錆びた鉄の棒<small>文字も針金も錆色の丸棒に。屋外に立つ作品のような、あたたかい鉄</small></p>
+<header class="t v1">
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <svg class="ttl" viewBox="0 0 1200 320" role="img" aria-label="パブリックアートレンタル アイエル">
+    <g fill="none" stroke="url(#pRust)" stroke-linejoin="round" stroke-linecap="round" filter="url(#fBar)" font-family="'Kiwi Maru', serif">
+      <text x="4" y="76" font-size="66" stroke-width="4.5" letter-spacing="3">パブリックアートレンタル</text>
+      <text x="0" y="285" font-size="190" stroke-width="13" letter-spacing="14">アイエル</text>
+      <path d="M840 300 C 900 280, 920 230, 960 238 S 1020 290, 1045 225 S 1070 120, 1105 145 S 1120 210, 1088 195 S 1075 140, 1120 95 S 1180 70, 1188 52" stroke-width="11"/>
+    </g>
+    <g filter="url(#fBar)">
+      <path d="M1120 95 C 1092 58, 1056 66, 1064 94 C 1072 116, 1108 114, 1120 95 Z" fill="#3d3330"/>
+      <path d="M1045 225 C 1028 190, 994 194, 998 216 C 1002 236, 1032 240, 1045 225 Z" fill="#5f7a43"/>
+      <circle cx="1188" cy="52" r="10" fill="url(#pRust)"/>
+    </g>
+  </svg>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<p class="label">5-2　黒皮鉄板に銀の鉄棒<small>黒皮の鉄板を背景に、磨いた銀色の丸棒で文字を描く。夜の展示のように引き締まった印象</small></p>
+<header class="t v2">
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <svg class="ttl" viewBox="0 0 1200 320" role="img" aria-label="パブリックアートレンタル アイエル">
+    <g fill="none" stroke="url(#pBrushed)" stroke-linejoin="round" stroke-linecap="round" filter="url(#fBarDark)" font-family="'Kiwi Maru', serif">
+      <text x="4" y="76" font-size="66" stroke-width="4.5" letter-spacing="3">パブリックアートレンタル</text>
+      <text x="0" y="285" font-size="190" stroke-width="12" letter-spacing="14">アイエル</text>
+      <path d="M840 300 C 900 280, 920 230, 960 238 S 1020 290, 1045 225 S 1070 120, 1105 145 S 1120 210, 1088 195 S 1075 140, 1120 95 S 1180 70, 1188 52" stroke-width="10"/>
+    </g>
+    <g filter="url(#fBarDark)">
+      <path d="M1120 95 C 1092 58, 1056 66, 1064 94 C 1072 116, 1108 114, 1120 95 Z" fill="url(#pRust)"/>
+      <path d="M1045 225 C 1028 190, 994 194, 998 216 C 1002 236, 1032 240, 1045 225 Z" fill="#c9a24a"/>
+      <circle cx="1188" cy="52" r="9" fill="url(#pBrushed)"/>
+    </g>
+  </svg>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<p class="label">5-3　四季の葉が芽吹く針金<small>文字の下を一本の針金が流れ、春・夏・秋・冬の色の葉がつく。季節ボタンともつながるデザイン</small></p>
+<header class="t v3">
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <svg class="ttl" viewBox="0 0 1200 420" role="img" aria-label="パブリックアートレンタル アイエル">
+    <g fill="none" stroke="url(#pForged)" stroke-linejoin="round" stroke-linecap="round" filter="url(#fBar)" font-family="'Kiwi Maru', serif">
+      <text x="4" y="76" font-size="66" stroke-width="4" letter-spacing="3">パブリックアートレンタル</text>
+      <text x="0" y="276" font-size="190" stroke-width="11" letter-spacing="14">アイエル</text>
+      <path d="M6 372 C 120 340, 210 400, 330 368 S 520 336, 620 366 S 800 400, 900 360 S 1060 320, 1110 270 S 1172 180, 1150 128 S 1100 96, 1112 64 S 1160 34, 1188 44" stroke-width="9"/>
+    </g>
+    <g filter="url(#fBar)" stroke="#2b2622" stroke-width="2.5">
+      <use href="#leaf" transform="translate(190 364) rotate(-115) scale(1.25)" fill="#f2a7b8"/>
+      <use href="#leaf" transform="translate(500 350) rotate(-70) scale(1.25)" fill="#6f9b4e"/>
+      <use href="#leaf" transform="translate(790 388) rotate(-110) scale(1.25)" fill="url(#pRust)"/>
+      <use href="#leaf" transform="translate(1060 318) rotate(-55) scale(1.2)" fill="#dfe8ef"/>
+      <use href="#leaf" transform="translate(1150 130) rotate(-160) scale(.9)" fill="#6f9b4e"/>
+    </g>
+    <g font-family="'Zen Kaku Gothic New', sans-serif" font-size="17" font-weight="700" fill="#8a7d70">
+      <text x="216" y="404">春</text><text x="456" y="308">夏</text><text x="820" y="414">秋</text><text x="1092" y="352">冬</text>
+    </g>
+  </svg>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+<p class="label">5-4　白く塗った鉄の棒<small>白卵のように白く塗装した丸棒。ミントの背景で、いちばん明るく親しみやすい</small></p>
+<header class="t v4">
+  <p class="en">PUBLIC ART RENTAL — AIEL</p>
+  <svg class="ttl" viewBox="0 0 1200 320" role="img" aria-label="パブリックアートレンタル アイエル">
+    <g fill="none" stroke="#f3f0ea" stroke-linejoin="round" stroke-linecap="round" filter="url(#fBar)" font-family="'Kiwi Maru', serif">
+      <text x="4" y="76" font-size="66" stroke-width="5" letter-spacing="3">パブリックアートレンタル</text>
+      <text x="0" y="285" font-size="190" stroke-width="14" letter-spacing="14">アイエル</text>
+      <path d="M840 300 C 900 280, 920 230, 960 238 S 1020 290, 1045 225 S 1070 120, 1105 145 S 1120 210, 1088 195 S 1075 140, 1120 95 S 1180 70, 1188 52" stroke-width="11"/>
+    </g>
+    <g filter="url(#fBar)">
+      <path d="M1120 95 C 1092 58, 1056 66, 1064 94 C 1072 116, 1108 114, 1120 95 Z" fill="#e8743b"/>
+      <path d="M1045 225 C 1028 190, 994 194, 998 216 C 1002 236, 1032 240, 1045 225 Z" fill="#f2c14e"/>
+      <circle cx="1188" cy="52" r="10" fill="#f3f0ea"/>
+    </g>
+  </svg>
+  <p class="sub">鉄の作家・池内卓也の作品を、オフィスにレンタル。</p>
+</header>
+
+</body>
+</html>
