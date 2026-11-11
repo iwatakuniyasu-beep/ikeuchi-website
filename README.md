@@ -20,7 +20,7 @@ Ikeuchi/
 │   ├─ index.html           　案A・案Bを選ぶページ
 │   ├─ 01-entrance/         　案A（紺×オレンジ）
 │   ├─ 02-workplace/        　案B（グリーン×イエロー）
-│   ├─ works/               　作品ページ・作家ページ・作品リスト ※自動生成（直接編集しない）
+│   ├─ showwindow/          　百貨店・ブランド店のショーウィンドウ向けページ ※自動生成（直接編集しない）
 │   │   ├─ index.html       　　作品リスト
 │   │   ├─ artist.html      　　作家ページ
 │   │   ├─ <作品ID>.html    　　作品ごとのページ（例 tamago.html ＝「卵」）
@@ -59,7 +59,7 @@ Ikeuchi/
 │   ├─ check_links.py       　リンク切れチェック（公開前に実行）
 │   ├─ aile-site/build_pages.py 　data/ を読んで rental_office-aile のページを作る
 │   ├─ title-logo/          　タイトルロゴを作る（make_title_logo.py、テクスチャ、これまでの案）
-│   ├─ office-images/       　「オフィスに置いたら」の画像を作る（1_cutout.py → 2_place_in_rooms.py）
+│   ├─ office-images/       　「オフィスに置いたら」「ショーウィンドウに飾ったら」の画像を作る（1_cutout.py → 2_place_in_rooms.py ／ 3_place_in_windows.py）
 │   │   ├─ cutouts/         　　作品を切り抜いた透過PNG
 │   │   └─ models/          　　背景除去AI（GitHubには入れない。README.txt 参照）
 │   └─ artist-video/        　作家の15秒ループ動画を作る

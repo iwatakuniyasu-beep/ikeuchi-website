@@ -96,7 +96,7 @@ HOR, F, CAM = 430, 1000.0, 1.5          # horizon y, focal length (px), camera h
 WALL_Y = 640                             # where floor meets back wall
 
 # ---------------------------------------------------------------- composite
-def place(bg, obj, alpha, height_m, zpos, xpos):
+def place(bg, obj, alpha, height_m, zpos, xpos, reflect=True):
     out = bg.copy()
     ys, xs = np.where(alpha > .5)
     y0, y1, x0, x1 = ys.min(), ys.max(), xs.min(), xs.max()
@@ -122,7 +122,7 @@ def place(bg, obj, alpha, height_m, zpos, xpos):
         if ty1 <= ty0 or tx1 <= tx0: return
         L = layer[ty0 - t:ty1 - t, tx0 - left:tx1 - left]; A = a[ty0 - t:ty1 - t, tx0 - left:tx1 - left][..., None]
         out[ty0:ty1, tx0:tx1] = out[ty0:ty1, tx0:tx1] * (1 - A) + L * A
-    paste(ref * .85, ref_a, base_y)
+    if reflect: paste(ref * .85, ref_a, base_y)
     # light the piece like the room (slightly warm, matched brightness)
     lum = (obj * alpha[..., None]).sum((0, 1)) / max(alpha.sum(), 1)
     obj = obj * (150 / max(lum.mean(), 1)) ** .35 * np.array([1.02, 1.0, .96])

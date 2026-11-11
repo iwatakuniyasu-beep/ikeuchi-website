@@ -20,6 +20,8 @@ a{color:inherit;}
 .wk-office-img img{width:100%; height:100%; object-fit:cover;}
 .wk-office figcaption{margin-top:8px; font-size:13px; color:#8a7d70;}
 .wk-office figcaption b{display:inline-block; margin-right:10px; color:#1E2230; background:#FFE6D8; padding:2px 10px; border-radius:20px;}
+.wk-window figcaption b{background:#1E2230; color:#F2D48A;}
+.wk-window figcaption a{display:inline-block; margin-left:8px; font-weight:700; color:#FF5A1F;}
 .wk-kick{margin:0; font-size:13px; font-weight:700; color:#FF5A1F;}
 .wk-info h1{font-size:clamp(32px,4.4vw,52px); line-height:1.3; margin:6px 0 18px; font-weight:900;}
 .wk-facts{margin:0 0 20px; display:grid; grid-template-columns:auto 1fr; gap:8px 16px; font-size:15px; border-top:2px solid #1E2230; padding-top:14px;}
@@ -106,6 +108,7 @@ a{color:inherit;}
 .ct-chip small{font-weight:500; opacity:.7; margin-left:4px;}
 .ct-toggle{margin-left:auto; display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; cursor:pointer;}
 .ct-toggle input{width:18px; height:18px; accent-color:#FF5A1F;}
+.ct-toggle2{margin-left:12px;}
 .ct-count{max-width:1180px; margin:0 auto; padding:16px 24px 0; font-size:13px; color:#8a7d70;}
 .ct-grid{max-width:1180px; margin:0 auto; padding:12px 24px 60px; display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:20px;}
 .ct-card{background:#fff; border:1px solid #EEE3D8; border-radius:22px; overflow:hidden; display:flex; flex-direction:column; transition:box-shadow .25s, transform .25s;}

@@ -135,7 +135,7 @@ def order():
       <div class="ai-order-head">
         <p class="ai-order-kick">REQUEST ORDER</p>
         <h2>リクエストオーダー<small>あなたの場所のための、一点を。</small></h2>
-        <p>レンタル作品のほかに、設置する場所のために新しい作品を企画・制作する「リクエストオーダー」も承ります。会社の想いや場所の歴史をうかがい、その空間にしかない一点をつくります。</p>
+        <p>レンタル作品のほかに、設置する場所のために新しい作品を企画・制作する「リクエストオーダー」も承ります。会社やブランドの想い、場所の歴史をうかがい、その空間にしかない一点をつくります。</p>
       </div>
       <div class="ai-order-points">
         <div><h4>企画から設置まで一貫</h4><p>ご相談・デザイン・制作・設置まで、有限会社アイエル物産と作家が直接担当します。</p></div>
@@ -151,7 +151,7 @@ def order():
       <ol class="ai-steps">{steps}</ol>
       <div class="ai-order-ideas">
         <h4>たとえば、こんなご依頼に</h4>
-        <ul><li>本社エントランスのシンボル</li><li>創業・周年の記念モニュメント</li><li>会社のロゴや理念をモチーフにしたオブジェ</li><li>吹き抜け・中庭・公開空地のアート</li><li>門扉・フェンスなどのロートアイアン</li></ul>
+        <ul><li>本社エントランスのシンボル</li><li>百貨店・ブランド店のシーズンのショーウィンドウ</li><li>創業・周年の記念モニュメント</li><li>会社のロゴや理念をモチーフにしたオブジェ</li><li>吹き抜け・中庭・公開空地のアート</li><li>門扉・フェンスなどのロートアイアン</li></ul>
       </div>
       <div class="ai-order-fee">
         <div><b>料金</b><span>打ち合わせのうえでお見積りします</span></div>
@@ -365,7 +365,7 @@ DESIGNS = {
   @media (max-width:560px){ .bar{padding:10px 14px; gap:10px;} .bar .logo{font-size:14px !important;} .bar .btn{padding:8px 12px; font-size:12px; white-space:nowrap; flex:none;} }
   .ai-top{--ai-radius:22px; --ai-acc2:#FFB27A;}
 """,
-    sub="鉄の作家・池内卓也の作品を、オフィスのエントランスや受付にレンタルでお届けします。季節ごとに作品を入れ替えて、毎日の景色に新しい出会いを。",
+    sub="鉄の作家・池内卓也の作品を、オフィスや百貨店・ブランド店のショーウィンドウにレンタルでお届け。季節ごとに入れ替えて、毎日の景色に新しい出会いを。",
     hero_re=r'<header class="hero">.*?</header>',
     logo_re=(r'<span class="logo">IKEUCHI<span>\.</span> for OFFICE</span>', '<span class="logo" style="font-family:\'Kiwi Maru\',serif; font-weight:500">パブリックアートレンタル <span>アイエル</span></span>'),
     nav_re=('<nav><a href="#new">新着の作品</a>', '<nav><a href="#aile-top">四季の作品</a><a href="#aile-career">作家と作品</a><a href="#new">新着の作品</a>'),
@@ -392,7 +392,7 @@ DESIGNS = {
   @media (max-width:560px){ .nav{padding:8px 8px 8px 14px; gap:8px;} .nav .logo{font-size:14px;} .nav .btn{padding:8px 12px !important; font-size:12px !important; white-space:nowrap; flex:none;} }
   .ai-top{--ai-radius:26px; --ai-acc2:#F2C14E;}
 """,
-    sub="鉄の作家・池内卓也の作品を、オフィスにレンタル。季節のボタンを押すと、流れる作品が切り替わります。",
+    sub="鉄の作家・池内卓也の作品を、オフィスやショーウィンドウにレンタル。季節のボタンを押すと、流れる作品が切り替わります。",
     hero_re=r'<section class="wrap hero">.*?</section>',
     logo_re=(r'<span class="logo">IKEUCHI<span>鉄</span></span>', '<span class="logo">パブリックアートレンタル <span>アイエル</span></span>'),
     nav_re=('<nav><a href="#new">新着の作品</a>', '<nav><a href="#aile-top">四季の作品</a><a href="#aile-career">作家と作品</a><a href="#new">新着の作品</a>'),
@@ -510,6 +510,8 @@ a{color:inherit;}
 .wk-office-img img{width:100%; height:100%; object-fit:cover;}
 .wk-office figcaption{margin-top:8px; font-size:13px; color:#8a7d70;}
 .wk-office figcaption b{display:inline-block; margin-right:10px; color:#1E2230; background:#FFE6D8; padding:2px 10px; border-radius:20px;}
+.wk-window figcaption b{background:#1E2230; color:#F2D48A;}
+.wk-window figcaption a{display:inline-block; margin-left:8px; font-weight:700; color:#FF5A1F;}
 .wk-kick{margin:0; font-size:13px; font-weight:700; color:#FF5A1F;}
 .wk-info h1{font-size:clamp(32px,4.4vw,52px); line-height:1.3; margin:6px 0 18px; font-weight:900;}
 .wk-facts{margin:0 0 20px; display:grid; grid-template-columns:auto 1fr; gap:8px 16px; font-size:15px; border-top:2px solid #1E2230; padding-top:14px;}
@@ -562,13 +564,19 @@ for i, w in enumerate(WORKS):
     prev = f'<a href="{paged[k-1]["slug"]}.html">← {e(paged[k-1]["title"])}</a>' if k > 0 else "<span></span>"
     nxt = f'<a href="{paged[k+1]["slug"]}.html">{e(paged[k+1]["title"])} →</a>' if k < len(paged) - 1 else "<span></span>"
     subj = urllib.parse.quote(f"作品「{w['title']}」のレンタルについて")
-    body = urllib.parse.quote(f"パブリックアートレンタル アイエル 御中\n\n作品「{w['title']}」のレンタルについて相談したいです。\n\n【会社名】\n【設置したい場所】\n【希望の時期・期間】\n【ご連絡先】\n")
+    body = urllib.parse.quote(f"パブリックアートレンタル アイエル 御中\n\n作品「{w['title']}」のレンタルについて相談したいです。\n\n【会社名・店舗名】\n【設置したい場所（オフィス／ショーウィンドウ など）】\n【希望の時期・期間】\n【ご連絡先】\n")
     office = ""
     if (W5 / "assets" / "office" / f'{w["slug"]}.jpg').exists():
         o = f'../assets/office/{w["slug"]}.jpg'
         office = (f'<figure class="wk-office"><div class="wk-office-img" data-lb="{o}" data-lb-cap="{e(w["title"])}（オフィスに置いたイメージ）">'
                   f'<img src="{o}" alt="{e(w["title"])}をオフィスのエントランスに置いたイメージ" loading="lazy"></div>'
                   '<figcaption><b>オフィスに置いたら</b>エントランス・受付に設置したイメージです（写真を合成した参考イメージ）</figcaption></figure>')
+    if (W5 / "assets" / "window" / f'{w["slug"]}.jpg').exists():
+        o = f'../assets/window/{w["slug"]}.jpg'
+        office += (f'<figure class="wk-office wk-window"><div class="wk-office-img" data-lb="{o}" data-lb-cap="{e(w["title"])}（ショーウィンドウに飾ったイメージ）">'
+                   f'<img src="{o}" alt="{e(w["title"])}を百貨店・ブランド店のショーウィンドウに飾ったイメージ" loading="lazy"></div>'
+                   '<figcaption><b>ショーウィンドウに飾ったら</b>百貨店・ブランド店のウィンドウに展示したイメージです（合成した参考イメージ）'
+                   '<a href="../showwindow/index.html">ショーウィンドウでのレンタル →</a></figcaption></figure>')
     (out / f'{w["slug"]}.html').write_text(PAGE.format(title=e(w["title"]), main=main, thumbs=thumbs, office=office, facts=facts_html, text=text,
                                                        film=film, subj=subj, body=body, prev=prev, next=nxt), encoding="utf-8", newline="\n")
 print("work pages:", len(paged), "->", out)
@@ -723,6 +731,7 @@ CATALOG_CSS = """
 .ct-chip small{font-weight:500; opacity:.7; margin-left:4px;}
 .ct-toggle{margin-left:auto; display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; cursor:pointer;}
 .ct-toggle input{width:18px; height:18px; accent-color:#FF5A1F;}
+.ct-toggle2{margin-left:12px;}
 .ct-count{max-width:1180px; margin:0 auto; padding:16px 24px 0; font-size:13px; color:#8a7d70;}
 .ct-grid{max-width:1180px; margin:0 auto; padding:12px 24px 60px; display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:20px;}
 .ct-card{background:#fff; border:1px solid #EEE3D8; border-radius:22px; overflow:hidden; display:flex; flex-direction:column; transition:box-shadow .25s, transform .25s;}
@@ -778,26 +787,27 @@ CATALOG_PAGE = """<!doctype html>
 <section class="ct-head">
   <p class="wk-kick"><a href="artist.html">作家　池内卓也 →</a></p>
   <h1>作品リスト</h1>
-  <p>レンタル・ご購入をご相談いただける作品の一覧です。写真にカーソルを合わせると（スマホは「詳しく見る」から）、オフィスに置いたイメージをご覧いただけます。</p>
+  <p>レンタル・ご購入をご相談いただける作品の一覧です。写真にカーソルを合わせると（スマホは「詳しく見る」から）、オフィスに置いたイメージをご覧いただけます。作品ページでは、百貨店・ブランド店の<a href="../showwindow/index.html">ショーウィンドウ</a>に飾ったイメージもご覧いただけます。</p>
 </section>
 <div class="ct-tools"><div class="ct-tools-in" role="group" aria-label="テーマで絞り込む">
   {chips}
   <label class="ct-toggle"><input type="checkbox" id="ct-office"> オフィスのイメージあり</label>
+  <label class="ct-toggle ct-toggle2"><input type="checkbox" id="ct-window"> ショーウィンドウのイメージあり</label>
 </div></div>
 <p class="ct-count" id="ct-count" aria-live="polite"></p>
 <div class="ct-grid" id="ct-grid">{cards}</div>
-<p class="ct-foot-note">※ サイズ・レンタル料金・制作期間は、作品と設置場所に合わせてお見積もりします。「オフィスに置いたイメージ」は写真を合成した参考イメージです。</p>
+<p class="ct-foot-note">※ サイズ・レンタル料金・制作期間は、作品と設置場所に合わせてお見積もりします。「オフィスに置いたイメージ」「ショーウィンドウに飾ったイメージ」は写真を合成した参考イメージです。</p>
 <div class="wk-sticky"><a class="wk-sticky-main" href="mailto:ilbussan@coral.ocn.ne.jp?subject={subj}&amp;body={body}">作品について相談する</a><a class="wk-sticky-tel" href="tel:0887540711" aria-label="電話する">電話</a></div>
 <footer class="wk-foot">パブリックアートレンタル アイエル ／ 有限会社アイエル物産　TEL 0887-54-0711 ／ 作品の写真の一部は公式サイト（iwatakuniyasu.wixsite.com/ikeuchi）掲載のものです。</footer>
 <script>
   // theme chips + "has office image" toggle
   (function(){{
     var chips = document.querySelectorAll('.ct-chip'), cards = document.querySelectorAll('.ct-card'),
-        office = document.getElementById('ct-office'), count = document.getElementById('ct-count'), theme = 'all';
+        office = document.getElementById('ct-office'), win = document.getElementById('ct-window'), count = document.getElementById('ct-count'), theme = 'all';
     function apply(){{
       var n = 0;
       cards.forEach(function(c){{
-        var show = (theme === 'all' || c.dataset.theme === theme) && (!office.checked || c.dataset.office === '1');
+        var show = (theme === 'all' || c.dataset.theme === theme) && (!office.checked || c.dataset.office === '1') && (!win.checked || c.dataset.window === '1');
         c.hidden = !show; if (show) n++;
       }});
       count.textContent = n + ' 点の作品';
@@ -805,7 +815,7 @@ CATALOG_PAGE = """<!doctype html>
     chips.forEach(function(b){{ b.addEventListener('click', function(){{
       theme = b.dataset.theme; chips.forEach(function(x){{ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }}); apply();
     }}); }});
-    office.addEventListener('change', apply); apply();
+    office.addEventListener('change', apply); win.addEventListener('change', apply); apply();
   }})();
   // go back to the design the visitor came from (A or B); fall back to design A
   var ref = document.referrer, back = document.querySelectorAll('[data-back], .wk-logo');
@@ -833,7 +843,8 @@ def catalog_page():
         k, v = note(w)
         subj = urllib.parse.quote(f"作品「{w['title']}」について")
         body = urllib.parse.quote(f"パブリックアートレンタル アイエル 御中\n\n作品「{w['title']}」（No.{i:02d}）について相談したいです。\n\n【レンタル／購入】\n【会社名】\n【設置したい場所】\n【希望の時期・期間】\n【ご連絡先】\n")
-        cards.append(f'<article class="ct-card" data-theme="{t}" data-office="{1 if has_off else 0}">{media}<div class="ct-body">'
+        has_win = (W5 / "assets" / "window" / f"{slug}.jpg").exists()
+        cards.append(f'<article class="ct-card" data-theme="{t}" data-office="{1 if has_off else 0}" data-window="{1 if has_win else 0}">{media}<div class="ct-body">'
                      f'<span class="ct-theme">{names[t]}</span><h2>{e(w["title"])}</h2>'
                      f'<p class="ct-note">{k}：{e(v)}</p>'
                      f'<dl class="ct-spec"><dt>制作年</dt><dd>{(w["year"] + "年") if w["year"] else "確認中"}</dd><dt>素材</dt><dd>鉄など</dd>'
@@ -850,3 +861,292 @@ def catalog_page():
 (out / "work.css").write_text(WORK_CSS + ARTIST_CSS + CATALOG_CSS, encoding="utf-8", newline="\n")
 (out / "index.html").write_text(catalog_page(), encoding="utf-8", newline="\n")
 print("catalogue ->", out / "index.html")
+
+# ---------------------------------------------------------------- show windows (showwindow/index.html)
+# 百貨店・ブランド店のオーナー向けページ。画像は tools/office-images/3_place_in_windows.py が作る assets/window/<slug>.jpg
+# 季節ごとの並びと説明文はここで直します。
+SW_SEASONS = [
+  ("spring", "春", "桜・新生活・母の日", [
+    ("souga", "桜の花びらが舞う、百貨店の春のウィンドウ。"),
+    ("fukko", "光の円と砂の床。旗艦店の新作発表に。"),
+    ("oka", "苔の壁と木の床。ボタニカルなコレクションに。"),
+    ("mudai1", "赤と白のストライプ。コスメ・雑貨の春のキャンペーンに。")]),
+  ("summer", "夏", "光と海・お中元", [
+    ("tou", "夏空と太陽、砂の床。リゾートコレクションに。"),
+    ("yusho", "夜の群青に舞い上がる色の羽。大型ウィンドウのシンボルに。"),
+    ("irodori", "黄色の水玉と、色をまとった鉄。夏のポップなウィンドウに。")]),
+  ("autumn", "秋", "実り・錆色・秋冬の立ち上がり", [
+    ("mudai2", "錆色のカーテンと落ち葉。秋冬コレクションの立ち上がりに。"),
+    ("minomushi", "深緑の壁と落ち葉。レザー・クラフトの店に。"),
+    ("mudai5", "木の格子と生成りの壁。家具・インテリアの店に。"),
+    ("tamago", "黒と金の輪。時計・ジュエリーの夜のウィンドウに。")]),
+  ("winter", "冬", "ホリデー・新春・バレンタイン", [
+    ("shishu", "深紅のカーテンと金の飾り。ホリデーシーズンに。"),
+    ("utage", "朱の門と金の紙吹雪。新春・初売りに。"),
+    ("mamoru", "夜に降る雪。冬のギフトシーズンに。"),
+    ("mudai3", "白と銀の雪景色。冬のコレクションに。"),
+    ("mudai4", "黒のベルベットと市松の床。ハイジュエリーに。")]),
+  ("all", "通年", "ブランドの顔として", [
+    ("tsunagu", "白い格子と石の床。百貨店の連続したウィンドウに。"),
+    ("mudai6", "レンガの壁と木の床。路面のセレクトショップに。")]),
+]
+
+SW_CSS = """*{box-sizing:border-box;}
+html{overflow-x:clip; scroll-behavior:smooth;}
+body{margin:0; background:#14161B; color:#EFE9DF; font-family:'Zen Maru Gothic', sans-serif; font-weight:500; line-height:1.9; overflow-x:clip;}
+img{display:block; max-width:100%;}
+a{color:inherit;}
+h1,h2,h3{font-family:'Shippori Mincho B1', serif; font-weight:700; letter-spacing:.02em;}
+.sw-bar{position:sticky; top:0; z-index:30; display:flex; align-items:center; gap:18px; padding:12px 24px; background:rgba(20,22,27,.9); backdrop-filter:blur(8px); border-bottom:1px solid #2A2D35;}
+.sw-logo{font-weight:900; text-decoration:none; white-space:nowrap;}
+.sw-logo span{color:#FF5A1F;}
+.sw-bar nav{display:flex; gap:18px; margin-left:auto; font-size:14px;}
+.sw-bar nav a{text-decoration:none; color:#C9C2B6; white-space:nowrap;}
+.sw-bar nav a:hover{color:#fff;}
+.sw-cta{white-space:nowrap; text-decoration:none; font-weight:900; font-size:14px; background:#C9A45C; color:#14161B; padding:8px 16px; border-radius:30px;}
+.sw-hero{position:relative; min-height:min(88vh,820px); display:flex; align-items:flex-end; overflow:hidden;}
+.sw-hero > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 40%;}
+.sw-hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,22,27,.15) 0%, rgba(20,22,27,.35) 45%, #14161B 98%);}
+.sw-hero-in{position:relative; z-index:1; max-width:1180px; width:100%; margin:0 auto; padding:0 24px 56px;}
+.sw-kick{margin:0; font-size:12px; letter-spacing:.3em; color:#C9A45C; font-weight:700;}
+.sw-hero h1{font-size:clamp(34px,5.4vw,68px); line-height:1.35; margin:10px 0 14px;}
+.sw-hero h1 .nb{display:inline-block;}
+.sw-hero p.lead{max-width:40em; margin:0; color:#DAD3C8; font-size:clamp(15px,1.4vw,17px);}
+.sw-hero-btns{display:flex; flex-wrap:wrap; gap:12px; margin-top:24px;}
+.sw-btn{display:inline-block; text-decoration:none; font-weight:900; padding:13px 24px; border-radius:40px; background:#FF5A1F; color:#fff;}
+.sw-btn.ghost{background:transparent; border:1px solid #C9A45C; color:#F2D48A;}
+.sw-wrap{max-width:1180px; margin:0 auto; padding:84px 24px;}
+.sw-eyebrow{display:block; font-size:12px; letter-spacing:.3em; color:#C9A45C; font-weight:700;}
+.sw-wrap h2{font-size:clamp(26px,3.4vw,42px); line-height:1.45; margin:8px 0 14px;}
+.sw-lead{color:#BDB5A8; max-width:46em; margin:0;}
+.sw-points{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; margin-top:36px;}
+.sw-point{background:#1C1F26; border:1px solid #2A2D35; border-radius:20px; padding:22px;}
+.sw-point b{font-family:'Shippori Mincho B1', serif; font-size:28px; color:#C9A45C;}
+.sw-point h3{font-size:19px; margin:6px 0 8px; line-height:1.5;}
+.sw-point p{margin:0; font-size:14px; color:#BDB5A8;}
+.sw-trend{margin-top:26px; padding:16px 20px; border-left:3px solid #C9A45C; background:#1A1C22; color:#BDB5A8; font-size:14px;}
+.sw-seasons{display:flex; flex-wrap:wrap; gap:8px; margin:30px 0 22px;}
+.sw-seasons button{font-family:inherit; font-weight:700; font-size:15px; cursor:pointer; border:1px solid #3A3E48; background:transparent; color:#DAD3C8; padding:9px 18px; border-radius:30px;}
+.sw-seasons button small{font-weight:500; font-size:12px; margin-left:6px; opacity:.75;}
+.sw-seasons button[aria-pressed="true"]{background:#C9A45C; border-color:#C9A45C; color:#14161B;}
+.sw-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px;}
+.sw-grid[hidden]{display:none;}
+.sw-card{margin:0; background:#1C1F26; border:1px solid #2A2D35; border-radius:22px; overflow:hidden;}
+.sw-img{aspect-ratio:16/10; cursor:zoom-in; overflow:hidden;}
+.sw-img img{width:100%; height:100%; object-fit:cover; transition:transform .6s;}
+.sw-card:hover .sw-img img{transform:scale(1.03);}
+.sw-card figcaption{padding:14px 18px 18px; display:flex; flex-direction:column; gap:4px;}
+.sw-card figcaption b{font-size:18px; font-family:'Shippori Mincho B1', serif;}
+.sw-card figcaption span{font-size:14px; color:#BDB5A8;}
+.sw-card figcaption a{align-self:flex-start; margin-top:6px; font-size:13px; font-weight:700; color:#F2D48A; text-decoration:none;}
+.sw-note{font-size:13px; color:#8F887C; margin-top:16px;}
+.sw-pair{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:32px;}
+.sw-pair div{border-top:1px solid #3A3E48; padding-top:14px;}
+.sw-pair h3{font-size:18px; margin:0 0 6px;}
+.sw-pair p{margin:0; color:#BDB5A8; font-size:14.5px;}
+.sw-pair em{font-style:normal; color:#F2D48A;}
+.sw-band{background:#EFE9DF; color:#1E2230;}
+.sw-band .sw-lead, .sw-band p{color:#4a4e5c;}
+.sw-band .sw-eyebrow{color:#9A7A3A;}
+.sw-specs{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:32px;}
+.sw-spec{background:#fff; border-radius:18px; padding:20px; border:1px solid #E2D9CB;}
+.sw-spec h3{font-size:17px; margin:0 0 6px;}
+.sw-spec p{margin:0; font-size:14px;}
+.sw-steps{list-style:none; margin:36px 0 0; padding:0; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:14px;}
+.sw-steps li{background:#1C1F26; border:1px solid #2A2D35; border-radius:18px; padding:18px 16px;}
+.sw-steps b{font-family:'Shippori Mincho B1', serif; color:#C9A45C; font-size:22px;}
+.sw-steps h3{font-size:16px; margin:4px 0 6px; line-height:1.5;}
+.sw-steps p{margin:0; font-size:13px; color:#BDB5A8;}
+.sw-order{display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center;}
+.sw-order ul{margin:16px 0 0; padding-left:1.2em; color:#DAD3C8;}
+.sw-order img{border-radius:22px; cursor:zoom-in;}
+.sw-faq{margin-top:28px; border-top:1px solid #2A2D35;}
+.sw-faq details{border-bottom:1px solid #2A2D35; padding:14px 0;}
+.sw-faq summary{cursor:pointer; font-weight:700; list-style:none;}
+.sw-faq summary::before{content:"Q. "; color:#C9A45C;}
+.sw-faq details p{margin:8px 0 0; color:#BDB5A8; font-size:14.5px;}
+.sw-contact{background:#0E0F13; border-top:1px solid #2A2D35;}
+.sw-contact .sw-wrap{display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center;}
+.sw-contact dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 18px; font-size:14px; color:#BDB5A8;}
+.sw-contact dt{color:#C9A45C; font-weight:700; letter-spacing:.1em;}
+.sw-contact dd{margin:0;}
+.sw-foot{text-align:center; font-size:12px; color:#8F887C; padding:24px 16px 40px; background:#0E0F13;}
+.sw-foot a{color:#C9C2B6;}
+.sw-sticky{display:none;}
+@media (max-width:1100px){ .sw-bar nav{display:none;} .sw-bar .sw-cta{margin-left:auto;} .sw-steps{grid-template-columns:repeat(3,minmax(0,1fr));} .sw-points{grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media (max-width:760px){
+  .sw-bar{padding:10px 16px;} .sw-logo{font-size:14px;}
+  .sw-wrap{padding:60px 16px;} .sw-hero-in{padding:0 16px 40px;}
+  .sw-hero{min-height:78vh;}
+  .sw-grid, .sw-pair, .sw-specs, .sw-order, .sw-contact .sw-wrap, .sw-points{grid-template-columns:minmax(0,1fr);}
+  .sw-steps{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .sw-sticky{display:flex; gap:8px; position:fixed; left:10px; right:10px; bottom:calc(10px + env(safe-area-inset-bottom)); z-index:90; background:#C9A45C; padding:8px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,.4);}
+  .sw-sticky a{text-decoration:none; font-weight:900; border-radius:14px; padding:12px; text-align:center;}
+  .sw-sticky-main{flex:1; background:#14161B; color:#fff;}
+  .sw-sticky-tel{background:#fff; color:#14161B; min-width:72px;}
+  body{padding-bottom:90px;}
+}
+"""
+
+SW_PAGE = """<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>ショーウィンドウのアート｜パブリックアートレンタル アイエル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
+<link rel="stylesheet" href="showwindow.css">
+</head>
+<body>
+<header class="sw-bar">
+  <a class="sw-logo" href="../01-entrance/index.html">パブリックアートレンタル <span>アイエル</span></a>
+  <nav><a href="#why">なぜ鉄の彫刻か</a><a href="#seasons">季節のウィンドウ</a><a href="#styling">商品との組み合わせ</a><a href="#install">設置について</a><a href="#flow">ご依頼の流れ</a><a href="#order">オーダー制作</a></nav>
+  <a class="sw-cta" href="#contact">相談する</a>
+</header>
+
+<section class="sw-hero">
+  <img src="../assets/window/tamago.jpg" alt="鉄の彫刻「卵」をジュエリー店の夜のショーウィンドウに飾ったイメージ">
+  <div class="sw-hero-in">
+    <p class="sw-kick">SHOW WINDOW ART RENTAL</p>
+    <h1><span class="nb">通りを歩く人の</span><span class="nb">足を、</span><br>止める鉄。</h1>
+    <p class="lead">百貨店・ブランド店のショーウィンドウに、鉄の作家・池内卓也の彫刻を。シーズンの展示に合わせてレンタルし、会期が終われば次の作品へ。ブランドのためのオーダー制作も承ります。</p>
+    <div class="sw-hero-btns"><a class="sw-btn" href="#contact">ウィンドウの展示を相談する</a><a class="sw-btn ghost" href="#seasons">季節のウィンドウを見る</a></div>
+  </div>
+</section>
+
+<section class="sw-wrap" id="why">
+  <span class="sw-eyebrow">WHY IRON SCULPTURE</span>
+  <h2>ウィンドウに、<br>手でつくられた一点を。</h2>
+  <p class="sw-lead">ショーウィンドウは、店に入る前のお客様に、ブランドの世界観を伝える舞台です。量産の什器ではなく、作家が手で溶接した鉄の彫刻を置くことで、通りの景色の中で目を引くウィンドウになります。</p>
+  <div class="sw-points">
+    <div class="sw-point"><b>01</b><h3>一点ものの物語が、<br>ブランドの物語になる</h3><p>高知の工房で、溶接職人として三十余年の作家が一点ずつ仕上げた作品です。「誰が、どうつくったか」を語れるウィンドウになります。</p></div>
+    <div class="sw-point"><b>02</b><h3>素材の対比が、<br>商品を引き立てる</h3><p>鉄の錆や黒皮の質感は、シルク・レザー・ガラス・宝石の輝きと好対照。商品の素材感が際立ちます。</p></div>
+    <div class="sw-point"><b>03</b><h3>光と影で、<br>夜のウィンドウが変わる</h3><p>透かしや編んだ鉄は、スポットライトを当てると背景に影の模様を落とします。閉店後も通りを照らす舞台に。</p></div>
+    <div class="sw-point"><b>04</b><h3>レンタルだから、<br>季節ごとに入れ替え</h3><p>会期に合わせて借り、終われば返却や次の作品へ。購入しなくても、シーズンごとに新しいウィンドウをつくれます。</p></div>
+  </div>
+  <p class="sw-trend">国内外の百貨店やブランドでは、アーティストと組んだショーウィンドウが季節の風物詩になっています。作家の作品をウィンドウに迎えることは、通りを歩く人に「この店は何かが違う」と感じてもらうための、確かな方法です。</p>
+</section>
+
+<section class="sw-wrap" id="seasons" style="padding-top:0">
+  <span class="sw-eyebrow">SEASONAL WINDOWS</span>
+  <h2>季節のウィンドウ ── 飾ったイメージ</h2>
+  <p class="sw-lead">すべての作品を、さまざまなウィンドウに飾ったイメージをつくりました。季節を選ぶと切り替わります。画像を押すと大きく表示します。</p>
+  <div class="sw-seasons" role="group" aria-label="季節を選ぶ">{buttons}</div>
+  {grids}
+  <p class="sw-note">※ ウィンドウの画像は、作品の写真をもとに合成した参考イメージです（実在の店舗ではありません）。作品の大きさ・ウィンドウの寸法により、実際の見え方は変わります。</p>
+</section>
+
+<section class="sw-wrap" id="styling" style="padding-top:0">
+  <span class="sw-eyebrow">STYLING WITH YOUR PRODUCTS</span>
+  <h2>商品と、鉄の組み合わせ。</h2>
+  <p class="sw-lead">作品は主役にも、商品を引き立てる背景にもなります。ディスプレイ担当の方やディスプレイ会社と一緒に、置き方を考えます。</p>
+  <div class="sw-pair">
+    <div><h3>ジュエリー・時計 × <em>編んだ鉄、透かしの鉄</em></h3><p>細い鉄の帯を編んだ球や、レースのように透かした羽。小さな輝きを、粗い鉄の質感がいっそう引き立てます。</p></div>
+    <div><h3>バッグ・レザー × <em>錆の色</em></h3><p>革の艶と、錆びた鉄の深い茶色。秋冬のコレクションに、温かみと重みを加えます。</p></div>
+    <div><h3>コスメ・香水 × <em>色をまとった鉄</em></h3><p>赤・黄・青に塗られた鉄の作品は、パッケージの色と響き合い、キャンペーンの色を通りに伝えます。</p></div>
+    <div><h3>ファッション × <em>大きなモニュメント</em></h3><p>人の背丈を超える作品は、マネキンと並べても負けない存在感。ウィンドウ全体を一つの風景にします。</p></div>
+  </div>
+</section>
+
+<section class="sw-band" id="install">
+  <div class="sw-wrap">
+    <span class="sw-eyebrow">INSTALLATION</span>
+    <h2>ウィンドウの条件に合わせて、<br>作家が設置します。</h2>
+    <p class="sw-lead">鉄の作品は重さがあるため、ウィンドウの寸法と床の強さを確かめてから作品を選びます。搬入・設置・撤去は、有限会社アイエル物産と作家が担当します。</p>
+    <div class="sw-specs">
+      <div class="sw-spec"><h3>寸法と重さ</h3><p>ウィンドウの幅・奥行き・高さ、床の耐荷重、搬入口の大きさをうかがい、無理なく置ける作品をご提案します。</p></div>
+      <div class="sw-spec"><h3>営業時間外に搬入</h3><p>閉店後や定休日など、営業のじゃまにならない時間に搬入・設置・撤去をします。</p></div>
+      <div class="sw-spec"><h3>転倒の防止</h3><p>台座や固定の方法を、ウィンドウの床や壁に合わせて考えます。お客様の通行がある場所でも安心して置けるようにします。</p></div>
+      <div class="sw-spec"><h3>照明の相談</h3><p>スポットライトの位置で、作品の影や表情が大きく変わります。照明を含めた見え方をご提案します。</p></div>
+      <div class="sw-spec"><h3>会期・期間</h3><p>季節の展示、キャンペーン期間、周年イベントなど、会期に合わせてご相談ください。</p></div>
+      <div class="sw-spec"><h3>料金</h3><p>作品・期間・搬入の条件をうかがってお見積りします。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sw-wrap" id="flow">
+  <span class="sw-eyebrow">HOW IT WORKS</span>
+  <h2>ご依頼の流れ</h2>
+  <ol class="sw-steps">
+    <li><b>01</b><h3>ご相談</h3><p>店舗名、ウィンドウの写真と寸法、展示のテーマ、会期をお知らせください。</p></li>
+    <li><b>02</b><h3>作品のご提案</h3><p>季節・テーマ・商品に合う作品と、置き方をご提案します。</p></li>
+    <li><b>03</b><h3>イメージで確認</h3><p>このページの画像のように、ウィンドウに飾った姿を事前にお見せします。</p></li>
+    <li><b>04</b><h3>搬入・設置</h3><p>営業時間外に搬入し、照明を見ながら設置します。</p></li>
+    <li><b>05</b><h3>会期中</h3><p>位置の調整やお手入れのご相談に応じます。</p></li>
+    <li><b>06</b><h3>撤去・次の季節へ</h3><p>会期が終われば撤去。次のシーズンの作品へ入れ替えもできます。</p></li>
+  </ol>
+</section>
+
+<section class="sw-wrap" id="order" style="padding-top:0">
+  <div class="sw-order">
+    <div>
+      <span class="sw-eyebrow">REQUEST ORDER</span>
+      <h2>ブランドのための、<br>一点をつくる。</h2>
+      <p class="sw-lead">レンタル作品のほかに、ブランドやシーズンのテーマに合わせて新しい作品を企画・制作する「リクエストオーダー」も承ります。完成前に、ウィンドウに置いた姿をCGで確かめてから制作に入ります。</p>
+      <ul><li>ブランドのロゴやモチーフを鉄で表現したオブジェ</li><li>シーズンのテーマに合わせた新作</li><li>並んだ複数のウィンドウをつなぐ連作</li><li>周年・新店オープンの記念作品</li></ul>
+      <div class="sw-hero-btns"><a class="sw-btn ghost" href="../01-entrance/index.html#aile-order">リクエストオーダーについて詳しく →</a></div>
+    </div>
+    <img src="../assets/window/utage.jpg" alt="作品「宴の色」を新春のショーウィンドウに飾ったイメージ" data-lb="../assets/window/utage.jpg" data-lb-cap="宴の色（新春のウィンドウに飾ったイメージ）" loading="lazy">
+  </div>
+  <div class="sw-faq">
+    <details><summary>小さなウィンドウでも置けますか？</summary><p>作品の大きさはさまざまです。台座にのせる小ぶりな作品もあります。ウィンドウの寸法をお知らせください。</p></details>
+    <details><summary>作品に商品を掛けたり、のせたりできますか？</summary><p>作品の形や強さによってはできます。どのように見せたいか、事前にご相談ください。</p></details>
+    <details><summary>店内やエントランスにも置けますか？</summary><p>はい。店内・エントランス・オフィスへのレンタルも承ります。<a href="../01-entrance/index.html">オフィス・エントランス向けのご案内</a>もご覧ください。</p></details>
+    <details><summary>気に入った作品を購入することはできますか？</summary><p>作品によってはご購入のご相談もできます。</p></details>
+  </div>
+</section>
+
+<section class="sw-contact" id="contact">
+  <div class="sw-wrap">
+    <div>
+      <span class="sw-eyebrow">CONTACT</span>
+      <h2>次のシーズンのウィンドウに、<br>鉄の一点を。</h2>
+      <p class="sw-lead">ウィンドウの写真と寸法、会期を添えて、お気軽にご相談ください。</p>
+      <div class="sw-hero-btns"><a class="sw-btn" href="mailto:ilbussan@coral.ocn.ne.jp?subject={subj}&amp;body={body}">メールで相談する</a><a class="sw-btn ghost" href="tel:0887540711">0887-54-0711</a></div>
+    </div>
+    <dl><dt>STUDIO</dt><dd>有限会社アイエル物産</dd><dt>ADDRESS</dt><dd>高知県香南市野市町土居1073-2</dd><dt>FAX</dt><dd>0887-54-0712</dd><dt>MAIL</dt><dd>ilbussan@coral.ocn.ne.jp</dd></dl>
+  </div>
+</section>
+<footer class="sw-foot">パブリックアートレンタル アイエル ／ <a href="../01-entrance/index.html">オフィス・エントランス向け</a> ／ <a href="../works/index.html">作品リスト</a> ／ <a href="../works/artist.html">作家 池内卓也</a></footer>
+<div class="sw-sticky"><a class="sw-sticky-main" href="mailto:ilbussan@coral.ocn.ne.jp?subject={subj}&amp;body={body}">ウィンドウの展示を相談する</a><a class="sw-sticky-tel" href="tel:0887540711" aria-label="電話する">電話</a></div>
+<script src="../assets/js/lightbox.js"></script>
+<script>
+(function(){{
+  var buttons = document.querySelectorAll('.sw-seasons button'), grids = document.querySelectorAll('.sw-grid');
+  function show(key){{
+    grids.forEach(function(g){{ g.hidden = g.dataset.season !== key; }});
+    buttons.forEach(function(b){{ b.setAttribute('aria-pressed', b.dataset.season === key); }});
+  }}
+  buttons.forEach(function(b){{ b.addEventListener('click', function(){{ show(b.dataset.season); }}); }});
+  var m = new Date().getMonth() + 1;
+  show(m >= 3 && m <= 5 ? 'spring' : m >= 6 && m <= 8 ? 'summer' : m >= 9 && m <= 11 ? 'autumn' : 'winter');
+}})();
+</script>
+</body>
+</html>
+"""
+
+def showwindow_page():
+    buttons, grids = [], []
+    for key, jp, mood, items in SW_SEASONS:
+        buttons.append(f'<button type="button" data-season="{key}" aria-pressed="false">{jp}<small>{e(mood)}</small></button>')
+        cards = []
+        for slug, desc in items:
+            if not (W5 / "assets" / "window" / f"{slug}.jpg").exists():
+                continue
+            w = BY[slug]; src = f"../assets/window/{slug}.jpg"
+            cards.append(f'<figure class="sw-card"><div class="sw-img" data-lb="{src}" data-lb-cap="{e(w["title"])}（{jp}のウィンドウに飾ったイメージ）" data-lb-group="sw-{key}">'
+                         f'<img src="{src}" alt="作品「{e(w["title"])}」をショーウィンドウに飾ったイメージ" loading="lazy"></div>'
+                         f'<figcaption><b>{e(w["title"])}</b><span>{e(desc)}</span><a href="../works/{slug}.html">作品ページへ →</a></figcaption></figure>')
+        grids.append(f'<div class="sw-grid" data-season="{key}"{"" if key == "spring" else " hidden"}>{"".join(cards)}</div>')
+    subj = urllib.parse.quote("ショーウィンドウでの作品レンタルの相談")
+    body = urllib.parse.quote("パブリックアートレンタル アイエル 御中\n\nショーウィンドウでの作品の展示について相談したいです。\n\n【店舗名】\n【ウィンドウの場所・寸法（幅・奥行き・高さ）】\n【展示のテーマ・季節】\n【会期（希望の期間）】\n【気になる作品】\n【ご連絡先】\n")
+    return SW_PAGE.format(buttons="".join(buttons), grids="".join(grids), subj=subj, body=body)
+
+sw = W5 / "showwindow"; sw.mkdir(exist_ok=True)
+(sw / "showwindow.css").write_text(SW_CSS, encoding="utf-8", newline="\n")
+(sw / "index.html").write_text(showwindow_page(), encoding="utf-8", newline="\n")
+print("show windows ->", sw / "index.html")
