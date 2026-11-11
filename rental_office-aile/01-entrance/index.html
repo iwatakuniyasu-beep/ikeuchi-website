@@ -91,6 +91,9 @@
   .use b{font-family:'Archivo'; color:var(--or); font-size:14px; letter-spacing:.1em;}
   .use h3{font-size:20px; margin:8px 0 6px;}
   .use p{margin:0; color:#B9C1D3; font-size:14px;}
+  a.use{display:flex; flex-direction:column; text-decoration:none; transition:transform .25s, box-shadow .25s;}
+  a.use:hover{transform:translateY(-4px); box-shadow:0 16px 34px rgba(15,27,51,.25);}
+  .use .more{margin-top:auto; padding-top:14px; font-weight:700; font-size:14px; color:var(--or);}
   @media (max-width:1100px){ .uses{grid-template-columns:repeat(2,1fr);} }
   @media (max-width:860px){ .uses{grid-template-columns:1fr;} }
 
@@ -328,7 +331,7 @@
 
 <div class="bar">
   <span class="logo" style="font-family:'Kiwi Maru',serif; font-weight:500">パブリックアートレンタル <span>アイエル</span></span>
-  <nav><a href="#aile-top">四季の作品</a><a href="#aile-career">作家と作品</a><a href="#aile-order">リクエストオーダー</a><a href="#new">新着の作品</a><a href="#journey">来訪者の動線</a><a href="#why">レンタルの理由</a><a href="#works">作品</a><a href="#flow">導入の流れ</a><a href="#showwindow">ショーウィンドウ</a></nav>
+  <nav><a href="#aile-top">四季の作品</a><a href="#aile-career">作家と作品</a><a href="#why">レンタルの理由</a><a href="#aile-order">リクエストオーダー</a><a href="#new">新着の作品</a><a href="#journey">来訪者の動線</a><a href="#works">作品</a><a href="#flow">導入の流れ</a><a href="#showwindow">ショーウィンドウ</a></nav>
   <a class="btn" href="#contact">相談する</a>
 </div>
 
@@ -447,6 +450,34 @@
         <p class="ai-tnote">※ 作成年度が「確認中」の作品は調べています。写真の一部は公式サイト（iwatakuniyasu.wixsite.com/ikeuchi）掲載のものです。</p>
       </div>
     </div>
+</section>
+<!-- AILE-TOP:END -->
+  <section class="why" id="why">
+    <div class="wrap">
+      <span class="eyebrow">Why Rental</span>
+      <h2>買うより、借りる。<br>オフィスのアートの新しい選び方。</h2>
+      <p class="lead">オフィスへのアートレンタルは、国内でも複数のサービスが登場している導入方法です。鉄の彫刻も、レンタルなら気軽に始められます。</p>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead><tr><th></th><th class="hl">レンタル</th><th>購入</th></tr></thead>
+          <tbody>
+            <tr><th>はじめやすさ</th><td class="hl">期間を決めて、まず試せる</td><td>購入の判断が必要</td></tr>
+            <tr><th>入れ替え</th><td class="hl">季節・周年・イベントに合わせて交換できる</td><td>基本は同じ作品を置き続ける</td></tr>
+            <tr><th>移転・レイアウト変更</th><td class="hl">新しい空間に合わせて作品を見直せる</td><td>新しい空間に合うか検討が必要</td></tr>
+            <tr><th>気に入ったら</th><td class="hl">作品によっては購入のご相談も</td><td>──</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="uses">
+        <a class="use" href="../entrance/index.html"><b>USE 01</b><h3>本社エントランス</h3><p>ブランドを体現する一点を、来訪者の動線上に。</p><span class="more">詳しく →</span></a>
+        <a class="use" href="../event/index.html"><b>USE 02</b><h3>周年・式典・採用イベント</h3><p>期間限定で、特別な日の空間演出に。</p><span class="more">詳しく →</span></a>
+        <a class="use" href="../showroom/index.html"><b>USE 03</b><h3>ショールーム</h3><p>自社製品とあわせて、世界観をつくる背景に。</p><span class="more">詳しく →</span></a>
+        <a class="use" href="../showwindow/index.html"><b>USE 04</b><h3>店舗のショーウィンドウ</h3><p>百貨店・ブランド店の季節の展示に。</p><span class="more">詳しく →</span></a>
+      </div>
+    </div>
+  </section>
+<!-- AILE-ORDER:START -->
+<section class="ai-top ai-top-order">
   <div class="ai-order" id="aile-order">
       <div class="ai-order-head">
         <p class="ai-order-kick">REQUEST ORDER</p>
@@ -504,7 +535,7 @@
   show(m >= 3 && m <= 5 ? 'spring' : m >= 6 && m <= 8 ? 'summer' : m >= 9 && m <= 11 ? 'autumn' : 'winter');
 })();
 </script>
-<!-- AILE-TOP:END -->
+<!-- AILE-ORDER:END -->
 
 <main>
   <section class="wrap" id="journey">
@@ -546,30 +577,6 @@
     <div class="jctrl"><button id="prev">← 前へ</button><button id="next">次へ →</button></div>
   </section>
 
-  <section class="why" id="why">
-    <div class="wrap">
-      <span class="eyebrow">Why Rental</span>
-      <h2>買うより、借りる。<br>オフィスのアートの新しい選び方。</h2>
-      <p class="lead">オフィスへのアートレンタルは、国内でも複数のサービスが登場している導入方法です。鉄の彫刻も、レンタルなら気軽に始められます。</p>
-      <div class="cmp-wrap">
-        <table class="cmp">
-          <thead><tr><th></th><th class="hl">レンタル</th><th>購入</th></tr></thead>
-          <tbody>
-            <tr><th>はじめやすさ</th><td class="hl">期間を決めて、まず試せる</td><td>購入の判断が必要</td></tr>
-            <tr><th>入れ替え</th><td class="hl">季節・周年・イベントに合わせて交換できる</td><td>基本は同じ作品を置き続ける</td></tr>
-            <tr><th>移転・レイアウト変更</th><td class="hl">新しい空間に合わせて作品を見直せる</td><td>新しい空間に合うか検討が必要</td></tr>
-            <tr><th>気に入ったら</th><td class="hl">作品によっては購入のご相談も</td><td>──</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="uses">
-        <div class="use"><b>USE 01</b><h3>本社エントランス</h3><p>ブランドを体現する一点を、来訪者の動線上に。</p></div>
-        <div class="use"><b>USE 02</b><h3>周年・式典・採用イベント</h3><p>期間限定で、特別な日の空間演出に。</p></div>
-        <div class="use"><b>USE 03</b><h3>ショールーム</h3><p>自社製品とあわせて、世界観をつくる背景に。</p></div>
-        <div class="use"><b>USE 04</b><h3>店舗のショーウィンドウ</h3><p>百貨店・ブランド店の季節の展示に。<a href="../showwindow/index.html" style="color:#FF9A6A">詳しく →</a></p></div>
-      </div>
-    </div>
-  </section>
 
   <section class="wrap" id="works">
     <span class="eyebrow">Works</span>

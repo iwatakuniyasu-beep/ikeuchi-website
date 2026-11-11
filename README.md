@@ -20,7 +20,7 @@ Ikeuchi/
 │   ├─ index.html           　案A・案Bを選ぶページ
 │   ├─ 01-entrance/         　案A（紺×オレンジ）
 │   ├─ 02-workplace/        　案B（グリーン×イエロー）
-│   ├─ showwindow/          　百貨店・ブランド店のショーウィンドウ向けページ ※自動生成（直接編集しない）
+│   ├─ entrance/            　USE 01 本社エントランスの詳しいページ ※自動生成（直接編集しない）
 │   │   ├─ index.html       　　作品リスト
 │   │   ├─ artist.html      　　作家ページ
 │   │   ├─ <作品ID>.html    　　作品ごとのページ（例 tamago.html ＝「卵」）
@@ -59,7 +59,7 @@ Ikeuchi/
 │   ├─ check_links.py       　リンク切れチェック（公開前に実行）
 │   ├─ aile-site/build_pages.py 　data/ を読んで rental_office-aile のページを作る
 │   ├─ title-logo/          　タイトルロゴを作る（make_title_logo.py、テクスチャ、これまでの案）
-│   ├─ office-images/       　「オフィスに置いたら」「ショーウィンドウに飾ったら」の画像を作る（1_cutout.py → 2_place_in_rooms.py ／ 3_place_in_windows.py）
+│   ├─ office-images/       　「オフィスに置いたら」「ショーウィンドウに飾ったら」の画像を作る（1_cutout.py → 2_place_in_rooms.py ／ 3_place_in_windows.py ／ 4_place_in_scenes.py）
 │   │   ├─ cutouts/         　　作品を切り抜いた透過PNG
 │   │   └─ models/          　　背景除去AI（GitHubには入れない。README.txt 参照）
 │   └─ artist-video/        　作家の15秒ループ動画を作る
@@ -96,7 +96,7 @@ Ikeuchi/
 ### トップのその他の文章を変える
 - 案A・案Bの上部（タイトル〜リクエストオーダー）の文章とデザイン：`tools/aile-site/build_pages.py` の中（`DESIGNS`、`ORDER_STEPS` など）
 - 上部より下（来訪者の動線・レンタルの理由・導入の流れ・お問い合わせなど）：`rental_office-aile/01-entrance/index.html` などを直接編集してOK
-  ※ `<!-- AILE-TOP:START -->` 〜 `<!-- AILE-TOP:END -->` の間はプログラムが上書きするので直接編集しない
+  ※ `<!-- AILE-TOP:START -->` 〜 `<!-- AILE-TOP:END -->`（タイトル〜作品と受賞歴）と `<!-- AILE-ORDER:START -->` 〜 `<!-- AILE-ORDER:END -->`（リクエストオーダー）の間はプログラムが上書きするので直接編集しない。2つの間（案Aの「買うより、借りる。」）は直接編集してOK
 
 ### 「オフィスに置いたら」の画像を作る・作り直す
 ```
