@@ -20,7 +20,7 @@ W5 = ROOT / SITE
 START, END = "<!-- AILE-TOP:START -->", "<!-- AILE-TOP:END -->"
 
 # image roots, relative to a page one level below the site folder (<design>/ or works/)
-NEW = "../../shared-media/2026-10_photos/"
+NEW = "../assets/photo/2026-10_"
 OWN = "../assets/photo/"
 POST = "../assets/poster/"
 

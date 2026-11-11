@@ -29,7 +29,9 @@ Ikeuchi/
 │   └─ assets/              　この案だけで使う画像・動画
 │       ├─ office/          　　「オフィスに置いたら」の合成画像 ※自動生成
 │       ├─ video/           　　作家の15秒ループ動画 ※自動生成（いまは仮の映像）
-│       ├─ photo/  poster/  　　作品写真（背景を整えたもの）・映像のポスター画像
+│       ├─ photo/           　　この案で使う写真すべて（wix_＝公式サイトの写真、2026-10_＝10月20日撮影、名前なし＝背景を整えたもの）
+│       ├─ poster/          　　映像のポスター画像
+│       ├─ new-works.css    　　「新着の作品」欄のデザイン
 │       └─ js/lightbox.js   　　写真や動画を拡大表示する部品
 │
 ├─ rental_hotel-2designs/        レンタル提案：ホテル・旅館向け（2案）
@@ -40,7 +42,7 @@ Ikeuchi/
 ├─ sales_lounge-2designs/        販売提案：高級ラウンジ向け（2案）
 ├─ sales_pop-3designs/           販売提案：若い人向けのポップなデザイン（3案）
 │
-├─ shared-media/            複数の案で共通に使う写真・動画
+├─ shared-media/            写真・動画の元置き場（ほかの提案が使う。rental_office-aile は assets/ にコピーを持つ）
 │   ├─ wix-photos/          　公式サイト（Wix）から取り込んだ作品写真
 │   ├─ 2026-10_photos/      　2026年10月20日に撮影した作品・設置写真
 │   ├─ 2026-10_videos/      　同じ日の動画（ループ用）
@@ -85,7 +87,7 @@ Ikeuchi/
    - `photos` … 写真のパス。複数あるときは ` | ` で区切る（1枚目が代表写真）
    - `theme` … 作品リストの絞り込み：`nature`（植物・自然）/ `form`（卵・かたち）/ `human`（人・顔）/ `color`（色・モニュメント）
    - `film_url` … YouTube のURL（縦長ショート動画なら `film_vertical` に `yes`）
-2. 写真は `shared-media/` に置く
+2. 写真は `rental_office-aile/assets/photo/` に置き、`photos` には `rental_office-aile/assets/photo/ファイル名` と書く
 3. `python tools/aile-site/build_pages.py` を実行 → 作品ページ・作品リスト・作家ページ・トップが更新される
 
 ### 四季の作品・経歴を変える
