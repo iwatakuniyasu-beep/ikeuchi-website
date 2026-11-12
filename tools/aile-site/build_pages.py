@@ -85,6 +85,7 @@ def space1(rows):
 
 # ---------------------------------------------------------------- career (space ②, data/career.csv)
 CAREER = [(r["year"].strip(), r["text"].strip()) for r in read_csv("career.csv")]            # 作家ページ：全部
+AWARDS = [(r["year"].strip(), r["kind"].strip(), r["text"].strip(), r["slug"].strip()) for r in read_csv("awards.csv")]   # 作家ページ「主な受賞・出品」
 CAREER_TOP = [(r["year"].strip(), r["text"].strip()) for r in read_csv("career.csv") if (r.get("top") or "").strip().lower() in ("yes", "y", "1", "はい")]   # 案A・B：top=yes の行だけ（動画と高さをそろえる）
 
 def space2():
@@ -656,6 +657,18 @@ ARTIST_CSS = """
 .ar-line .y{font-weight:900; color:#FF5A1F;}
 .ar-line small{color:#8a7d70;}
 .ar-aw{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px;}
+.ar-career-list{max-width:860px;}
+.ar-legend{margin:-4px 0 14px; font-size:13px; color:#8a7d70; display:flex; gap:6px; align-items:center; flex-wrap:wrap;}
+.ar-k{display:inline-block; font-size:11px; font-weight:700; padding:1px 8px; border-radius:4px; color:#fff; margin-right:4px;}
+.ar-k-a{background:#FF5A1F;} .ar-k-s{background:#7A7F8C;} .ar-k-p{background:#2E7D5B;}
+.ar-awards{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px;}
+.ar-awards li{background:#fff; border:1px solid #EEE3D8; border-radius:16px; padding:14px 16px; display:flex; flex-direction:column; gap:4px;}
+.ar-aw-top{display:flex; align-items:center; gap:8px;}
+.ar-aw-top .y{font-weight:900; color:#FF5A1F; font-size:15px;}
+.ar-aw-t{font-weight:700; font-size:15px; line-height:1.5;}
+.ar-awards .ar-work{align-self:flex-start;}
+@media (max-width:980px){ .ar-awards{grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media (max-width:620px){ .ar-awards{grid-template-columns:minmax(0,1fr);} }
 .ar-work{font-size:14px; font-weight:700; color:#FF5A1F; text-decoration:none; white-space:nowrap;}
 .ar-work i{font-style:normal; display:inline-block; margin-left:2px; transition:transform .2s;}
 .ar-work:hover{text-decoration:underline;}
@@ -724,9 +737,13 @@ ARTIST_PAGE = """<!doctype html>
   <h2>鉄とものづくり</h2>
   <div class="ar-craft">{craft}</div>
 </section>
-<section class="ar-sec ar-two">
-  <div><h2>経歴</h2><ul class="ar-line">{career}</ul></div>
-  <div><h2>主な受賞</h2><ul class="ar-line">{awards}</ul></div>
+<section class="ar-sec">
+  <h2>経歴</h2><ul class="ar-line ar-career-list">{career}</ul>
+</section>
+<section class="ar-sec">
+  <h2>主な受賞・出品</h2>
+  <p class="ar-legend"><span class="ar-k ar-k-a">受賞</span>受賞　<span class="ar-k ar-k-s">出品</span>出品した展覧会　<span class="ar-k ar-k-p">展示</span>展示</p>
+  <ul class="ar-awards">{awards}</ul>
 </section>
 <section class="ar-sec">
   <h2>作品が置かれている場所</h2>
@@ -761,12 +778,16 @@ ARTIST_PAGE = """<!doctype html>
 
 def artist_page():
     career = "".join(f'<li><span class="y">{y or "─"}</span><span>{e(t)}</span></li>' for y, t in CAREER)
-    def award_work(w):   # 作品ページがあればリンク、無ければ（写真準備中）文字だけ
+    def award_work(slug):   # 作品ページがあればリンク、無ければ（写真準備中）文字だけ
+        if not slug or slug not in BY:
+            return ""
+        w = BY[slug]
         if w["photos"]:
-            return f'<a class="ar-work" href="{w["slug"]}.html">作品「{e(w["title"])}」<i>→</i></a>'
+            return f'<a class="ar-work" href="{slug}.html">作品「{e(w["title"])}」<i>→</i></a>'
         return f'<span class="ar-work off">作品「{e(w["title"])}」</span>'
-    awards = "".join(f'<li><span class="y">{w["year"]}</span><span class="ar-aw"><span>{e(w["award"])}</span>{award_work(w)}</span></li>'
-                     for w in sorted((w for w in WORKS if w.get("award")), key=lambda w: w["year"]))
+    kinds = {"受賞": "a", "出品": "s", "展示": "p"}
+    awards = "".join(f'<li><span class="ar-aw-top"><span class="y">{y}</span><span class="ar-k ar-k-{kinds.get(k, "s")}">{e(k)}</span></span>'
+                     f'<span class="ar-aw-t">{e(t)}</span>{award_work(s)}</li>' for y, k, t, s in AWARDS)
     places = "".join(f'<li><a href="{w["slug"]}.html"><img src="{w["photos"][0]}" alt="" loading="lazy"><span><b>{e(w["title"])}</b><small>{e(w["place"])}</small></span></a></li>'
                      for w in WORKS if w.get("place") and w["photos"])
     craft = "".join(f'<div><b>{n}</b><h3>{e(t)}</h3><p>{e(d)}</p></div>' for n, t, d in CRAFT)
