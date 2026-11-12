@@ -88,6 +88,20 @@ CAREER = [(r["year"].strip(), r["text"].strip()) for r in read_csv("career.csv")
 AWARDS = [(r["year"].strip(), r["kind"].strip(), r["text"].strip(), r["slug"].strip()) for r in read_csv("awards.csv")]   # 作家ページ「主な受賞・出品」
 CAREER_TOP = [(r["year"].strip(), r["text"].strip()) for r in read_csv("career.csv") if (r.get("top") or "").strip().lower() in ("yes", "y", "1", "はい")]   # 案A・B：top=yes の行だけ（動画と高さをそろえる）
 
+def awards_block():
+    """案A・B：作家の下に「主な受賞」を3列で（data/awards.csv の kind=受賞 の行。作品があればリンク）"""
+    rows = [(y, t, s) for y, k, t, s in AWARDS if k == "受賞"]
+    items = []
+    for y, t, s in rows:
+        link = ""
+        if s in BY and BY[s]["photos"]:
+            link = f'<a class="ai-aw-link" href="../works/{s}.html">「{e(BY[s]["title"])}」→</a>'
+        elif s in BY:
+            link = f'<span class="ai-aw-link off">「{e(BY[s]["title"])}」</span>'
+        items.append(f'<li><span class="y">{y}</span><span class="ai-aw-t">{e(t)}{link}</span></li>')
+    return (f'<div class="ai-awards"><h3>主な受賞<span class="ai-aw-n">受賞 {len(rows)}回</span>'
+            f'<a class="ai-aw-more" href="../works/artist.html">受賞・出品の一覧 →</a></h3><ul>{"".join(items)}</ul></div>')
+
 def space2():
     career = "".join(f'<li><span class="y">{y or "─"}</span><span>{e(t)}</span></li>' for y, t in CAREER_TOP)
     cards = []
@@ -111,6 +125,7 @@ def space2():
         </div>
         <ul class="ai-career">{career}</ul>
       </div>
+      {awards_block()}
       <div class="ai-works">
         <h3>作品と受賞歴<a class="ai-list" href="../works/index.html">作品リストを見る →</a></h3>
         <p class="ai-legend"><span class="ai-k ai-k-a">受賞</span>受賞タイトル　<span class="ai-k ai-k-p">設置</span>設置場所　<span class="ai-k ai-k-s">出品</span>出品した展覧会</p>
@@ -317,6 +332,19 @@ BASE_CSS = """
   .ai-space2{display:block !important;}
   /* career rows spread out so the list ends level with the bottom of the making video */
   .ai-profile{display:grid; grid-template-columns:.9fr 1.1fr; gap:36px; align-items:stretch; margin-bottom:46px;}
+  /* 主な受賞（作家の下・3列） */
+  .ai-awards{margin:0 0 46px;}
+  .ai-awards h3{font-family:var(--ai-font); font-weight:700; font-size:22px; margin:0 0 10px; display:flex; align-items:center; flex-wrap:wrap; gap:6px 14px;}
+  .ai-aw-n{font-size:13px; font-weight:700; color:#fff; background:var(--ai-acc); padding:3px 12px; border-radius:30px;}
+  .ai-aw-more{font-size:13.5px; font-weight:700; color:var(--ai-acc); text-decoration:none; margin-left:auto;}
+  .ai-awards ul{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:32px; border-top:2px solid var(--ai-fg);}
+  .ai-awards li{display:grid; grid-template-columns:48px 1fr; gap:10px; padding:11px 0; border-bottom:1px solid var(--ai-line); font-size:14px; line-height:1.6; align-items:baseline;}
+  .ai-awards .y{font-weight:700; color:var(--ai-acc);}
+  .ai-aw-link{margin-left:8px; font-weight:700; color:var(--ai-acc); text-decoration:none; white-space:nowrap;}
+  .ai-aw-link:hover{text-decoration:underline;}
+  .ai-aw-link.off{color:var(--ai-dim); font-weight:500;}
+  @media (max-width:1060px){ .ai-awards ul{grid-template-columns:repeat(2,minmax(0,1fr));} }
+  @media (max-width:700px){ .ai-awards ul{grid-template-columns:minmax(0,1fr);} .ai-aw-more{margin-left:0;} }
   .ai-wgrid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px;}
   @media (max-width:1060px){ .ai-wgrid{grid-template-columns:repeat(2,minmax(0,1fr));} }
   .ai-wcard{display:grid; grid-template-columns:104px 1fr; gap:14px; align-items:center; background:var(--ai-card); border:1px solid var(--ai-line); border-radius:var(--ai-radius,16px); padding:12px;}
