@@ -84,10 +84,11 @@ def space1(rows):
     return f'<div class="ai-space1" id="aile-top" aria-label="作品の画像（自動でスクロールします）">{"".join(tracks)}</div><div class="ai-seasons" role="group" aria-label="季節を選ぶ">{buttons}</div>'
 
 # ---------------------------------------------------------------- career (space ②, data/career.csv)
-CAREER = [(r["year"].strip(), r["text"].strip()) for r in read_csv("career.csv")]
+CAREER = [(r["year"].strip(), r["text"].strip()) for r in read_csv("career.csv")]            # 作家ページ：全部
+CAREER_TOP = [(r["year"].strip(), r["text"].strip()) for r in read_csv("career.csv") if (r.get("top") or "").strip().lower() in ("yes", "y", "1", "はい")]   # 案A・B：top=yes の行だけ（動画と高さをそろえる）
 
 def space2():
-    career = "".join(f'<li><span class="y">{y or "─"}</span><span>{e(t)}</span></li>' for y, t in CAREER)
+    career = "".join(f'<li><span class="y">{y or "─"}</span><span>{e(t)}</span></li>' for y, t in CAREER_TOP)
     cards = []
     for w in WORKS:
         k, v = note(w)
@@ -104,7 +105,7 @@ def space2():
       <div class="ai-profile">
         <div class="ai-prof-text">
           <h2><a class="ai-name" href="../works/artist.html">作家　<span>池内卓也</span><em>作家ページへ →</em></a></h2>
-          <p>溶接職人として鉄と向き合ってきた三十余年の技術で、彫刻をつくる作家。高知の工房で、一点ずつ手で仕上げています。</p>
+          <p>鉄芸家・エクステリアプランナー。生家の鉄工所で磨いた溶接の技術で、門扉やガーデンの鉄製品から彫刻までを手がける。高知県展 特選、新象展 大阪府知事賞ほか受賞。高知の工房で、一点ずつ手で仕上げています。</p>
           <a class="ai-making" href="../works/artist.html" aria-label="作家ページへ"><video src="../assets/video/artist-loop.mp4" poster="../assets/video/artist-loop-poster.jpg" autoplay muted loop playsinline preload="metadata"></video><span>IKEUCHI ／ IRON WORKS</span></a>
         </div>
         <ul class="ai-career">{career}</ul>
@@ -113,7 +114,7 @@ def space2():
         <h3>作品と受賞歴<a class="ai-list" href="../works/index.html">作品リストを見る →</a></h3>
         <p class="ai-legend"><span class="ai-k ai-k-a">受賞</span>受賞タイトル　<span class="ai-k ai-k-p">設置</span>設置場所　<span class="ai-k ai-k-s">出品</span>出品した展覧会</p>
         <div class="ai-wgrid">{"".join(cards)}</div>
-        <p class="ai-tnote">※ 作成年度が「確認中」の作品は調べています。写真の一部は公式サイト（iwatakuniyasu.wixsite.com/ikeuchi）掲載のものです。</p>
+        <p class="ai-tnote">※ 作成年度が「確認中」の作品は調べています。写真の一部は公式サイト（il-teitetsu.com・iwatakuniyasu.wixsite.com/ikeuchi）掲載のものです。</p>
       </div>
     </div>"""
 
@@ -529,7 +530,7 @@ PAGE = """<!doctype html>
 </main>
 <nav class="wk-pager">{prev}<a href="index.html">作品リスト</a>{next}</nav>
 <div class="wk-sticky"><a class="wk-sticky-main" href="mailto:ilbussan@coral.ocn.ne.jp?subject={subj}&amp;body={body}">この作品を相談する</a><a class="wk-sticky-tel" href="tel:0887540711" aria-label="電話する">電話</a></div>
-<footer class="wk-foot">パブリックアートレンタル アイエル ／ 作品の写真の一部は公式サイト（iwatakuniyasu.wixsite.com/ikeuchi）掲載のものです。</footer>
+<footer class="wk-foot">パブリックアートレンタル アイエル ／ 作品の写真の一部は公式サイト（il-teitetsu.com・iwatakuniyasu.wixsite.com/ikeuchi）掲載のものです。</footer>
 <script src="../assets/js/lightbox.js"></script>
 <script>
   // go back to the design the visitor came from (A or B); fall back to design A
@@ -715,10 +716,10 @@ ARTIST_PAGE = """<!doctype html>
 <section class="ar-hero">
   <p class="wk-kick">IRON SCULPTOR</p>
   <h1>池内卓也</h1>
-  <p class="ar-yomi">いけうち たくや ／ 鉄の彫刻家・高知</p>
+  <p class="ar-yomi">いけうち たくや ／ 鉄芸家・エクステリアプランナー・一級土木施工管理技士（高知）</p>
   <div class="ar-film"><video src="../assets/video/artist-loop.mp4" poster="../assets/video/artist-loop-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="池内卓也の作品の映像"></video><span class="ar-tag">IKEUCHI ／ IRON WORKS</span></div>
 </section>
-<p class="ar-lead">高知県香南市生まれ。生家の鉄工所で溶接職人として鉄と向き合い、門扉やフェンス、植物園のガーデンアイテムをつくってきました。その三十余年の技術で、いまは鉄の彫刻をつくっています。錆びた鉄板の葉、手で曲げた鉄の棒、細い鉄の帯を編んだ卵。高知の工房で、一点ずつ手で仕上げています。</p>
+<p class="ar-lead">1961年、高知県香南市赤岡町生まれ。高知工業高校を卒業後、生家の鉄工所で溶接の腕を磨き、高知県の溶接コンクールで2度入賞。1995年に有限会社アイエル物産を設立し、ロートアイアンの門扉やフェンス、国内外の植物園のガーデンアイテムを手がけてきました。芸術的な感性を高めるため、2009年から高知県展 先端美術（立体）の部に出品。2014年の特選「覚醒する自我」は、造形美・技術ともに優れ、野外彫刻としても完成された作品と高く評価されました。同じ年に全国公募展「新象展」で佳作賞とホルベイン工業賞をW受賞し、2017年に展賞、2018年に大阪府知事賞。いまも造形作家として、高知の工房で一点ずつ鉄の作品をつくっています。</p>
 <section class="ar-sec">
   <h2>鉄とものづくり</h2>
   <div class="ar-craft">{craft}</div>
@@ -746,7 +747,7 @@ ARTIST_PAGE = """<!doctype html>
   </div>
 </section>
 <div class="wk-sticky"><a class="wk-sticky-main" href="mailto:ilbussan@coral.ocn.ne.jp?subject={subj}&amp;body={body}">作品について相談する</a><a class="wk-sticky-tel" href="tel:0887540711" aria-label="電話する">電話</a></div>
-<footer class="wk-foot">パブリックアートレンタル アイエル ／ 作品の写真の一部は公式サイト（iwatakuniyasu.wixsite.com/ikeuchi）掲載のものです。</footer>
+<footer class="wk-foot">パブリックアートレンタル アイエル ／ 作品の写真の一部は公式サイト（il-teitetsu.com・iwatakuniyasu.wixsite.com/ikeuchi）掲載のものです。</footer>
 <script src="../assets/js/lightbox.js"></script>
 <script>
   // go back to the design the visitor came from (A or B); fall back to design A
@@ -862,7 +863,7 @@ CATALOG_PAGE = """<!doctype html>
 <div class="ct-grid" id="ct-grid">{cards}</div>
 <p class="ct-foot-note">※ サイズ・レンタル料金・制作期間は、作品と設置場所に合わせてお見積もりします。「オフィスに置いたイメージ」「ショーウィンドウに飾ったイメージ」は写真を合成した参考イメージです。</p>
 <div class="wk-sticky"><a class="wk-sticky-main" href="mailto:ilbussan@coral.ocn.ne.jp?subject={subj}&amp;body={body}">作品について相談する</a><a class="wk-sticky-tel" href="tel:0887540711" aria-label="電話する">電話</a></div>
-<footer class="wk-foot">パブリックアートレンタル アイエル ／ 有限会社アイエル物産　TEL 0887-54-0711 ／ 作品の写真の一部は公式サイト（iwatakuniyasu.wixsite.com/ikeuchi）掲載のものです。</footer>
+<footer class="wk-foot">パブリックアートレンタル アイエル ／ 有限会社アイエル物産　TEL 0887-54-0711 ／ 作品の写真の一部は公式サイト（il-teitetsu.com・iwatakuniyasu.wixsite.com/ikeuchi）掲載のものです。</footer>
 <script>
   // theme chips + "has office image" toggle
   (function(){{

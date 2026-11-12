@@ -1,16 +1,18 @@
 ﻿slug,title,year,award,place,shown,theme,photos,film_url,film_vertical,text
 souga,想芽,2011,高知県展 褒状,,,nature,rental_office-aile/assets/photo/wix_souga.jpg,,,
-utage,宴の色,2013,,,高知県展,color,rental_office-aile/assets/photo/wix_utage.jpg,,,
-kakusei,覚醒する自我,2014,高知県展 特選,,,human,,,,造形美・技術ともに優れ、野外彫刻としても完成された作品として評価を受けました。
+utage,宴の色,2013,,,高知県展,color,rental_office-aile/assets/photo/wix_utage.jpg | rental_office-aile/assets/photo/il_utage-2.jpg,,,
+kakusei,覚醒する自我,2014,高知県展 特選,,,nature,rental_office-aile/assets/photo/il_kakusei.jpg,,,造形美・技術ともに優れ、野外彫刻としても完成された作品として評価を受けました。
 mudai5,無題5,2014,新象展 佳作賞・ホルベイン工業賞,,,human,rental_office-aile/assets/photo/wix_mudai5.jpg,,,
-mamoru,守るべきもの,2016,,高知の神社の参道,高知県展,form,rental_office-aile/assets/photo/protect-clean.jpg | rental_office-aile/assets/photo/wix_mamoru.jpg | rental_office-aile/assets/poster/protect.jpg,https://youtu.be/HgrsXjlDrNg,,鉄で編んだ人の背丈ほどの卵と、それを見守る一羽の鳥。網目越しに向こう側が透け、光の当て方ひとつで床に複雑な影を落とします。
+mamoru,守るべきもの,2016,,高知の神社の参道,高知県展,form,rental_office-aile/assets/photo/protect-clean.jpg | rental_office-aile/assets/photo/wix_mamoru.jpg | rental_office-aile/assets/poster/protect.jpg | rental_office-aile/assets/photo/il_mamoru-1.jpg | rental_office-aile/assets/photo/il_mamoru-2.jpg | rental_office-aile/assets/photo/il_mamoru-3.jpg | rental_office-aile/assets/photo/il_mamoru-4.jpg | rental_office-aile/assets/photo/il_mamoru-5.jpg,https://youtu.be/HgrsXjlDrNg,,鉄で編んだ人の背丈ほどの卵と、それを見守る一羽の鳥。網目越しに向こう側が透け、光の当て方ひとつで床に複雑な影を落とします。
 shishu,死守,2016,新象展 佳作賞,,,form,rental_office-aile/assets/photo/wix_shishu.jpg,,,
 mudai6,無題6,2017,新象展 展賞,,,form,rental_office-aile/assets/photo/wix_mudai6.jpg,,,
 mudai3,無題3,2018,,,高知県展 彫刻部門,form,rental_office-aile/assets/photo/wix_mudai3.jpg,,,
 mudai4,無題4,2018,新象展 大阪府知事賞,,,human,rental_office-aile/assets/photo/wix_mudai4.jpg,,,
 mudai2,無題2,2019,,,新象展 京都展,nature,rental_office-aile/assets/photo/wix_mudai2.jpg,,,
+moyuru,燃ゆる思い,2019,,,高知県展 先端美術の部,form,rental_office-aile/assets/photo/il_moyuru.jpg,,,透かし彫りした黒い鉄板が、炎のように重なりながら立ち上がる。赤い床に映える、背の高い作品です。
 tsunagu,つなぐ,2020,高知県展 先端美術の部 褒状,,,color,rental_office-aile/assets/photo/wix_tsunagu.jpg,,,
 mudai1,無題1,2020,高知県展 先端美術の部 褒状,,,nature,rental_office-aile/assets/photo/wix_mudai1.jpg,,,
+kioku,記憶,2022,,,新象展（東京都美術館）,form,rental_office-aile/assets/photo/il_kioku-1.jpg | rental_office-aile/assets/photo/il_kioku-2.jpg,,,床に広がる鉄の線と、色とりどりの脚をもつ木のスツール。コロナ禍をはさんで2年ぶりに出品した新象展の作品です。
 tou,問う,2023,,四国の海岸（波打ちぎわ）,新象展 上野展,human,rental_office-aile/assets/photo/question-clean.jpg | rental_office-aile/assets/photo/wix_tou.jpg,https://youtu.be/B5HfEqj1oHw,,針金の手足に支えられた、風化した仮面。波打ちぎわに置かれ、満ち潮のたびに足もとの景色が変わります。
 yusho,湧昇の夢,,,中土佐町立美術館（高知県）,,color,rental_office-aile/assets/photo/2026-10_yusho-1.jpg | rental_office-aile/assets/photo/2026-10_yusho-2.jpg | rental_office-aile/assets/photo/2026-10_yusho-3.jpg,https://youtube.com/shorts/Dx9S-eYEQqA,yes,赤・黄・青・白の鉄の羽が、黒い鉄の柱に沿って空へ舞い上がる。美術館の入口で来館者を迎えるモニュメントです。
 tamago,卵,,,井上ワイナリー（高知県香南市）,,form,rental_office-aile/assets/photo/2026-10_sphere-1.jpg | rental_office-aile/assets/photo/2026-10_sphere-2.jpg | rental_office-aile/assets/photo/2026-10_winery-sign.jpg,https://youtube.com/shorts/CLfTIgAI534,yes,細い鉄の帯を幾重にも編んだ大きな球に、身を乗り出すような人の姿。ワイナリーの高台の庭に設置されています。
