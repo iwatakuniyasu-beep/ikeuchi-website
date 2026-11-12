@@ -181,7 +181,47 @@ SCRIPT = """<script>
   var m = new Date().getMonth() + 1;
   show(m >= 3 && m <= 5 ? 'spring' : m >= 6 && m <= 8 ? 'summer' : m >= 9 && m <= 11 ? 'autumn' : 'winter');
 })();
+// 作品ページ・USEのページなどから戻ってきたとき、飛ぶ前に見ていた場所に戻す
+(function(){
+  var key = 'aile-scroll:' + location.pathname;
+  function save(){ try { sessionStorage.setItem(key, String(Math.round(scrollY))); } catch(e){} }
+  addEventListener('pagehide', save);
+  document.addEventListener('click', function(ev){ if (ev.target.closest && ev.target.closest('a[href]')) save(); }, true);
+  var back = false, y = null;
+  try {
+    var u = new URL(document.referrer);
+    back = u.origin === location.origin && /\\/rental_office-aile\\/(works|entrance|event|showroom|showwindow)\\//.test(u.pathname);
+    y = sessionStorage.getItem(key);
+  } catch(e){}
+  if (!back || y === null) return;
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  var stop = false;
+  ['wheel', 'touchstart', 'keydown'].forEach(function(t){ addEventListener(t, function(){ stop = true; }, {once:true, passive:true}); });
+  function go(){ if (!stop) window.scrollTo({top:+y, behavior:'instant'}); }
+  go(); addEventListener('load', go); setTimeout(go, 400); setTimeout(go, 1200);
+})();
 </script>"""
+
+# 作品ページ・USEのページの「戻る」：案A／案Bから来たときは、ブラウザの「戻る」と同じ動き（見ていた場所に戻る）
+BACK_JS = """// 「パブリックアートレンタル アイエル」のロゴと「戻る」ボタン：来たページ（案A／案B）の、見ていた場所に戻す
+(function () {
+  var from = null, direct = false;
+  try {
+    var u = new URL(document.referrer);
+    if (u.origin === location.origin) {
+      var m = u.pathname.match(/\\/(01-entrance|02-workplace)\\//);
+      if (m) { from = m[1]; direct = true; }
+    }
+  } catch (e) {}
+  try { if (from) sessionStorage.setItem('aile-from', from); else from = sessionStorage.getItem('aile-from'); } catch (e) {}
+  document.querySelectorAll('[data-back], .wk-logo, .sw-logo').forEach(function (a) {
+    if (from) a.href = a.href.replace(/01-entrance|02-workplace/, from);
+    a.addEventListener('click', function (ev) {
+      if (direct && history.length > 1) { ev.preventDefault(); history.back(); }
+    });
+  });
+})();
+"""
 
 # shared mechanics for space ① (each design adds its own look below)
 BASE_CSS = """
@@ -496,6 +536,7 @@ PAGE = """<!doctype html>
   var ref = document.referrer, back = document.querySelectorAll('[data-back], .wk-logo');
   if (/\\/02-workplace\\//.test(ref)) back.forEach(function(a){{ a.href = a.href.replace('01-entrance', '02-workplace'); }});
 </script>
+<script src="../assets/js/back.js"></script>
 </body>
 </html>
 """
@@ -706,6 +747,7 @@ ARTIST_PAGE = """<!doctype html>
   var ref = document.referrer, back = document.querySelectorAll('[data-back], .wk-logo');
   if (/\\/02-workplace\\//.test(ref)) back.forEach(function(a){{ a.href = a.href.replace('01-entrance', '02-workplace'); }});
 </script>
+<script src="../assets/js/back.js"></script>
 </body>
 </html>
 """
@@ -833,6 +875,7 @@ CATALOG_PAGE = """<!doctype html>
   var ref = document.referrer, back = document.querySelectorAll('[data-back], .wk-logo');
   if (/\\/02-workplace\\//.test(ref)) back.forEach(function(a){{ a.href = a.href.replace('01-entrance', '02-workplace'); }});
 </script>
+<script src="../assets/js/back.js"></script>
 </body>
 </html>
 """
@@ -1138,6 +1181,7 @@ SW_PAGE = """<!doctype html>
   show(m >= 3 && m <= 5 ? 'spring' : m >= 6 && m <= 8 ? 'summer' : m >= 9 && m <= 11 ? 'autumn' : 'winter');
 }})();
 </script>
+<script src="../assets/js/back.js"></script>
 </body>
 </html>
 """
@@ -1295,6 +1339,7 @@ USE_PAGE = """<!doctype html>
 <footer class="sw-foot">パブリックアートレンタル アイエル ／ <a href="../01-entrance/index.html">トップ（案A）</a> ／ <a href="../02-workplace/index.html">トップ（案B）</a> ／ <a href="../works/index.html">作品リスト</a> ／ <a href="../works/artist.html">作家 池内卓也</a></footer>
 <div class="sw-sticky"><a class="sw-sticky-main" href="mailto:ilbussan@coral.ocn.ne.jp?subject={subj}&amp;body={body}">{cta}</a><a class="sw-sticky-tel" href="tel:0887540711" aria-label="電話する">電話</a></div>
 <script src="../assets/js/lightbox.js"></script>
+<script src="../assets/js/back.js"></script>
 </body>
 </html>
 """
@@ -1483,3 +1528,6 @@ for folder, c in USE_PAGES.items():
     d = W5 / folder; d.mkdir(exist_ok=True)
     (d / "index.html").write_text(use_page(folder, c), encoding="utf-8", newline="\n")
     print("use page ->", d / "index.html")
+
+(W5 / "assets" / "js" / "back.js").write_text(BACK_JS, encoding="utf-8", newline="\n")
+print("back.js ->", W5 / "assets" / "js" / "back.js")

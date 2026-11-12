@@ -78,6 +78,16 @@
 
   /* why rental */
   .why{background:#fff; border-block:1px solid var(--line);}
+  /* why: one line */
+  .why{padding-block:64px;}
+  .why h2{font-size:clamp(22px,3.4vw,42px); margin:8px 0 10px;}
+  .why .lead{max-width:none;}
+  @media (min-width:900px){ .why h2{white-space:nowrap;} }
+  @media (min-width:1100px){ .why .lead{white-space:nowrap;} }
+  .why .cmp{margin-top:26px;}
+  .why .cmp th, .why .cmp td{padding-block:12px;}
+  .why .uses{margin-top:26px;}
+  @media (max-width:760px){ .why{padding-block:48px;} }
   .cmp{width:100%; border-collapse:collapse; margin-top:44px; font-size:15px;}
   .cmp th,.cmp td{padding:18px 16px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
   .cmp thead th{font-size:14px; color:var(--dim); font-weight:700;}
@@ -455,7 +465,7 @@
   <section class="why" id="why">
     <div class="wrap">
       <span class="eyebrow">Why Rental</span>
-      <h2>買うより、借りる。<br>オフィスのアートの新しい選び方。</h2>
+      <h2>買うより、借りる。オフィスのアートの新しい選び方。</h2>
       <p class="lead">オフィスへのアートレンタルは、国内でも複数のサービスが登場している導入方法です。鉄の彫刻も、レンタルなら気軽に始められます。</p>
       <div class="cmp-wrap">
         <table class="cmp">
@@ -533,6 +543,25 @@
   buttons.forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.season); }); });
   var m = new Date().getMonth() + 1;
   show(m >= 3 && m <= 5 ? 'spring' : m >= 6 && m <= 8 ? 'summer' : m >= 9 && m <= 11 ? 'autumn' : 'winter');
+})();
+// 作品ページ・USEのページなどから戻ってきたとき、飛ぶ前に見ていた場所に戻す
+(function(){
+  var key = 'aile-scroll:' + location.pathname;
+  function save(){ try { sessionStorage.setItem(key, String(Math.round(scrollY))); } catch(e){} }
+  addEventListener('pagehide', save);
+  document.addEventListener('click', function(ev){ if (ev.target.closest && ev.target.closest('a[href]')) save(); }, true);
+  var back = false, y = null;
+  try {
+    var u = new URL(document.referrer);
+    back = u.origin === location.origin && /\/rental_office-aile\/(works|entrance|event|showroom|showwindow)\//.test(u.pathname);
+    y = sessionStorage.getItem(key);
+  } catch(e){}
+  if (!back || y === null) return;
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  var stop = false;
+  ['wheel', 'touchstart', 'keydown'].forEach(function(t){ addEventListener(t, function(){ stop = true; }, {once:true, passive:true}); });
+  function go(){ if (!stop) window.scrollTo({top:+y, behavior:'instant'}); }
+  go(); addEventListener('load', go); setTimeout(go, 400); setTimeout(go, 1200);
 })();
 </script>
 <!-- AILE-ORDER:END -->
