@@ -654,6 +654,12 @@ ARTIST_CSS = """
 .ar-line li{display:grid; grid-template-columns:5.5em 1fr; gap:14px; padding:12px 0; border-bottom:1px solid #EEE3D8; font-size:15px;}
 .ar-line .y{font-weight:900; color:#FF5A1F;}
 .ar-line small{color:#8a7d70;}
+.ar-aw{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px;}
+.ar-work{font-size:14px; font-weight:700; color:#FF5A1F; text-decoration:none; white-space:nowrap;}
+.ar-work i{font-style:normal; display:inline-block; margin-left:2px; transition:transform .2s;}
+.ar-work:hover{text-decoration:underline;}
+.ar-work:hover i{transform:translateX(3px);}
+.ar-work.off{color:#8a7d70; font-weight:500;}
 .ar-place{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:10px;}
 .ar-place li a{display:flex; gap:14px; align-items:center; text-decoration:none; background:#fff; border:1px solid #EEE3D8; border-radius:18px; padding:10px; transition:border-color .2s;}
 .ar-place li a:hover{border-color:#FF5A1F;}
@@ -754,7 +760,11 @@ ARTIST_PAGE = """<!doctype html>
 
 def artist_page():
     career = "".join(f'<li><span class="y">{y or "─"}</span><span>{e(t)}</span></li>' for y, t in CAREER)
-    awards = "".join(f'<li><span class="y">{w["year"]}</span><span>{e(w["award"])}<br><small>作品「{e(w["title"])}」</small></span></li>'
+    def award_work(w):   # 作品ページがあればリンク、無ければ（写真準備中）文字だけ
+        if w["photos"]:
+            return f'<a class="ar-work" href="{w["slug"]}.html">作品「{e(w["title"])}」<i>→</i></a>'
+        return f'<span class="ar-work off">作品「{e(w["title"])}」</span>'
+    awards = "".join(f'<li><span class="y">{w["year"]}</span><span class="ar-aw"><span>{e(w["award"])}</span>{award_work(w)}</span></li>'
                      for w in sorted((w for w in WORKS if w.get("award")), key=lambda w: w["year"]))
     places = "".join(f'<li><a href="{w["slug"]}.html"><img src="{w["photos"][0]}" alt="" loading="lazy"><span><b>{e(w["title"])}</b><small>{e(w["place"])}</small></span></a></li>'
                      for w in WORKS if w.get("place") and w["photos"])
