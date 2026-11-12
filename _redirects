@@ -1,3 +1,6 @@
+# 作品名の訂正（ミノムシ → 君の忘れもの）
+/rental_office-aile/works/minomushi.html  /rental_office-aile/works/wasuremono  301
+/rental_office-aile/works/minomushi  /rental_office-aile/works/wasuremono  301
 # 2026-11 フォルダ名を整理したときの旧URL → 新URL（以前お送りしたURLもそのまま開けるように）
 /website2/*  /sales_pop-3designs/:splat  301
 /website3/*  /sales_lounge-2designs/:splat  301

@@ -73,7 +73,7 @@ SCENES = {
       ceiling=R2.c_dark(), floor=R2.f_concrete((170, 166, 160)), x=800,
       back_parts=[(.5, 2.3, .6, 2.4, R2.tiles((180, 120, 90), .15)), (2.6, 4.4, .6, 2.4, R2.tiles((230, 228, 222), .3)), (5.6, 7.4, .6, 2.4, R2.brick((150, 90, 66))),
                   (7.7, 9.5, .6, 2.4, R2.woodpanel((170, 130, 90), .3))]),
-  "showroom-minomushi": dict(slug="minomushi", room=(4, 4, 8, 3.2), hor=440, back=R2.plaster((44, 44, 48)), left=R2.plaster((52, 52, 56)), right=R2.plaster((52, 52, 56)),
+  "showroom-wasuremono": dict(slug="wasuremono", room=(4, 4, 8, 3.2), hor=440, back=R2.plaster((44, 44, 48)), left=R2.plaster((52, 52, 56)), right=R2.plaster((52, 52, 56)),
       ceiling=R2.c_dark(), floor=R2.f_big((70, 70, 74), refl=.35), x=800, wash=40, plinth=.9,
       boxes=[(-.6, .6, 0, .9, 3.3, 3.9, (230, 228, 224), (220, 218, 214), (196, 194, 190))],
       pendants=[(-2.6, 5), (-1.4, 6), (1.4, 6), (2.6, 5), (0, 7)]),

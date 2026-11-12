@@ -290,7 +290,7 @@ SPECS = {
                   spots=[0]),
   # autumn
   "mudai2":  dict(SMALL, facade="brick", back=drape((176, 84, 44)), floor=R2.f_wood((120, 82, 52)), spots=[0], particles=[("leaf", 45, LEAVES)], plinth_col=(60, 46, 38)),
-  "minomushi": dict(SMALL, facade="greenmetal", back=R2.wainscot((56, 70, 64), (40, 50, 46), .7), floor=R2.f_herring((100, 70, 48)), spots=[0], night=True,
+  "wasuremono": dict(SMALL, facade="greenmetal", back=R2.wainscot((56, 70, 64), (40, 50, 46), .7), floor=R2.f_herring((100, 70, 48)), spots=[0], night=True,
                   particles=[("leaf", 30, LEAVES)], plinth_col=(214, 196, 160)),
   "mudai5":  dict(win=(2.0, 2.0, 2.0, 2.3), facade="limestone", back=R2.plaster((242, 234, 220)), side=R2.slats((172, 124, 82), .09, .02), floor=R2.f_herring((140, 98, 64)), spots=[0],
                   props=[(-1.7, -1.0, 0, .9, 5.3, 5.8, (110, 72, 44), (96, 62, 38), (80, 52, 32))], light=(1.04, 1, .92)),

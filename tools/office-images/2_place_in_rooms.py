@@ -314,7 +314,7 @@ SPECS = {
                     floor=f_wood((196, 160, 118)), x=800, plants=[(-3.6, 6, 1.2), (3.6, 6, 1.3)], back_parts=[(3.4, 5.6, 2.0, 2.4, plaster((242, 196, 70)))]),
   "fukko":     dict(room=(3.0, 6.0, 10, 3.6), hor=430, back=concrete(), left=brick((176, 170, 160)), right=window((190, 206, 220)), ceiling=c_dark(), floor=f_concrete(), x=700,
                     boxes=[(1.0, 4.4, 0, .45, 6.6, 7.2, (60, 60, 64), (52, 52, 56), (44, 44, 48))]),
-  "minomushi": dict(room=(4, 4, 7, 3.0), hor=440, back=wainscot((56, 70, 64), (40, 50, 46)), left=wainscot((56, 70, 64), (40, 50, 46)), right=wainscot((56, 70, 64), (40, 50, 46)),
+  "wasuremono": dict(room=(4, 4, 7, 3.0), hor=440, back=wainscot((56, 70, 64), (40, 50, 46)), left=wainscot((56, 70, 64), (40, 50, 46)), right=wainscot((56, 70, 64), (40, 50, 46)),
                     ceiling=c_wood((90, 66, 46)), floor=f_herring((100, 70, 48)), x=800, wash=34, tint=(1.05, 1, .9), pendants=[(0, 4.6)]),
   "oka":       dict(room=(4.5, 4.5, 10, 3.2), hor=430, back=plaster((236, 234, 228)), left=moss(), right=moss(), ceiling=c_plaster(), floor=f_stone((210, 206, 198)), x=800),
 }
