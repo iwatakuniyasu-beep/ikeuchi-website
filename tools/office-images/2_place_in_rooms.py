@@ -316,6 +316,8 @@ SPECS = {
                     boxes=[(1.0, 4.4, 0, .45, 6.6, 7.2, (60, 60, 64), (52, 52, 56), (44, 44, 48))]),
   "wasuremono": dict(room=(4, 4, 7, 3.0), hor=440, back=wainscot((56, 70, 64), (40, 50, 46)), left=wainscot((56, 70, 64), (40, 50, 46)), right=wainscot((56, 70, 64), (40, 50, 46)),
                     ceiling=c_wood((90, 66, 46)), floor=f_herring((100, 70, 48)), x=800, wash=34, tint=(1.05, 1, .9), pendants=[(0, 4.6)]),
+  "moyuru":    dict(room=(4.5, 4.5, 10, 3.6), hor=430, back=slats((58, 58, 62), .12, .03, (30, 30, 32)), left=plaster((242, 240, 236)), right=plaster((242, 240, 236)),
+                    ceiling=c_plaster(), floor=f_wood((214, 186, 150)), x=800, wash=40, plants=[(-3.6, 6.5, 1.1), (3.6, 6.5, 1.1)]),
   "oka":       dict(room=(4.5, 4.5, 10, 3.2), hor=430, back=plaster((236, 234, 228)), left=moss(), right=moss(), ceiling=c_plaster(), floor=f_stone((210, 206, 198)), x=800),
 }
 

@@ -311,6 +311,10 @@ SPECS = {
   "tsunagu": dict(TALL, win=(2.6, 2.6, 2.2, 3.0), facade="limestone", back=R2.slats((244, 244, 242), .1, .03, (206, 206, 204)), floor=R2.f_stone((212, 210, 206), 1.0),
                   spots=[-.8, .8], neighbors=[(-4.9, -3.2), (3.2, 4.9)]),
   "mudai6":  dict(SMALL, facade="brick", back=R2.brick((150, 90, 66)), floor=R2.f_wood((120, 84, 56)), spots=[0], night=True, light=(1.08, .98, .84), plinth_col=(40, 40, 42)),
+  # added later (kept at the end so the windows above keep their random seeds)
+  "moyuru":  dict(win=(2.0, 2.0, 2.0, 2.4), facade="limestone", back=gradient((40, 18, 14), (170, 70, 30), 2.4), side=R2.plaster((60, 30, 22)),
+                  floor=f_lacquer((24, 20, 20), .5), spots=[0], night=True, spot=.8,
+                  particles=[("confetti", 40, [(255, 150, 60), (240, 90, 40), (255, 200, 120)])]),
 }
 
 if __name__ == "__main__":
