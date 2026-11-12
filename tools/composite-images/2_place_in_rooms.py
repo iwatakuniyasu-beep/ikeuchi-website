@@ -1,6 +1,6 @@
 """手順2：作品ごとに違うオフィスのエントランスを描き、切り抜いた作品を置いて保存します。
 
-  入力: cutouts/<slug>.png（手順1）、data/office-images.csv の height_m
+  入力: cutouts/<slug>.png（手順1）、data/cutouts.csv の height_m
   出力: rental_office-aile/assets/office/<slug>.jpg（作品ページ・作品リストに表示）
 
 部屋は写真を使わず、ここで一から描いています（左右の壁・奥の壁・床・天井の箱を光線で描く方式）。
@@ -9,8 +9,8 @@
   back / left / right / ceiling / floor … 壁・天井・床の素材（plaster, concrete, brick, marble, window など）
   boxes … カウンターやベンチ、pendants … 吊り照明、plants … 観葉植物、x … 作品を置く横位置(px)
 
-    python tools/office-images/2_place_in_rooms.py            # 全作品
-    python tools/office-images/2_place_in_rooms.py mudai4     # 一部だけ
+    python tools/composite-images/2_place_in_rooms.py            # 全作品
+    python tools/composite-images/2_place_in_rooms.py mudai4     # 一部だけ
 """
 
 import csv, sys, subprocess
@@ -322,7 +322,7 @@ SPECS = {
 }
 
 if __name__ == "__main__":
-    rows = {r["slug"]: r for r in csv.DictReader(open(om.ROOT / "data" / "office-images.csv", encoding="utf-8-sig"))}
+    rows = {r["slug"]: r for r in csv.DictReader(open(om.ROOT / "data" / "cutouts.csv", encoding="utf-8-sig"))}
     only = sys.argv[1].split(",") if len(sys.argv) > 1 else list(SPECS)
     om.OUT.mkdir(parents=True, exist_ok=True)
     for slug in only:

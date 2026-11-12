@@ -142,7 +142,7 @@
   footer{background:var(--navy); color:#8792A8; padding:20px 36px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px;}
   footer a{color:#fff;}
 </style>
-<link rel="stylesheet" href="../assets/new-works.css">
+<link rel="stylesheet" href="../assets/css/new-works.css">
 <style>.nw{--nw-bg:#EEF0F3; --nw-card:#fff; --nw-fg:#0F1B33; --nw-dim:#5E6677; --nw-line:#DADDE3; --nw-acc:#FF5A1F; --nw-on-acc:#fff; --nw-head:'Noto Sans JP', sans-serif; --nw-head-weight:900; --nw-radius:6px; --nw-pill:3px;}</style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&display=swap">
 <style id="ai-style">
@@ -479,10 +479,10 @@
         </table>
       </div>
       <div class="uses">
-        <a class="use" href="../entrance/index.html"><b>USE 01</b><h3>本社エントランス</h3><p>ブランドを体現する一点を、来訪者の動線上に。</p><span class="more">詳しく →</span></a>
-        <a class="use" href="../event/index.html"><b>USE 02</b><h3>周年・式典・採用イベント</h3><p>期間限定で、特別な日の空間演出に。</p><span class="more">詳しく →</span></a>
-        <a class="use" href="../showroom/index.html"><b>USE 03</b><h3>ショールーム</h3><p>自社製品とあわせて、世界観をつくる背景に。</p><span class="more">詳しく →</span></a>
-        <a class="use" href="../showwindow/index.html"><b>USE 04</b><h3>店舗のショーウィンドウ</h3><p>百貨店・ブランド店の季節の展示に。</p><span class="more">詳しく →</span></a>
+        <a class="use" href="../use01-entrance/index.html"><b>USE 01</b><h3>本社エントランス</h3><p>ブランドを体現する一点を、来訪者の動線上に。</p><span class="more">詳しく →</span></a>
+        <a class="use" href="../use02-event/index.html"><b>USE 02</b><h3>周年・式典・採用イベント</h3><p>期間限定で、特別な日の空間演出に。</p><span class="more">詳しく →</span></a>
+        <a class="use" href="../use03-showroom/index.html"><b>USE 03</b><h3>ショールーム</h3><p>自社製品とあわせて、世界観をつくる背景に。</p><span class="more">詳しく →</span></a>
+        <a class="use" href="../use04-showwindow/index.html"><b>USE 04</b><h3>店舗のショーウィンドウ</h3><p>百貨店・ブランド店の季節の展示に。</p><span class="more">詳しく →</span></a>
       </div>
     </div>
   </section>
@@ -553,7 +553,7 @@
   var back = false, y = null;
   try {
     var u = new URL(document.referrer);
-    back = u.origin === location.origin && /\/rental_office-aile\/(works|entrance|event|showroom|showwindow)\//.test(u.pathname);
+    back = u.origin === location.origin && /\/rental_office-aile\/(works|use0[1-4]-[a-z]+)\//.test(u.pathname);
     y = sessionStorage.getItem(key);
   } catch(e){}
   if (!back || y === null) return;
@@ -636,13 +636,13 @@
 
   <section class="sw-promo" id="showwindow">
     <div class="sw-promo-in">
-      <a class="sw-promo-img" href="../showwindow/index.html"><img src="../assets/window/shishu.jpg" alt="作品「死守」をホリデーシーズンのショーウィンドウに飾ったイメージ" loading="lazy"></a>
+      <a class="sw-promo-img" href="../use04-showwindow/index.html"><img src="../assets/window/shishu.jpg" alt="作品「死守」をホリデーシーズンのショーウィンドウに飾ったイメージ" loading="lazy"></a>
       <div>
         <span class="sw-promo-k">SHOW WINDOW</span>
         <h2>百貨店・ブランド店の<br>ショーウィンドウにも。</h2>
         <p>パブリックアートの延長として、店舗のショーウィンドウにも鉄の作品をレンタルします。シーズンの展示に合わせて借りて、会期が終われば次の作品へ。通りを歩く人の足を止めるウィンドウをつくります。</p>
         <ul class="sw-promo-thumbs"><li><img src="../assets/window/souga.jpg" alt="春のウィンドウ" loading="lazy"></li><li><img src="../assets/window/tou.jpg" alt="夏のウィンドウ" loading="lazy"></li><li><img src="../assets/window/tamago.jpg" alt="秋のウィンドウ" loading="lazy"></li><li><img src="../assets/window/mamoru.jpg" alt="冬のウィンドウ" loading="lazy"></li></ul>
-        <a class="sw-promo-btn" href="../showwindow/index.html">ショーウィンドウ向けのご案内 →</a>
+        <a class="sw-promo-btn" href="../use04-showwindow/index.html">ショーウィンドウ向けのご案内 →</a>
       </div>
     </div>
   </section>

@@ -1,13 +1,13 @@
 """手順4：イベント会場（周年・式典・採用イベント）とショールームを描き、切り抜いた作品を置いて保存します。
 
-  入力: cutouts/<slug>.png（手順1）、data/office-images.csv の height_m
+  入力: cutouts/<slug>.png（手順1）、data/cutouts.csv の height_m
   出力: rental_office-aile/assets/scene/<場面>-<slug>.jpg（USE 02 イベント・USE 03 ショールームのページに表示）
 
 部屋の描き方は 2_place_in_rooms.py と同じです（写真は使わず、一から描く）。設定は下の SCENES に1場面1行。
   slug … 置く作品、room … (左の壁, 右の壁, 奥行き, 天井高) m、boxes … ステージ・テーブル・カウンターなどの箱、x … 作品の横位置(px)
 
-    python tools/office-images/4_place_in_scenes.py                 # 全場面
-    python tools/office-images/4_place_in_scenes.py event-yusho     # 一部だけ
+    python tools/composite-images/4_place_in_scenes.py                 # 全場面
+    python tools/composite-images/4_place_in_scenes.py event-yusho     # 一部だけ
 """
 import csv, sys, importlib
 import numpy as np
@@ -84,7 +84,7 @@ SCENES = {
 }
 
 if __name__ == "__main__":
-    rows = {r["slug"]: r for r in csv.DictReader(open(om.ROOT / "data" / "office-images.csv", encoding="utf-8-sig"))}
+    rows = {r["slug"]: r for r in csv.DictReader(open(om.ROOT / "data" / "cutouts.csv", encoding="utf-8-sig"))}
     only = sys.argv[1].split(",") if len(sys.argv) > 1 else list(SCENES)
     OUT.mkdir(parents=True, exist_ok=True)
     for key in only:

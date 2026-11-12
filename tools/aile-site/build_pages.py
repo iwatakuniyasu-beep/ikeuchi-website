@@ -192,7 +192,7 @@ SCRIPT = """<script>
   var back = false, y = null;
   try {
     var u = new URL(document.referrer);
-    back = u.origin === location.origin && /\\/rental_office-aile\\/(works|entrance|event|showroom|showwindow)\\//.test(u.pathname);
+    back = u.origin === location.origin && /\\/rental_office-aile\\/(works|use0[1-4]-[a-z]+)\\//.test(u.pathname);
     y = sessionStorage.getItem(key);
   } catch(e){}
   if (!back || y === null) return;
@@ -631,7 +631,7 @@ for i, w in enumerate(WORKS):
         office += (f'<figure class="wk-office wk-window"><div class="wk-office-img" data-lb="{o}" data-lb-cap="{e(w["title"])}（ショーウィンドウに飾ったイメージ）">'
                    f'<img src="{o}" alt="{e(w["title"])}を百貨店・ブランド店のショーウィンドウに飾ったイメージ" loading="lazy"></div>'
                    '<figcaption><b>ショーウィンドウに飾ったら</b>百貨店・ブランド店のウィンドウに展示したイメージです（合成した参考イメージ）'
-                   '<a href="../showwindow/index.html">ショーウィンドウでのレンタル →</a></figcaption></figure>')
+                   '<a href="../use04-showwindow/index.html">ショーウィンドウでのレンタル →</a></figcaption></figure>')
     (out / f'{w["slug"]}.html').write_text(PAGE.format(title=e(w["title"]), main=main, thumbs=thumbs, office=office, facts=facts_html, text=text,
                                                        film=film, subj=subj, body=body, prev=prev, next=nxt), encoding="utf-8", newline="\n")
 print("work pages:", len(paged), "->", out)
@@ -873,7 +873,7 @@ CATALOG_PAGE = """<!doctype html>
 <section class="ct-head">
   <p class="wk-kick"><a href="artist.html">作家　池内卓也 →</a></p>
   <h1>作品リスト</h1>
-  <p>レンタル・ご購入をご相談いただける作品の一覧です。写真にカーソルを合わせると（スマホは「詳しく見る」から）、オフィスに置いたイメージをご覧いただけます。作品ページでは、百貨店・ブランド店の<a href="../showwindow/index.html">ショーウィンドウ</a>に飾ったイメージもご覧いただけます。</p>
+  <p>レンタル・ご購入をご相談いただける作品の一覧です。写真にカーソルを合わせると（スマホは「詳しく見る」から）、オフィスに置いたイメージをご覧いただけます。作品ページでは、百貨店・ブランド店の<a href="../use04-showwindow/index.html">ショーウィンドウ</a>に飾ったイメージもご覧いただけます。</p>
 </section>
 <div class="ct-tools"><div class="ct-tools-in" role="group" aria-label="テーマで絞り込む">
   {chips}
@@ -950,7 +950,7 @@ def catalog_page():
 print("catalogue ->", out / "index.html")
 
 # ---------------------------------------------------------------- show windows (showwindow/index.html)
-# 百貨店・ブランド店のオーナー向けページ。画像は tools/office-images/3_place_in_windows.py が作る assets/window/<slug>.jpg
+# 百貨店・ブランド店のオーナー向けページ。画像は tools/composite-images/3_place_in_windows.py が作る assets/window/<slug>.jpg
 # 季節ごとの並びと説明文はここで直します。
 SW_SEASONS = [
   ("spring", "春", "桜・新生活・母の日", [
@@ -1086,7 +1086,7 @@ SW_PAGE = """<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
-<link rel="stylesheet" href="../assets/use-pages.css">
+<link rel="stylesheet" href="../assets/css/use-pages.css">
 </head>
 <body>
 <header class="sw-bar">
@@ -1222,10 +1222,10 @@ SW_PAGE = """<!doctype html>
 # ---------------------------------------------------------------- USE 01〜04 の詳しいページ（共通の部品）
 # 案Aの「USE 01〜04」のカードから飛ぶページ。デザインは use-pages.css を共用します。
 USES = [  # (フォルダ, 番号, 名前, カード用の画像)
-  ("entrance", "USE 01", "本社エントランス", "../assets/office/tsunagu.jpg"),
-  ("event", "USE 02", "周年・式典・採用イベント", "../assets/scene/event-yusho.jpg"),
-  ("showroom", "USE 03", "ショールーム", "../assets/scene/showroom-mudai4.jpg"),
-  ("showwindow", "USE 04", "店舗のショーウィンドウ", "../assets/window/tamago.jpg"),
+  ("use01-entrance", "USE 01", "本社エントランス", "../assets/office/tsunagu.jpg"),
+  ("use02-event", "USE 02", "周年・式典・採用イベント", "../assets/scene/event-yusho.jpg"),
+  ("use03-showroom", "USE 03", "ショールーム", "../assets/scene/showroom-mudai4.jpg"),
+  ("use04-showwindow", "USE 04", "店舗のショーウィンドウ", "../assets/window/tamago.jpg"),
 ]
 
 USE_CSS = """
@@ -1265,10 +1265,10 @@ def showwindow_page():
         grids.append(f'<div class="sw-grid" data-season="{key}"{"" if key == "spring" else " hidden"}>{"".join(cards)}</div>')
     subj = urllib.parse.quote("ショーウィンドウでの作品レンタルの相談")
     body = urllib.parse.quote("パブリックアートレンタル アイエル 御中\n\nショーウィンドウでの作品の展示について相談したいです。\n\n【店舗名】\n【ウィンドウの場所・寸法（幅・奥行き・高さ）】\n【展示のテーマ・季節】\n【会期（希望の期間）】\n【気になる作品】\n【ご連絡先】\n")
-    return SW_PAGE.format(buttons="".join(buttons), grids="".join(grids), subj=subj, body=body, uses=uses_nav("showwindow"))
+    return SW_PAGE.format(buttons="".join(buttons), grids="".join(grids), subj=subj, body=body, uses=uses_nav("use04-showwindow"))
 
-sw = W5 / "showwindow"; sw.mkdir(exist_ok=True)
-(W5 / "assets" / "use-pages.css").write_text(SW_CSS + USE_CSS, encoding="utf-8", newline="\n")
+sw = W5 / "use04-showwindow"; sw.mkdir(exist_ok=True)
+(W5 / "assets" / "css" / "use-pages.css").write_text(SW_CSS + USE_CSS, encoding="utf-8", newline="\n")
 (sw / "showwindow.css").unlink(missing_ok=True)
 (sw / "index.html").write_text(showwindow_page(), encoding="utf-8", newline="\n")
 print("show windows ->", sw / "index.html")
@@ -1287,7 +1287,7 @@ USE_PAGE = """<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
-<link rel="stylesheet" href="../assets/use-pages.css">
+<link rel="stylesheet" href="../assets/css/use-pages.css">
 </head>
 <body>
 <header class="sw-bar">
@@ -1382,7 +1382,7 @@ def steps6(items):
     return "".join(f"<li><b>{i:02d}</b><h3>{t}</h3><p>{d}</p></li>" for i, (t, d) in enumerate(items, 1))
 
 USE_PAGES = {
-  "entrance": dict(
+  "use01-entrance": dict(
     title="本社エントランスのアート", nav_why="なぜ鉄の彫刻か", nav_gallery="エントランスのイメージ", nav_ideas="置く場所",
     hero_img="../assets/office/tsunagu.jpg", hero_alt="作品「つなぐ」を明るいロビーに置いたイメージ",
     kick="USE 01 ── ENTRANCE", h1='<span class="nb">会社の顔に、</span><br>鉄の一点を。',
@@ -1434,7 +1434,7 @@ USE_PAGES = {
     subj="エントランスへの作品レンタルの相談",
     body="パブリックアートレンタル アイエル 御中\n\nエントランス・受付への作品のレンタルについて相談したいです。\n\n【会社名】\n【置きたい場所（エレベーターホール・受付 など）】\n【広さ・天井の高さ】\n【希望の時期・期間】\n【気になる作品】\n【ご連絡先】\n"),
 
-  "event": dict(
+  "use02-event": dict(
     title="周年・式典・採用イベントのアート", nav_why="なぜ鉄の彫刻か", nav_gallery="会場のイメージ", nav_ideas="イベントの例",
     hero_img="../assets/scene/event-yusho.jpg", hero_alt="作品「湧昇の夢」を周年記念式典の会場に置いたイメージ",
     kick="USE 02 ── EVENTS", h1='<span class="nb">特別な日の会場に、</span><br>記憶に残る一点を。',
@@ -1483,7 +1483,7 @@ USE_PAGES = {
     subj="イベントでの作品レンタルの相談",
     body="パブリックアートレンタル アイエル 御中\n\nイベントでの作品のレンタルについて相談したいです。\n\n【会社名】\n【イベントの内容（周年・式典・採用イベント など）】\n【日程】\n【会場】\n【気になる作品】\n【ご連絡先】\n"),
 
-  "showroom": dict(
+  "use03-showroom": dict(
     title="ショールームのアート", nav_why="なぜ鉄の彫刻か", nav_gallery="ショールームのイメージ", nav_ideas="業種ごとの例",
     hero_img="../assets/scene/showroom-mudai4.jpg", hero_alt="作品「無題4」を大きなショールームに置いたイメージ",
     kick="USE 03 ── SHOWROOM", h1='<span class="nb">製品の世界観を、</span><br>鉄でつくる。',
@@ -1539,7 +1539,7 @@ def use_page(folder, c):
         src = f"../assets/{img}.jpg"
         if not (W5 / "assets" / f"{img}.jpg").exists():
             continue
-        cards.append(f'<figure class="sw-card"><div class="sw-img" data-lb="{src}" data-lb-cap="{e(title)}（{e(desc)}）" data-lb-group="use-{folder}">'
+        cards.append(f'<figure class="sw-card"><div class="sw-img" data-lb="{src}" data-lb-cap="{e(title)}（{e(desc)}）" data-lb-group="{folder}">'
                      f'<img src="{src}" alt="作品「{e(title)}」を置いたイメージ" loading="lazy"></div>'
                      f'<figcaption><b>{e(title)}</b><span>{e(desc)}</span><a href="../works/{slug}.html">作品ページへ →</a></figcaption></figure>')
     return USE_PAGE.format(

@@ -10,7 +10,7 @@
 #   models/   … 背景除去AI（u2net.onnx 約170MB。models/README.txt の手順で入手）
 /movie/
 /20261020/
-tools/office-images/models/*.onnx
+tools/composite-images/models/*.onnx
 
 # 別の仕組み（AI動画の自動生成。このサイトとは別に管理）
 /studio/

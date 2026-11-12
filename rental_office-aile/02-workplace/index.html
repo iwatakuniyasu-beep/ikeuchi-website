@@ -127,7 +127,7 @@
   footer{text-align:center; padding:30px 16px 40px; color:var(--dim); font-size:12.5px;}
   footer a{color:var(--green); text-decoration:underline;}
 </style>
-<link rel="stylesheet" href="../assets/new-works.css">
+<link rel="stylesheet" href="../assets/css/new-works.css">
 <style>.nw{--nw-bg:#E6EEE4; --nw-card:#fff; --nw-fg:#1D2B24; --nw-dim:#5F6E66; --nw-line:#DCE3DA; --nw-acc:#1F4D3A; --nw-on-acc:#fff; --nw-head:'Zen Maru Gothic', sans-serif; --nw-head-weight:900; --nw-radius:24px; --nw-pill:30px;}</style>
 
 <style id="ai-style">
@@ -521,7 +521,7 @@
   var back = false, y = null;
   try {
     var u = new URL(document.referrer);
-    back = u.origin === location.origin && /\/rental_office-aile\/(works|entrance|event|showroom|showwindow)\//.test(u.pathname);
+    back = u.origin === location.origin && /\/rental_office-aile\/(works|use0[1-4]-[a-z]+)\//.test(u.pathname);
     y = sessionStorage.getItem(key);
   } catch(e){}
   if (!back || y === null) return;
@@ -581,13 +581,13 @@
 
   <section class="sw-promo" id="showwindow">
     <div class="sw-promo-in">
-      <a class="sw-promo-img" href="../showwindow/index.html"><img src="../assets/window/shishu.jpg" alt="作品「死守」をホリデーシーズンのショーウィンドウに飾ったイメージ" loading="lazy"></a>
+      <a class="sw-promo-img" href="../use04-showwindow/index.html"><img src="../assets/window/shishu.jpg" alt="作品「死守」をホリデーシーズンのショーウィンドウに飾ったイメージ" loading="lazy"></a>
       <div>
         <span class="sw-promo-k">SHOW WINDOW</span>
         <h2>百貨店・ブランド店の<br>ショーウィンドウにも。</h2>
         <p>パブリックアートの延長として、店舗のショーウィンドウにも鉄の作品をレンタルします。シーズンの展示に合わせて借りて、会期が終われば次の作品へ。通りを歩く人の足を止めるウィンドウをつくります。</p>
         <ul class="sw-promo-thumbs"><li><img src="../assets/window/souga.jpg" alt="春のウィンドウ" loading="lazy"></li><li><img src="../assets/window/tou.jpg" alt="夏のウィンドウ" loading="lazy"></li><li><img src="../assets/window/tamago.jpg" alt="秋のウィンドウ" loading="lazy"></li><li><img src="../assets/window/mamoru.jpg" alt="冬のウィンドウ" loading="lazy"></li></ul>
-        <a class="sw-promo-btn" href="../showwindow/index.html">ショーウィンドウ向けのご案内 →</a>
+        <a class="sw-promo-btn" href="../use04-showwindow/index.html">ショーウィンドウ向けのご案内 →</a>
       </div>
     </div>
   </section>

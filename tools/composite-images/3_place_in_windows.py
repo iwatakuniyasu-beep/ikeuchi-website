@@ -1,6 +1,6 @@
 """手順3：作品ごとに違うショーウィンドウ（百貨店・ブランド店）を描き、切り抜いた作品を飾って保存します。
 
-  入力: cutouts/<slug>.png（手順1）、data/office-images.csv の height_m
+  入力: cutouts/<slug>.png（手順1）、data/cutouts.csv の height_m
   出力: rental_office-aile/assets/window/<slug>.jpg（作品ページ・作品リスト・ショーウィンドウのページに表示）
 
 ウィンドウは写真を使わず、ここで一から描いています（通りから見た外観・ガラス・ウィンドウの中の箱を光線で描く方式）。
@@ -10,8 +10,8 @@
   spots … スポットライトの横位置(m)、night … 夜の見え方、particles … 花びら・落ち葉・雪・紙吹雪など
   plinth … 作品をのせる台の高さ(m)、x … 作品の横位置(m)
 
-    python tools/office-images/3_place_in_windows.py            # 全作品
-    python tools/office-images/3_place_in_windows.py shishu     # 一部だけ
+    python tools/composite-images/3_place_in_windows.py            # 全作品
+    python tools/composite-images/3_place_in_windows.py shishu     # 一部だけ
 """
 
 import csv, sys, importlib
@@ -318,7 +318,7 @@ SPECS = {
 }
 
 if __name__ == "__main__":
-    rows = {r["slug"]: r for r in csv.DictReader(open(om.ROOT / "data" / "office-images.csv", encoding="utf-8-sig"))}
+    rows = {r["slug"]: r for r in csv.DictReader(open(om.ROOT / "data" / "cutouts.csv", encoding="utf-8-sig"))}
     only = sys.argv[1].split(",") if len(sys.argv) > 1 else list(SPECS)
     OUT.mkdir(parents=True, exist_ok=True)
     for i, slug in enumerate(SPECS):
