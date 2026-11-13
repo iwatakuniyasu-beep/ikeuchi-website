@@ -238,6 +238,15 @@
   .ai-space2{display:block !important;}
   /* career rows spread out so the list ends level with the bottom of the making video */
   .ai-profile{display:grid; grid-template-columns:.9fr 1.1fr; gap:36px; align-items:stretch; margin-bottom:46px;}
+  /* 経歴は動画の上端（見出しと紹介文の下）から始める。行は引き伸ばさない */
+  .ai-profile{column-gap:36px; row-gap:0; align-items:start;}
+  .ai-prof-text{display:contents;}
+  .ai-prof-text > h2{grid-column:1; grid-row:1;}
+  .ai-prof-text > p{grid-column:1; grid-row:2;}
+  .ai-prof-text > .ai-making{grid-column:1; grid-row:3; margin-top:0;}
+  .ai-career{grid-column:2; grid-row:3; align-self:start;}
+  .ai-career li{flex:none;}
+  @media (max-width:900px){ .ai-prof-text > h2, .ai-prof-text > p, .ai-prof-text > .ai-making, .ai-career{grid-column:1; grid-row:auto;} .ai-career{margin-top:16px;} }
   /* 主な受賞（作家の下・3列） */
   .ai-awards{margin:0 0 46px;}
   .ai-awards h3{font-family:var(--ai-font); font-weight:700; font-size:22px; margin:0 0 10px; display:flex; align-items:center; flex-wrap:wrap; gap:6px 14px;}
