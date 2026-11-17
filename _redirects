@@ -1,3 +1,11 @@
+# 2026-11-17 作品の統合・名前の変更（卵→死守、植物→覚醒する自我、丘の上の植物→自我）
+/rental_office-aile/works/tamago.html  /rental_office-aile/works/shishu  301
+/rental_office-aile/works/tamago  /rental_office-aile/works/shishu  301
+/rental_office-aile/works/shokubutsu.html  /rental_office-aile/works/kakusei  301
+/rental_office-aile/works/shokubutsu  /rental_office-aile/works/kakusei  301
+/rental_office-aile/works/oka.html  /rental_office-aile/works/jiga  301
+/rental_office-aile/works/oka  /rental_office-aile/works/jiga  301
+
 # 2026-11-12 USE 01〜04 のページのフォルダ名を変更（案Aの 01-entrance と区別しやすく）
 /rental_office-aile/entrance/*    /rental_office-aile/use01-entrance/:splat    301
 /rental_office-aile/event/*       /rental_office-aile/use02-event/:splat       301

@@ -86,6 +86,22 @@ def space1(rows):
 # ---------------------------------------------------------------- career (space ②, data/career.csv)
 CAREER = [(r["year"].strip(), r["text"].strip()) for r in read_csv("career.csv")]            # 作家ページ：全部
 AWARDS = [(r["year"].strip(), r["kind"].strip(), r["text"].strip(), r["slug"].strip()) for r in read_csv("awards.csv")]   # 作家ページ「主な受賞・出品」
+# パブリックアートスポット（data/spots.csv）：作品が実際に見られる場所。works は「|」区切りの作品ID
+SPOTS = []
+for r in read_csv("spots.csv"):
+    s = {k: (v or "").strip() for k, v in r.items()}
+    s["works"] = [x.strip() for x in s["works"].split("|") if x.strip()]
+    SPOTS.append(s)
+SPOT_OF = {w: s for s in SPOTS for w in s["works"]}   # 作品ID → スポット
+
+def gmap_embed(s, h=320):
+    q = urllib.parse.quote(f'{s["name"]} {s["address"]}')
+    return (f'<iframe src="https://maps.google.com/maps?q={q}&amp;z=16&amp;output=embed" width="100%" height="{h}" style="border:0" '
+            f'loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="{e(s["name"])}の地図"></iframe>')
+
+def gmap_link(s):
+    return "https://www.google.com/maps/search/?api=1&amp;query=" + urllib.parse.quote(f'{s["name"]} {s["address"]}')
+
 CAREER_TOP = [(r["year"].strip(), r["text"].strip()) for r in read_csv("career.csv") if (r.get("top") or "").strip().lower() in ("yes", "y", "1", "はい")]   # 案A・B：top=yes の行だけ（動画と高さをそろえる）
 
 def awards_block():
@@ -101,6 +117,16 @@ def awards_block():
         items.append(f'<li><span class="y">{y}</span><span class="ai-aw-t">{e(t)}{link}</span></li>')
     return (f'<div class="ai-awards"><h3>主な受賞<span class="ai-aw-n">受賞 {len(rows)}回</span>'
             f'<a class="ai-aw-more" href="../works/artist.html">受賞・出品の一覧 →</a></h3><ul>{"".join(items)}</ul></div>')
+
+def spots_block():
+    """案A・B：主な受賞の下に「パブリックアートスポット」（作品が実際に見られる場所。data/spots.csv）"""
+    items = []
+    for i, s in enumerate(SPOTS, 1):
+        names = "・".join(f'「{e(BY[w]["title"])}」' for w in s["works"] if w in BY)
+        items.append(f'<li><span class="y">{i:02d}</span><span class="ai-aw-t"><a class="ai-spot-name" href="../spots/{s["slug"]}.html">{e(s["name"])}</a>'
+                     f'<small>{e(s["area"])}　{names}</small></span><a class="ai-aw-link" href="../spots/{s["slug"]}.html">見に行く →</a></li>')
+    return (f'<div class="ai-awards ai-spots"><h3>パブリックアートスポット<span class="ai-aw-n">{len(SPOTS)}か所</span>'
+            f'<a class="ai-aw-more" href="../spots/index.html">地図と一覧 →</a></h3><ul>{"".join(items)}</ul></div>')
 
 def space2():
     career = "".join(f'<li><span class="y">{y or "─"}</span><span>{e(t)}</span></li>' for y, t in CAREER_TOP)
@@ -126,6 +152,7 @@ def space2():
         <ul class="ai-career">{career}</ul>
       </div>
       {awards_block()}
+      {spots_block()}
       <div class="ai-works">
         <h3>作品と受賞歴<a class="ai-list" href="../works/index.html">作品リストを見る →</a></h3>
         <p class="ai-legend"><span class="ai-k ai-k-a">受賞</span>受賞タイトル　<span class="ai-k ai-k-p">設置</span>設置場所　<span class="ai-k ai-k-s">出品</span>出品した展覧会</p>
@@ -207,7 +234,7 @@ SCRIPT = """<script>
   var back = false, y = null;
   try {
     var u = new URL(document.referrer);
-    back = u.origin === location.origin && /\\/rental_office-aile\\/(works|use0[1-4]-[a-z]+)\\//.test(u.pathname);
+    back = u.origin === location.origin && /\\/rental_office-aile\\/(works|spots|use0[1-4]-[a-z]+)\\//.test(u.pathname);
     y = sessionStorage.getItem(key);
   } catch(e){}
   if (!back || y === null) return;
@@ -352,6 +379,11 @@ BASE_CSS = """
   .ai-aw-link{margin-left:8px; font-weight:700; color:var(--ai-acc); text-decoration:none; white-space:nowrap;}
   .ai-aw-link:hover{text-decoration:underline;}
   .ai-aw-link.off{color:var(--ai-dim); font-weight:500;}
+  .ai-spots ul{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .ai-spots li{grid-template-columns:36px 1fr auto; align-items:center;}
+  .ai-spot-name{font-family:var(--ai-font); font-weight:700; font-size:16px; color:var(--ai-fg); text-decoration:none;}
+  .ai-spot-name:hover{color:var(--ai-acc);}
+  .ai-spots small{display:block; color:var(--ai-dim); font-size:13px;}
   @media (max-width:1060px){ .ai-awards ul{grid-template-columns:repeat(2,minmax(0,1fr));} }
   @media (max-width:700px){ .ai-awards ul{grid-template-columns:minmax(0,1fr);} .ai-aw-more{margin-left:0;} }
   .ai-wgrid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px;}
@@ -560,6 +592,7 @@ PAGE = """<!doctype html>
     <dl class="wk-facts">{facts}</dl>
     {text}
     {film}
+    {spot}
     <div class="wk-cta">
       <a class="wk-btn" href="mailto:ilbussan@coral.ocn.ne.jp?subject={subj}&amp;body={body}">この作品のレンタルを相談する</a>
       <p>有限会社アイエル物産　TEL 0887-54-0711</p>
@@ -612,6 +645,15 @@ a{color:inherit;}
 .wk-text{margin:0 0 18px; color:#4a4e5c;}
 .wk-film{display:inline-flex; align-items:center; gap:8px; border:0; cursor:pointer; font-family:inherit; font-weight:700; font-size:15px; padding:12px 20px; border-radius:30px; background:#FFE6D8; color:#1E2230; margin-bottom:22px;}
 .wk-cta{background:#fff; border:1px solid #EEE3D8; border-radius:22px; padding:20px;}
+.wk-spot{background:#1E2230; color:#fff; border-radius:22px; padding:18px 20px 16px; margin-bottom:18px;}
+.wk-spot-k{margin:0; font-size:11.5px; font-weight:700; letter-spacing:.12em; color:#F2D48A;}
+.wk-spot h3{margin:4px 0 2px; font-size:20px;}
+.wk-spot h3 a{color:#fff; text-decoration:none;}
+.wk-spot-where{margin:0 0 10px; font-size:13px; color:#C9CDD8; line-height:1.6;}
+.wk-spot-map{border-radius:14px; overflow:hidden; background:#2A2F3E;}
+.wk-spot-map iframe{display:block;}
+.wk-spot-links{display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:10px; font-size:13.5px; font-weight:700;}
+.wk-spot-links a{color:#FFB27A; text-decoration:none;}
 .wk-btn{display:block; text-align:center; text-decoration:none; background:#FF5A1F; color:#fff; font-weight:900; padding:15px; border-radius:40px;}
 .wk-cta p{margin:10px 0 0; text-align:center; font-size:13px; color:#8a7d70;}
 .wk-pager{max-width:1180px; margin:0 auto; padding:0 24px 40px; display:flex; justify-content:space-between; gap:12px;}
@@ -630,6 +672,18 @@ a{color:inherit;}
   .wk-pager a{font-size:13px;}
 }
 """
+
+def spot_box(slug):
+    """作品ページ：その作品が見られるパブリックアートスポット（無ければ空）"""
+    s = SPOT_OF.get(slug)
+    if not s:
+        return ""
+    return (f'<div class="wk-spot"><p class="wk-spot-k">PUBLIC ART SPOT ／ この作品を見に行く</p>'
+            f'<h3><a href="../spots/{s["slug"]}.html">{e(s["name"])}</a></h3>'
+            f'<p class="wk-spot-where">{e(s["where"])}（{e(s["area"])}）<br>{e(s["address"])}</p>'
+            f'<div class="wk-spot-map">{gmap_embed(s, 220)}</div>'
+            f'<div class="wk-spot-links"><a href="../spots/{s["slug"]}.html">スポットのページ →</a>'
+            f'<a href="{e(s["url"])}" target="_blank" rel="noopener">{e(s["url_label"])} ↗</a></div></div>')
 
 out = W5 / "works"; out.mkdir(exist_ok=True)
 paged = [w for w in WORKS if w["photos"]]
@@ -670,7 +724,7 @@ for i, w in enumerate(WORKS):
                    '<figcaption><b>ショーウィンドウに飾ったら</b>百貨店・ブランド店のウィンドウに展示したイメージです（合成した参考イメージ）'
                    '<a href="../use04-showwindow/index.html">ショーウィンドウでのレンタル →</a></figcaption></figure>')
     (out / f'{w["slug"]}.html').write_text(PAGE.format(title=e(w["title"]), main=main, thumbs=thumbs, office=office, facts=facts_html, text=text,
-                                                       film=film, subj=subj, body=body, prev=prev, next=nxt), encoding="utf-8", newline="\n")
+                                                       film=film, spot=spot_box(w["slug"]), subj=subj, body=body, prev=prev, next=nxt), encoding="utf-8", newline="\n")
 print("work pages:", len(paged), "->", out)
 
 # ---------------------------------------------------------------- artist page (works/artist.html)
@@ -993,7 +1047,7 @@ SW_SEASONS = [
   ("spring", "春", "桜・新生活・母の日", [
     ("souga", "桜の花びらが舞う、百貨店の春のウィンドウ。"),
     ("fukko", "光の円と砂の床。旗艦店の新作発表に。"),
-    ("oka", "苔の壁と木の床。ボタニカルなコレクションに。"),
+    ("jiga", "苔の壁と木の床。ボタニカルなコレクションに。"),
     ("mudai1", "赤と白のストライプ。コスメ・雑貨の春のキャンペーンに。")]),
   ("summer", "夏", "光と海・お中元", [
     ("tou", "夏空と太陽、砂の床。リゾートコレクションに。"),
@@ -1003,7 +1057,7 @@ SW_SEASONS = [
     ("mudai2", "錆色のカーテンと落ち葉。秋冬コレクションの立ち上がりに。"),
     ("wasuremono", "深緑の壁と落ち葉。レザー・クラフトの店に。"),
     ("mudai5", "木の格子と生成りの壁。家具・インテリアの店に。"),
-    ("tamago", "黒と金の輪。時計・ジュエリーの夜のウィンドウに。"),
+    ("shishu-winery", "黒と金の輪。時計・ジュエリーの夜のウィンドウに。", "shishu"),
     ("moyuru", "炎の色のグラデーションと舞う火の粉。秋冬の夜のウィンドウに。")]),
   ("winter", "冬", "ホリデー・新春・バレンタイン", [
     ("shishu", "深紅のカーテンと金の飾り。ホリデーシーズンに。"),
@@ -1133,7 +1187,7 @@ SW_PAGE = """<!doctype html>
 </header>
 
 <section class="sw-hero">
-  <img src="../assets/window/tamago.jpg" alt="鉄の彫刻「卵」をジュエリー店の夜のショーウィンドウに飾ったイメージ">
+  <img src="../assets/window/shishu-winery.jpg" alt="鉄の彫刻「死守」をジュエリー店の夜のショーウィンドウに飾ったイメージ">
   <div class="sw-hero-in">
     <p class="sw-kick">SHOW WINDOW ART RENTAL</p>
     <h1><span class="nb">通りを歩く人の</span><span class="nb">足を、</span><br>止める鉄。</h1>
@@ -1262,7 +1316,7 @@ USES = [  # (フォルダ, 番号, 名前, カード用の画像)
   ("use01-entrance", "USE 01", "本社エントランス", "../assets/office/tsunagu.jpg"),
   ("use02-event", "USE 02", "周年・式典・採用イベント", "../assets/scene/event-yusho.jpg"),
   ("use03-showroom", "USE 03", "ショールーム", "../assets/scene/showroom-mudai4.jpg"),
-  ("use04-showwindow", "USE 04", "店舗のショーウィンドウ", "../assets/window/tamago.jpg"),
+  ("use04-showwindow", "USE 04", "店舗のショーウィンドウ", "../assets/window/shishu-winery.jpg"),
 ]
 
 USE_CSS = """
@@ -1292,10 +1346,12 @@ def showwindow_page():
     for key, jp, mood, items in SW_SEASONS:
         buttons.append(f'<button type="button" data-season="{key}" aria-pressed="false">{jp}<small>{e(mood)}</small></button>')
         cards = []
-        for slug, desc in items:
-            if not (W5 / "assets" / "window" / f"{slug}.jpg").exists():
+        for item in items:   # (画像の名前, 説明[, 作品ID]) … 作品IDを省くと画像の名前と同じ
+            img, desc = item[0], item[1]
+            slug = item[2] if len(item) > 2 else img
+            if not (W5 / "assets" / "window" / f"{img}.jpg").exists():
                 continue
-            w = BY[slug]; src = f"../assets/window/{slug}.jpg"
+            w = BY[slug]; src = f"../assets/window/{img}.jpg"
             cards.append(f'<figure class="sw-card"><div class="sw-img" data-lb="{src}" data-lb-cap="{e(w["title"])}（{jp}のウィンドウに飾ったイメージ）" data-lb-group="sw-{key}">'
                          f'<img src="{src}" alt="作品「{e(w["title"])}」をショーウィンドウに飾ったイメージ" loading="lazy"></div>'
                          f'<figcaption><b>{e(w["title"])}</b><span>{e(desc)}</span><a href="../works/{slug}.html">作品ページへ →</a></figcaption></figure>')
@@ -1536,9 +1592,9 @@ USE_PAGES = {
     gallery_lead="業種ごとにショールームを描き、作品を置いてみました。画像を押すと大きく表示します。",
     gallery_note="",
     cards=[("scene/showroom-mudai4", "無題4", "自動車・製品の大きなショールーム。光る床の展示ステージの横に。", "mudai4"),
-           ("scene/showroom-tamago", "卵", "家具・インテリア。ソファとラグのある展示の横に。", "tamago"),
+           ("scene/showroom-shishu-winery", "死守", "家具・インテリア。ソファとラグのある展示の横に。", "shishu"),
            ("scene/showroom-mudai6", "無題6", "キッチン・住宅設備。タイルの壁とカウンターの前に。", "mudai6"),
-           ("scene/showroom-oka", "丘の上の植物", "建材・タイル。素材見本の壁の前で、鉄という素材の力を。", "oka"),
+           ("scene/showroom-jiga", "自我", "建材・タイル。素材見本の壁の前で、鉄という素材の力を。", "jiga"),
            ("scene/showroom-wasuremono", "君の忘れもの", "照明器具。たくさんの照明の下、台座の上で光と影を見せる。", "wasuremono"),
            ("scene/showroom-souga", "想芽", "企業ミュージアム・ギャラリー。展示台の並ぶ空間に。", "souga")],
     ideas_h2="業種ごとの、組み合わせ。", ideas_lead="製品の素材や色に合わせて、作品を選びます。",
@@ -1598,6 +1654,159 @@ for folder, c in USE_PAGES.items():
     d = W5 / folder; d.mkdir(exist_ok=True)
     (d / "index.html").write_text(use_page(folder, c), encoding="utf-8", newline="\n")
     print("use page ->", d / "index.html")
+
+# ---------------------------------------------------------------- パブリックアートスポットのページ（spots/）
+# data/spots.csv の1行が1ページ（spots/<slug>.html）。一覧は spots/index.html。
+# 施設の中の案内図（簡略化して描いたもの）を載せたいスポットは SPOT_SITE_MAPS に SVG を書きます。
+SPOT_SITE_MAPS = {
+  "makino": """<svg viewBox="0 0 640 420" role="img" aria-label="牧野植物園の園内の案内図（簡略）。本館の中庭に作品があります">
+  <rect width="640" height="420" fill="#EEF3E8"/>
+  <path d="M70 60 Q120 20 210 40 Q260 50 270 120 Q275 190 250 240 Q300 230 360 190 Q420 140 520 150 Q600 170 600 260 Q590 330 520 350 L300 360 Q200 370 150 340 Q90 300 80 220 Q60 130 70 60Z" fill="#B9D7A0" stroke="#8BB574" stroke-width="3"/>
+  <path d="M250 240 Q300 230 360 190" fill="none" stroke="#E9D9A8" stroke-width="10" stroke-linecap="round"/>
+  <path d="M300 360 L300 410 M220 360 L210 410" stroke="#C9C2B0" stroke-width="12"/>
+  <text x="150" y="105" font-size="20" font-weight="700" fill="#2E5B2A">北園</text>
+  <text x="470" y="215" font-size="20" font-weight="700" fill="#2E5B2A">南園</text>
+  <rect x="150" y="48" width="110" height="34" rx="6" fill="#fff" stroke="#6A7A62"/><text x="205" y="70" font-size="14" text-anchor="middle" fill="#333">記念館 展示館</text>
+  <rect x="96" y="250" width="120" height="70" rx="8" fill="#fff" stroke="#6A7A62"/><text x="156" y="242" font-size="14" text-anchor="middle" fill="#333">牧野富太郎記念館 本館</text>
+  <circle cx="160" cy="285" r="22" fill="#FF5A1F" fill-opacity=".25" stroke="#FF5A1F" stroke-width="4"/>
+  <circle cx="160" cy="285" r="6" fill="#FF5A1F"/>
+  <text x="196" y="290" font-size="14" font-weight="700" fill="#C03A0A">中庭：作品「覚醒する自我」</text>
+  <rect x="470" y="300" width="70" height="32" rx="6" fill="#fff" stroke="#6A7A62"/><text x="505" y="321" font-size="14" text-anchor="middle" fill="#333">温室</text>
+  <text x="225" y="400" font-size="14" font-weight="700" fill="#B3261E">正門</text>
+  <text x="310" y="400" font-size="14" font-weight="700" fill="#B3261E">中門</text>
+  <text x="540" y="380" font-size="14" font-weight="700" fill="#B3261E">南門（出口）</text>
+</svg>""",
+}
+
+SPOT_CSS = """
+/* public art spots */
+.sp-hero{position:relative; min-height:min(64vh,560px); display:flex; align-items:flex-end; overflow:hidden; background:#1E2230;}
+.sp-hero img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+.sp-hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(30,34,48,0) 30%, rgba(30,34,48,.88) 100%);}
+.sp-hero-in{position:relative; z-index:1; max-width:1180px; width:100%; margin:0 auto; padding:0 24px 34px; color:#fff;}
+.sp-hero .wk-kick{color:#FFB27A;}
+.sp-hero h1{font-size:clamp(30px,4.6vw,54px); margin:4px 0 2px; line-height:1.3;}
+.sp-kana{margin:0; font-size:14px; opacity:.85;}
+.sp-hero p.sp-lead{max-width:44em; margin:12px 0 0; font-size:15.5px;}
+.sp-wrap{max-width:1180px; margin:0 auto; padding:40px 24px 10px;}
+.sp-wrap h2{font-size:clamp(22px,2.6vw,30px); margin:0 0 14px; display:flex; align-items:center; gap:10px;}
+.sp-wrap h2::before{content:""; width:22px; height:4px; background:#FF5A1F; border-radius:2px;}
+.sp-works{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px;}
+.sp-work{background:#fff; border:1px solid #EEE3D8; border-radius:20px; overflow:hidden; text-decoration:none; display:flex; flex-direction:column;}
+.sp-work img{width:100%; aspect-ratio:4/3; object-fit:cover;}
+.sp-work span{padding:12px 16px 16px; display:flex; flex-direction:column; gap:2px;}
+.sp-work b{font-size:19px;}
+.sp-work small{color:#8a7d70; font-size:13px;}
+.sp-work em{font-style:normal; font-weight:700; color:#FF5A1F; font-size:13.5px; margin-top:4px;}
+.sp-grid2{display:grid; grid-template-columns:1.2fr .8fr; gap:22px; align-items:start;}
+.sp-map{border-radius:20px; overflow:hidden; background:#ddd; border:1px solid #EEE3D8;}
+.sp-map iframe{display:block;}
+.sp-sitemap{margin-top:16px; background:#fff; border:1px solid #EEE3D8; border-radius:20px; padding:14px;}
+.sp-sitemap svg{display:block; width:100%; height:auto; font-family:'Zen Maru Gothic', sans-serif;}
+.sp-sitemap p{margin:8px 4px 0; font-size:12.5px; color:#8a7d70;}
+.sp-info{background:#fff; border:1px solid #EEE3D8; border-radius:20px; padding:18px 20px;}
+.sp-info dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:8px 14px; font-size:14.5px;}
+.sp-info dt{font-weight:700; color:#8a7d70;}
+.sp-info dd{margin:0;}
+.sp-info a{color:#FF5A1F; font-weight:700;}
+.sp-note{font-size:12.5px; color:#8a7d70; margin:12px 0 0;}
+.sp-others{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px;}
+.sp-other{display:block; text-decoration:none; background:#fff; border:1px solid #EEE3D8; border-radius:16px; overflow:hidden;}
+.sp-other img{width:100%; aspect-ratio:16/10; object-fit:cover;}
+.sp-other span{display:block; padding:10px 12px 12px; font-weight:700; font-size:14.5px;}
+.sp-other small{display:block; color:#8a7d70; font-weight:500; font-size:12px;}
+.sp-other.now{outline:3px solid #FF5A1F; outline-offset:-3px; pointer-events:none;}
+.sp-list{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px;}
+.sp-card{background:#fff; border:1px solid #EEE3D8; border-radius:22px; overflow:hidden;}
+.sp-card > a img{width:100%; aspect-ratio:16/9; object-fit:cover; display:block;}
+.sp-card-in{padding:14px 18px 18px;}
+.sp-card h3{margin:0; font-size:21px;}
+.sp-card h3 a{text-decoration:none;}
+.sp-card p{margin:4px 0 10px; font-size:13.5px; color:#4a4e5c;}
+.sp-card .sp-map iframe{height:200px;}
+@media (max-width:900px){ .sp-works{grid-template-columns:repeat(2,minmax(0,1fr));} .sp-grid2, .sp-list{grid-template-columns:minmax(0,1fr);} .sp-others{grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media (max-width:560px){ .sp-works{grid-template-columns:minmax(0,1fr);} .sp-wrap{padding:30px 16px 6px;} .sp-hero-in{padding:0 16px 26px;} }
+"""
+
+SPOT_HEAD = """<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>{title}｜パブリックアートレンタル アイエル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
+<link rel="stylesheet" href="../works/work.css">
+</head>
+<body>
+<header class="wk-bar"><a class="wk-logo" href="../01-entrance/index.html#aile-career">パブリックアートレンタル <span>アイエル</span></a><a class="wk-back" href="../01-entrance/index.html#aile-career" data-back>← トップへ戻る</a></header>
+"""
+SPOT_FOOT = """<div class="wk-sticky"><a class="wk-sticky-main" href="mailto:ilbussan@coral.ocn.ne.jp?subject={subj}&amp;body={body}">作品について相談する</a><a class="wk-sticky-tel" href="tel:0887540711" aria-label="電話する">電話</a></div>
+<footer class="wk-foot">パブリックアートレンタル アイエル ／ <a href="index.html">パブリックアートスポット一覧</a> ／ <a href="../works/artist.html">作家 池内卓也</a> ／ 見学は各施設の開館時間・決まりに従ってください。</footer>
+<script src="../assets/js/lightbox.js"></script>
+<script src="../assets/js/back.js"></script>
+</body>
+</html>
+"""
+
+def spot_work_card(slug):
+    w = BY[slug]
+    k, v = note(w)
+    yr = (w["year"] + "年　") if w["year"] else ""
+    return (f'<a class="sp-work" href="../works/{slug}.html"><img src="{w["photos"][0]}" alt="{e(w["title"])}" loading="lazy">'
+            f'<span><b>{e(w["title"])}</b><small>{yr}{e(k)}：{e(v)}</small><em>作品ページへ →</em></span></a>')
+
+def spot_page(s):
+    works = "".join(spot_work_card(w) for w in s["works"] if w in BY)
+    site = ""
+    if s["slug"] in SPOT_SITE_MAPS:
+        site = (f'<div class="sp-sitemap">{SPOT_SITE_MAPS[s["slug"]]}<p>※ 作品のある場所が分かるように、位置関係を簡略化して描いた案内図です。'
+                f'正確な園内図は<a href="{e(s["url"])}" target="_blank" rel="noopener">{e(s["url_label"])}</a>でご確認ください。</p></div>')
+    others = "".join(f'<a class="sp-other{" now" if o is s else ""}" href="{o["slug"]}.html"><img src="{rel(o["photo"])}" alt="" loading="lazy">'
+                     f'<span>{e(o["name"])}<small>{e(o["area"])}</small></span></a>' for o in SPOTS)
+    subj = urllib.parse.quote(f"{s['name']}で見た作品について")
+    body = urllib.parse.quote(f"パブリックアートレンタル アイエル 御中\n\n{s['name']}に展示されている作品を見て、相談したいです。\n\n【会社名】\n【設置したい場所】\n【希望の時期・期間】\n【ご連絡先】\n")
+    return (SPOT_HEAD.format(title=e(s["name"]) + "（パブリックアートスポット）")
+      + f"""<section class="sp-hero"><img src="{rel(s["photo"])}" alt="{e(s["name"])}に展示されている作品">
+  <div class="sp-hero-in"><p class="wk-kick">PUBLIC ART SPOT ／ {e(s["area"])}</p><h1>{e(s["name"])}</h1><p class="sp-kana">{e(s["kana"])}</p>
+  <p class="sp-lead">{e(s["text"])}</p></div></section>
+<section class="sp-wrap"><h2>ここで見られる作品</h2><div class="sp-works">{works}</div></section>
+<section class="sp-wrap"><h2>MAP</h2>
+  <div class="sp-grid2">
+    <div><div class="sp-map">{gmap_embed(s, 380)}</div>{site}</div>
+    <div class="sp-info"><dl>
+      <dt>作品の場所</dt><dd>{e(s["where"])}</dd>
+      <dt>住所</dt><dd>{e(s["address"])}</dd>
+      <dt>アクセス</dt><dd>{e(s["access"])}</dd>
+      <dt>リンク</dt><dd><a href="{e(s["url"])}" target="_blank" rel="noopener">{e(s["url_label"])} ↗</a><br><a href="{gmap_link(s)}" target="_blank" rel="noopener">Googleマップで開く ↗</a></dd>
+    </dl><p class="sp-note">※ 見学は各施設の開館時間・入館料・決まりに従ってください。作品の展示は変わることがあります。</p></div>
+  </div>
+</section>
+<section class="sp-wrap" style="padding-bottom:50px"><h2>ほかのパブリックアートスポット</h2><div class="sp-others">{others}</div></section>
+""" + SPOT_FOOT.format(subj=subj, body=body))
+
+def spots_index():
+    cards = "".join(f'<article class="sp-card"><a href="{s["slug"]}.html"><img src="{rel(s["photo"])}" alt="{e(s["name"])}" loading="lazy"></a><div class="sp-card-in">'
+                    f'<h3><a href="{s["slug"]}.html">{e(s["name"])}</a></h3>'
+                    f'<p>{e(s["area"])}　{"・".join("「" + e(BY[w]["title"]) + "」" for w in s["works"] if w in BY)}</p>'
+                    f'<div class="sp-map">{gmap_embed(s, 200)}</div></div></article>' for s in SPOTS)
+    subj = urllib.parse.quote("パブリックアートスポットを見て相談したいです")
+    body = urllib.parse.quote("パブリックアートレンタル アイエル 御中\n\n作品のレンタル・制作について相談したいです。\n\n【会社名】\n【設置したい場所】\n【ご連絡先】\n")
+    return (SPOT_HEAD.format(title="パブリックアートスポット")
+      + f"""<section class="ct-head"><p class="wk-kick"><a href="../works/artist.html">作家　池内卓也 →</a></p><h1>パブリックアートスポット</h1>
+<p>池内卓也の鉄の作品を、実際に見られる場所です。植物園・神社・美術館・ワイナリーに展示されています。</p></section>
+<section class="sp-wrap" style="padding-bottom:50px"><div class="sp-list">{cards}</div></section>
+""" + SPOT_FOOT.format(subj=subj, body=body))
+
+spdir = W5 / "spots"; spdir.mkdir(exist_ok=True)
+for s in SPOTS:
+    (spdir / f'{s["slug"]}.html').write_text(spot_page(s), encoding="utf-8", newline="\n")
+(spdir / "index.html").write_text(spots_index(), encoding="utf-8", newline="\n")
+with open(out / "work.css", "a", encoding="utf-8", newline="\n") as fh:
+    fh.write(SPOT_CSS)
+print("spots ->", spdir, len(SPOTS))
 
 (W5 / "assets" / "js" / "back.js").write_text(BACK_JS, encoding="utf-8", newline="\n")
 print("back.js ->", W5 / "assets" / "js" / "back.js")

@@ -277,7 +277,7 @@ SPECS = {
                   particles=[("petal", 90, PINK)], neighbors=[(-3.6, -2.4), (2.4, 3.6)]),
   "fukko":   dict(TALL, win=(2.4, 2.4, 2.2, 3.0), facade="concrete", back=disc(R2.concrete((214, 212, 204)), (236, 230, 214), 2.4, 1.7, 1.2), side=R2.concrete((214, 212, 204)),
                   floor=f_sand((216, 206, 186)), spots=[0], neighbors=[(-4.6, -3.0)]),
-  "oka":     dict(TALL, win=(2.4, 2.4, 2.2, 3.0), facade="greenmetal", back=R2.moss(), side=R2.plaster((232, 230, 222)), floor=R2.f_wood((150, 112, 78)),
+  "jiga":    dict(TALL, win=(2.4, 2.4, 2.2, 3.0), facade="greenmetal", back=R2.moss(), side=R2.plaster((232, 230, 222)), floor=R2.f_wood((150, 112, 78)),
                   spots=[-.3], particles=[("leaf", 50, [(86, 140, 70), (120, 168, 90), (70, 112, 60)])]),
   "mudai1":  dict(win=(2.0, 2.0, 2.0, 2.3), facade="whitetile", back=R2.stripe_wall((206, 40, 46), (246, 244, 240), .35), floor=f_lacquer((196, 36, 40), .35),
                   spots=[0], props=[(1.0, 1.5, 0, .5, 5.0, 5.5, (246, 244, 240), (236, 234, 230), (210, 208, 204)), (-1.6, -1.1, 0, .3, 5.2, 5.7, (246, 244, 240), (236, 234, 230), (210, 208, 204))]),
@@ -294,7 +294,7 @@ SPECS = {
                   particles=[("leaf", 30, LEAVES)], plinth_col=(214, 196, 160)),
   "mudai5":  dict(win=(2.0, 2.0, 2.0, 2.3), facade="limestone", back=R2.plaster((242, 234, 220)), side=R2.slats((172, 124, 82), .09, .02), floor=R2.f_herring((140, 98, 64)), spots=[0],
                   props=[(-1.7, -1.0, 0, .9, 5.3, 5.8, (110, 72, 44), (96, 62, 38), (80, 52, 32))], light=(1.04, 1, .92)),
-  "tamago":  dict(win=(2.0, 2.0, 2.0, 2.3), facade="blackmetal", back=disc(R2.panel((28, 28, 30), 1.0, None, (20, 20, 22)), (196, 160, 90), 2.0, 1.25, 1.0, ring=.06), side=R2.panel((28, 28, 30), 1.0, None, (20, 20, 22)),
+  "shishu-winery": dict(win=(2.0, 2.0, 2.0, 2.3), facade="blackmetal", back=disc(R2.panel((28, 28, 30), 1.0, None, (20, 20, 22)), (196, 160, 90), 2.0, 1.25, 1.0, ring=.06), side=R2.panel((28, 28, 30), 1.0, None, (20, 20, 22)),
                   floor=f_lacquer((22, 22, 24), .5), spots=[0], night=True, spot=.75, neighbors=[(-3.7, -2.5)]),
   # winter / holiday
   "shishu":  dict(SMALL, facade="limestone", back=drape((150, 22, 34)), floor=f_lacquer((120, 18, 28), .4), spots=[0], night=True, spot=.75,

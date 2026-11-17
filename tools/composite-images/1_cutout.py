@@ -8,7 +8,7 @@
   gapfix    … yes にすると、針金のすき間に残った背景色を消す
 
     python tools/composite-images/1_cutout.py            # 全作品
-    python tools/composite-images/1_cutout.py tou,tamago # 一部だけ
+    python tools/composite-images/1_cutout.py tou,jiga # 一部だけ
 """
 import csv, sys
 import numpy as np

@@ -12,6 +12,7 @@ rental_office-aile/
 ├─ use03-showroom/     USE 03 ショールーム            ★自動生成
 ├─ use04-showwindow/   USE 04 ショーウィンドウ        ★自動生成
 ├─ works/              作品ページ・作品リスト・作家ページ ★自動生成
+├─ spots/              パブリックアートスポット（作品が見られる場所） ★自動生成
 ├─ title/              タイトルロゴの部品              ★自動生成
 └─ assets/             写真・合成画像・動画・CSS・JS
 ```

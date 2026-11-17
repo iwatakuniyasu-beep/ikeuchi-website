@@ -308,7 +308,7 @@ SPECS = {
                     ceiling=c_plaster(), floor=f_big((150, 152, 156)), x=760, back_parts=[(5.0, 7.0, 1.8, 2.2, plaster((220, 222, 226)))]),
   "yusho":     dict(room=(7, 7, 14, 6.0), hor=470, cam=1.6, back=window((176, 204, 224), (110, 140, 110), 2.4), left=concrete(), right=concrete(), ceiling=c_lines((246, 246, 246)),
                     floor=f_big((204, 200, 194), 1.5, 3.0), x=820),
-  "tamago":    dict(room=(4.0, 4.0, 9, 3.0), hor=430, back=woodpanel((120, 84, 58), .9), left=concrete(), right=concrete(), ceiling=c_dark(), floor=f_stone((96, 96, 100), .6, .3), x=820,
+  "shishu-winery": dict(room=(4.0, 4.0, 9, 3.0), hor=430, back=woodpanel((120, 84, 58), .9), left=concrete(), right=concrete(), ceiling=c_dark(), floor=f_stone((96, 96, 100), .6, .3), x=820,
                     plants=[(-3.2, 6.0, 1.0)]),
   "irodori":   dict(room=(4.5, 4.5, 8.5, 3.0), hor=430, back=plaster((250, 246, 236)), left=hslats((230, 196, 140)), right=plaster((250, 246, 236)), ceiling=c_plaster((248, 244, 236)),
                     floor=f_wood((196, 160, 118)), x=800, plants=[(-3.6, 6, 1.2), (3.6, 6, 1.3)], back_parts=[(3.4, 5.6, 2.0, 2.4, plaster((242, 196, 70)))]),
@@ -318,7 +318,7 @@ SPECS = {
                     ceiling=c_wood((90, 66, 46)), floor=f_herring((100, 70, 48)), x=800, wash=34, tint=(1.05, 1, .9), pendants=[(0, 4.6)]),
   "moyuru":    dict(room=(4.5, 4.5, 10, 3.6), hor=430, back=slats((58, 58, 62), .12, .03, (30, 30, 32)), left=plaster((242, 240, 236)), right=plaster((242, 240, 236)),
                     ceiling=c_plaster(), floor=f_wood((214, 186, 150)), x=800, wash=40, plants=[(-3.6, 6.5, 1.1), (3.6, 6.5, 1.1)]),
-  "oka":       dict(room=(4.5, 4.5, 10, 3.2), hor=430, back=plaster((236, 234, 228)), left=moss(), right=moss(), ceiling=c_plaster(), floor=f_stone((210, 206, 198)), x=800),
+  "jiga":      dict(room=(4.5, 4.5, 10, 3.2), hor=430, back=plaster((236, 234, 228)), left=moss(), right=moss(), ceiling=c_plaster(), floor=f_stone((210, 206, 198)), x=800),
 }
 
 if __name__ == "__main__":
