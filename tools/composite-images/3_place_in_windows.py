@@ -286,7 +286,7 @@ SPECS = {
                   floor=f_sand(), spots=[.2], neighbors=[(2.5, 3.7)]),
   "yusho":   dict(TALL, win=(2.6, 2.6, 2.4, 3.3), facade="navy", back=gradient((24, 40, 86), (60, 96, 150), 3.3), side=R2.plaster((40, 52, 86)),
                   floor=f_lacquer((30, 34, 48), .5), spots=[0], spot=.7, night=True, particles=[("confetti", 70, [(220, 60, 50), (240, 200, 60), (60, 120, 210), (250, 250, 250)])]),
-  "irodori": dict(win=(2.0, 2.0, 2.0, 2.3), depth=.7, facade="whitetile", back=dots(R2.plaster((250, 214, 84)), (255, 246, 224), .32, .06), side=R2.plaster((250, 214, 84)), floor=R2.f_terrazzo((236, 232, 222)),
+  "ah-fake": dict(win=(2.0, 2.0, 2.0, 2.3), depth=.7, facade="whitetile", back=dots(R2.plaster((250, 214, 84)), (255, 246, 224), .32, .06), side=R2.plaster((250, 214, 84)), floor=R2.f_terrazzo((236, 232, 222)),
                   spots=[0]),
   # autumn
   "mudai2":  dict(SMALL, facade="brick", back=drape((176, 84, 44)), floor=R2.f_wood((120, 82, 52)), spots=[0], particles=[("leaf", 45, LEAVES)], plinth_col=(60, 46, 38)),

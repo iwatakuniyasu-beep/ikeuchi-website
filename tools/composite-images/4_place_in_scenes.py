@@ -48,7 +48,7 @@ SCENES = {
       right=R2.window((200, 214, 228)), ceiling=R2.c_lines(), floor=R2.f_carpet((84, 88, 96)), x=760,
       back_parts=[(2.0, 9.0, 1.2, 3.2, banner((30, 60, 120), (255, 255, 255), .5))],
       boxes=[(1.8, 4.6, 0, .9, 6.0, 6.7, WHITE, (30, 60, 120), (24, 50, 100)), (-4.8, -2.6, 0, .9, 7.5, 8.2, WHITE, (30, 60, 120), (24, 50, 100))]),
-  "event-irodori": dict(slug="irodori", room=(4.5, 4.5, 9, 3.4), hor=440, back=R2.stripe_wall((246, 214, 90), (250, 246, 236), .5), left=R2.plaster((250, 246, 236)),
+  "event-ah-fake": dict(slug="ah-fake", room=(4.5, 4.5, 9, 3.4), hor=440, back=R2.stripe_wall((246, 214, 90), (250, 246, 236), .5), left=R2.plaster((250, 246, 236)),
       right=R2.plaster((250, 246, 236)), ceiling=R2.c_plaster(), floor=R2.f_wood((196, 160, 118)), x=800,
       boxes=[table(-4.0, -2.4, 5.0, 5.8), table(2.4, 4.0, 5.0, 5.8), table(-1.2, 1.2, 7.4, 8.0, .9, (240, 120, 60))], plants=[(-3.6, 6.5, 1.0), (3.6, 6.5, 1.0)]),
   "event-mamoru": dict(slug="mamoru", room=(4, 4, 12, 3.6), hor=440, back=R2.plaster((236, 232, 224)), left=R2.slats((186, 146, 100)), right=R2.slats((186, 146, 100)),

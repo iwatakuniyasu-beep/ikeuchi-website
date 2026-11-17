@@ -310,7 +310,7 @@ SPECS = {
                     floor=f_big((204, 200, 194), 1.5, 3.0), x=820),
   "shishu-winery": dict(room=(4.0, 4.0, 9, 3.0), hor=430, back=woodpanel((120, 84, 58), .9), left=concrete(), right=concrete(), ceiling=c_dark(), floor=f_stone((96, 96, 100), .6, .3), x=820,
                     plants=[(-3.2, 6.0, 1.0)]),
-  "irodori":   dict(room=(4.5, 4.5, 8.5, 3.0), hor=430, back=plaster((250, 246, 236)), left=hslats((230, 196, 140)), right=plaster((250, 246, 236)), ceiling=c_plaster((248, 244, 236)),
+  "ah-fake":   dict(room=(4.5, 4.5, 8.5, 3.0), hor=430, back=plaster((250, 246, 236)), left=hslats((230, 196, 140)), right=plaster((250, 246, 236)), ceiling=c_plaster((248, 244, 236)),
                     floor=f_wood((196, 160, 118)), x=800, plants=[(-3.6, 6, 1.2), (3.6, 6, 1.3)], back_parts=[(3.4, 5.6, 2.0, 2.4, plaster((242, 196, 70)))]),
   "fukko":     dict(room=(3.0, 6.0, 10, 3.6), hor=430, back=concrete(), left=brick((176, 170, 160)), right=window((190, 206, 220)), ceiling=c_dark(), floor=f_concrete(), x=700,
                     boxes=[(1.0, 4.4, 0, .45, 6.6, 7.2, (60, 60, 64), (52, 52, 56), (44, 44, 48))]),
