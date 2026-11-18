@@ -1710,6 +1710,10 @@ SPOT_CSS = """
 .sp-info dd{margin:0;}
 .sp-info a{color:#FF5A1F; font-weight:700;}
 .sp-note{font-size:12.5px; color:#8a7d70; margin:12px 0 0;}
+.sp-photos{margin-top:14px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;}
+.sp-photos-k{grid-column:1 / -1; margin:0; font-size:13px; font-weight:700; color:#8a7d70;}
+.sp-photos button{padding:0; border:0; border-radius:12px; overflow:hidden; cursor:zoom-in; background:#eee; aspect-ratio:16/10;}
+.sp-photos img{width:100%; height:100%; object-fit:cover; display:block;}
 .sp-others{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px;}
 .sp-other{display:block; text-decoration:none; background:#fff; border:1px solid #EEE3D8; border-radius:16px; overflow:hidden;}
 .sp-other img{width:100%; aspect-ratio:16/10; object-fit:cover;}
@@ -1764,6 +1768,12 @@ def spot_page(s):
     if s["slug"] in SPOT_SITE_MAPS:
         site = (f'<div class="sp-sitemap">{SPOT_SITE_MAPS[s["slug"]]}<p>※ 作品のある場所が分かるように、位置関係を簡略化して描いた案内図です。'
                 f'正確な園内図は<a href="{e(s["url"])}" target="_blank" rel="noopener">{e(s["url_label"])}</a>でご確認ください。</p></div>')
+    pics = [rel(p) for p in s.get("place_photos", "").split("|") if p.strip()]
+    place_photos = ""
+    if pics:   # 施設の写真（spots.csv の place_photos。押すと拡大）
+        place_photos = ('<div class="sp-photos"><p class="sp-photos-k">施設の写真</p>' + "".join(
+            f'<button type="button" data-lb="{p}" data-lb-cap="{e(s["name"])}" data-lb-group="sp-{s["slug"]}" aria-label="{e(s["name"])}の写真を拡大">'
+            f'<img src="{p}" alt="{e(s["name"])}" loading="lazy"></button>' for p in pics) + "</div>")
     others = "".join(f'<a class="sp-other{" now" if o is s else ""}" href="{o["slug"]}.html"><img src="{rel(o["photo"])}" alt="" loading="lazy">'
                      f'<span>{e(o["name"])}<small>{e(o["area"])}</small></span></a>' for o in SPOTS)
     subj = urllib.parse.quote(f"{s['name']}で見た作品について")
@@ -1779,9 +1789,10 @@ def spot_page(s):
     <div class="sp-info"><dl>
       <dt>作品の場所</dt><dd>{e(s["where"])}</dd>
       <dt>住所</dt><dd>{e(s["address"])}</dd>
+      {f'<dt>営業時間</dt><dd>{e(s["hours"])}</dd>' if s.get("hours") else ""}
       <dt>アクセス</dt><dd>{e(s["access"])}</dd>
       <dt>リンク</dt><dd><a href="{e(s["url"])}" target="_blank" rel="noopener">{e(s["url_label"])} ↗</a><br><a href="{gmap_link(s)}" target="_blank" rel="noopener">Googleマップで開く ↗</a></dd>
-    </dl><p class="sp-note">※ 見学は各施設の開館時間・入館料・決まりに従ってください。作品の展示は変わることがあります。</p></div>
+    </dl><p class="sp-note">※ 見学は各施設の開館時間・入館料・決まりに従ってください。作品の展示は変わることがあります。</p>{place_photos}</div>
   </div>
 </section>
 <section class="sp-wrap" style="padding-bottom:50px"><h2>ほかのパブリックアートスポット</h2><div class="sp-others">{others}</div></section>
